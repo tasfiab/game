@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://bcjsbq03qg6hf"]
+
+[ext_resource type="Texture2D" uid="uid://d1r2yv4tuyc8o" path="res://assets/mixing_counter.png" id="1_uinbw"]
+[ext_resource type="Texture2D" uid="uid://dsaimry5meh6c" path="res://assets/cake_essence.png" id="2_qm6x5"]
+[ext_resource type="Script" path="res://scripts/ingredients.gd" id="3_bro0v"]
+[ext_resource type="Texture2D" uid="uid://8q6oduejvoel" path="res://assets/bread_essence.png" id="3_vcrw5"]
+[ext_resource type="Texture2D" uid="uid://bjpomk5oak7qi" path="res://assets/mixing_bowl.png" id="4_nft2q"]
+[ext_resource type="Texture2D" uid="uid://b76is0edr2npd" path="res://assets/strawberry.png" id="5_5g1xl"]
+[ext_resource type="Texture2D" uid="uid://bvuu4wexq3x0n" path="res://assets/lemon.png" id="6_x6752"]
+[ext_resource type="Texture2D" uid="uid://b16fpix34sg5k" path="res://assets/chocolate.png" id="7_43pj2"]
+[ext_resource type="Texture2D" uid="uid://dnyesyphuootw" path="res://assets/vanilla.png" id="8_kegyc"]
+[ext_resource type="PackedScene" uid="uid://dkbtlsunhxb7e" path="res://scenes/dough.tscn" id="10_c0tek"]
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="11_dgvn0"]
+
+[node name="mixing-minigame" type="Node2D"]
+script = ExtResource("3_bro0v")
+
+[node name="MixingCounter" type="Sprite2D" parent="."]
+position = Vector2(570, 320)
+texture = ExtResource("1_uinbw")
+
+[node name="cake_essence" type="TextureRect" parent="."]
+offset_left = 233.0
+offset_top = 144.0
+offset_right = 506.0
+offset_bottom = 417.0
+texture = ExtResource("2_qm6x5")
+
+[node name="bread_essence" type="TextureRect" parent="."]
+offset_left = 68.0
+offset_top = 144.0
+offset_right = 341.0
+offset_bottom = 417.0
+texture = ExtResource("3_vcrw5")
+
+[node name="mixing_bowl" type="TextureRect" parent="."]
+offset_left = 659.0
+offset_top = 218.0
+offset_right = 971.0
+offset_bottom = 530.0
+texture = ExtResource("4_nft2q")
+
+[node name="strawberry" type="TextureRect" parent="."]
+offset_left = 300.0
+offset_top = 433.0
+offset_right = 414.0
+offset_bottom = 547.0
+rotation = 0.145566
+texture = ExtResource("5_5g1xl")
+
+[node name="lemon" type="TextureRect" parent="."]
+offset_left = 143.0
+offset_top = 422.0
+offset_right = 281.0
+offset_bottom = 560.0
+texture = ExtResource("6_x6752")
+
+[node name="chocolate" type="TextureRect" parent="."]
+offset_left = 422.0
+offset_top = 268.0
+offset_right = 578.0
+offset_bottom = 424.0
+texture = ExtResource("7_43pj2")
+
+[node name="vanilla" type="TextureRect" parent="."]
+offset_left = 499.0
+offset_top = 268.0
+offset_right = 655.0
+offset_bottom = 424.0
+texture = ExtResource("8_kegyc")
+
+[node name="dough" parent="." instance=ExtResource("10_c0tek")]
+position = Vector2(802, 187)
+scale = Vector2(5, 5)
+
+[node name="done_button" type="Button" parent="."]
+offset_left = 910.0
+offset_top = 523.0
+offset_right = 1005.0
+offset_bottom = 566.0
+theme_override_colors/font_hover_color = Color(0.27451, 0.137255, 0.113725, 1)
+theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_fonts/font = ExtResource("11_dgvn0")
+theme_override_font_sizes/font_size = 30
+text = "done"
+
+[connection signal="mouse_entered" from="cake_essence" to="." method="_on_cake_essence_mouse_entered"]
+[connection signal="mouse_exited" from="cake_essence" to="." method="_on_cake_essence_mouse_exited"]
+[connection signal="mouse_entered" from="bread_essence" to="." method="_on_bread_essence_mouse_entered"]
+[connection signal="mouse_exited" from="bread_essence" to="." method="_on_bread_essence_mouse_exited"]
+[connection signal="mouse_entered" from="strawberry" to="." method="_on_strawberry_mouse_entered"]
+[connection signal="mouse_exited" from="strawberry" to="." method="_on_strawberry_mouse_exited"]
+[connection signal="mouse_entered" from="lemon" to="." method="_on_lemon_mouse_entered"]
+[connection signal="mouse_exited" from="lemon" to="." method="_on_lemon_mouse_exited"]
+[connection signal="mouse_entered" from="chocolate" to="." method="_on_chocolate_mouse_entered"]
+[connection signal="mouse_exited" from="chocolate" to="." method="_on_chocolate_mouse_exited"]
+[connection signal="mouse_entered" from="vanilla" to="." method="_on_vanilla_mouse_entered"]
+[connection signal="mouse_exited" from="vanilla" to="." method="_on_vanilla_mouse_exited"]
+[connection signal="pressed" from="done_button" to="." method="_on_done_button_pressed"]

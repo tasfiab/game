@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://0ighbmgxmvjl"]
+
+[ext_resource type="PackedScene" uid="uid://cjv5t34wg3tgu" path="res://scenes/oven_minigame_timer.tscn" id="1_u046a"]
+[ext_resource type="PackedScene" uid="uid://c0wv76xvy6lgo" path="res://scenes/counter.tscn" id="2_07byb"]
+
+[node name="oven_minigame" type="Node2D"]
+
+[node name="oven_minigame_timer" parent="." instance=ExtResource("1_u046a")]
+offset_left = 16.0
+offset_top = -6.0
+offset_right = 16.0
+offset_bottom = -6.0
+scale = Vector2(0.2, 0.2)
+
+[node name="oven-area" parent="." instance=ExtResource("2_07byb")]
+metadata/oven = true
