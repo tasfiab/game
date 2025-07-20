@@ -33,6 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_bpswa")
 
 [node name="rope??" type="ColorRect" parent="."]
 visible = false
@@ -61,7 +62,7 @@ theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
 theme_override_fonts/font = ExtResource("1_06rtm")
 theme_override_font_sizes/font_size = 25
 text = "day
-2
+1
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -143,8 +144,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="clock_timer" type="Timer" parent="clock_container"]
-wait_time = 10.0
-script = ExtResource("2_bpswa")
 
 [node name="pause_button" type="TextureButton" parent="."]
 layout_mode = 0
@@ -157,5 +156,5 @@ texture_normal = ExtResource("5_1y2l5")
 ignore_texture_size = true
 script = ExtResource("6_n37jm")
 
-[connection signal="timeout" from="clock_container/clock_timer" to="clock_container/clock_timer" method="_on_timeout"]
+[connection signal="timeout" from="clock_container/clock_timer" to="." method="_on_timeout"]
 [connection signal="pressed" from="pause_button" to="pause_button" method="_on_pause_button_pressed"]

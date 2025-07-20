@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmu3oovukcgcq"]
+
+[ext_resource type="Texture2D" uid="uid://cvdiggkyisrm7" path="res://assets/main_menu_background.png" id="1_6m6pd"]
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="2_4co8d"]
+
+[sub_resource type="Theme" id="Theme_okijm"]
+default_font = ExtResource("2_4co8d")
+default_font_size = 40
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MainMenuBackground" type="Sprite2D" parent="."]
+position = Vector2(575.328, 324.5)
+scale = Vector2(1.00466, 1.00466)
+texture = ExtResource("1_6m6pd")
+
+[node name="Button" type="Button" parent="MainMenuBackground"]
+offset_left = -456.202
+offset_top = -30.3585
+offset_right = -213.202
+offset_bottom = 43.6415
+theme = SubResource("Theme_okijm")
+text = "play"
+
+[node name="Button2" type="Button" parent="MainMenuBackground"]
+offset_left = -456.202
+offset_top = 66.1915
+offset_right = -213.202
+offset_bottom = 140.192
+text = "options"
+
+[node name="Button3" type="Button" parent="MainMenuBackground"]
+offset_left = -456.202
+offset_top = 164.732
+offset_right = -213.202
+offset_bottom = 238.732
+text = "quit"

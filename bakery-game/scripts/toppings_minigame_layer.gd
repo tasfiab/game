@@ -8,8 +8,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.making_minigame_start:
+	if Global.toppings_minigame_start:
 		if Input.is_action_just_pressed("interact"):
 			show()
-			if Global.done_button_pressed:
-				hide()

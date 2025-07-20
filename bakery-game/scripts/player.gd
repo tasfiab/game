@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 
+
 const SPEED = 300.0
 
 
@@ -21,12 +22,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-# Function when player enters area where they can interact with minigame
+# Function when player enters area where they can interact with minigame.
 func _on_minigame_entered(area: Area2D) -> void:
 	if area.has_meta("oven"):
 		Global.oven_minigame_start = true
 	if area.has_meta("making_area"):
 		Global.making_minigame_start = true
+	if area.has_meta("toppings"):
+		Global.toppings_minigame_start = true
 
 
 func _on_minigame_exited(area: Area2D) -> void:
@@ -34,5 +37,7 @@ func _on_minigame_exited(area: Area2D) -> void:
 			Global.oven_minigame_start = false
 		if area.has_meta("making_area"):
 			Global.making_minigame_start = false
+		if area.has_meta("toppings"):
+			Global.toppings_minigame_start = false
 	
 	

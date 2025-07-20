@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cjtlcuurdn1cn"]
+[gd_scene load_steps=20 format=4 uid="uid://cjtlcuurdn1cn"]
 
 [ext_resource type="PackedScene" uid="uid://cqkg4npx07h4r" path="res://scenes/player.tscn" id="1_6ihva"]
 [ext_resource type="Texture2D" uid="uid://obrss4ocnl6v" path="res://assets/bakery-ground.png" id="1_fbhfb"]
@@ -9,7 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://bcjsbq03qg6hf" path="res://scenes/mixing_minigame.tscn" id="5_6iv2m"]
 [ext_resource type="Script" path="res://scripts/making_minigame_layer.gd" id="5_8sudi"]
 [ext_resource type="PackedScene" uid="uid://dkbtlsunhxb7e" path="res://scenes/dough.tscn" id="7_3ce2t"]
+[ext_resource type="Script" path="res://scripts/moulding_minigame_layer.gd" id="7_a50nq"]
 [ext_resource type="PackedScene" uid="uid://0ighbmgxmvjl" path="res://scenes/oven_minigame.tscn" id="7_mlmmp"]
+[ext_resource type="PackedScene" uid="uid://bh8l8orx6nlh2" path="res://scenes/moulding_minigame_2.tscn" id="7_p66b8"]
+[ext_resource type="PackedScene" uid="uid://cdrdhj3fmns7w" path="res://scenes/toppings_minigame.tscn" id="9_ol8kj"]
+[ext_resource type="PackedScene" uid="uid://ekuyfmtny4bk" path="res://scenes/pause_menu.tscn" id="9_u3a67"]
+[ext_resource type="Script" path="res://scripts/toppings_minigame_layer.gd" id="10_4ka4t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0mhpi"]
 texture = ExtResource("2_40jit")
@@ -2858,6 +2863,23 @@ script = ExtResource("5_8sudi")
 [node name="mixing-minigame" parent="player/CanvasLayer" instance=ExtResource("5_6iv2m")]
 position = Vector2(-7, 9)
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="player"]
+visible = false
+script = ExtResource("7_a50nq")
+
+[node name="moulding_minigame_2" parent="player/CanvasLayer2" instance=ExtResource("7_p66b8")]
+
+[node name="pause_layer" type="CanvasLayer" parent="player"]
+visible = false
+
+[node name="pause_menu" parent="player/pause_layer" instance=ExtResource("9_u3a67")]
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="player"]
+visible = false
+script = ExtResource("10_4ka4t")
+
+[node name="toppings_minigame" parent="player/CanvasLayer3" instance=ExtResource("9_ol8kj")]
+
 [node name="dough" parent="player" instance=ExtResource("7_3ce2t")]
 position = Vector2(0, -77)
 
@@ -2872,16 +2894,20 @@ tile_set = SubResource("TileSet_m1lyg")
 [node name="making-counter-area" parent="." instance=ExtResource("2_rnurw")]
 position = Vector2(84, -337)
 scale = Vector2(5.64, 20.96)
+script = null
 metadata/making_area = true
 
 [node name="making-counter-area2" parent="." instance=ExtResource("2_rnurw")]
 position = Vector2(238, -604)
 rotation = -1.57079
 scale = Vector2(5.64, 20.96)
+script = null
 
 [node name="toppings-counter-area" parent="." instance=ExtResource("2_rnurw")]
 position = Vector2(1070, -270)
 scale = Vector2(5.64, 14.68)
+script = null
+metadata/toppings = true
 
 [node name="oven_minigame" parent="." instance=ExtResource("7_mlmmp")]
 position = Vector2(779, -641)

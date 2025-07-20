@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcjsbq03qg6hf"]
+[gd_scene load_steps=13 format=3 uid="uid://bcjsbq03qg6hf"]
 
 [ext_resource type="Texture2D" uid="uid://d1r2yv4tuyc8o" path="res://assets/mixing_counter.png" id="1_uinbw"]
 [ext_resource type="Texture2D" uid="uid://dsaimry5meh6c" path="res://assets/cake_essence.png" id="2_qm6x5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dnyesyphuootw" path="res://assets/vanilla.png" id="8_kegyc"]
 [ext_resource type="PackedScene" uid="uid://dkbtlsunhxb7e" path="res://scenes/dough.tscn" id="10_c0tek"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="11_dgvn0"]
+[ext_resource type="PackedScene" uid="uid://bfoxjtagov6tq" path="res://scenes/taste_meters.tscn" id="12_ipfxc"]
 
 [node name="mixing-minigame" type="Node2D"]
 script = ExtResource("3_bro0v")
@@ -34,6 +35,7 @@ offset_bottom = 417.0
 texture = ExtResource("3_vcrw5")
 
 [node name="mixing_bowl" type="TextureRect" parent="."]
+visible = false
 offset_left = 659.0
 offset_top = 218.0
 offset_right = 971.0
@@ -70,6 +72,7 @@ offset_bottom = 424.0
 texture = ExtResource("8_kegyc")
 
 [node name="dough" parent="." instance=ExtResource("10_c0tek")]
+visible = false
 position = Vector2(802, 187)
 scale = Vector2(5, 5)
 
@@ -83,6 +86,10 @@ theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
 theme_override_fonts/font = ExtResource("11_dgvn0")
 theme_override_font_sizes/font_size = 30
 text = "done"
+
+[node name="tastemeter" parent="." instance=ExtResource("12_ipfxc")]
+position = Vector2(690, 98)
+scale = Vector2(4, 2.72)
 
 [connection signal="mouse_entered" from="cake_essence" to="." method="_on_cake_essence_mouse_entered"]
 [connection signal="mouse_exited" from="cake_essence" to="." method="_on_cake_essence_mouse_exited"]
