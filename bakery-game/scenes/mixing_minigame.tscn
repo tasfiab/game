@@ -87,10 +87,17 @@ theme_override_fonts/font = ExtResource("11_dgvn0")
 theme_override_font_sizes/font_size = 30
 text = "done"
 
-[node name="tastemeter" parent="." instance=ExtResource("12_ipfxc")]
-position = Vector2(690, 98)
-scale = Vector2(4, 2.72)
+[node name="Label" type="Label" parent="."]
+offset_left = 711.0
+offset_top = 400.0
+offset_right = 944.0
+offset_bottom = 464.0
 
+[node name="tastemeter" parent="." instance=ExtResource("12_ipfxc")]
+position = Vector2(527, 93)
+scale = Vector2(3.16, 3.16)
+
+[connection signal="ingredient_clicked" from="." to="." method="_on_ingredient_clicked"]
 [connection signal="mouse_entered" from="cake_essence" to="." method="_on_cake_essence_mouse_entered"]
 [connection signal="mouse_exited" from="cake_essence" to="." method="_on_cake_essence_mouse_exited"]
 [connection signal="mouse_entered" from="bread_essence" to="." method="_on_bread_essence_mouse_entered"]

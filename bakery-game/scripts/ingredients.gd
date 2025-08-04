@@ -9,60 +9,99 @@ var can_click_chocolate : bool = false
 
 var ingredient_chosen : bool = false
 
+var dough_type_index = 0
+var flavour_index = 1
+var flavour_2_index = 2
 
+var CAKE = 'cake'
+var BREAD = 'bread'
+var VANILLA = 'vanilla'
+var CHOCOLATE = 'chocolate'
+var LEMON = 'lemon'
+var STRAWBERRY = 'strawberry'
+
+
+var ingredient_number = 0
+
+signal ingredient_clicked
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-
+	for ingredient in Global.chosen_ingredients:
+		Global.ingredient_chosen = false
+		if ingredient_number == 0:
+			$strawberry.hide()
+			$lemon.hide()
+			$chocolate.hide()
+			$vanilla.hide()
+		elif ingredient_number == 1:
+			$vanilla.show()
+			$chocolate.show()
+		elif ingredient_number == 2:
+			$strawberry.show()
+			$lemon.show()
+			$vanilla.hide()
+			$chocolate.hide()
+		
+		await ingredient_clicked
+		ingredient_number += 1
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
-# If user tries to interact with ingredients
 	if Input.is_action_just_pressed("interact"):
-		if can_click_cake and not Global.dough_chosen:
-			_choosing_ingredients('cake', 0)
-			Global.dough_chosen = true
-			Global.ingredient_chosen = true
-			Global.dough_taste_added = false
-		
-		elif can_click_bread and not Global.dough_chosen:
-			_choosing_ingredients('bread', 0)
-			Global.dough_chosen = true
-			Global.ingredient_chosen = true
-			Global.dough_taste_added = false
+		if can_click_cake:
+			_choosing_ingredients(CAKE, ingredient_number)
+			ingredient_clicked.emit()
+			Global.dough_type == CAKE
 			
-		elif can_click_vanilla and not Global.flavour_chosen:
-			_choosing_ingredients('vanilla', 1)
-			Global.flavour_chosen = true
-			Global.ingredient_chosen = true
-			Global.flavour_taste_added = false
+		elif can_click_bread:
+			_choosing_ingredients(BREAD, ingredient_number)
+			ingredient_clicked.emit()
+			Global.dough_type == BREAD
 			
-		elif can_click_chocolate and not Global.flavour_chosen:
-			_choosing_ingredients('chocolate', 1)
-			Global.flavour_chosen = true
-			Global.ingredient_chosen = true
-			Global.flavour_taste_added = false
+		elif can_click_vanilla:
+			_choosing_ingredients(VANILLA, ingredient_number)
+			ingredient_clicked.emit()
 			
-		elif can_click_strawberry and not Global.flavour_2_chosen:
-			_choosing_ingredients('strawberry', 2)
-			Global.flavour_2_chosen = true
-			Global.ingredient_chosen = true
-			Global.flavour_2_taste_added = false
-		
-		elif can_click_lemon and not Global.flavour_2_chosen:
-			_choosing_ingredients('lemon', 2)
-			Global.flavour_2_chosen = true
-			Global.ingredient_chosen = true
-			Global.flavour_2_taste_added = false
-
+		elif can_click_chocolate:
+			_choosing_ingredients(CHOCOLATE, ingredient_number)
+			ingredient_clicked.emit()
+			
+		elif can_click_strawberry:
+			_choosing_ingredients(STRAWBERRY, ingredient_number)
+			ingredient_clicked.emit()
+			
+		elif can_click_lemon:
+			_choosing_ingredients(LEMON,ingredient_number)
+			ingredient_clicked.emit()
+			
+			
 # Checks if all chosen_ingredients have been chosen.
 # Looks at dough dictionary and finds what dough is formed from the chosen ingredients.
 	if not Global.chosen_ingredients.has(""):
 		var dough_formed = (Global.doughs[Global.chosen_ingredients])
 		Global.dough_formed = true
+		$Label.text = String(Global.doughs[Global.chosen_ingredients])
 		
+		if not Global.chosen_ingredients[0] == Global.chosen_ingredients[1] and Global.chosen_ingredients[0] == Global.chosen_ingredients[2]:
+			Global.acquired_taste = true
+			
+		var current_customer = Global.customers[Global.customer_number]
+		var order_dictionary = (Global.perfect_orders[current_customer])
+		if Global.acquired_taste and order_dictionary[Global.acquired_taste]:
+			Global.order_meter += 10
 
+		
+		elif not Global.acquired_taste and not order_dictionary[Global.acquired_taste]:
+			Global.order_meter += 10
+
+			
+			
+		if Global.chosen_ingredients[0] == order_dictionary[Global.dough_type]:
+			Global.order_meter += 15
+
+			
+				
 
 func _choosing_ingredients(ingredient : String, index : int):
 	Global.chosen_ingredients[index] = ingredient
@@ -122,3 +161,7 @@ func _on_done_button_pressed() -> void:
 	if Global.dough_formed:
 		Global.done_button_pressed = true
 		
+
+
+#func _on_ingredient_clicked():
+	#Global.ingredient_chosen = true

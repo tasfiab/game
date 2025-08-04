@@ -10,7 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.baked_item_formed:
+	if Global.baked_item_formed and not Global.is_baked:
 		if Global.oven_minigame_start:
 			if Input.is_action_just_pressed("interact"):
 				print("something")
@@ -24,12 +24,15 @@ func _process(delta: float) -> void:
 							$OvenTimerHand/oven_timer_animation.stop()
 							hide()
 							in_green = false
+							Global.is_baked = true
 						
 						elif in_yellow:
 							print("close!")
 							$OvenTimerHand/oven_timer_animation.stop()
 							hide()
 							in_yellow = false
+							Global.is_baked = true
+							
 
 func _on_oven_timer_animation_finished(anim_name: StringName) -> void:
 	hide()

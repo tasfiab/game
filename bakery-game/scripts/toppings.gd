@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var topping_scene : PackedScene
+@export var topping_marker : Marker2D
 
 var draggable: bool = false
 var in_baked_item : bool = false
@@ -12,11 +12,15 @@ var original_position : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	original_position = global_position
+	#for topping in get_tree().get_nodes_in_group('topping'):
+		#topping.original_position = self.topping_marker.global_position
+		#original_position = global_position
+		pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#Checks topping is draggable
 	if draggable:
 		if Input.is_action_just_pressed("interact"):
 			offset = get_global_mouse_position() - global_position
@@ -26,10 +30,14 @@ func _process(delta: float) -> void:
 		elif Input.is_action_just_released("interact"):
 			Global.is_dragging = false
 			if in_baked_item:
-				var toppings = topping_scene.instantiate()
+				pass
+				
+				#position = global_position
+				#var toppings = topping_scene.instantiate()
+				#toppings.global_position = original_position
 				
 			if not in_baked_item:
-				global_position = original_position
+				global_position = topping_marker.global_position
 				
 			#var tween = get_tree().create_tween()
 			#if in_baked_item:
@@ -58,3 +66,13 @@ func _on_toppings_body_entered(body: Node2D) -> void:
 func _on_toppings_body_exited(body: Node2D) -> void:
 	in_baked_item = false
 	body_ref = body
+
+
+func _on_button_pressed() -> void:
+	Global.baked_item_finished = true
+
+
+func _on_reset_button_pressed() -> void:
+	for topping in get_tree().get_nodes_in_group('topping'):
+		topping.show()
+		topping.global_position = topping.topping_marker.global_position

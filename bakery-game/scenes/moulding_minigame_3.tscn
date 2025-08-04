@@ -1,0 +1,176 @@
+[gd_scene load_steps=8 format=3 uid="uid://8wyi6cp31ldu"]
+
+[ext_resource type="Script" path="res://scripts/moulding_minigame_3.gd" id="1_8k2d7"]
+[ext_resource type="Texture2D" uid="uid://ct628r1cvn3qd" path="res://assets/recipe_book.png" id="2_ye2gj"]
+[ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="3_4qr3p"]
+[ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="4_gv7t1"]
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="5_rej1q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dhr7"]
+bg_color = Color(0.345098, 0.109804, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivbly"]
+bg_color = Color(0.73, 0.31244, 0.1606, 1)
+
+[node name="moulding_minigame_3" type="Node2D" node_paths=PackedStringArray("progress")]
+script = ExtResource("1_8k2d7")
+progress = NodePath("progress_bar")
+
+[node name="RecipeBook" type="Sprite2D" parent="."]
+position = Vector2(569.8, 321.5)
+scale = Vector2(4.00667, 4.00667)
+texture = ExtResource("2_ye2gj")
+
+[node name="MouldingCounter" type="Sprite2D" parent="."]
+position = Vector2(574.96, 318.5)
+scale = Vector2(1.00167, 1.00167)
+texture = ExtResource("3_4qr3p")
+
+[node name="baked_item" parent="." instance=ExtResource("4_gv7t1")]
+position = Vector2(415, 372)
+scale = Vector2(2.64, 2.64)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 794.0
+offset_top = 103.0
+offset_right = 1041.0
+offset_bottom = 525.0
+color = Color(1, 0.827451, 0.678431, 1)
+
+[node name="loaf_button" type="Button" parent="ColorRect2"]
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 213.0
+offset_bottom = 114.0
+metadata/loaf = true
+
+[node name="Label" type="Label" parent="ColorRect2/loaf_button"]
+layout_mode = 0
+offset_right = 162.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
+theme_override_fonts/font = ExtResource("5_rej1q")
+theme_override_font_sizes/font_size = 50
+text = "loaf"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="croissant_button" type="Button" parent="ColorRect2"]
+offset_left = 48.0
+offset_top = 144.0
+offset_right = 213.0
+offset_bottom = 226.0
+metadata/croissant = true
+
+[node name="Label" type="Label" parent="ColorRect2/croissant_button"]
+layout_mode = 0
+offset_right = 162.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
+theme_override_fonts/font = ExtResource("5_rej1q")
+theme_override_font_sizes/font_size = 30
+text = "croissant"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="baguette_button" type="Button" parent="ColorRect2"]
+offset_left = 49.0
+offset_top = 260.0
+offset_right = 214.0
+offset_bottom = 342.0
+metadata/baguette = true
+
+[node name="Label" type="Label" parent="ColorRect2/baguette_button"]
+layout_mode = 0
+offset_right = 162.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
+theme_override_fonts/font = ExtResource("5_rej1q")
+theme_override_font_sizes/font_size = 30
+text = "baguette"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 794.0
+offset_top = 103.0
+offset_right = 1041.0
+offset_bottom = 525.0
+color = Color(1, 0.827451, 0.678431, 1)
+
+[node name="square" type="Button" parent="ColorRect4"]
+offset_left = 48.0
+offset_top = 32.0
+offset_right = 213.0
+offset_bottom = 114.0
+metadata/loaf = true
+
+[node name="Label" type="Label" parent="ColorRect4/square"]
+layout_mode = 0
+offset_right = 162.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
+theme_override_fonts/font = ExtResource("5_rej1q")
+theme_override_font_sizes/font_size = 50
+text = "square"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="circle" type="Button" parent="ColorRect4"]
+offset_left = 48.0
+offset_top = 144.0
+offset_right = 213.0
+offset_bottom = 226.0
+metadata/croissant = true
+
+[node name="Label" type="Label" parent="ColorRect4/circle"]
+layout_mode = 0
+offset_right = 162.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
+theme_override_fonts/font = ExtResource("5_rej1q")
+theme_override_font_sizes/font_size = 30
+text = "circle"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="progress_bar" type="ProgressBar" parent="."]
+offset_left = 534.0
+offset_top = 272.0
+offset_right = 574.0
+offset_bottom = 335.0
+scale = Vector2(1, 3.16)
+theme_override_styles/background = SubResource("StyleBoxFlat_4dhr7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ivbly")
+value = 70.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 531.0
+offset_top = 478.0
+offset_right = 572.0
+offset_bottom = 517.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("5_rej1q")
+text = "hold 
+space"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 534.0
+offset_top = 327.0
+offset_right = 574.0
+offset_bottom = 332.0
+color = Color(0.603922, 0.552941, 0.145098, 1)
+
+[connection signal="pressed" from="ColorRect2/loaf_button" to="." method="_on_loaf_button_pressed"]
+[connection signal="pressed" from="ColorRect2/croissant_button" to="." method="_on_croissant_button_pressed"]
+[connection signal="pressed" from="ColorRect2/baguette_button" to="." method="_on_baguette_button_pressed"]
+[connection signal="pressed" from="ColorRect4/square" to="." method="_on_square_button_pressed"]
+[connection signal="pressed" from="ColorRect4/circle" to="." method="_on_circle_button_pressed"]

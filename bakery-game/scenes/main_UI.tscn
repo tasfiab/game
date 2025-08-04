@@ -36,12 +36,19 @@ grow_vertical = 2
 script = ExtResource("2_bpswa")
 
 [node name="rope??" type="ColorRect" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1082.0
 offset_top = 53.0
 offset_right = 1092.0
 offset_bottom = 102.0
+color = Color(0.905882, 0.513726, 0.278431, 1)
+
+[node name="rope??2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1114.0
+offset_top = 52.0
+offset_right = 1124.0
+offset_bottom = 101.0
 color = Color(0.905882, 0.513726, 0.278431, 1)
 
 [node name="day" type="Panel" parent="."]
@@ -75,6 +82,7 @@ offset_bottom = 74.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yibcc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1052.0
 offset_top = 596.0
@@ -144,6 +152,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="clock_timer" type="Timer" parent="clock_container"]
+wait_time = 10.0
 
 [node name="pause_button" type="TextureButton" parent="."]
 layout_mode = 0

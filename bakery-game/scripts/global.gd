@@ -1,5 +1,7 @@
 extends Node
 
+var customer_number : int = 0
+
 var making_minigame_start : bool = false
 var oven_minigame_start : bool = false 
 var toppings_minigame_start : bool = false
@@ -7,6 +9,9 @@ var toppings_minigame_start : bool = false
 var dough_type : String
 var flavour : String
 var flavour_2 : String
+
+var acquired_taste : bool
+var simple : bool
 
 var ingredient_chosen : bool = false
 var dough_taste_added : bool 
@@ -21,15 +26,40 @@ var flavour_2_chosen : bool = false
 var dough_formed : bool = false
 var done_button_pressed: bool = false
 var baked_item_formed: bool = false
+var is_baked : bool = false
+var baked_item_finished : bool = false
 
+var order_done : bool = false
 
 var is_dragging = false
 
 var range = RandomNumberGenerator.new()
 var order_index = range.randi_range(0,7)
 
+
+var order_meter : int = 0
+
+
 var orders = ['strawberry bread', 'lemon bread', 'choco-strawberry bread', 'sour chocolate bread', 
 		'strawberry cake', 'lemon cake', 'choco-strawberry cake', 'lemony chocolate cake']
+
+var customers = ['Mini', 'Cat', 'Witch Siblings', 'Old lady']
+
+var customer_dialogue = {
+	customers[0] : load("res://addons/dialogue_manager/dialogue_scripts/dialogue.dialogue"),
+	customers[1]: load("res://addons/dialogue_manager/dialogue_scripts/cat.dialogue"),
+	customers[3]: load("res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue"),
+	
+}
+
+var perfect_orders = {
+	customers[0] : {
+		'sweetness' : 5,
+		'bitterness' : 0,
+		dough_type : 'cake',
+		acquired_taste : true,
+	}
+}
 
 
 # Dictionary for ingredient combinations and their results
