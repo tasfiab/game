@@ -1,5 +1,8 @@
 extends Node2D
 
+
+var mynode = preload("res://scenes/mixing_minigame.tscn")
+
 var can_click_cake : bool = false
 var can_click_bread : bool = false
 var can_click_strawberry : bool = false
@@ -19,6 +22,8 @@ var VANILLA = 'vanilla'
 var CHOCOLATE = 'chocolate'
 var LEMON = 'lemon'
 var STRAWBERRY = 'strawberry'
+
+var dough_type_meter_added : bool = false
 
 
 var ingredient_number = 0
@@ -88,18 +93,21 @@ func _process(delta: float) -> void:
 			
 		var current_customer = Global.customers[Global.customer_number]
 		var order_dictionary = (Global.perfect_orders[current_customer])
-		if Global.acquired_taste and order_dictionary[Global.acquired_taste]:
+		if Global.acquired_taste and order_dictionary.has(Global.acquired_taste):
 			Global.order_meter += 10
-
+			Global.acquired_taste = false
 		
-		elif not Global.acquired_taste and not order_dictionary[Global.acquired_taste]:
+		elif not Global.acquired_taste and not order_dictionary.has(Global.acquired_taste):
 			Global.order_meter += 10
-
+			print(Global.order_meter)
+			Global.acquired_taste = true
 			
-			
-		if Global.chosen_ingredients[0] == order_dictionary[Global.dough_type]:
+		if Global.chosen_ingredients[0] == order_dictionary[Global.dough_type] and not dough_type_meter_added:
 			Global.order_meter += 15
-
+			print(Global.order_meter)
+			dough_type_meter_added = true
+			
+		
 			
 				
 
@@ -159,8 +167,12 @@ func _on_chocolate_mouse_exited() -> void:
 
 func _on_done_button_pressed() -> void:
 	if Global.dough_formed:
+		ingredient_number = 0
 		Global.done_button_pressed = true
 		
+		self.queue_free()
+		
+
 
 
 #func _on_ingredient_clicked():

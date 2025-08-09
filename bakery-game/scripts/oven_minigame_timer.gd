@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 							hide()
 							in_green = false
 							Global.is_baked = true
+							Global.order_meter += 15
 						
 						elif in_yellow:
 							print("close!")
@@ -32,7 +33,7 @@ func _process(delta: float) -> void:
 							hide()
 							in_yellow = false
 							Global.is_baked = true
-							
+							Global.order_meter += 10
 
 func _on_oven_timer_animation_finished(anim_name: StringName) -> void:
 	hide()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://dka0vlqrp7h2x"
+path="res://.godot/imported/bad_reaction.dialogue-40dd72b29fb8c8641d537c849a6a59a1.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/bad_reaction.dialogue"
+dest_files=["res://.godot/imported/bad_reaction.dialogue-40dd72b29fb8c8641d537c849a6a59a1.tres"]
+
+[params]
+
+defaults=true

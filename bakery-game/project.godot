@@ -69,7 +69,7 @@ space={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://addons/dialogue_manager/dialogue_scripts/dialogue.dialogue", "res://addons/dialogue_manager/dialogue_scripts/cat.dialogue", "res://addons/dialogue_manager/dialogue_scripts/witch_siblings.dialogue", "res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue")
+locale/translations_pot_files=PackedStringArray("res://addons/dialogue_manager/dialogue_scripts/dialogue.dialogue", "res://addons/dialogue_manager/dialogue_scripts/cat.dialogue", "res://addons/dialogue_manager/dialogue_scripts/witch_siblings.dialogue", "res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue", "res://addons/dialogue_manager/dialogue_scripts/good_reaction.dialogue", "res://addons/dialogue_manager/dialogue_scripts/bad_reaction.dialogue", "res://addons/dialogue_manager/dialogue_scripts/great reaction.dialogue")
 
 [rendering]
 

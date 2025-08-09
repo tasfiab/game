@@ -13,7 +13,7 @@ var has_graded_taste : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,6 +32,9 @@ func _process(delta: float) -> void:
 	
 	if not Global.chosen_ingredients.has("") and not has_graded_taste:
 		_grade_taste()
+		sweet = 0
+		bitter = 0
+		soft = 0
 		has_graded_taste = true
 
 func add_taste(ingredient):

@@ -47,10 +47,11 @@ var customers = ['Mini', 'Cat', 'Witch Siblings', 'Old lady']
 
 var customer_dialogue = {
 	customers[0] : load("res://addons/dialogue_manager/dialogue_scripts/dialogue.dialogue"),
-	customers[1]: load("res://addons/dialogue_manager/dialogue_scripts/cat.dialogue"),
-	customers[3]: load("res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue"),
-	
+	customers[1] : load("res://addons/dialogue_manager/dialogue_scripts/cat.dialogue"),
+	customers[2] : load("res://addons/dialogue_manager/dialogue_scripts/witch_siblings.dialogue"),
+	customers[3] : load("res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue"),
 }
+
 
 var perfect_orders = {
 	customers[0] : {
@@ -58,7 +59,29 @@ var perfect_orders = {
 		'bitterness' : 0,
 		dough_type : 'cake',
 		acquired_taste : true,
-	}
+		'shape': 'circle',
+	},
+	customers[1] : {
+		'sweetness' : 0,
+		'bitterness' : 0,
+		dough_type : 'bread',
+		acquired_taste : false,
+		'shape': 'loaf',
+	},
+	customers[2] : {
+		'sweetness' : 2,
+		'bitterness': 0,
+		dough_type: 'cake',
+		acquired_taste : false,
+		'shape': 'square'
+	},
+	customers[3] : {
+		'sweetness' : 3,
+		'bitterness': 0,
+		dough_type: 'bread',
+		acquired_taste : false,
+		'shape': 'loaf'
+	},
 }
 
 
@@ -80,7 +103,7 @@ var doughs = {
 	
 	['bread', 'chocolate', 'strawberry']: 'bitter strawberry bread dough',
 	
-	['bread', 'chocolate', 'lemon']: 'bitter bread dough',
+	['bread', 'chocolate', 'lemon']: 'strange bread dough',
 
 	
 	
@@ -98,9 +121,9 @@ var doughs = {
 	
 	['cake', 'vanilla', 'lemon']: 'lemon cake dough',
 	
-	['cake', 'chocolate', 'strawberry']: 'choco-strawberry cake dough',
+	['cake', 'chocolate', 'strawberry']: 'fruity chocolate cake dough',
 	
-	['cake', 'chocolate', 'lemon']: 'lemony chocolate cake dough',
+	['cake', 'chocolate', 'lemon']: 'strange cake dough',
 
 	
 

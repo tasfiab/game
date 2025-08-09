@@ -8,8 +8,6 @@ var body_ref
 var offset : Vector2
 var initialPos : Vector2
 
-var original_position : Vector2
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#for topping in get_tree().get_nodes_in_group('topping'):
@@ -30,8 +28,7 @@ func _process(delta: float) -> void:
 		elif Input.is_action_just_released("interact"):
 			Global.is_dragging = false
 			if in_baked_item:
-				pass
-				
+				self.hide()
 				#position = global_position
 				#var toppings = topping_scene.instantiate()
 				#toppings.global_position = original_position
@@ -70,6 +67,7 @@ func _on_toppings_body_exited(body: Node2D) -> void:
 
 func _on_button_pressed() -> void:
 	Global.baked_item_finished = true
+	Global.order_done = true
 
 
 func _on_reset_button_pressed() -> void:

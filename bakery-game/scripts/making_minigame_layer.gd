@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+var mynode = preload("res://scenes/mixing_minigame.tscn")
+
+var done : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,5 +14,9 @@ func _process(delta: float) -> void:
 	if Global.making_minigame_start:
 		if Input.is_action_just_pressed("interact"):
 			show()
-			if Global.done_button_pressed:
+			done = false
+			if Global.done_button_pressed and not done:
 				hide()
+				var instance = mynode.instantiate() 
+				add_child(instance)
+				done = true

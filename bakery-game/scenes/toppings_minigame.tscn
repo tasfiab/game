@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdrdhj3fmns7w"]
+[gd_scene load_steps=10 format=3 uid="uid://cdrdhj3fmns7w"]
 
 [ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="1_3wj8q"]
 [ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="1_e5ubf"]
 [ext_resource type="PackedScene" uid="uid://bcpoahv1mpagi" path="res://scenes/toppings.tscn" id="2_qwrs7"]
 [ext_resource type="Texture2D" uid="uid://c2ldcpypnag3e" path="res://assets/toppings_container.png" id="3_knbfr"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="5_f2hiy"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_me7lx"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_67cd1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_03nov"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3q1qg"]
 
 [node name="toppings_minigame" type="Node2D"]
 
@@ -37,25 +45,49 @@ position = Vector2(280.063, 389.25)
 scale = Vector2(3.92188, 3.92188)
 texture = ExtResource("3_knbfr")
 
-[node name="toppings" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="chocolate" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+modulate = Color(0.42, 0.18438, 0.1428, 1)
 position = Vector2(-25.514, -5.6733)
 scale = Vector2(1.28552, 1.28552)
 topping_marker = NodePath("../../Marker2D")
 
-[node name="toppings2" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/chocolate"]
+position = Vector2(-3.01972e-05, 0.0991739)
+scale = Vector2(10.3141, 10.5124)
+texture = SubResource("CanvasTexture_me7lx")
+
+[node name="strawberry" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+modulate = Color(1, 0.48, 0.48, 1)
 position = Vector2(-8.68537, -5.6733)
 scale = Vector2(1.31617, 1.31617)
 topping_marker = NodePath("../../Marker2D2")
 
-[node name="toppings3" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/strawberry"]
+position = Vector2(0.0968628, 0.0968628)
+scale = Vector2(10.2676, 10.2676)
+texture = SubResource("CanvasTexture_67cd1")
+
+[node name="sprinkles" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(8.39826, -5.6733)
 scale = Vector2(1.31617, 1.31617)
 topping_marker = NodePath("../../Marker2D3")
 
-[node name="toppings4" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/sprinkles"]
+modulate = Color(0.587814, 0.817694, 0.829543, 1)
+position = Vector2(6.4373e-06, 0.0968628)
+scale = Vector2(10.0738, 10.2676)
+texture = SubResource("CanvasTexture_03nov")
+
+[node name="stardust" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(25.4819, -5.6733)
 scale = Vector2(1.31617, 1.31617)
 topping_marker = NodePath("../../Marker2D4")
+
+[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/stardust"]
+modulate = Color(0.975774, 0.714596, 0.252551, 1)
+position = Vector2(-1.90735e-06, 0.0968666)
+scale = Vector2(10.4613, 10.2676)
+texture = SubResource("CanvasTexture_3q1qg")
 
 [node name="done_button" type="Button" parent="."]
 offset_left = 869.0
@@ -75,5 +107,5 @@ theme_override_fonts/font = ExtResource("5_f2hiy")
 theme_override_font_sizes/font_size = 40
 text = "reset"
 
-[connection signal="pressed" from="done_button" to="ToppingsContainer/toppings" method="_on_button_pressed"]
-[connection signal="pressed" from="reset_button" to="ToppingsContainer/toppings" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="done_button" to="ToppingsContainer/chocolate" method="_on_button_pressed"]
+[connection signal="pressed" from="reset_button" to="ToppingsContainer/chocolate" method="_on_reset_button_pressed"]
