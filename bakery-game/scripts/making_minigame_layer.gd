@@ -8,15 +8,16 @@ var done : bool = false
 func _ready() -> void:
 	hide()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Global.making_minigame_start:
 		if Input.is_action_just_pressed("interact"):
 			show()
 			done = false
+			
 			if Global.done_button_pressed and not done:
 				hide()
+				get_child(0).queue_free()
 				var instance = mynode.instantiate() 
 				add_child(instance)
 				done = true

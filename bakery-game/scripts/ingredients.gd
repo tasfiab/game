@@ -53,7 +53,17 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("interact"):
+	if Global.chosen_ingredients[0] == BREAD:
+		$cake_essence.hide()
+	if Global.chosen_ingredients[0] == CAKE:
+		$bread_essence.hide()
+	
+	if Global.chosen_ingredients[0] == "":
+		$Label.text = ""
+		$cake_essence.show()
+		$bread_essence.show()
+		
+	if Input.is_action_just_pressed("interact") and Global.chosen_ingredients.has(""):
 		if can_click_cake:
 			_choosing_ingredients(CAKE, ingredient_number)
 			ingredient_clicked.emit()
@@ -105,6 +115,7 @@ func _process(delta: float) -> void:
 		if Global.chosen_ingredients[0] == order_dictionary[Global.dough_type] and not dough_type_meter_added:
 			Global.order_meter += 15
 			print(Global.order_meter)
+			print(Global.type)
 			dough_type_meter_added = true
 			
 		
@@ -168,9 +179,8 @@ func _on_chocolate_mouse_exited() -> void:
 func _on_done_button_pressed() -> void:
 	if Global.dough_formed:
 		ingredient_number = 0
+		Global.type.append(Global.doughs[Global.chosen_ingredients])
 		Global.done_button_pressed = true
-		
-		self.queue_free()
 		
 
 

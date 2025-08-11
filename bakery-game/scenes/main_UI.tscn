@@ -152,7 +152,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="clock_timer" type="Timer" parent="clock_container"]
-wait_time = 10.0
+wait_time = 5.0
 
 [node name="pause_button" type="TextureButton" parent="."]
 layout_mode = 0

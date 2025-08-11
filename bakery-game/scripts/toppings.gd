@@ -1,7 +1,16 @@
 extends Node2D
 
 @export var topping_marker : Marker2D
+@export var type : String
+@export var square_sprite : Sprite2D
+@export var circle_sprite : Sprite2D
+@export var loaf_sprite : Sprite2D
+@export var croissant_sprite : Sprite2D
 
+var current_customer = Global.customers[Global.customer_number]
+var order_dictionary = (Global.perfect_orders[current_customer])
+
+var topping_added : bool = false
 var draggable: bool = false
 var in_baked_item : bool = false
 var body_ref
@@ -13,13 +22,15 @@ func _ready() -> void:
 	#for topping in get_tree().get_nodes_in_group('topping'):
 		#topping.original_position = self.topping_marker.global_position
 		#original_position = global_position
-		pass
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#Checks topping is draggable
-	if draggable:
+	if Global.type.size() == 2:
+		$"../../item".texture = (Global.item_sprites[Global.type])
+	if draggable and not topping_added:
 		if Input.is_action_just_pressed("interact"):
 			offset = get_global_mouse_position() - global_position
 			Global.is_dragging = true
@@ -29,12 +40,32 @@ func _process(delta: float) -> void:
 			Global.is_dragging = false
 			if in_baked_item:
 				self.hide()
+				if Global.shape == 'square':
+					self.square_sprite.show()
+				elif Global.shape == 'circle':
+					self.circle_sprite.show()
+				elif Global.shape == 'loaf':
+					self.loaf_sprite.show()
+				elif Global.shape == 'croissant':
+					self.croissant_sprite.show()
+					
+				if order_dictionary.has('best topping'):
+					if self.type == order_dictionary['best topping']:
+						Global.order_meter += 15
+					
+					elif self.type ==  order_dictionary['ok topping']:
+						Global.order_meter += 10
+				topping_added = true
+						
+			elif not in_baked_item:
+				global_position = topping_marker.global_position
+	
+				
+				
 				#position = global_position
 				#var toppings = topping_scene.instantiate()
 				#toppings.global_position = original_position
-				
-			if not in_baked_item:
-				global_position = topping_marker.global_position
+		
 				
 			#var tween = get_tree().create_tween()
 			#if in_baked_item:
@@ -45,13 +76,13 @@ func _process(delta: float) -> void:
 
 
 func _on_toppings_mouse_entered() -> void:
-	if not Global.is_dragging:
+	if not Global.is_dragging and not topping_added:
 		draggable = true
 		scale = Vector2(1.05,1.05)
 
 
 func _on_toppings_mouse_exited() -> void:
-	if not Global.is_dragging:
+	if not Global.is_dragging and not topping_added:
 		draggable = false
 		scale = Vector2(1,1)
 
@@ -68,9 +99,21 @@ func _on_toppings_body_exited(body: Node2D) -> void:
 func _on_button_pressed() -> void:
 	Global.baked_item_finished = true
 	Global.order_done = true
+	if not order_dictionary.has('best topping'):
+		if not topping_added:
+			Global.order_meter += 15
 
 
 func _on_reset_button_pressed() -> void:
+	topping_added = false
 	for topping in get_tree().get_nodes_in_group('topping'):
 		topping.show()
+		if Global.shape == 'square':
+			topping.square_sprite.hide()
+		elif Global.shape == 'circle':
+			topping.circle_sprite.hide()
+		elif Global.shape == 'loaf':
+			topping.loaf_sprite.hide()
+		elif Global.shape == 'croissant':
+			topping.croissant_sprite.hide()
 		topping.global_position = topping.topping_marker.global_position

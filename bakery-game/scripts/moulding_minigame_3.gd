@@ -22,16 +22,17 @@ func _ready() -> void:
 	$Panel.hide()
 	$progress_bar.hide()
 	progress.value = 0
-	if Global.chosen_ingredients[0] == 'cake':
-		$ColorRect2.hide()
-		$ColorRect4.show()
-	elif Global.chosen_ingredients[0] == 'bread':
-		$ColorRect2.show()
-		$ColorRect4.hide()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+		if Global.chosen_ingredients[0] == 'cake':
+			$ColorRect2.hide()
+			$ColorRect4.show()
+		elif Global.chosen_ingredients[0] == 'bread':
+			$ColorRect2.show()
+			$ColorRect4.hide()
+		
 		if type_chosen:
 			$Panel.show()
 			$progress_bar.show()
@@ -53,67 +54,56 @@ func _process(delta: float) -> void:
 					
 				elif progress.value > 75:
 					print("too much!")
-				
-				self.queue_free()
 
 
 func _on_loaf_button_pressed() -> void:
 	if not type_chosen:
 		print ('loaf')
-		loaf_chosen = true
-		type_chosen = true
+		Global.shape = 'loaf'
+		Global.type.append('loaf')
 		if order_dictionary['shape'] == 'loaf':
 			Global.order_meter += 10
+		type_chosen = true
 
 func _on_croissant_button_pressed() -> void:
 	if not type_chosen:
 		print ('croissant')
-		croissant_chosen = true
-		type_chosen = true
+		Global.shape = 'croissant'
+		Global.type.append('croissant')
 		if order_dictionary['shape'] == 'croissant':
 			Global.order_meter += 10
-
-
-func _on_baguette_button_pressed() -> void:
-	if not type_chosen:
-		print('baguette')
-		baguette_chosen = true
 		type_chosen = true
-		if order_dictionary['shape'] == 'baguette':
-			Global.order_meter += 10
+
+
+#func _on_baguette_button_pressed() -> void:
+	#if not type_chosen:
+		#print('baguette')
+		#baguette_chosen = true
+		#if order_dictionary['shape'] == 'baguette':
+			#Global.order_meter += 10
+		#type_chosen = true
 
 
 func _on_hold_button_pressed() -> void:
 	hold_pressed = true
-	#if Input.is_action_pressed("interact"):
-		#progress.value += 2
-	#if Input.is_action_just_released("interact"):
-		#if progress.value == 70:
-			#print("perfect")
-		#elif progress.value < 70 and progress.value > 50:
-			#print("ok!")
-		#elif progress.value < 50:
-			#print("too little!")
-		#elif progress.value > 70:
-			#print("too much!")
-		#
 	
 
 func _on_square_button_pressed() -> void:
 	if not type_chosen:
 		print('square')
-		baguette_chosen = true
-		type_chosen = true
+		Global.shape = 'square'
+		Global.type.append('square')
 		if order_dictionary['shape'] == 'square':
 			Global.order_meter += 10
-
+		type_chosen = true
 
 func _on_circle_button_pressed() -> void:
 	if not type_chosen:
 		print('circle')
-		circle_chosen = true
-		type_chosen = true
-		
+		Global.shape = 'circle'
+		Global.type.append('circle')
+	
 		if order_dictionary['shape'] == 'circle':
 			Global.order_meter += 10
 			print(Global.order_meter)
+		type_chosen = true

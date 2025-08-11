@@ -8,6 +8,8 @@ extends CharacterBody2D
 
 @export var order : Sprite2D
 
+@export var in_main_counter_area : bool = false
+
 var making_minigame_start : bool = false
 var oven_minigame_start : bool = false 
 var toppings_minigame_start : bool = false
@@ -55,7 +57,7 @@ func _ready() -> void:
 		Global.dough_chosen = false
 		Global.flavour_chosen = false
 		Global.flavour_2_chosen = false
-
+		
 		Global.dough_formed = false
 		Global.done_button_pressed = false
 		Global.baked_item_formed = false
@@ -65,14 +67,16 @@ func _ready() -> void:
 		Global.chosen_ingredients[0] = ""
 		Global.chosen_ingredients[1] = ""
 		Global.chosen_ingredients[2] = ""
-
+		
+		Global.type = []
 		Global.customer_number += 1
 
 func _process(delta: float) -> void:
 	#_minigame_start()
-	if Global.order_done:
-		order_complete.emit()
-		Global.order_done = false
+	if Global.order_done and in_main_counter_area:
+		if Input.is_action_just_pressed("interact"):
+			order_complete.emit()
+			Global.order_done = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -105,6 +109,9 @@ func _on_minigame_entered(area: Area2D) -> void:
 		Global.making_minigame_start = true
 	if area.has_meta("toppings"):
 		Global.toppings_minigame_start = true
+		
+	if area.has_meta("main_counter"):
+		in_main_counter_area = true
 
 
 func _on_minigame_exited(area: Area2D) -> void:
@@ -114,24 +121,23 @@ func _on_minigame_exited(area: Area2D) -> void:
 			Global.making_minigame_start = false
 		if area.has_meta("toppings"):
 			Global.toppings_minigame_start = false
-	
-func _minigame_start():
-	if making_minigame_start:
-		if Input.is_action_just_pressed("interact"):
-			making_minigame.show()
-			if Global.done_button_pressed:
-				making_minigame.hide()
-				making_minigame_start = false
-	
-	if Global.done_button_pressed:
-		moulding_minigame.show()
-	if Global.baked_item_formed:
-		moulding_minigame.hide()
 		
-	if Global.toppings_minigame_start:
-		if Input.is_action_just_pressed("interact"):
-			toppings_minigame.show()
-
-
-#func _on_order_complete() -> void:
-	#pass # Replace with function body.
+		if area.has_meta("main_counter"):
+			in_main_counter_area = false
+	
+#func _minigame_start():
+	#if making_minigame_start:
+		#if Input.is_action_just_pressed("interact"):
+			#making_minigame.show()
+			#if Global.done_button_pressed:
+				#making_minigame.hide()
+				#making_minigame_start = false
+	#
+	#if Global.done_button_pressed:
+		#moulding_minigame.show()
+	#if Global.baked_item_formed:
+		#moulding_minigame.hide()
+		#
+	#if Global.toppings_minigame_start:
+		#if Input.is_action_just_pressed("interact"):
+			#toppings_minigame.show()

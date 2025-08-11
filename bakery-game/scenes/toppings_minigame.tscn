@@ -1,10 +1,34 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdrdhj3fmns7w"]
+[gd_scene load_steps=36 format=3 uid="uid://cdrdhj3fmns7w"]
 
 [ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="1_3wj8q"]
 [ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="1_e5ubf"]
 [ext_resource type="PackedScene" uid="uid://bcpoahv1mpagi" path="res://scenes/toppings.tscn" id="2_qwrs7"]
+[ext_resource type="Texture2D" uid="uid://benfclvnd37ep" path="res://assets/plain_loaf.webp" id="2_x844r"]
 [ext_resource type="Texture2D" uid="uid://c2ldcpypnag3e" path="res://assets/toppings_container.png" id="3_knbfr"]
+[ext_resource type="Texture2D" uid="uid://lmsvgdq03swh" path="res://assets/vanilla_icing.webp" id="4_kn63w"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="5_f2hiy"]
+[ext_resource type="Texture2D" uid="uid://br8skwjgwbgvk" path="res://assets/choco_icing_square.webp" id="5_vc2h7"]
+[ext_resource type="Texture2D" uid="uid://cn863jncjaxke" path="res://assets/choco_chips_square.webp" id="6_qmno2"]
+[ext_resource type="Texture2D" uid="uid://dxidh0f7miqao" path="res://assets/sprinkles_square.webp" id="7_1wkw1"]
+[ext_resource type="Texture2D" uid="uid://cdvd7p2r4j0jt" path="res://assets/vanilla_icing_circle.webp" id="8_ye34t"]
+[ext_resource type="Texture2D" uid="uid://cdleia8xukrm3" path="res://assets/stardust_square.webp" id="8_yr3l6"]
+[ext_resource type="Texture2D" uid="uid://bi5x1xhre1uj5" path="res://assets/strawberry_square.webp" id="9_8lqkp"]
+[ext_resource type="Texture2D" uid="uid://cn6mtqx3ey7mp" path="res://assets/choco_icing_circle.webp" id="9_ifl84"]
+[ext_resource type="Texture2D" uid="uid://ct0c68qdyxwst" path="res://assets/choco_chips_circle.webp" id="10_54ocm"]
+[ext_resource type="Texture2D" uid="uid://dfnkx1fwovqgk" path="res://assets/sprinkles_circle.webp" id="11_eskbv"]
+[ext_resource type="Texture2D" uid="uid://81os217k40ry" path="res://assets/stardust_circle.webp" id="12_bvlvd"]
+[ext_resource type="Texture2D" uid="uid://b6fmif8gcje42" path="res://assets/vanilla_loaf_icing.webp" id="14_3ylpc"]
+[ext_resource type="Texture2D" uid="uid://bimu6wle1wuxk" path="res://assets/choco_loaf_icing.webp" id="15_i1vji"]
+[ext_resource type="Texture2D" uid="uid://b7c451e6nlvc0" path="res://assets/choco_chips_loaf.webp" id="16_vf308"]
+[ext_resource type="Texture2D" uid="uid://cwaqm1wg6pq5y" path="res://assets/sprinkles_loaf.webp" id="17_qpgmx"]
+[ext_resource type="Texture2D" uid="uid://c2d6ipt5oyt85" path="res://assets/stardust_loaf.webp" id="18_mp6sn"]
+[ext_resource type="Texture2D" uid="uid://1djgx5gh26j2" path="res://assets/strawberry_top_loaf.webp" id="19_uw0rt"]
+[ext_resource type="Texture2D" uid="uid://1o30cifdsqs2" path="res://assets/vanilla_croissant_icing.webp" id="20_wwncx"]
+[ext_resource type="Texture2D" uid="uid://kmh80h0v5sqh" path="res://assets/choco_croissant_icing.webp" id="21_722cn"]
+[ext_resource type="Texture2D" uid="uid://cy2a3hlkoype5" path="res://assets/choco_chips_croissant.webp" id="22_llbh7"]
+[ext_resource type="Texture2D" uid="uid://cyql3fw3uxl2b" path="res://assets/sprinkles_croissant.webp" id="23_brmae"]
+[ext_resource type="Texture2D" uid="uid://bpoi4qa1hhwee" path="res://assets/stardust_croissant.webp" id="24_a1612"]
+[ext_resource type="Texture2D" uid="uid://raul05wu46ch" path="res://assets/strawberry_top_croissant.webp" id="25_spnuv"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_me7lx"]
 
@@ -14,15 +38,141 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3q1qg"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_wpgll"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1le4o"]
+
 [node name="toppings_minigame" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(576, 336)
 texture = ExtResource("1_e5ubf")
 
+[node name="item" type="Sprite2D" parent="."]
+position = Vector2(642, 310)
+scale = Vector2(0.768866, 0.821443)
+texture = ExtResource("2_x844r")
+
+[node name="vanilla_icing" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("4_kn63w")
+
+[node name="choco_icing" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("5_vc2h7")
+
+[node name="choco_chips" type="Sprite2D" parent="item"]
+visible = false
+position = Vector2(-2.60123, 0)
+texture = ExtResource("6_qmno2")
+
+[node name="sprinkles" type="Sprite2D" parent="item"]
+visible = false
+position = Vector2(-2.60123, 0)
+texture = ExtResource("7_1wkw1")
+
+[node name="stardust" type="Sprite2D" parent="item"]
+visible = false
+texture = ExtResource("8_yr3l6")
+
+[node name="strawberry" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("9_8lqkp")
+
+[node name="vanilla_icing_cricle" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("8_ye34t")
+
+[node name="choco_icing_cirlce" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("9_ifl84")
+
+[node name="choco_chips_circle" type="Sprite2D" parent="item"]
+visible = false
+position = Vector2(-2.60123, 0)
+texture = ExtResource("10_54ocm")
+
+[node name="sprinkles_circle" type="Sprite2D" parent="item"]
+visible = false
+position = Vector2(-2.60123, 0)
+texture = ExtResource("11_eskbv")
+
+[node name="stardust_circle" type="Sprite2D" parent="item"]
+visible = false
+texture = ExtResource("12_bvlvd")
+
+[node name="strawberry_circle" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("9_8lqkp")
+
+[node name="vanilla_icing_loaf" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("14_3ylpc")
+
+[node name="choco_icing_loaf" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("15_i1vji")
+
+[node name="choco_chips_loaf" type="Sprite2D" parent="item"]
+visible = false
+position = Vector2(-2.60123, 0)
+texture = ExtResource("16_vf308")
+
+[node name="sprinkles_loaf" type="Sprite2D" parent="item"]
+visible = false
+position = Vector2(-2.60123, 0)
+texture = ExtResource("17_qpgmx")
+
+[node name="stardust_loaf" type="Sprite2D" parent="item"]
+visible = false
+texture = ExtResource("18_mp6sn")
+
+[node name="strawberry_loaf" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("19_uw0rt")
+
+[node name="vanilla_icing_croissant" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("20_wwncx")
+
+[node name="choco_icing_croissant" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("21_722cn")
+
+[node name="choco_chips_croissant" type="Sprite2D" parent="item"]
+visible = false
+position = Vector2(-2.60123, 0)
+texture = ExtResource("22_llbh7")
+
+[node name="sprinkles_croissant" type="Sprite2D" parent="item"]
+visible = false
+position = Vector2(-2.60123, 0)
+texture = ExtResource("23_brmae")
+
+[node name="stardust_croissant" type="Sprite2D" parent="item"]
+visible = false
+texture = ExtResource("24_a1612")
+
+[node name="strawberry_croissant" type="Sprite2D" parent="item"]
+visible = false
+scale = Vector2(1, 1)
+texture = ExtResource("25_spnuv")
+
 [node name="baked_item" parent="." instance=ExtResource("1_3wj8q")]
-position = Vector2(595, 432)
-scale = Vector2(2.68, 2.68)
+visible = false
+position = Vector2(646, 422)
+scale = Vector2(5.2, 4.4)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(180, 367)
@@ -40,37 +190,60 @@ scale = Vector2(5.16188, 5.16188)
 position = Vector2(380, 367)
 scale = Vector2(5.16188, 5.16188)
 
+[node name="Marker2D5" type="Marker2D" parent="."]
+position = Vector2(878.604, 298.066)
+scale = Vector2(7.66038, 25.6066)
+
+[node name="Marker2D6" type="Marker2D" parent="."]
+position = Vector2(987.604, 296.066)
+scale = Vector2(7.66038, 25.6066)
+
 [node name="ToppingsContainer" type="Sprite2D" parent="."]
 position = Vector2(280.063, 389.25)
 scale = Vector2(3.92188, 3.92188)
 texture = ExtResource("3_knbfr")
 
-[node name="chocolate" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="chocolate" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
 modulate = Color(0.42, 0.18438, 0.1428, 1)
 position = Vector2(-25.514, -5.6733)
 scale = Vector2(1.28552, 1.28552)
 topping_marker = NodePath("../../Marker2D")
+type = "chocolate"
+square_sprite = NodePath("../../item/choco_chips")
+circle_sprite = NodePath("../../item/choco_chips_circle")
+loaf_sprite = NodePath("../../item/choco_chips_loaf")
+croissant_sprite = NodePath("../../item/choco_chips_croissant")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/chocolate"]
 position = Vector2(-3.01972e-05, 0.0991739)
 scale = Vector2(10.3141, 10.5124)
 texture = SubResource("CanvasTexture_me7lx")
 
-[node name="strawberry" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="strawberry" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
 modulate = Color(1, 0.48, 0.48, 1)
 position = Vector2(-8.68537, -5.6733)
 scale = Vector2(1.31617, 1.31617)
 topping_marker = NodePath("../../Marker2D2")
+type = "strawberry"
+square_sprite = NodePath("../../item/strawberry")
+circle_sprite = NodePath("../../item/strawberry_circle")
+loaf_sprite = NodePath("../../item/strawberry_loaf")
+croissant_sprite = NodePath("../../item/strawberry_croissant")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/strawberry"]
 position = Vector2(0.0968628, 0.0968628)
 scale = Vector2(10.2676, 10.2676)
 texture = SubResource("CanvasTexture_67cd1")
 
-[node name="sprinkles" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="sprinkles" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(8.39826, -5.6733)
 scale = Vector2(1.31617, 1.31617)
 topping_marker = NodePath("../../Marker2D3")
+type = "sprinkles"
+square_sprite = NodePath("../../item/sprinkles")
+circle_sprite = NodePath("../../item/sprinkles_circle")
+loaf_sprite = NodePath("../../item/sprinkles_loaf")
+croissant_sprite = NodePath("../../item/sprinkles_croissant")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/sprinkles"]
 modulate = Color(0.587814, 0.817694, 0.829543, 1)
@@ -78,16 +251,52 @@ position = Vector2(6.4373e-06, 0.0968628)
 scale = Vector2(10.0738, 10.2676)
 texture = SubResource("CanvasTexture_03nov")
 
-[node name="stardust" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="stardust" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(25.4819, -5.6733)
 scale = Vector2(1.31617, 1.31617)
 topping_marker = NodePath("../../Marker2D4")
+type = "stardust"
+square_sprite = NodePath("../../item/stardust")
+circle_sprite = NodePath("../../item/stardust_circle")
+loaf_sprite = NodePath("../../item/stardust_loaf")
+croissant_sprite = NodePath("../../item/stardust_croissant")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/stardust"]
 modulate = Color(0.975774, 0.714596, 0.252551, 1)
 position = Vector2(-1.90735e-06, 0.0968666)
 scale = Vector2(10.4613, 10.2676)
 texture = SubResource("CanvasTexture_3q1qg")
+
+[node name="vanilla_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
+position = Vector2(152.616, -23.25)
+scale = Vector2(1.95324, 6.52918)
+topping_marker = NodePath("../../Marker2D5")
+type = "vanilla_icing"
+square_sprite = NodePath("../../item/vanilla_icing")
+circle_sprite = NodePath("../../item/vanilla_icing_cricle")
+loaf_sprite = NodePath("../../item/vanilla_icing_loaf")
+croissant_sprite = NodePath("../../item/vanilla_icing_croissant")
+
+[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/vanilla_icing"]
+position = Vector2(1.19209e-06, -1.19209e-06)
+scale = Vector2(10.7045, 10.2317)
+texture = SubResource("CanvasTexture_wpgll")
+
+[node name="chocolate_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
+position = Vector2(180.409, -23.7599)
+scale = Vector2(1.95324, 6.52918)
+topping_marker = NodePath("../../Marker2D6")
+type = "choco_icing"
+square_sprite = NodePath("../../item/choco_icing")
+circle_sprite = NodePath("../../item/choco_icing_cirlce")
+loaf_sprite = NodePath("../../item/choco_icing_loaf")
+croissant_sprite = NodePath("../../item/choco_icing_croissant")
+
+[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/chocolate_icing"]
+modulate = Color(0.27451, 0.137255, 0.113725, 1)
+position = Vector2(-0.0652778, -2.38419e-07)
+scale = Vector2(10.3128, 10.3098)
+texture = SubResource("CanvasTexture_1le4o")
 
 [node name="done_button" type="Button" parent="."]
 offset_left = 869.0

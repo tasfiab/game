@@ -9,6 +9,7 @@ var toppings_minigame_start : bool = false
 var dough_type : String
 var flavour : String
 var flavour_2 : String
+var shape : String
 
 var acquired_taste : bool
 var simple : bool
@@ -60,13 +61,15 @@ var perfect_orders = {
 		dough_type : 'cake',
 		acquired_taste : true,
 		'shape': 'circle',
+		'best topping': 'sprinkles',
+		'ok topping': 'stardust'
 	},
 	customers[1] : {
 		'sweetness' : 0,
 		'bitterness' : 0,
 		dough_type : 'bread',
 		acquired_taste : false,
-		'shape': 'loaf',
+		'shape': 'loaf'
 	},
 	customers[2] : {
 		'sweetness' : 2,
@@ -117,17 +120,14 @@ var doughs = {
 	
 	['cake','cake','lemon'] : 'lemon cake dough',
 	
-	['cake', 'vanilla', 'strawberry']: 'strawberry cake dough',
+	['cake', 'vanilla', 'strawberry']: 'strawberry vanilla cake dough',
 	
-	['cake', 'vanilla', 'lemon']: 'lemon cake dough',
+	['cake', 'vanilla', 'lemon']: 'lemon vanilla cake dough',
 	
 	['cake', 'chocolate', 'strawberry']: 'fruity chocolate cake dough',
 	
 	['cake', 'chocolate', 'lemon']: 'strange cake dough',
 
-	
-
-	
 	}
 
 var dough_sprites = {
@@ -140,6 +140,82 @@ var dough_sprites = {
 	'lemon cake dough': preload("res://assets/lemony_bread_dough.png"),
 	'choco-strawberry cake dough': preload("res://assets/choco_strawberry_cake_dough.png"),
 	'lemony chocolate cake dough':preload("res://assets/lemon_chocolate_bread_dough.png"),
+}
+
+var item_sprites = {
+	
+	['basic dough', 'loaf']: preload("res://assets/plain_loaf.webp"),
+	
+	['vanilla bread dough','loaf'] : preload("res://assets/vanilla_loaf.webp"),
+	
+	['chocolate bread dough', 'loaf'] : preload("res://assets/choco_loaf.webp"),
+	
+	['strawberry bread dough', 'loaf'] : preload("res://assets/strawberry_loaf.webp"),
+	
+	['lemon bread dough', 'loaf'] : preload("res://assets/lemon_loaf.webp"),
+	
+	['sweet strawberry dough', 'loaf'] : preload("res://assets/strawberry_loaf.webp"),
+	
+	['sweet lemon dough', 'loaf'] : preload("res://assets/lemon_loaf.webp"),
+	
+	['bitter strawberry bread dough', 'loaf']: preload("res://assets/strawberry_loaf.webp"),
+	
+	['strange bread dough', 'loaf'] : preload("res://assets/lemon_loaf.webp"),
+	
+	
+	['basic dough', 'croissant']: preload("res://assets/plain_croissant.webp"),
+	
+	['vanilla bread dough','croissant'] : preload("res://assets/vanilla_croissant.webp"),
+	
+	['chocolate bread dough', 'croissant'] : preload("res://assets/choco_croissant.webp"),
+	
+	['strawberry bread dough', 'croissant'] : preload("res://assets/strawberry_croissant.webp"),
+	
+	['lemon bread dough', 'croissant'] : preload("res://assets/lemon_croissant.webp"),
+	
+	['sweet strawberry dough', 'croissant'] : preload("res://assets/strawberry_croissant.webp"),
+	
+	['sweet lemon dough', 'croissant'] : preload("res://assets/lemon_croissant.webp"),
+	
+	['bitter strawberry bread dough', 'croissant']: preload("res://assets/strawberry_croissant.webp"),
+	
+	['strange bread dough', 'croissant'] : preload("res://assets/lemon_croissant.webp"),
+	
+	
+	['vanilla cake dough', 'square'] : preload("res://assets/vanilla_square_cake.webp"),
+	
+	['chocolate cake dough', 'square'] : preload("res://assets/chocolate_square_cake.webp"),
+	
+	['strawberry cake dough', 'square'] : preload("res://assets/strawberry_square_cake.webp"),
+	
+	['lemon cake dough', 'square'] : preload("res://assets/lemon_square_cake.webp"),
+	
+	['strawberry vanilla cake dough', 'square'] : preload("res://assets/strawberry_vanilla_square_cake.webp"),
+
+	['lemon vanilla cake dough', 'square'] : preload("res://assets/lemon_vanilla_square_cake.webp"),
+	
+	['fruity chocolate cake dough', 'square'] : preload("res://assets/strawberry_choco_square_cake.webp"),
+	
+	['strange cake dough', 'square'] : preload("res://assets/lemon_choco_square_cake.webp"),
+	
+
+
+	['vanilla cake dough', 'circle'] : preload("res://assets/vanilla_cake_circle.webp"),
+	
+	['chocolate cake dough', 'circle'] : preload("res://assets/choco_cake_circle.webp"),
+	
+	['strawberry cake dough', 'circle'] : preload("res://assets/strawberry_circle.webp"),
+	
+	['lemon cake dough', 'circle'] : preload("res://assets/lemon_cake_circle.webp"),
+	
+	['strawberry vanilla cake dough', 'circle'] : preload("res://assets/strawberry_vanilla_circle.webp"),
+
+	['lemon vanilla cake dough', 'circle'] : preload("res://assets/lemon_vanilla_circle.webp"),
+	
+	['fruity chocolate cake dough', 'circle'] : preload("res://assets/strawberry_choco_circle.webp"),
+	
+	['strange cake dough', 'circle'] : preload("res://assets/lemon_choco_circle.webp"),
+	
 }
 
 var ingredients = {
@@ -167,6 +243,7 @@ var ingredients = {
 
 
 var chosen_ingredients = [dough_type, flavour, flavour_2]
+var type = []
 
 
 # Called when the node enters the scene tree for the first time.
