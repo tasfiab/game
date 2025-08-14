@@ -24,13 +24,13 @@ func _process(delta: float) -> void:
 	
 	if Global.chosen_ingredients[1] != "" and not Global.flavour_taste_added:
 		add_taste(Global.chosen_ingredients[1])
-		Global.flavour_taste_added = true	
+		Global.flavour_taste_added = true
 	
 	if Global.chosen_ingredients[2] != "" and not Global.flavour_2_taste_added:
 		add_taste(Global.chosen_ingredients[2])
 		Global.flavour_2_taste_added = true
 	
-	if not Global.chosen_ingredients.has("") and not has_graded_taste:
+	if not Global.chosen_ingredients.has("") and not has_graded_taste and not Global.done_button_pressed:
 		_grade_taste()
 		sweet = 0
 		bitter = 0
@@ -65,7 +65,7 @@ func _grade_taste():
 			Global.order_meter += 10
 		elif abs(order_dictionary['bitterness'] - bitter) == 2:
 			Global.order_meter += 5
-			
+		print('taste meter' + str(Global.order_meter))	
 	
 	if order_dictionary.has('bitterness'):
 		if order_dictionary['bitterness'] == bitter:
@@ -74,3 +74,4 @@ func _grade_taste():
 			Global.order_meter += 10
 		elif abs(order_dictionary['bitterness'] - bitter) == 2:
 			Global.order_meter += 5
+		print('taste meter' + str(Global.order_meter))	

@@ -1,9 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://cdrdhj3fmns7w"]
+[gd_scene load_steps=35 format=3 uid="uid://cdrdhj3fmns7w"]
 
 [ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="1_3wj8q"]
 [ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="1_e5ubf"]
 [ext_resource type="PackedScene" uid="uid://bcpoahv1mpagi" path="res://scenes/toppings.tscn" id="2_qwrs7"]
-[ext_resource type="Texture2D" uid="uid://benfclvnd37ep" path="res://assets/plain_loaf.webp" id="2_x844r"]
 [ext_resource type="Texture2D" uid="uid://c2ldcpypnag3e" path="res://assets/toppings_container.png" id="3_knbfr"]
 [ext_resource type="Texture2D" uid="uid://lmsvgdq03swh" path="res://assets/vanilla_icing.webp" id="4_kn63w"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="5_f2hiy"]
@@ -51,16 +50,13 @@ texture = ExtResource("1_e5ubf")
 [node name="item" type="Sprite2D" parent="."]
 position = Vector2(642, 310)
 scale = Vector2(0.768866, 0.821443)
-texture = ExtResource("2_x844r")
 
 [node name="vanilla_icing" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("4_kn63w")
 
 [node name="choco_icing" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("5_vc2h7")
 
 [node name="choco_chips" type="Sprite2D" parent="item"]
@@ -79,17 +75,14 @@ texture = ExtResource("8_yr3l6")
 
 [node name="strawberry" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("9_8lqkp")
 
 [node name="vanilla_icing_cricle" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("8_ye34t")
 
 [node name="choco_icing_cirlce" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("9_ifl84")
 
 [node name="choco_chips_circle" type="Sprite2D" parent="item"]
@@ -108,17 +101,14 @@ texture = ExtResource("12_bvlvd")
 
 [node name="strawberry_circle" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("9_8lqkp")
 
 [node name="vanilla_icing_loaf" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("14_3ylpc")
 
 [node name="choco_icing_loaf" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("15_i1vji")
 
 [node name="choco_chips_loaf" type="Sprite2D" parent="item"]
@@ -137,17 +127,14 @@ texture = ExtResource("18_mp6sn")
 
 [node name="strawberry_loaf" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("19_uw0rt")
 
 [node name="vanilla_icing_croissant" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("20_wwncx")
 
 [node name="choco_icing_croissant" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("21_722cn")
 
 [node name="choco_chips_croissant" type="Sprite2D" parent="item"]
@@ -166,7 +153,6 @@ texture = ExtResource("24_a1612")
 
 [node name="strawberry_croissant" type="Sprite2D" parent="item"]
 visible = false
-scale = Vector2(1, 1)
 texture = ExtResource("25_spnuv")
 
 [node name="baked_item" parent="." instance=ExtResource("1_3wj8q")]
@@ -191,11 +177,11 @@ position = Vector2(380, 367)
 scale = Vector2(5.16188, 5.16188)
 
 [node name="Marker2D5" type="Marker2D" parent="."]
-position = Vector2(878.604, 298.066)
+position = Vector2(197.604, 503.066)
 scale = Vector2(7.66038, 25.6066)
 
 [node name="Marker2D6" type="Marker2D" parent="."]
-position = Vector2(987.604, 296.066)
+position = Vector2(265.604, 504.066)
 scale = Vector2(7.66038, 25.6066)
 
 [node name="ToppingsContainer" type="Sprite2D" parent="."]
@@ -203,18 +189,18 @@ position = Vector2(280.063, 389.25)
 scale = Vector2(3.92188, 3.92188)
 texture = ExtResource("3_knbfr")
 
-[node name="chocolate" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="choco_chips" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
 modulate = Color(0.42, 0.18438, 0.1428, 1)
 position = Vector2(-25.514, -5.6733)
 scale = Vector2(1.28552, 1.28552)
 topping_marker = NodePath("../../Marker2D")
-type = "chocolate"
+type = "choco_chips"
 square_sprite = NodePath("../../item/choco_chips")
 circle_sprite = NodePath("../../item/choco_chips_circle")
 loaf_sprite = NodePath("../../item/choco_chips_loaf")
 croissant_sprite = NodePath("../../item/choco_chips_croissant")
 
-[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/chocolate"]
+[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/choco_chips"]
 position = Vector2(-3.01972e-05, 0.0991739)
 scale = Vector2(10.3141, 10.5124)
 texture = SubResource("CanvasTexture_me7lx")
@@ -268,8 +254,7 @@ scale = Vector2(10.4613, 10.2676)
 texture = SubResource("CanvasTexture_3q1qg")
 
 [node name="vanilla_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
-position = Vector2(152.616, -23.25)
-scale = Vector2(1.95324, 6.52918)
+position = Vector2(-21.0253, 29.0208)
 topping_marker = NodePath("../../Marker2D5")
 type = "vanilla_icing"
 square_sprite = NodePath("../../item/vanilla_icing")
@@ -283,8 +268,7 @@ scale = Vector2(10.7045, 10.2317)
 texture = SubResource("CanvasTexture_wpgll")
 
 [node name="chocolate_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
-position = Vector2(180.409, -23.7599)
-scale = Vector2(1.95324, 6.52918)
+position = Vector2(-3.68643, 29.2759)
 topping_marker = NodePath("../../Marker2D6")
 type = "choco_icing"
 square_sprite = NodePath("../../item/choco_icing")
@@ -308,6 +292,7 @@ theme_override_font_sizes/font_size = 40
 text = "done"
 
 [node name="reset_button" type="Button" parent="."]
+visible = false
 offset_left = 871.0
 offset_top = 452.0
 offset_right = 975.0
@@ -316,5 +301,5 @@ theme_override_fonts/font = ExtResource("5_f2hiy")
 theme_override_font_sizes/font_size = 40
 text = "reset"
 
-[connection signal="pressed" from="done_button" to="ToppingsContainer/chocolate" method="_on_button_pressed"]
-[connection signal="pressed" from="reset_button" to="ToppingsContainer/chocolate" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="done_button" to="ToppingsContainer/choco_chips" method="_on_button_pressed"]
+[connection signal="pressed" from="reset_button" to="ToppingsContainer/choco_chips" method="_on_reset_button_pressed"]

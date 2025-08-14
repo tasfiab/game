@@ -5,13 +5,18 @@ var hours: int = 9
 
 var PM : String = "pm"
 
+var money : float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$clock_container/clock_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Global.money_given:
+		money += round(Global.order_meter/4)
+		$HBoxContainer/money.text = str(money)
+		Global.money_given = false
 
 
 #Every time clock timer runs out, in game clock goes up by 15 mins
@@ -34,8 +39,7 @@ func _on_timeout() -> void:
 		$clock_container/hours.text = str(hours)
 		
 	if hours == 7:
-		$".".stop()
-		
+		$clock_container/clock_timer.stop()
+		Global.day_end = true
 	
-		
 		

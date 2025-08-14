@@ -12,7 +12,6 @@ var flavour_2 : String
 var shape : String
 
 var acquired_taste : bool
-var simple : bool
 
 var ingredient_chosen : bool = false
 var dough_taste_added : bool 
@@ -23,6 +22,9 @@ var flavour_2_taste_added : bool
 var dough_chosen : bool = false
 var flavour_chosen : bool = false
 var flavour_2_chosen : bool = false
+
+var topping_number : int = 0
+var max_toppings : bool = false
 
 var dough_formed : bool = false
 var done_button_pressed: bool = false
@@ -39,6 +41,20 @@ var order_index = range.randi_range(0,7)
 
 
 var order_meter : int = 0
+
+var money_given : bool = false
+
+var day_end : bool = false
+
+# Dough strings
+var BASIC_DOUGH : String = 'basic dough'
+var VANILLA_BREAD_DOUGH : String = 'vanilla bread dough'
+var CHOCOLATE_BREAD_DOUGH : String = 'chocolate bread dough'
+var STRAWBERRY_BREAD_DOUGH : String = 'strawberry bread dough'
+var LEMON_BREAD_DOUGH : String = 'lemon bread dough'
+var VANILLA_STRAWBERRY_DOUGH : String = 'vanilla strawberry dough'
+var CHOCO_STRAWBERRY_DOUGH : String = 'bitter strawberry bread dough'
+var CHOCO_LEMON_DOUGH : String = 'strange bread dough'
 
 
 var orders = ['strawberry bread', 'lemon bread', 'choco-strawberry bread', 'sour chocolate bread', 
@@ -68,22 +84,23 @@ var perfect_orders = {
 		'sweetness' : 0,
 		'bitterness' : 0,
 		dough_type : 'bread',
-		acquired_taste : false,
-		'shape': 'loaf'
+		'shape': 'loaf',
 	},
 	customers[2] : {
 		'sweetness' : 2,
 		'bitterness': 0,
 		dough_type: 'cake',
-		acquired_taste : false,
-		'shape': 'square'
+		'shape': 'square',
+		'best topping': 'stardust',
+		'ok topping': 'strawberry'
 	},
 	customers[3] : {
 		'sweetness' : 3,
 		'bitterness': 0,
 		dough_type: 'bread',
-		acquired_taste : false,
-		'shape': 'loaf'
+		'shape': 'loaf',
+		'best topping': 'strawberry',
+		'ok topping': 'choco_chips'
 	},
 }
 
@@ -100,7 +117,7 @@ var doughs = {
 	
 	['bread','bread','lemon'] : 'lemon bread dough',
 	
-	['bread', 'vanilla', 'strawberry']: 'sweet strawberry dough',
+	['bread', 'vanilla', 'strawberry']: 'vanilla strawberry dough',
 	
 	['bread', 'vanilla', 'lemon']: 'sweet lemon dough',
 	
@@ -154,7 +171,7 @@ var item_sprites = {
 	
 	['lemon bread dough', 'loaf'] : preload("res://assets/lemon_loaf.webp"),
 	
-	['sweet strawberry dough', 'loaf'] : preload("res://assets/strawberry_loaf.webp"),
+	['vanilla strawberry dough', 'loaf'] : preload("res://assets/strawberry_loaf.webp"),
 	
 	['sweet lemon dough', 'loaf'] : preload("res://assets/lemon_loaf.webp"),
 	
@@ -173,7 +190,7 @@ var item_sprites = {
 	
 	['lemon bread dough', 'croissant'] : preload("res://assets/lemon_croissant.webp"),
 	
-	['sweet strawberry dough', 'croissant'] : preload("res://assets/strawberry_croissant.webp"),
+	['vanilla strawberry dough', 'croissant'] : preload("res://assets/strawberry_croissant.webp"),
 	
 	['sweet lemon dough', 'croissant'] : preload("res://assets/lemon_croissant.webp"),
 	
@@ -223,21 +240,21 @@ var ingredients = {
 		'softness' : 3
 	},
 	'cake' : {
-		'softness' : 1
+		'softness' : 1,
 	},
 	'vanilla' : {
 		'sweetness' : 2
 	},
 	'chocolate' : {
 		'sweetness' : 2,
-		'bitterness' : 1
+		'bitterness' : 2
 	},
 	'strawberry' : {
 		'sweetness' : 3
 	},
 	'lemon' : {
 		'sweetness' : 1,
-		'bitterness' : 2
+		'bitterness' : 3
 	}
 }
 

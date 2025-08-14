@@ -27,10 +27,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	current_customer = Global.customers[Global.customer_number]
+	order_dictionary = (Global.perfect_orders[current_customer])
 	#Checks topping is draggable
 	if Global.type.size() == 2:
 		$"../../item".texture = (Global.item_sprites[Global.type])
-	if draggable and not topping_added:
+	if draggable and not Global.topping_number == 3:
 		if Input.is_action_just_pressed("interact"):
 			offset = get_global_mouse_position() - global_position
 			Global.is_dragging = true
@@ -40,6 +42,7 @@ func _process(delta: float) -> void:
 			Global.is_dragging = false
 			if in_baked_item:
 				self.hide()
+				Global.topping_number += 1
 				if Global.shape == 'square':
 					self.square_sprite.show()
 				elif Global.shape == 'circle':
@@ -51,11 +54,12 @@ func _process(delta: float) -> void:
 					
 				if order_dictionary.has('best topping'):
 					if self.type == order_dictionary['best topping']:
-						Global.order_meter += 15
+						Global.order_meter += 10
+						print('topping good' + str(Global.order_meter))
 					
 					elif self.type ==  order_dictionary['ok topping']:
-						Global.order_meter += 10
-				topping_added = true
+						Global.order_meter += 5
+						print('topping ok' + str(Global.order_meter))
 						
 			elif not in_baked_item:
 				global_position = topping_marker.global_position
@@ -78,13 +82,13 @@ func _process(delta: float) -> void:
 func _on_toppings_mouse_entered() -> void:
 	if not Global.is_dragging and not topping_added:
 		draggable = true
-		scale = Vector2(1.05,1.05)
+		#scale = Vector2(1.05,1.05)
 
 
 func _on_toppings_mouse_exited() -> void:
 	if not Global.is_dragging and not topping_added:
 		draggable = false
-		scale = Vector2(1,1)
+		#scale = Vector2(1,1)
 
 
 func _on_toppings_body_entered(body: Node2D) -> void:
@@ -100,8 +104,9 @@ func _on_button_pressed() -> void:
 	Global.baked_item_finished = true
 	Global.order_done = true
 	if not order_dictionary.has('best topping'):
-		if not topping_added:
-			Global.order_meter += 15
+		if Global.topping_number == 0:
+			Global.order_meter += 20
+			print('no topping' + str(Global.order_meter))
 
 
 func _on_reset_button_pressed() -> void:

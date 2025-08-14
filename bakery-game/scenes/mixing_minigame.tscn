@@ -43,9 +43,9 @@ offset_bottom = 530.0
 texture = ExtResource("4_nft2q")
 
 [node name="strawberry" type="TextureRect" parent="."]
-offset_left = 300.0
+offset_left = 303.0
 offset_top = 433.0
-offset_right = 414.0
+offset_right = 417.0
 offset_bottom = 547.0
 rotation = 0.145566
 texture = ExtResource("5_5g1xl")
@@ -65,9 +65,9 @@ offset_bottom = 424.0
 texture = ExtResource("7_43pj2")
 
 [node name="vanilla" type="TextureRect" parent="."]
-offset_left = 499.0
+offset_left = 500.0
 offset_top = 268.0
-offset_right = 655.0
+offset_right = 656.0
 offset_bottom = 424.0
 texture = ExtResource("8_kegyc")
 

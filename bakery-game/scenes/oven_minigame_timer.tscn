@@ -101,3 +101,4 @@ libraries = {
 [connection signal="area_exited" from="oven_timer/green_area" to="." method="_on_green_area_exited"]
 [connection signal="area_entered" from="oven_timer/yellow_area" to="." method="_on_yellow_area_entered"]
 [connection signal="animation_finished" from="OvenTimerHand/oven_timer_animation" to="." method="_on_oven_timer_animation_finished"]
+[connection signal="animation_started" from="OvenTimerHand/oven_timer_animation" to="." method="_on_oven_timer_animation_started"]

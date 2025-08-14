@@ -10,6 +10,8 @@ extends CharacterBody2D
 
 @export var in_main_counter_area : bool = false
 
+@export var day_end : CanvasLayer
+
 var making_minigame_start : bool = false
 var oven_minigame_start : bool = false 
 var toppings_minigame_start : bool = false
@@ -34,29 +36,33 @@ func _ready() -> void:
 		await DialogueManager.dialogue_ended
 		await order_complete
 		print(Global.order_meter)
-		if Global.order_meter > 50 and Global.order_meter < 75:
+		if Global.order_meter >= 65 and Global.order_meter <= 85:
 			DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/good_reaction.dialogue"))
 			await DialogueManager.dialogue_ended
-		
-		elif Global.order_meter > 75:
+	
+		elif Global.order_meter > 85:
 			DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/great reaction.dialogue"))
 			await DialogueManager.dialogue_ended
 		
-		elif Global.order_meter < 50:
+		elif Global.order_meter < 65:
 			DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/bad_reaction.dialogue"))
 			await DialogueManager.dialogue_ended
+		
+		Global.money_given = true
 		$"../CharacterBody2D/AnimationPlayer".play_backwards("customer")
 		await $"../CharacterBody2D/AnimationPlayer".animation_finished
+		$"../CharacterBody2D".hide()
+		await get_tree().create_timer(2.0).timeout
 		
 		Global.ingredient_chosen = false
 		Global.dough_taste_added = false 
 		Global.flavour_taste_added = false
 		Global.flavour_2_taste_added = false
-
-
+		
 		Global.dough_chosen = false
 		Global.flavour_chosen = false
 		Global.flavour_2_chosen = false
+		
 		
 		Global.dough_formed = false
 		Global.done_button_pressed = false
@@ -68,8 +74,18 @@ func _ready() -> void:
 		Global.chosen_ingredients[1] = ""
 		Global.chosen_ingredients[2] = ""
 		
+		Global.shape = ''
+		
+		Global.topping_number = 0
+		
 		Global.type = []
+		
+		if Global.day_end:
+			day_end.show()
+			get_tree().paused = true
+		
 		Global.customer_number += 1
+		$"../CharacterBody2D".show()
 
 func _process(delta: float) -> void:
 	#_minigame_start()

@@ -32,6 +32,7 @@ texture_over = ExtResource("2_n3lpo")
 texture_progress = ExtResource("3_3k74v")
 
 [node name="soft" type="TextureProgressBar" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 max_value = 7.0
 texture_under = ExtResource("1_u3tlm")
@@ -55,6 +56,7 @@ theme_override_fonts/font = ExtResource("5_yib88")
 text = "sweet"
 
 [node name="Label3" type="Label" parent="VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_yib88")
 text = "soft"

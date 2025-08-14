@@ -21,57 +21,71 @@ var order_dictionary = (Global.perfect_orders[current_customer])
 func _ready() -> void:
 	$Panel.hide()
 	$progress_bar.hide()
+	$ColorRect3.hide()
 	progress.value = 0
+	type_chosen = false
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-		if Global.chosen_ingredients[0] == 'cake':
-			$ColorRect2.hide()
-			$ColorRect4.show()
-		elif Global.chosen_ingredients[0] == 'bread':
-			$ColorRect2.show()
-			$ColorRect4.hide()
-		
-		if type_chosen:
-			$Panel.show()
-			$progress_bar.show()
-			if Input.is_action_pressed("space"):
-				progress.value += 0.4
-			if Input.is_action_just_released("space"):
-				Global.baked_item_formed = true
-				if progress.value >= 70 and progress.value <= 73:
-					print("perfect")
-					Global.order_meter += 15
-										
-				elif (progress.value < 67 and progress.value > 65) or (progress.value > 73 and progress.value < 75):
-					print("good!")
-					Global.order_meter += 10
-					
-				elif progress.value < 65:
-					print("ok")
-					Global.order_meter += 5
-					
-				elif progress.value > 75:
-					print("too much!")
-
+	current_customer = Global.customers[Global.customer_number]
+	order_dictionary = (Global.perfect_orders[current_customer])
+	if Global.chosen_ingredients[0] == 'cake':
+		$ColorRect2.hide()
+		$ColorRect4.show()
+	elif Global.chosen_ingredients[0] == 'bread':
+		$ColorRect2.show()
+		$ColorRect4.hide()
+	
+	if type_chosen:
+		$ColorRect4.hide()
+		$ColorRect2.hide()
+		$Panel.show()
+		$ColorRect3.show()
+		$progress_bar.show()
+		if Input.is_action_pressed("space"):
+			progress.value += 0.4
+		if Input.is_action_just_released("space"):
+			Global.baked_item_formed = true
+			if progress.value >= 70 and progress.value <= 73:
+				print("perfect")
+				Global.order_meter += 15
+				print('mould meter' + str(Global.order_meter))
+									
+			elif (progress.value < 70 and progress.value > 65) or (progress.value > 73 and progress.value < 75):
+				print("good!")
+				Global.order_meter += 10
+				print('mould meter' + str(Global.order_meter))
+				
+			elif progress.value < 65:
+				print("ok")
+				Global.order_meter += 5
+				print('mould meter' + str(Global.order_meter))
+				
+			elif progress.value > 75:
+				print("too much!")
+			
+			if order_dictionary['shape'] == Global.shape:
+				Global.order_meter += 10
+				print('shape' + str(Global.order_meter))
 
 func _on_loaf_button_pressed() -> void:
 	if not type_chosen:
 		print ('loaf')
 		Global.shape = 'loaf'
 		Global.type.append('loaf')
-		if order_dictionary['shape'] == 'loaf':
-			Global.order_meter += 10
+		#if order_dictionary['shape'] == 'loaf':
+			#Global.order_meter += 10
 		type_chosen = true
+
 
 func _on_croissant_button_pressed() -> void:
 	if not type_chosen:
 		print ('croissant')
 		Global.shape = 'croissant'
 		Global.type.append('croissant')
-		if order_dictionary['shape'] == 'croissant':
-			Global.order_meter += 10
+		#if order_dictionary['shape'] == 'croissant':
+			#Global.order_meter += 10
 		type_chosen = true
 
 
@@ -93,17 +107,17 @@ func _on_square_button_pressed() -> void:
 		print('square')
 		Global.shape = 'square'
 		Global.type.append('square')
-		if order_dictionary['shape'] == 'square':
-			Global.order_meter += 10
+		#if order_dictionary['shape'] == 'square':
+			#Global.order_meter += 10
 		type_chosen = true
+	
 
 func _on_circle_button_pressed() -> void:
 	if not type_chosen:
 		print('circle')
 		Global.shape = 'circle'
 		Global.type.append('circle')
-	
-		if order_dictionary['shape'] == 'circle':
-			Global.order_meter += 10
-			print(Global.order_meter)
+		#if order_dictionary['shape'] == 'circle':
+			#Global.order_meter += 10
 		type_chosen = true
+	

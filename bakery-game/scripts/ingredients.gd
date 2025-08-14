@@ -32,6 +32,7 @@ signal ingredient_clicked
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	dough_type_meter_added = false
 	for ingredient in Global.chosen_ingredients:
 		Global.ingredient_chosen = false
 		if ingredient_number == 0:
@@ -97,26 +98,6 @@ func _process(delta: float) -> void:
 		var dough_formed = (Global.doughs[Global.chosen_ingredients])
 		Global.dough_formed = true
 		$Label.text = String(Global.doughs[Global.chosen_ingredients])
-		
-		if not Global.chosen_ingredients[0] == Global.chosen_ingredients[1] and Global.chosen_ingredients[0] == Global.chosen_ingredients[2]:
-			Global.acquired_taste = true
-			
-		var current_customer = Global.customers[Global.customer_number]
-		var order_dictionary = (Global.perfect_orders[current_customer])
-		if Global.acquired_taste and order_dictionary.has(Global.acquired_taste):
-			Global.order_meter += 10
-			Global.acquired_taste = false
-		
-		elif not Global.acquired_taste and not order_dictionary.has(Global.acquired_taste):
-			Global.order_meter += 10
-			print(Global.order_meter)
-			Global.acquired_taste = true
-			
-		if Global.chosen_ingredients[0] == order_dictionary[Global.dough_type] and not dough_type_meter_added:
-			Global.order_meter += 15
-			print(Global.order_meter)
-			print(Global.type)
-			dough_type_meter_added = true
 			
 		
 			
@@ -178,6 +159,24 @@ func _on_chocolate_mouse_exited() -> void:
 
 func _on_done_button_pressed() -> void:
 	if Global.dough_formed:
+		if not Global.chosen_ingredients[0] == Global.chosen_ingredients[1] and Global.chosen_ingredients[0] == Global.chosen_ingredients[2]:
+			Global.acquired_taste = true
+			
+		var current_customer = Global.customers[Global.customer_number]
+		var order_dictionary = (Global.perfect_orders[current_customer])
+		if Global.acquired_taste and order_dictionary.has(Global.acquired_taste):
+			Global.order_meter += 5
+			print('acquired taste' + str(Global.order_meter))
+		
+		elif not Global.acquired_taste and not order_dictionary.has(Global.acquired_taste):
+			Global.order_meter += 5
+			print('not acquired taste' + str(Global.order_meter))
+			
+		if Global.chosen_ingredients[0] == order_dictionary[Global.dough_type] and not dough_type_meter_added:
+			Global.order_meter += 15
+			print('ingredients: ' + str(Global.order_meter))
+			dough_type_meter_added = true
+			
 		ingredient_number = 0
 		Global.type.append(Global.doughs[Global.chosen_ingredients])
 		Global.done_button_pressed = true
