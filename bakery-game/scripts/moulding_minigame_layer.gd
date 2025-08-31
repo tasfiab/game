@@ -10,12 +10,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.done_button_pressed:
+	if Global.done_button_pressed and not Global.baked_item_formed:
 		show()
 		done = false
-		if Global.baked_item_formed and not done:
-			hide()
-			get_child(0).queue_free()
-			var instance = moulding_scene.instantiate()
-			add_child(instance)
-			done = true
+	if Global.baked_item_formed and not done:
+		hide()
+		Global.can_move = true
+		get_child(0).queue_free()
+		var instance = moulding_scene.instantiate()
+		add_child(instance)
+		done = true

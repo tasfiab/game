@@ -2,6 +2,10 @@ extends Node
 
 var customer_number : int = 0
 
+var can_move : bool = true
+
+var order_start : bool = false
+
 var making_minigame_start : bool = false
 var oven_minigame_start : bool = false 
 var toppings_minigame_start : bool = false
@@ -36,6 +40,8 @@ var order_done : bool = false
 
 var is_dragging = false
 
+var in_topping_minigame = false
+
 var range = RandomNumberGenerator.new()
 var order_index = range.randi_range(0,7)
 
@@ -69,13 +75,24 @@ var customer_dialogue = {
 	customers[3] : load("res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue"),
 }
 
+var current_dialogue = {
+	customers[0] : '- cake
+					- cute and sweet',
+	customers[1] : '- bread
+					- simple, no funny business!!',
+	customers[2] : '- cake
+					- PURELY white (vanilla?)
+					- stardust',
+	customers[3] : '- something nostalgic... 
+					- a strawberry touch'
+}
+
 
 var perfect_orders = {
 	customers[0] : {
 		'sweetness' : 5,
 		'bitterness' : 0,
 		dough_type : 'cake',
-		acquired_taste : true,
 		'shape': 'circle',
 		'best topping': 'sprinkles',
 		'ok topping': 'stardust'
@@ -92,7 +109,7 @@ var perfect_orders = {
 		dough_type: 'cake',
 		'shape': 'square',
 		'best topping': 'stardust',
-		'ok topping': 'strawberry'
+		'ok topping': 'vanilla_icing'
 	},
 	customers[3] : {
 		'sweetness' : 3,
@@ -199,6 +216,8 @@ var item_sprites = {
 	['strange bread dough', 'croissant'] : preload("res://assets/lemon_croissant.webp"),
 	
 	
+	['plain cake dough', 'square'] : preload("res://assets/vanilla_square_cake.webp"),
+	
 	['vanilla cake dough', 'square'] : preload("res://assets/vanilla_square_cake.webp"),
 	
 	['chocolate cake dough', 'square'] : preload("res://assets/chocolate_square_cake.webp"),
@@ -217,6 +236,8 @@ var item_sprites = {
 	
 
 
+	['plain cake dough', 'circle'] : preload("res://assets/vanilla_cake_circle.webp"),
+	
 	['vanilla cake dough', 'circle'] : preload("res://assets/vanilla_cake_circle.webp"),
 	
 	['chocolate cake dough', 'circle'] : preload("res://assets/choco_cake_circle.webp"),

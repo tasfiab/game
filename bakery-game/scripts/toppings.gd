@@ -13,9 +13,9 @@ var order_dictionary = (Global.perfect_orders[current_customer])
 var topping_added : bool = false
 var draggable: bool = false
 var in_baked_item : bool = false
-var body_ref
+#var body_ref
 var offset : Vector2
-var initialPos : Vector2
+#var initialPos : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +27,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Global.in_topping_minigame:
+		Global.can_move = false
 	current_customer = Global.customers[Global.customer_number]
 	order_dictionary = (Global.perfect_orders[current_customer])
 	#Checks topping is draggable
@@ -93,19 +95,21 @@ func _on_toppings_mouse_exited() -> void:
 
 func _on_toppings_body_entered(body: Node2D) -> void:
 	in_baked_item = true
-	body_ref = body
+#	body_ref = body
 
 func _on_toppings_body_exited(body: Node2D) -> void:
 	in_baked_item = false
-	body_ref = body
+#	body_ref = body
 
 
-func _on_button_pressed() -> void:
+func _on_done_button_pressed() -> void:
 	Global.baked_item_finished = true
+	Global.can_move = true
+	print("can move!!")
 	Global.order_done = true
 	if not order_dictionary.has('best topping'):
 		if Global.topping_number == 0:
-			Global.order_meter += 20
+			Global.order_meter += 15
 			print('no topping' + str(Global.order_meter))
 
 

@@ -11,6 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Global.toppings_minigame_start and Global.is_baked:
 		if Input.is_action_just_pressed("interact"):
+			Global.in_topping_minigame = true
 			show()
 			done = false
 
@@ -19,4 +20,6 @@ func _process(delta: float) -> void:
 				get_child(0).queue_free()
 				var instance = topping_scene.instantiate()
 				add_child(instance)
+				Global.in_topping_minigame = false
+				Global.can_move = true
 				done = true

@@ -20,30 +20,30 @@ func _process(delta: float) -> void:
 				show()
 				$OvenTimerHand/oven_timer_animation.play("oven_timer_hand")
 
-			if $OvenTimerHand/oven_timer_animation.is_playing():
-				if Input.is_action_just_pressed("space"):
-					if in_green:
-						#rating.text = 'perfect!'
-						$OvenTimerHand/oven_timer_animation.stop()
-						hide()
-						in_green = false
-						Global.is_baked = true
-						Global.order_meter += 15
-						print('mm perfect' + str(Global.order_meter))
-					
-					elif in_yellow:
-						#rating.text = "close!"
-						#await get_tree().create_timer(1).timeout
-						#rating.hide()
-						$OvenTimerHand/oven_timer_animation.stop()
-						hide()
-						in_yellow = false
-						Global.is_baked = true
-						Global.order_meter += 10
-					else:
-						$OvenTimerHand/oven_timer_animation.stop()
-						hide()
-						Global.is_baked = true
+		if $OvenTimerHand/oven_timer_animation.is_playing():
+			if Input.is_action_just_pressed("space"):
+				if in_green:
+					#rating.text = 'perfect!'
+					$OvenTimerHand/oven_timer_animation.stop()
+					hide()
+					in_green = false
+					Global.is_baked = true
+					Global.order_meter += 15
+					print('mm perfect' + str(Global.order_meter))
+				
+				elif in_yellow:
+					#rating.text = "close!"
+					#await get_tree().create_timer(1).timeout
+					#rating.hide()
+					$OvenTimerHand/oven_timer_animation.stop()
+					hide()
+					in_yellow = false
+					Global.is_baked = true
+					Global.order_meter += 10
+				else:
+					$OvenTimerHand/oven_timer_animation.stop()
+					hide()
+					Global.is_baked = true
 						
 						
 #func _on_oven_timer_animation_started(anim_name: StringName) -> void:

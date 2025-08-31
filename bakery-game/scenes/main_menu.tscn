@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmu3oovukcgcq"]
+[gd_scene load_steps=7 format=3 uid="uid://dmu3oovukcgcq"]
 
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_00tgk"]
 [ext_resource type="Texture2D" uid="uid://cvdiggkyisrm7" path="res://assets/main_menu_background.png" id="1_6m6pd"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="2_4co8d"]
 
@@ -7,31 +8,103 @@
 default_font = ExtResource("2_4co8d")
 default_font_size = 40
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cq5sc"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgygi"]
+bg_color = Color(1, 0.67451, 0.372549, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="main_menu" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_00tgk")
 
 [node name="MainMenuBackground" type="Sprite2D" parent="."]
 position = Vector2(575.328, 324.5)
 scale = Vector2(1.00466, 1.00466)
 texture = ExtResource("1_6m6pd")
 
-[node name="Button" type="Button" parent="MainMenuBackground"]
-offset_left = -456.202
-offset_top = -30.3585
-offset_right = -213.202
-offset_bottom = 43.6415
+[node name="play" type="Button" parent="."]
+offset_left = 81.0
+offset_top = 250.0
+offset_right = 375.0
+offset_bottom = 342.0
 theme = SubResource("Theme_okijm")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_tgygi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tgygi")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_tgygi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgygi")
 text = "play"
 
-[node name="Button2" type="Button" parent="MainMenuBackground"]
-offset_left = -456.202
-offset_top = 66.1915
-offset_right = -213.202
-offset_bottom = 140.192
-text = "options"
+[node name="options" type="Button" parent="."]
+offset_left = 81.0
+offset_top = 359.0
+offset_right = 375.0
+offset_bottom = 451.0
+theme = SubResource("Theme_okijm")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tgygi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgygi")
+text = "options
+"
 
-[node name="Button3" type="Button" parent="MainMenuBackground"]
-offset_left = -456.202
-offset_top = 164.732
-offset_right = -213.202
-offset_bottom = 238.732
-text = "quit"
+[node name="quit" type="Button" parent="."]
+offset_left = 80.0
+offset_top = 468.0
+offset_right = 374.0
+offset_bottom = 560.0
+theme = SubResource("Theme_okijm")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cq5sc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tgygi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tgygi")
+text = "quit
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 106.0
+offset_top = 229.0
+offset_right = 423.0
+offset_bottom = 565.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

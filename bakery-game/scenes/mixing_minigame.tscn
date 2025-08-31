@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bcjsbq03qg6hf"]
+[gd_scene load_steps=16 format=3 uid="uid://bcjsbq03qg6hf"]
 
 [ext_resource type="Texture2D" uid="uid://d1r2yv4tuyc8o" path="res://assets/mixing_counter.png" id="1_uinbw"]
 [ext_resource type="Texture2D" uid="uid://dsaimry5meh6c" path="res://assets/cake_essence.png" id="2_qm6x5"]
@@ -13,26 +13,61 @@
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="11_dgvn0"]
 [ext_resource type="PackedScene" uid="uid://bfoxjtagov6tq" path="res://scenes/taste_meters.tscn" id="12_ipfxc"]
 
+[sub_resource type="Theme" id="Theme_knw4o"]
+default_font = ExtResource("11_dgvn0")
+default_font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxsge"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5p450"]
+bg_color = Color(1, 0.67451, 0.372549, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
 [node name="mixing-minigame" type="Node2D"]
 script = ExtResource("3_bro0v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -50.0
+offset_top = -62.0
+offset_right = 1222.0
+offset_bottom = 742.0
+color = Color(0.67, 0.2144, 0.221993, 0.313726)
 
 [node name="MixingCounter" type="Sprite2D" parent="."]
 position = Vector2(570, 320)
 texture = ExtResource("1_uinbw")
 
-[node name="cake_essence" type="TextureRect" parent="."]
-offset_left = 233.0
-offset_top = 144.0
-offset_right = 506.0
-offset_bottom = 417.0
-texture = ExtResource("2_qm6x5")
-
 [node name="bread_essence" type="TextureRect" parent="."]
-offset_left = 68.0
-offset_top = 144.0
-offset_right = 341.0
-offset_bottom = 417.0
+offset_left = 117.0
+offset_top = 211.0
+offset_right = 276.0
+offset_bottom = 418.0
 texture = ExtResource("3_vcrw5")
+
+[node name="cake_essence" type="TextureRect" parent="."]
+offset_left = 288.0
+offset_top = 211.0
+offset_right = 448.0
+offset_bottom = 418.0
+texture = ExtResource("2_qm6x5")
 
 [node name="mixing_bowl" type="TextureRect" parent="."]
 visible = false
@@ -43,9 +78,9 @@ offset_bottom = 530.0
 texture = ExtResource("4_nft2q")
 
 [node name="strawberry" type="TextureRect" parent="."]
-offset_left = 303.0
+offset_left = 319.0
 offset_top = 433.0
-offset_right = 417.0
+offset_right = 433.0
 offset_bottom = 547.0
 rotation = 0.145566
 texture = ExtResource("5_5g1xl")
@@ -58,16 +93,16 @@ offset_bottom = 560.0
 texture = ExtResource("6_x6752")
 
 [node name="chocolate" type="TextureRect" parent="."]
-offset_left = 422.0
-offset_top = 268.0
-offset_right = 578.0
+offset_left = 466.0
+offset_top = 292.0
+offset_right = 530.0
 offset_bottom = 424.0
 texture = ExtResource("7_43pj2")
 
 [node name="vanilla" type="TextureRect" parent="."]
-offset_left = 500.0
-offset_top = 268.0
-offset_right = 656.0
+offset_left = 538.0
+offset_top = 292.0
+offset_right = 602.0
 offset_bottom = 424.0
 texture = ExtResource("8_kegyc")
 
@@ -75,17 +110,6 @@ texture = ExtResource("8_kegyc")
 visible = false
 position = Vector2(802, 187)
 scale = Vector2(5, 5)
-
-[node name="done_button" type="Button" parent="."]
-offset_left = 910.0
-offset_top = 523.0
-offset_right = 1005.0
-offset_bottom = 566.0
-theme_override_colors/font_hover_color = Color(0.27451, 0.137255, 0.113725, 1)
-theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
-theme_override_fonts/font = ExtResource("11_dgvn0")
-theme_override_font_sizes/font_size = 30
-text = "done"
 
 [node name="Label" type="Label" parent="."]
 offset_left = 711.0
@@ -97,11 +121,30 @@ offset_bottom = 464.0
 position = Vector2(527, 93)
 scale = Vector2(3.16, 3.16)
 
+[node name="done_button" type="Button" parent="."]
+offset_left = 858.0
+offset_top = 479.0
+offset_right = 1011.0
+offset_bottom = 564.0
+theme = SubResource("Theme_knw4o")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_pxsge")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_pxsge")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_pxsge")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pxsge")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_5p450")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5p450")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_5p450")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5p450")
+text = "done"
+
 [connection signal="ingredient_clicked" from="." to="." method="_on_ingredient_clicked"]
-[connection signal="mouse_entered" from="cake_essence" to="." method="_on_cake_essence_mouse_entered"]
-[connection signal="mouse_exited" from="cake_essence" to="." method="_on_cake_essence_mouse_exited"]
 [connection signal="mouse_entered" from="bread_essence" to="." method="_on_bread_essence_mouse_entered"]
 [connection signal="mouse_exited" from="bread_essence" to="." method="_on_bread_essence_mouse_exited"]
+[connection signal="mouse_entered" from="cake_essence" to="." method="_on_cake_essence_mouse_entered"]
+[connection signal="mouse_exited" from="cake_essence" to="." method="_on_cake_essence_mouse_exited"]
 [connection signal="mouse_entered" from="strawberry" to="." method="_on_strawberry_mouse_entered"]
 [connection signal="mouse_exited" from="strawberry" to="." method="_on_strawberry_mouse_exited"]
 [connection signal="mouse_entered" from="lemon" to="." method="_on_lemon_mouse_entered"]

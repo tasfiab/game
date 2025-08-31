@@ -1,5 +1,9 @@
 extends Control
 
+var can_check_order : bool = false
+
+var order_hidden : bool = true
+
 var minutes: int = 0
 var hours: int = 9
 
@@ -9,14 +13,38 @@ var money : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$pause_layer.hide()
+	$CanvasLayer.hide()
 	$clock_container/clock_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if can_check_order and Input.is_action_just_pressed("interact"):
+			if order_hidden:
+				$CanvasLayer.show()
+				Global.can_move = false
+				order_hidden = false
+				
+	if Global.order_start:
+		$CanvasLayer/Label.text = Global.current_dialogue[Global.customers[Global.customer_number]]
+	else: 
+		$CanvasLayer/Label.text = ""
+		
+	if not order_hidden and Input.is_action_just_pressed("space"):
+			$CanvasLayer.hide()
+			Global.can_move = true
+			order_hidden = true
+			
 	if Global.money_given:
 		money += round(Global.order_meter/4)
 		$HBoxContainer/money.text = str(money)
 		Global.money_given = false
+
+
+
+func pause():
+	get_tree().paused = true
+	$pause_layer.show()
 
 
 #Every time clock timer runs out, in game clock goes up by 15 mins
@@ -43,3 +71,22 @@ func _on_timeout() -> void:
 		Global.day_end = true
 	
 		
+
+
+func _on_pause_button_pressed() -> void:
+	pause()
+
+
+func _on_order_pressed() -> void:
+	if order_hidden:
+		$CanvasLayer.show()
+		Global.can_move = false
+		order_hidden = false
+
+
+func _on_order_ui_mouse_entered() -> void:
+	can_check_order = true
+
+
+func _on_order_ui_mouse_exited() -> void:
+	can_check_order = false

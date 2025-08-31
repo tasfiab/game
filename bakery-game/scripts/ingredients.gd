@@ -1,8 +1,5 @@
 extends Node2D
 
-
-var mynode = preload("res://scenes/mixing_minigame.tscn")
-
 var can_click_cake : bool = false
 var can_click_bread : bool = false
 var can_click_strawberry : bool = false
@@ -158,19 +155,9 @@ func _on_chocolate_mouse_exited() -> void:
 
 
 func _on_done_button_pressed() -> void:
-	if Global.dough_formed:
-		if not Global.chosen_ingredients[0] == Global.chosen_ingredients[1] and Global.chosen_ingredients[0] == Global.chosen_ingredients[2]:
-			Global.acquired_taste = true
-			
+	if Global.dough_formed:			
 		var current_customer = Global.customers[Global.customer_number]
 		var order_dictionary = (Global.perfect_orders[current_customer])
-		if Global.acquired_taste and order_dictionary.has(Global.acquired_taste):
-			Global.order_meter += 5
-			print('acquired taste' + str(Global.order_meter))
-		
-		elif not Global.acquired_taste and not order_dictionary.has(Global.acquired_taste):
-			Global.order_meter += 5
-			print('not acquired taste' + str(Global.order_meter))
 			
 		if Global.chosen_ingredients[0] == order_dictionary[Global.dough_type] and not dough_type_meter_added:
 			Global.order_meter += 15
@@ -180,9 +167,3 @@ func _on_done_button_pressed() -> void:
 		ingredient_number = 0
 		Global.type.append(Global.doughs[Global.chosen_ingredients])
 		Global.done_button_pressed = true
-		
-
-
-
-#func _on_ingredient_clicked():
-	#Global.ingredient_chosen = true

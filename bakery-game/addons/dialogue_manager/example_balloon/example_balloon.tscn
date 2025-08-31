@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://73jm5qjy52vq"]
+[gd_scene load_steps=10 format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" path="res://addons/dialogue_manager/example_balloon/example_balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="2_jauj0"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
@@ -17,35 +18,36 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri4m3"]
-bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+bg_color = Color(0.360784, 0.184314, 0.152941, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0.27451, 0.137255, 0.113725, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0njw"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(1, 0.717647, 0.490196, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.6, 0.6, 0.6, 1)
+border_color = Color(0.360784, 0.184314, 0.152941, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy0d5"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(1, 0.717647, 0.490196, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
+border_color = Color(0.360784, 0.184314, 0.152941, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -53,6 +55,11 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="Theme" id="Theme_qq3yp"]
 default_font_size = 20
+Button/colors/font_color = Color(0.360784, 0.184314, 0.152941, 1)
+Button/colors/font_focus_color = Color(0.670588, 0.215686, 0.223529, 1)
+Button/colors/font_hover_color = Color(0.670588, 0.215686, 0.223529, 1)
+Button/colors/font_hover_pressed_color = Color(0.670588, 0.215686, 0.223529, 1)
+Button/fonts/font = ExtResource("2_jauj0")
 Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
 Button/styles/focus = SubResource("StyleBoxFlat_ri4m3")
 Button/styles/hover = SubResource("StyleBoxFlat_e0njw")
@@ -93,6 +100,7 @@ grow_vertical = 0
 mouse_filter = 1
 
 [node name="Dialogue" type="MarginContainer" parent="Balloon/Panel"]
+modulate = Color(0.360784, 0.184314, 0.152941, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,8 +114,10 @@ layout_mode = 2
 [node name="CharacterLabel" type="RichTextLabel" parent="Balloon/Panel/Dialogue/VBoxContainer"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
+self_modulate = Color(0.360784, 0.184314, 0.152941, 1)
 layout_mode = 2
 mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("2_jauj0")
 bbcode_enabled = true
 text = "Character"
 fit_content = true
@@ -117,6 +127,11 @@ scroll_active = false
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_jauj0")
+theme_override_fonts/mono_font = ExtResource("2_jauj0")
+theme_override_fonts/italics_font = ExtResource("2_jauj0")
+theme_override_fonts/bold_italics_font = ExtResource("2_jauj0")
+theme_override_fonts/bold_font = ExtResource("2_jauj0")
 text = "Dialogue..."
 
 [node name="Responses" type="MarginContainer" parent="Balloon"]
@@ -143,6 +158,11 @@ response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/Responses/ResponsesMenu"]
 layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_colors/font_hover_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_colors/font_focus_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_colors/font_color = Color(0.360784, 0.184314, 0.152941, 1)
 text = "Response example"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]

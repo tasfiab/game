@@ -1,9 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://cdrdhj3fmns7w"]
+[gd_scene load_steps=37 format=3 uid="uid://cdrdhj3fmns7w"]
 
 [ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="1_3wj8q"]
 [ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="1_e5ubf"]
 [ext_resource type="PackedScene" uid="uid://bcpoahv1mpagi" path="res://scenes/toppings.tscn" id="2_qwrs7"]
-[ext_resource type="Texture2D" uid="uid://c2ldcpypnag3e" path="res://assets/toppings_container.png" id="3_knbfr"]
 [ext_resource type="Texture2D" uid="uid://lmsvgdq03swh" path="res://assets/vanilla_icing.webp" id="4_kn63w"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="5_f2hiy"]
 [ext_resource type="Texture2D" uid="uid://br8skwjgwbgvk" path="res://assets/choco_icing_square.webp" id="5_vc2h7"]
@@ -28,27 +27,49 @@
 [ext_resource type="Texture2D" uid="uid://cyql3fw3uxl2b" path="res://assets/sprinkles_croissant.webp" id="23_brmae"]
 [ext_resource type="Texture2D" uid="uid://bpoi4qa1hhwee" path="res://assets/stardust_croissant.webp" id="24_a1612"]
 [ext_resource type="Texture2D" uid="uid://raul05wu46ch" path="res://assets/strawberry_top_croissant.webp" id="25_spnuv"]
+[ext_resource type="Texture2D" uid="uid://qrlwu71mrksy" path="res://assets/topping_container_2.webp" id="26_n3340"]
+[ext_resource type="Texture2D" uid="uid://cjqonjhe2hjrq" path="res://assets/choco_chips.webp" id="28_7jm7s"]
+[ext_resource type="Texture2D" uid="uid://e7ypggno5kjk" path="res://assets/sprinkles.webp" id="29_0i12v"]
+[ext_resource type="Texture2D" uid="uid://c0pc8k4em0dmm" path="res://assets/stardust.webp" id="30_almpl"]
+[ext_resource type="Texture2D" uid="uid://c8g3i22axb4vc" path="res://assets/vanilla_icing_bag.webp" id="31_r7i8e"]
+[ext_resource type="Texture2D" uid="uid://i0a86jsbk2il" path="res://assets/choco_icing.webp" id="32_wj3me"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_me7lx"]
+[sub_resource type="Theme" id="Theme_xqb5a"]
+default_font = ExtResource("5_f2hiy")
+default_font_size = 40
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_67cd1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_267ix"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_03nov"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_3q1qg"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_wpgll"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_1le4o"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8hef"]
+bg_color = Color(1, 0.67451, 0.372549, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="toppings_minigame" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(576, 336)
+[node name="counter" type="Sprite2D" parent="."]
+position = Vector2(570, 320)
 texture = ExtResource("1_e5ubf")
 
 [node name="item" type="Sprite2D" parent="."]
-position = Vector2(642, 310)
+position = Vector2(792, 240)
 scale = Vector2(0.768866, 0.821443)
 
 [node name="vanilla_icing" type="Sprite2D" parent="item"]
@@ -156,43 +177,42 @@ visible = false
 texture = ExtResource("25_spnuv")
 
 [node name="baked_item" parent="." instance=ExtResource("1_3wj8q")]
-visible = false
-position = Vector2(646, 422)
-scale = Vector2(5.2, 4.4)
+position = Vector2(796, 278)
+scale = Vector2(10.3448, 9.28)
+collision_mask = 2
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(180, 367)
+position = Vector2(189, 332)
 scale = Vector2(5.04166, 5.04166)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(246, 367)
+position = Vector2(284, 332)
 scale = Vector2(5.16188, 5.16188)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(313, 367)
+position = Vector2(379, 334)
 scale = Vector2(5.16188, 5.16188)
 
 [node name="Marker2D4" type="Marker2D" parent="."]
-position = Vector2(380, 367)
+position = Vector2(472, 332)
 scale = Vector2(5.16188, 5.16188)
 
 [node name="Marker2D5" type="Marker2D" parent="."]
-position = Vector2(197.604, 503.066)
+position = Vector2(275, 448)
 scale = Vector2(7.66038, 25.6066)
 
 [node name="Marker2D6" type="Marker2D" parent="."]
-position = Vector2(265.604, 504.066)
+position = Vector2(274, 543)
 scale = Vector2(7.66038, 25.6066)
 
 [node name="ToppingsContainer" type="Sprite2D" parent="."]
-position = Vector2(280.063, 389.25)
-scale = Vector2(3.92188, 3.92188)
-texture = ExtResource("3_knbfr")
+position = Vector2(332, 277)
+scale = Vector2(0.44188, 0.44188)
+texture = ExtResource("26_n3340")
 
 [node name="choco_chips" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
-modulate = Color(0.42, 0.18438, 0.1428, 1)
-position = Vector2(-25.514, -5.6733)
-scale = Vector2(1.28552, 1.28552)
+position = Vector2(-321.354, 124.468)
+scale = Vector2(13.464, 13.464)
 topping_marker = NodePath("../../Marker2D")
 type = "choco_chips"
 square_sprite = NodePath("../../item/choco_chips")
@@ -201,14 +221,13 @@ loaf_sprite = NodePath("../../item/choco_chips_loaf")
 croissant_sprite = NodePath("../../item/choco_chips_croissant")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/choco_chips"]
-position = Vector2(-3.01972e-05, 0.0991739)
-scale = Vector2(10.3141, 10.5124)
-texture = SubResource("CanvasTexture_me7lx")
+position = Vector2(-8.34465e-07, 2.26498e-06)
+scale = Vector2(0.0903009, 0.092037)
+texture = ExtResource("28_7jm7s")
 
 [node name="strawberry" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
-modulate = Color(1, 0.48, 0.48, 1)
-position = Vector2(-8.68537, -5.6733)
-scale = Vector2(1.31617, 1.31617)
+position = Vector2(-108.736, 124.27)
+scale = Vector2(15.6638, 15.6638)
 topping_marker = NodePath("../../Marker2D2")
 type = "strawberry"
 square_sprite = NodePath("../../item/strawberry")
@@ -216,14 +235,14 @@ circle_sprite = NodePath("../../item/strawberry_circle")
 loaf_sprite = NodePath("../../item/strawberry_loaf")
 croissant_sprite = NodePath("../../item/strawberry_croissant")
 
-[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/strawberry"]
-position = Vector2(0.0968628, 0.0968628)
-scale = Vector2(10.2676, 10.2676)
-texture = SubResource("CanvasTexture_67cd1")
+[node name="Sprite2D2" type="Sprite2D" parent="ToppingsContainer/strawberry"]
+position = Vector2(-2.38007, -5.15681)
+scale = Vector2(0.077324, 0.077324)
+texture = ExtResource("25_spnuv")
 
 [node name="sprinkles" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
-position = Vector2(8.39826, -5.6733)
-scale = Vector2(1.31617, 1.31617)
+position = Vector2(105.629, 127.377)
+scale = Vector2(13.7431, 13.7431)
 topping_marker = NodePath("../../Marker2D3")
 type = "sprinkles"
 square_sprite = NodePath("../../item/sprinkles")
@@ -232,14 +251,13 @@ loaf_sprite = NodePath("../../item/sprinkles_loaf")
 croissant_sprite = NodePath("../../item/sprinkles_croissant")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/sprinkles"]
-modulate = Color(0.587814, 0.817694, 0.829543, 1)
-position = Vector2(6.4373e-06, 0.0968628)
-scale = Vector2(10.0738, 10.2676)
-texture = SubResource("CanvasTexture_03nov")
+position = Vector2(1.92225e-06, 3.35276e-06)
+scale = Vector2(0.0598715, 0.0610233)
+texture = ExtResource("29_0i12v")
 
 [node name="stardust" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
-position = Vector2(25.4819, -5.6733)
-scale = Vector2(1.31617, 1.31617)
+position = Vector2(316.888, 124.27)
+scale = Vector2(13.9122, 13.9122)
 topping_marker = NodePath("../../Marker2D4")
 type = "stardust"
 square_sprite = NodePath("../../item/stardust")
@@ -247,14 +265,14 @@ circle_sprite = NodePath("../../item/stardust_circle")
 loaf_sprite = NodePath("../../item/stardust_loaf")
 croissant_sprite = NodePath("../../item/stardust_croissant")
 
-[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/stardust"]
-modulate = Color(0.975774, 0.714596, 0.252551, 1)
-position = Vector2(-1.90735e-06, 0.0968666)
-scale = Vector2(10.4613, 10.2676)
-texture = SubResource("CanvasTexture_3q1qg")
+[node name="Sprite2D2" type="Sprite2D" parent="ToppingsContainer/stardust"]
+position = Vector2(6.10352e-05, -0.00012207)
+scale = Vector2(0.0887658, 0.0871223)
+texture = ExtResource("30_almpl")
 
 [node name="vanilla_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
-position = Vector2(-21.0253, 29.0208)
+position = Vector2(-128.994, 386.983)
+scale = Vector2(16.8773, -14.379)
 topping_marker = NodePath("../../Marker2D5")
 type = "vanilla_icing"
 square_sprite = NodePath("../../item/vanilla_icing")
@@ -263,12 +281,13 @@ loaf_sprite = NodePath("../../item/vanilla_icing_loaf")
 croissant_sprite = NodePath("../../item/vanilla_icing_croissant")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/vanilla_icing"]
-position = Vector2(1.19209e-06, -1.19209e-06)
-scale = Vector2(10.7045, 10.2317)
-texture = SubResource("CanvasTexture_wpgll")
+position = Vector2(-2.14542, 1.10169)
+scale = Vector2(0.0475964, -0.0536317)
+texture = ExtResource("31_r7i8e")
 
 [node name="chocolate_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
-position = Vector2(-3.68643, 29.2759)
+position = Vector2(-131.257, 601.973)
+scale = Vector2(-17.2893, -14.3411)
 topping_marker = NodePath("../../Marker2D6")
 type = "choco_icing"
 square_sprite = NodePath("../../item/choco_icing")
@@ -276,19 +295,29 @@ circle_sprite = NodePath("../../item/choco_icing_cirlce")
 loaf_sprite = NodePath("../../item/choco_icing_loaf")
 croissant_sprite = NodePath("../../item/choco_icing_croissant")
 
-[node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/chocolate_icing"]
-modulate = Color(0.27451, 0.137255, 0.113725, 1)
-position = Vector2(-0.0652778, -2.38419e-07)
-scale = Vector2(10.3128, 10.3098)
-texture = SubResource("CanvasTexture_1le4o")
+[node name="Sprite2D2" type="Sprite2D" parent="ToppingsContainer/chocolate_icing"]
+position = Vector2(1.83251, 1.26242)
+rotation = -3.14159
+scale = Vector2(0.0464622, 0.0537734)
+texture = ExtResource("32_wj3me")
 
 [node name="done_button" type="Button" parent="."]
-offset_left = 869.0
-offset_top = 504.0
-offset_right = 977.0
-offset_bottom = 554.0
-theme_override_fonts/font = ExtResource("5_f2hiy")
-theme_override_font_sizes/font_size = 40
+offset_left = 858.0
+offset_top = 479.0
+offset_right = 1011.0
+offset_bottom = 564.0
+theme = SubResource("Theme_xqb5a")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_267ix")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_267ix")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_267ix")
+theme_override_styles/hover = SubResource("StyleBoxFlat_267ix")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_g8hef")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g8hef")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_g8hef")
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8hef")
 text = "done"
 
 [node name="reset_button" type="Button" parent="."]
@@ -301,5 +330,5 @@ theme_override_fonts/font = ExtResource("5_f2hiy")
 theme_override_font_sizes/font_size = 40
 text = "reset"
 
-[connection signal="pressed" from="done_button" to="ToppingsContainer/choco_chips" method="_on_button_pressed"]
+[connection signal="pressed" from="done_button" to="ToppingsContainer/choco_chips" method="_on_done_button_pressed"]
 [connection signal="pressed" from="reset_button" to="ToppingsContainer/choco_chips" method="_on_reset_button_pressed"]
