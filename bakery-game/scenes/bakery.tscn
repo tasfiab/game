@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://cjtlcuurdn1cn"]
+[gd_scene load_steps=37 format=4 uid="uid://cjtlcuurdn1cn"]
 
 [ext_resource type="PackedScene" uid="uid://cqkg4npx07h4r" path="res://scenes/player.tscn" id="1_6ihva"]
 [ext_resource type="Texture2D" uid="uid://obrss4ocnl6v" path="res://assets/bakery-ground.png" id="1_fbhfb"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://scripts/toppings_minigame_layer.gd" id="10_4ka4t"]
 [ext_resource type="PackedScene" uid="uid://cs5421vcd7vqe" path="res://scenes/day_end_screen.tscn" id="14_4w6k7"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="14_j8sxf"]
+[ext_resource type="AudioStream" uid="uid://dbh57feiqmw37" path="res://sound/Lobby Time.mp3" id="14_xwvcv"]
 [ext_resource type="Texture2D" uid="uid://bpfnchamv50px" path="res://assets/bush.png" id="16_u4r5a"]
 [ext_resource type="PackedScene" uid="uid://ccpkavysywi1o" path="res://scenes/customer.tscn" id="17_ls6mb"]
 [ext_resource type="Texture2D" uid="uid://bxfnyuh415aq4" path="res://assets/counter_2.png" id="18_kl4tv"]
@@ -6351,7 +6352,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_527h5"]
-size = Vector2(38.2329, 12.5969)
+size = Vector2(38.2329, 8.0162)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxvuc"]
 size = Vector2(147, 11)
@@ -6402,10 +6403,11 @@ texture = ExtResource("4_5ksgq")
 offset = Vector2(0, -75)
 flip_h = true
 
-[node name="player" parent="objects" node_paths=PackedStringArray("order", "day_end", "player_camera", "main_room", "kitchen", "cash_register_UI") instance=ExtResource("1_6ihva")]
+[node name="player" parent="objects" node_paths=PackedStringArray("customer_animations", "order", "day_end", "player_camera", "main_room", "kitchen", "cash_register_UI") instance=ExtResource("1_6ihva")]
 y_sort_enabled = true
 position = Vector2(575, 194)
-scale = Vector2(2.71004, 2.71004)
+scale = Vector2(2.81682, 2.81682)
+customer_animations = NodePath("../customer/AnimationPlayer")
 order = NodePath("order")
 day_end = NodePath("day_end")
 player_camera = NodePath("../../Camera2D")
@@ -6440,6 +6442,9 @@ visible = false
 
 [node name="Node2D" parent="objects/player/day_end" instance=ExtResource("14_4w6k7")]
 position = Vector2(-1, -1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="objects/player"]
+stream = ExtResource("14_xwvcv")
 
 [node name="bin" type="StaticBody2D" parent="objects"]
 z_as_relative = false
@@ -6507,18 +6512,20 @@ script = null
 metadata/toppings = true
 
 [node name="bush" type="Sprite2D" parent="objects"]
-position = Vector2(157.471, 336)
+position = Vector2(157, 246)
 scale = Vector2(4.17647, 4.17647)
 texture = ExtResource("16_u4r5a")
+offset = Vector2(0, 20)
 
 [node name="bush_2" type="Sprite2D" parent="objects"]
-position = Vector2(999, 336)
+position = Vector2(999, 246)
 scale = Vector2(4.17647, 4.17647)
 texture = ExtResource("16_u4r5a")
+offset = Vector2(0, 20)
 flip_h = true
 
 [node name="oven_minigame" parent="objects" instance=ExtResource("7_mlmmp")]
-position = Vector2(593, -585)
+position = Vector2(572, -503)
 scale = Vector2(6.00461, 6.00461)
 
 [node name="customer" parent="objects" instance=ExtResource("17_ls6mb")]
@@ -6540,7 +6547,7 @@ rotation = 3.14159
 scale = Vector2(17.9688, 5.23938)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objects/front_counter/StaticBody2D"]
-position = Vector2(0.306095, 0.954315)
+position = Vector2(0.306095, -1.33604)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_527h5")
 
@@ -6598,6 +6605,5 @@ position = Vector2(138.182, 109.957)
 scale = Vector2(0.290909, 0.28122)
 shape = SubResource("RectangleShape2D_heuxh")
 
-[connection signal="order_complete" from="objects/player" to="objects/player" method="_on_order_complete"]
 [connection signal="area_entered" from="Area2D" to="objects/player" method="_on_main_room_area_entered"]
 [connection signal="area_entered" from="Area2D2" to="objects/player" method="_on_room_2_entered"]

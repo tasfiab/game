@@ -1,6 +1,15 @@
 extends Node
 
+var game_end := false
+
 var customer_number : int = 0
+
+var current_day : int = 1
+var day_end : bool = false
+var new_day : bool = false
+
+var day_money : int
+
 
 var can_move : bool = true
 
@@ -50,8 +59,6 @@ var order_meter : int = 0
 
 var money_given : bool = false
 
-var day_end : bool = false
-
 # Dough strings
 var BASIC_DOUGH : String = 'basic dough'
 var VANILLA_BREAD_DOUGH : String = 'vanilla bread dough'
@@ -66,13 +73,21 @@ var CHOCO_LEMON_DOUGH : String = 'strange bread dough'
 var orders = ['strawberry bread', 'lemon bread', 'choco-strawberry bread', 'sour chocolate bread', 
 		'strawberry cake', 'lemon cake', 'choco-strawberry cake', 'lemony chocolate cake']
 
-var customers = ['Mini', 'Cat', 'Witch Siblings', 'Old lady']
+var customers = ['Mini', 'Cat', 'Witch Siblings', 'Old lady', 'random_1', 'random_2', 'random_3', 'random_4', 'random_5', 'random_6', 'random_7', 'random_8']
 
 var customer_dialogue = {
 	customers[0] : load("res://addons/dialogue_manager/dialogue_scripts/dialogue.dialogue"),
 	customers[1] : load("res://addons/dialogue_manager/dialogue_scripts/cat.dialogue"),
 	customers[2] : load("res://addons/dialogue_manager/dialogue_scripts/witch_siblings.dialogue"),
 	customers[3] : load("res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue"),
+	customers[4] : load("res://addons/dialogue_manager/dialogue_scripts/random_1.dialogue"),
+	customers[5] : load("res://addons/dialogue_manager/dialogue_scripts/random_2.dialogue"),
+	customers[6] : load("res://addons/dialogue_manager/dialogue_scripts/random_3.dialogue"),
+	customers[7] : load("res://addons/dialogue_manager/dialogue_scripts/random_4.dialogue"),
+	customers[8] : load("res://addons/dialogue_manager/dialogue_scripts/random_5.dialogue"),
+	customers[9] : load("res://addons/dialogue_manager/dialogue_scripts/random_6.dialogue"),
+	customers[10] : load("res://addons/dialogue_manager/dialogue_scripts/random_7.dialogue"),
+	customers[11] : load("res://addons/dialogue_manager/dialogue_scripts/random_8.dialogue"),
 }
 
 var current_dialogue = {
@@ -84,7 +99,28 @@ var current_dialogue = {
 					- PURELY white (vanilla?)
 					- stardust',
 	customers[3] : '- something nostalgic... 
-					- a strawberry touch'
+					- a strawberry touch',
+	customers[4] : '- bitter - like their soul hehe
+					- bread' ,
+	customers[5] : '- cake
+					- pink (strawberrys?)',
+	customers[6] : '- LEMON >:)
+					- cake
+					- vanilla icing',
+	customers[7] : '- lemon :>,
+					- croissant',
+	customers[8] : '- something strange
+					- go wild I guess???',
+	customers[9] : '- vanilla
+					- croissant
+					- strawberry top',
+	customers[10] : '- magical (?) 
+					 - strawberry 
+					 - cake',
+	customers[11] : '- lemon vanilla
+					 - croissant
+					 - choco-chips
+					 - stardust',
 }
 
 
@@ -119,6 +155,67 @@ var perfect_orders = {
 		'best topping': 'strawberry',
 		'ok topping': 'choco_chips'
 	},
+		
+	customers[4] : {
+		'sweetness' : 2,
+		'bitterness' : 5,
+		dough_type: 'bread',
+		'shape' : 'loaf',
+	},
+	customers[5] : {
+		'sweetness' : 2,
+		'bitterness' : 0,
+		dough_type: 'cake',
+		'shape' : 'square',
+		'best topping' : 'strawberry',
+		'ok topping' : 'vanilla_icing'
+	},
+	customers[6]: {
+		'sweetness' : 2,
+		'bitterness' : 3,
+		dough_type: 'cake',
+		'shape' : 'circle',
+		'best topping' : 'vanilla_icing',
+		'ok topping' : 'stardust'
+	},
+	customers[7] : {
+		'sweetness' : 2,
+		'bitterness' : 3,
+		dough_type: 'bread',
+		'shape' : 'croissant',
+	},
+	customers[8] : {
+		'sweetness' : 2,
+		'bitterness' : 5,
+		dough_type: 'bread',
+		'shape' : 'croissant',
+		'best topping' : 'stardust',
+		'ok topping' : 'sprinkles'
+	},
+	customers[9] : {
+		'sweetness' : 2,
+		'bitterness' : 0,
+		dough_type : 'bread',
+		'shape' : 'croissant',
+		'best topping' : 'strawberry',
+		'ok topping' : 'choco_icing'
+	},
+	customers[10] : {
+		'sweetness' : 2,
+		'bitterness' : 0,
+		dough_type : 'cake',
+		'shape' : 'circle',
+		'best topping' : 'stardust',
+		'ok topping' : 'choco_icing'
+	},
+	customers[11] : {
+		'sweetness' : 3,
+		'bitterness': 3,
+		dough_type : 'bread',
+		'shape' : 'croissant',
+		'best topping' : 'stardust',
+		'ok topping' : 'choco_chips'
+	}
 }
 
 
@@ -267,7 +364,7 @@ var ingredients = {
 		'sweetness' : 2
 	},
 	'chocolate' : {
-		'sweetness' : 2,
+		'sweetness' : 1,
 		'bitterness' : 2
 	},
 	'strawberry' : {

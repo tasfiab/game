@@ -74,7 +74,7 @@ space={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://addons/dialogue_manager/dialogue_scripts/dialogue.dialogue", "res://addons/dialogue_manager/dialogue_scripts/cat.dialogue", "res://addons/dialogue_manager/dialogue_scripts/witch_siblings.dialogue", "res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue", "res://addons/dialogue_manager/dialogue_scripts/good_reaction.dialogue", "res://addons/dialogue_manager/dialogue_scripts/bad_reaction.dialogue", "res://addons/dialogue_manager/dialogue_scripts/great reaction.dialogue")
+locale/translations_pot_files=PackedStringArray("res://addons/dialogue_manager/dialogue_scripts/dialogue.dialogue", "res://addons/dialogue_manager/dialogue_scripts/cat.dialogue", "res://addons/dialogue_manager/dialogue_scripts/witch_siblings.dialogue", "res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue", "res://addons/dialogue_manager/dialogue_scripts/good_reaction.dialogue", "res://addons/dialogue_manager/dialogue_scripts/bad_reaction.dialogue", "res://addons/dialogue_manager/dialogue_scripts/great reaction.dialogue", "res://addons/dialogue_manager/dialogue_scripts/random_1.dialogue", "res://addons/dialogue_manager/dialogue_scripts/Customer.dialogue", "res://addons/dialogue_manager/dialogue_scripts/random_2.dialogue", "res://addons/dialogue_manager/dialogue_scripts/random_3.dialogue", "res://addons/dialogue_manager/dialogue_scripts/random_4.dialogue", "res://addons/dialogue_manager/dialogue_scripts/random_5.dialogue", "res://addons/dialogue_manager/dialogue_scripts/random_6.dialogue", "res://addons/dialogue_manager/dialogue_scripts/random_7.dialogue", "res://addons/dialogue_manager/dialogue_scripts/random_8.dialogue")
 
 [layer_names]
 

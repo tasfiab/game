@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmu3oovukcgcq"]
 
-[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_00tgk"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_00tgk"]
 [ext_resource type="Texture2D" uid="uid://cvdiggkyisrm7" path="res://assets/main_menu_background.png" id="1_6m6pd"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="2_4co8d"]
 

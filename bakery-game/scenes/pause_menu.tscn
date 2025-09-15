@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ekuyfmtny4bk"]
 
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_gmmap"]
-[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_jvevw"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_jvevw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfyvh"]
 bg_color = Color(0.36, 0.18252, 0.1512, 0.196078)
@@ -51,12 +51,14 @@ offset_top = -139.0
 offset_right = 1358.0
 offset_bottom = 808.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mfyvh")
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 247.0
 offset_right = 896.0
 offset_bottom = 649.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_sdg2s")
+metadata/_edit_use_anchors_ = true
 
 [node name="resume" type="Button" parent="."]
 offset_left = 424.0
@@ -77,6 +79,7 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jjxqw")
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjxqw")
 text = "resume
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="options" type="Button" parent="."]
 offset_left = 424.0
@@ -95,6 +98,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jjxqw")
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjxqw")
 text = "options
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="quit" type="Button" parent="."]
 offset_left = 423.0
@@ -113,6 +117,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jjxqw")
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjxqw")
 text = "quit
 "
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_pause_quit_pressed"]

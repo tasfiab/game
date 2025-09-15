@@ -1,9 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://8wyi6cp31ldu"]
+[gd_scene load_steps=13 format=3 uid="uid://8wyi6cp31ldu"]
 
 [ext_resource type="Script" path="res://scripts/moulding_minigame_3.gd" id="1_8k2d7"]
 [ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="3_4qr3p"]
 [ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="4_gv7t1"]
+[ext_resource type="Texture2D" uid="uid://crl6v3njxmtt1" path="res://assets/choco_croissant.webp" id="5_0iu20"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="5_rej1q"]
+[ext_resource type="Texture2D" uid="uid://yuouuemu75mk" path="res://assets/plain_croissant.webp" id="6_e87is"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbq7n"]
+bg_color = Color(1, 0.827451, 0.682353, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="Theme" id="Theme_p4hc5"]
+default_font = ExtResource("5_rej1q")
+default_font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gacj"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlsun"]
+bg_color = Color(1, 0.67451, 0.372549, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dhr7"]
 bg_color = Color(0.345098, 0.109804, 0.109804, 1)
@@ -11,16 +50,11 @@ bg_color = Color(0.345098, 0.109804, 0.109804, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivbly"]
 bg_color = Color(0.73, 0.31244, 0.1606, 1)
 
-[node name="moulding_minigame_3" type="Node2D" node_paths=PackedStringArray("progress")]
+[node name="moulding_minigame_3" type="Node2D" node_paths=PackedStringArray("progress", "bread_types_panel", "cake_types_panel")]
 script = ExtResource("1_8k2d7")
 progress = NodePath("progress_bar")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -50.0
-offset_top = -62.0
-offset_right = 1222.0
-offset_bottom = 742.0
-color = Color(0.67, 0.2144, 0.221993, 0.313726)
+bread_types_panel = NodePath("bread_types")
+cake_types_panel = NodePath("cake_types")
 
 [node name="MouldingCounter" type="Sprite2D" parent="."]
 position = Vector2(570, 320)
@@ -32,116 +66,120 @@ visible = false
 position = Vector2(415, 372)
 scale = Vector2(2.64, 2.64)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = 791.0
-offset_top = 106.0
-offset_right = 1038.0
-offset_bottom = 528.0
-color = Color(1, 0.827451, 0.678431, 1)
+[node name="bread_types" type="Panel" parent="."]
+offset_left = 792.0
+offset_top = 160.0
+offset_right = 1040.0
+offset_bottom = 482.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbq7n")
 
-[node name="loaf_button" type="Button" parent="ColorRect2"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 32.0
-offset_right = 213.0
-offset_bottom = 114.0
-metadata/loaf = true
+[node name="loaf" type="Button" parent="bread_types"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_top = 0.124224
+anchor_right = -0.25
+anchor_bottom = 0.124224
+offset_right = 294.0
+offset_bottom = 92.0
+theme = SubResource("Theme_p4hc5")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+text = "loaf
+"
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ColorRect2/loaf_button"]
-layout_mode = 0
-offset_right = 162.0
-offset_bottom = 81.0
-theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
-theme_override_fonts/font = ExtResource("5_rej1q")
-theme_override_font_sizes/font_size = 50
-text = "loaf"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="croissant" type="Button" parent="bread_types"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.25
+anchor_top = 0.475155
+anchor_right = -0.25
+anchor_bottom = 0.475155
+offset_right = 294.0
+offset_bottom = 92.0
+theme = SubResource("Theme_p4hc5")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+text = "croissant
+"
+metadata/_edit_use_anchors_ = true
 
-[node name="croissant_button" type="Button" parent="ColorRect2"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 144.0
-offset_right = 213.0
-offset_bottom = 226.0
-metadata/croissant = true
-
-[node name="Label" type="Label" parent="ColorRect2/croissant_button"]
-layout_mode = 0
-offset_right = 162.0
-offset_bottom = 81.0
-theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
-theme_override_fonts/font = ExtResource("5_rej1q")
-theme_override_font_sizes/font_size = 30
-text = "croissant"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="baguette_button" type="Button" parent="ColorRect2"]
+[node name="cake_types" type="Panel" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 49.0
-offset_top = 260.0
-offset_right = 214.0
-offset_bottom = 342.0
-metadata/baguette = true
+offset_left = 787.0
+offset_top = 160.0
+offset_right = 1035.0
+offset_bottom = 482.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbq7n")
 
-[node name="Label" type="Label" parent="ColorRect2/baguette_button"]
-layout_mode = 0
-offset_right = 162.0
-offset_bottom = 81.0
-theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
-theme_override_fonts/font = ExtResource("5_rej1q")
-theme_override_font_sizes/font_size = 30
-text = "baguette"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="square" type="Button" parent="cake_types"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.262097
+anchor_top = 0.124224
+anchor_right = -0.262097
+anchor_bottom = 0.124224
+offset_right = 294.0
+offset_bottom = 92.0
+theme = SubResource("Theme_p4hc5")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+text = "square
+"
+metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect4" type="ColorRect" parent="."]
-visible = false
-offset_left = 794.0
-offset_top = 103.0
-offset_right = 1041.0
-offset_bottom = 525.0
-color = Color(1, 0.827451, 0.678431, 1)
-
-[node name="square" type="Button" parent="ColorRect4"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 32.0
-offset_right = 213.0
-offset_bottom = 114.0
-metadata/loaf = true
-
-[node name="Label" type="Label" parent="ColorRect4/square"]
-layout_mode = 0
-offset_right = 162.0
-offset_bottom = 81.0
-theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
-theme_override_fonts/font = ExtResource("5_rej1q")
-theme_override_font_sizes/font_size = 50
-text = "square"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="circle" type="Button" parent="ColorRect4"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 144.0
-offset_right = 213.0
-offset_bottom = 226.0
-metadata/croissant = true
-
-[node name="Label" type="Label" parent="ColorRect4/circle"]
-layout_mode = 0
-offset_right = 162.0
-offset_bottom = 81.0
-theme_override_colors/font_color = Color(0.27451, 0.137255, 0.113725, 1)
-theme_override_fonts/font = ExtResource("5_rej1q")
-theme_override_font_sizes/font_size = 30
-text = "circle"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="circle" type="Button" parent="cake_types"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.262097
+anchor_top = 0.496894
+anchor_right = -0.262097
+anchor_bottom = 0.496894
+offset_right = 294.0
+offset_bottom = 92.0
+theme = SubResource("Theme_p4hc5")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+text = "circle
+"
+metadata/_edit_use_anchors_ = true
 
 [node name="progress_bar" type="ProgressBar" parent="."]
 offset_left = 531.0
@@ -178,8 +216,18 @@ offset_right = 571.0
 offset_bottom = 335.0
 color = Color(0.603922, 0.552941, 0.145098, 1)
 
-[connection signal="pressed" from="ColorRect2/loaf_button" to="." method="_on_loaf_button_pressed"]
-[connection signal="pressed" from="ColorRect2/croissant_button" to="." method="_on_croissant_button_pressed"]
-[connection signal="pressed" from="ColorRect2/baguette_button" to="." method="_on_baguette_button_pressed"]
-[connection signal="pressed" from="ColorRect4/square" to="." method="_on_square_button_pressed"]
-[connection signal="pressed" from="ColorRect4/circle" to="." method="_on_circle_button_pressed"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 35.0
+offset_top = -317.0
+offset_right = 1005.0
+offset_bottom = 653.0
+max_value = 73.0
+fill_mode = 3
+texture_under = ExtResource("5_0iu20")
+texture_progress = ExtResource("6_e87is")
+
+[connection signal="pressed" from="bread_types/loaf" to="." method="_on_loaf_button_pressed"]
+[connection signal="pressed" from="bread_types/croissant" to="." method="_on_croissant_button_pressed"]
+[connection signal="pressed" from="cake_types/square" to="." method="_on_square_button_pressed"]
+[connection signal="pressed" from="cake_types/circle" to="." method="_on_circle_button_pressed"]

@@ -1,5 +1,7 @@
 extends Control
 
+@export var day : Label 
+
 var can_check_order : bool = false
 
 var order_hidden : bool = true
@@ -19,21 +21,28 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	day.text = str(Global.current_day)
 	if can_check_order and Input.is_action_just_pressed("interact"):
 			if order_hidden:
 				$CanvasLayer.show()
 				Global.can_move = false
 				order_hidden = false
+			
+	elif not order_hidden and Input.is_action_just_pressed("interact"):
+			$CanvasLayer.hide()
+			Global.can_move = true
+			order_hidden = true
 				
+	if Global.new_day:
+		hours = 9
+		$clock_container/hours.text = str(hours)
+		$clock_container/clock_timer.start()
+		Global.new_day = false
+	
 	if Global.order_start:
 		$CanvasLayer/Label.text = Global.current_dialogue[Global.customers[Global.customer_number]]
 	else: 
 		$CanvasLayer/Label.text = ""
-		
-	if not order_hidden and Input.is_action_just_pressed("space"):
-			$CanvasLayer.hide()
-			Global.can_move = true
-			order_hidden = true
 			
 	if Global.money_given:
 		money += round(Global.order_meter/4)
@@ -66,9 +75,12 @@ func _on_timeout() -> void:
 		hours = 1
 		$clock_container/hours.text = str(hours)
 		
-	if hours == 7:
+	if hours == 5:
 		$clock_container/clock_timer.stop()
 		Global.day_end = true
+		Global.day_money = money
+		if Global.current_day == 2:
+			Global.game_end = true
 	
 		
 

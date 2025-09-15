@@ -1,6 +1,9 @@
 extends Node2D
 
 @export var progress : ProgressBar
+@export var bread_types_panel : Panel
+@export var cake_types_panel : Panel
+
 
 var loaf_chosen : bool = false
 var croissant_chosen : bool = false
@@ -20,7 +23,7 @@ var order_dictionary = (Global.perfect_orders[current_customer])
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Panel.hide()
-	$progress_bar.hide()
+	progress.hide()
 	$ColorRect3.hide()
 	progress.value = 0
 	type_chosen = false
@@ -31,21 +34,21 @@ func _process(delta: float) -> void:
 	current_customer = Global.customers[Global.customer_number]
 	order_dictionary = (Global.perfect_orders[current_customer])
 	if Global.chosen_ingredients[0] == 'cake':
-		$ColorRect2.hide()
-		$ColorRect4.show()
+		bread_types_panel.hide()
+		cake_types_panel.show()
 	elif Global.chosen_ingredients[0] == 'bread':
-		$ColorRect2.show()
-		$ColorRect4.hide()
+		bread_types_panel.show()
+		cake_types_panel.hide()
 	
 	if type_chosen:
-		$ColorRect4.hide()
-		$ColorRect2.hide()
+		bread_types_panel.hide()
+		cake_types_panel.hide()
 		$Panel.show()
 		$ColorRect3.show()
-		$progress_bar.show()
+		progress.show()
 		if Input.is_action_pressed("space"):
 			progress.value += 0.4
-		if Input.is_action_just_released("space"):
+		elif Input.is_action_just_released("space"):
 			Global.baked_item_formed = true
 			if progress.value >= 70 and progress.value <= 73:
 				print("perfect")
@@ -70,32 +73,11 @@ func _process(delta: float) -> void:
 				print('shape' + str(Global.order_meter))
 
 func _on_loaf_button_pressed() -> void:
-	if not type_chosen:
-		print ('loaf')
-		Global.shape = 'loaf'
-		Global.type.append('loaf')
-		#if order_dictionary['shape'] == 'loaf':
-			#Global.order_meter += 10
-		type_chosen = true
+	_choosing_shape('loaf')
 
 
 func _on_croissant_button_pressed() -> void:
-	if not type_chosen:
-		print ('croissant')
-		Global.shape = 'croissant'
-		Global.type.append('croissant')
-		#if order_dictionary['shape'] == 'croissant':
-			#Global.order_meter += 10
-		type_chosen = true
-
-
-#func _on_baguette_button_pressed() -> void:
-	#if not type_chosen:
-		#print('baguette')
-		#baguette_chosen = true
-		#if order_dictionary['shape'] == 'baguette':
-			#Global.order_meter += 10
-		#type_chosen = true
+	_choosing_shape('croissant')
 
 
 func _on_hold_button_pressed() -> void:
@@ -103,21 +85,20 @@ func _on_hold_button_pressed() -> void:
 	
 
 func _on_square_button_pressed() -> void:
-	if not type_chosen:
-		print('square')
-		Global.shape = 'square'
-		Global.type.append('square')
-		#if order_dictionary['shape'] == 'square':
-			#Global.order_meter += 10
-		type_chosen = true
+	_choosing_shape('square')
 	
 
 func _on_circle_button_pressed() -> void:
+	_choosing_shape('circle')
+	
+#func _progress():
+	#await get_tree().create_timer(0.5).timeout
+	#progress.value += 20
+
+func _choosing_shape(shape : String):
 	if not type_chosen:
-		print('circle')
-		Global.shape = 'circle'
-		Global.type.append('circle')
-		#if order_dictionary['shape'] == 'circle':
-			#Global.order_meter += 10
+		print(shape)
+		Global.shape = shape
+		Global.type.append(shape)
 		type_chosen = true
 	

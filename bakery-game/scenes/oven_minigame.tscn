@@ -11,23 +11,24 @@ height = 60.0
 [node name="oven_minigame" type="Node2D"]
 
 [node name="Oven2" type="Sprite2D" parent="."]
-position = Vector2(-1, -5)
 texture = ExtResource("1_m4vly")
+offset = Vector2(0, -20)
 
 [node name="oven_minigame_timer" parent="." instance=ExtResource("1_u046a")]
-offset_left = -7.0
-offset_top = -21.0
-offset_right = -7.0
-offset_bottom = -21.0
+offset_left = -6.0
+offset_top = -35.0
+offset_right = -6.0
+offset_bottom = -35.0
 scale = Vector2(0.2, 0.2)
+metadata/_edit_use_anchors_ = true
 
 [node name="oven-area" parent="." instance=ExtResource("2_07byb")]
-position = Vector2(0, 24)
+position = Vector2(1, 8)
 scale = Vector2(3.04, -0.919999)
 metadata/oven = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, 20)
+position = Vector2(1, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-1, 0)
