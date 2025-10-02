@@ -67,21 +67,21 @@ position = Vector2(415, 372)
 scale = Vector2(2.64, 2.64)
 
 [node name="bread_types" type="Panel" parent="."]
-offset_left = 792.0
+offset_left = 787.0
 offset_top = 160.0
-offset_right = 1040.0
+offset_right = 1035.0
 offset_bottom = 482.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_sbq7n")
 
 [node name="loaf" type="Button" parent="bread_types"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.25
-anchor_top = 0.124224
-anchor_right = -0.25
-anchor_bottom = 0.124224
-offset_right = 294.0
-offset_bottom = 92.0
+anchor_left = 0.395161
+anchor_right = 0.395161
+offset_left = -62.0
+offset_top = 40.0001
+offset_right = 130.0
+offset_bottom = 132.0
 theme = SubResource("Theme_p4hc5")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
@@ -101,12 +101,13 @@ metadata/_edit_use_anchors_ = true
 [node name="croissant" type="Button" parent="bread_types"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.25
-anchor_top = 0.475155
-anchor_right = -0.25
-anchor_bottom = 0.475155
-offset_right = 294.0
-offset_bottom = 92.0
+anchor_left = 0.145161
+anchor_top = 0.493634
+anchor_right = 0.145161
+anchor_bottom = 0.493634
+offset_top = 0.0499878
+offset_right = 192.0
+offset_bottom = 92.05
 theme = SubResource("Theme_p4hc5")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
@@ -124,7 +125,6 @@ text = "croissant
 metadata/_edit_use_anchors_ = true
 
 [node name="cake_types" type="Panel" parent="."]
-visible = false
 offset_left = 787.0
 offset_top = 160.0
 offset_right = 1035.0
@@ -134,11 +134,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_sbq7n")
 [node name="square" type="Button" parent="cake_types"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.262097
-anchor_top = 0.124224
-anchor_right = -0.262097
+anchor_left = 0.116935
+anchor_top = 0.124
+anchor_right = 0.116935
 anchor_bottom = 0.124224
-offset_right = 294.0
+offset_top = 0.0719986
+offset_right = 200.0
 offset_bottom = 92.0
 theme = SubResource("Theme_p4hc5")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
@@ -159,12 +160,12 @@ metadata/_edit_use_anchors_ = true
 [node name="circle" type="Button" parent="cake_types"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.262097
-anchor_top = 0.496894
-anchor_right = -0.262097
-anchor_bottom = 0.496894
-offset_right = 294.0
-offset_bottom = 92.0
+anchor_left = 0.149194
+anchor_top = 0.506211
+anchor_right = 0.149194
+anchor_bottom = 0.509317
+offset_right = 192.0
+offset_bottom = 91.0
 theme = SubResource("Theme_p4hc5")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)

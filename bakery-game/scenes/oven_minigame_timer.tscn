@@ -51,7 +51,7 @@ _data = {
 "oven_timer_hand": SubResource("Animation_egnu4")
 }
 
-[node name="oven_minigame_timer" type="Control"]
+[node name="oven_minigame_timer" type="Control" node_paths=PackedStringArray("animations")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,6 +59,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mgwfo")
+animations = NodePath("OvenTimerHand/oven_timer_animation")
 
 [node name="oven_timer" type="TextureRect" parent="."]
 layout_mode = 0
@@ -97,6 +98,7 @@ libraries = {
 "": SubResource("AnimationLibrary_2grbu")
 }
 
+[connection signal="minigame_done" from="." to="." method="_on_minigame_done"]
 [connection signal="area_entered" from="oven_timer/green_area" to="." method="_on_green_area_entered"]
 [connection signal="area_exited" from="oven_timer/green_area" to="." method="_on_green_area_exited"]
 [connection signal="area_entered" from="oven_timer/yellow_area" to="." method="_on_yellow_area_entered"]

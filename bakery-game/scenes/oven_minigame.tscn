@@ -1,8 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://0ighbmgxmvjl"]
+[gd_scene load_steps=7 format=3 uid="uid://0ighbmgxmvjl"]
 
 [ext_resource type="Texture2D" uid="uid://biwvttl3j1pkj" path="res://assets/oven_2.png" id="1_m4vly"]
 [ext_resource type="PackedScene" uid="uid://cjv5t34wg3tgu" path="res://scenes/oven_minigame_timer.tscn" id="1_u046a"]
 [ext_resource type="PackedScene" uid="uid://c0wv76xvy6lgo" path="res://scenes/counter.tscn" id="2_07byb"]
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="3_ic1w2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xdrns"]
+bg_color = Color(1, 0.827451, 0.682353, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.411765, 0.156863, 0.109804, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+anti_aliasing = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4r3xq"]
 radius = 6.0
@@ -14,12 +28,36 @@ height = 60.0
 texture = ExtResource("1_m4vly")
 offset = Vector2(0, -20)
 
-[node name="oven_minigame_timer" parent="." instance=ExtResource("1_u046a")]
+[node name="Panel" type="Panel" parent="."]
+offset_left = -17.0
+offset_top = -22.0
+offset_right = 17.0
+offset_bottom = -10.0
+scale = Vector2(0.4, 0.4)
+pivot_offset = Vector2(17, 6)
+theme_override_styles/panel = SubResource("StyleBoxFlat_xdrns")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 455.0
+offset_bottom = 128.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.411765, 0.156863, 0.109804, 1)
+theme_override_fonts/font = ExtResource("3_ic1w2")
+theme_override_font_sizes/font_size = 125
+text = "perfect!"
+horizontal_alignment = 1
+
+[node name="oven_minigame_timer" parent="." node_paths=PackedStringArray("rating", "rating_panel") instance=ExtResource("1_u046a")]
 offset_left = -6.0
 offset_top = -35.0
 offset_right = -6.0
 offset_bottom = -35.0
 scale = Vector2(0.2, 0.2)
+rating = NodePath("../Panel/Label")
+rating_panel = NodePath("../Panel")
 metadata/_edit_use_anchors_ = true
 
 [node name="oven-area" parent="." instance=ExtResource("2_07byb")]

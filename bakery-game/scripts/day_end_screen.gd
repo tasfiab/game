@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 
 func _on_next_day_pressed() -> void:
 	get_tree().paused = false
+	Global.next_day.emit()
 	Global.new_day = true
 	Global.day_end = false
 	Global.current_day += 1

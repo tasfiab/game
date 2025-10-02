@@ -50,6 +50,10 @@ func _process(delta: float) -> void:
 			progress.value += 0.4
 		elif Input.is_action_just_released("space"):
 			Global.baked_item_formed = true
+			
+			if Global.customer_number == 0 and Global.tutorial_box_number == 1:
+					Global.help.emit()
+				
 			if progress.value >= 70 and progress.value <= 73:
 				print("perfect")
 				Global.order_meter += 15

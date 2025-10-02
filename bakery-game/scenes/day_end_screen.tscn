@@ -44,6 +44,7 @@ color = Color(0.324339, 0.173942, 0.255277, 1)
 offset_top = -77.0
 offset_right = 1154.0
 offset_bottom = 572.0
+theme_override_colors/font_color = Color(1, 0.827451, 0.682353, 1)
 theme_override_fonts/font = ExtResource("1_aau5l")
 theme_override_font_sizes/font_size = 75
 text = "Day end"

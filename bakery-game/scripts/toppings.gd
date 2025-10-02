@@ -13,9 +13,8 @@ var order_dictionary = (Global.perfect_orders[current_customer])
 var topping_added : bool = false
 var draggable: bool = false
 var in_baked_item : bool = false
-#var body_ref
+
 var offset : Vector2
-#var initialPos : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -111,6 +110,8 @@ func _on_done_button_pressed() -> void:
 		if Global.topping_number == 0:
 			Global.order_meter += 15
 			print('no topping' + str(Global.order_meter))
+	if Global.customer_number == 0 and Global.tutorial_box_number == 3:
+				Global.help.emit()
 
 
 func _on_reset_button_pressed() -> void:

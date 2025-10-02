@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dddqy1orioatj"
+path="res://.godot/imported/Past Sadness.mp3-5626d4d0676ca95cfa2e00f9123a804f.mp3str"
+
+[deps]
+
+source_file="res://sound/Past Sadness.mp3"
+dest_files=["res://.godot/imported/Past Sadness.mp3-5626d4d0676ca95cfa2e00f9123a804f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://cjtlcuurdn1cn"]
+[gd_scene load_steps=42 format=4 uid="uid://cjtlcuurdn1cn"]
 
 [ext_resource type="PackedScene" uid="uid://cqkg4npx07h4r" path="res://scenes/player.tscn" id="1_6ihva"]
 [ext_resource type="Texture2D" uid="uid://obrss4ocnl6v" path="res://assets/bakery-ground.png" id="1_fbhfb"]
@@ -18,9 +18,13 @@
 [ext_resource type="Script" path="res://scripts/toppings_minigame_layer.gd" id="10_4ka4t"]
 [ext_resource type="PackedScene" uid="uid://cs5421vcd7vqe" path="res://scenes/day_end_screen.tscn" id="14_4w6k7"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="14_j8sxf"]
-[ext_resource type="AudioStream" uid="uid://dbh57feiqmw37" path="res://sound/Lobby Time.mp3" id="14_xwvcv"]
+[ext_resource type="AudioStream" uid="uid://cqo7axnijpubi" path="res://sound/theelevatorbossanova.mp3" id="14_mw6ym"]
+[ext_resource type="AudioStream" uid="uid://qwhx2mvpuspv" path="res://sound/810738__mokasza__old-fashioned-cash-register.mp3" id="15_gqq3e"]
+[ext_resource type="AudioStream" uid="uid://edhol3xtmtx1" path="res://sound/194986__soundmary__tractor-door-slam3 (1).mp3" id="16_cml5f"]
 [ext_resource type="Texture2D" uid="uid://bpfnchamv50px" path="res://assets/bush.png" id="16_u4r5a"]
+[ext_resource type="AudioStream" uid="uid://wr1cy3v5f7s3" path="res://sound/212551__taira-komori__dump.mp3" id="17_kih6v"]
 [ext_resource type="PackedScene" uid="uid://ccpkavysywi1o" path="res://scenes/customer.tscn" id="17_ls6mb"]
+[ext_resource type="AudioStream" uid="uid://cx8lf422ya5tk" path="res://sound/sway.mp3" id="18_8udsi"]
 [ext_resource type="Texture2D" uid="uid://bxfnyuh415aq4" path="res://assets/counter_2.png" id="18_kl4tv"]
 [ext_resource type="Texture2D" uid="uid://ddcqihsvg3xvl" path="res://assets/bin.png" id="22_03bnb"]
 
@@ -6360,6 +6364,19 @@ size = Vector2(147, 11)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heuxh"]
 size = Vector2(856, 38)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75uvr"]
+bg_color = Color(1, 0.827451, 0.682353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.345098, 0.109804, 0.109804, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
 [node name="bakery" type="Node2D"]
 
 [node name="Bakery-ground" type="Sprite2D" parent="."]
@@ -6403,7 +6420,7 @@ texture = ExtResource("4_5ksgq")
 offset = Vector2(0, -75)
 flip_h = true
 
-[node name="player" parent="objects" node_paths=PackedStringArray("customer_animations", "order", "day_end", "player_camera", "main_room", "kitchen", "cash_register_UI") instance=ExtResource("1_6ihva")]
+[node name="player" parent="objects" node_paths=PackedStringArray("customer_animations", "order", "day_end", "player_camera", "main_room", "kitchen", "cash_register_UI", "background_music", "day_end_music", "cash_register_sound", "door_sound", "bin_sound") instance=ExtResource("1_6ihva")]
 y_sort_enabled = true
 position = Vector2(575, 194)
 scale = Vector2(2.81682, 2.81682)
@@ -6414,6 +6431,11 @@ player_camera = NodePath("../../Camera2D")
 main_room = NodePath("../../Marker2D")
 kitchen = NodePath("../../Marker2D2")
 cash_register_UI = NodePath("../../money_added_UI")
+background_music = NodePath("AudioStreamPlayer2D")
+day_end_music = NodePath("AudioStreamPlayer2D5")
+cash_register_sound = NodePath("AudioStreamPlayer2D2")
+door_sound = NodePath("AudioStreamPlayer2D3")
+bin_sound = NodePath("AudioStreamPlayer2D4")
 
 [node name="making_layer" type="CanvasLayer" parent="objects/player"]
 visible = false
@@ -6444,7 +6466,31 @@ visible = false
 position = Vector2(-1, -1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="objects/player"]
-stream = ExtResource("14_xwvcv")
+process_mode = 3
+stream = ExtResource("14_mw6ym")
+bus = &"music"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="objects/player"]
+stream = ExtResource("15_gqq3e")
+volume_db = -5.0
+bus = &"sfx"
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="objects/player"]
+position = Vector2(-204.131, -68.872)
+scale = Vector2(0.35501, 0.35501)
+stream = ExtResource("16_cml5f")
+bus = &"sfx"
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="objects/player"]
+stream = ExtResource("17_kih6v")
+volume_db = 10.0
+bus = &"sfx"
+
+[node name="AudioStreamPlayer2D5" type="AudioStreamPlayer2D" parent="objects/player"]
+process_mode = 2
+stream = ExtResource("18_8udsi")
+volume_db = -10.0
+bus = &"music"
 
 [node name="bin" type="StaticBody2D" parent="objects"]
 z_as_relative = false
@@ -6502,7 +6548,6 @@ position = Vector2(0, 0.28122)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objects/topping_counter/StaticBody2D"]
 position = Vector2(0, 5.50506)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8pefs")
 
 [node name="toppings-counter-area" parent="objects/topping_counter" instance=ExtResource("2_rnurw")]
@@ -6589,10 +6634,10 @@ position = Vector2(62.5, 11)
 shape = SubResource("RectangleShape2D_mxvuc")
 
 [node name="money_added_UI" type="Label" parent="."]
-offset_left = 556.0
-offset_top = 280.0
-offset_right = 614.0
-offset_bottom = 311.0
+offset_left = 606.0
+offset_top = 282.0
+offset_right = 664.0
+offset_bottom = 313.0
 theme_override_colors/font_color = Color(1, 0.584314, 0, 1)
 theme_override_fonts/font = ExtResource("14_j8sxf")
 
@@ -6604,6 +6649,98 @@ scale = Vector2(3.4375, 3.55594)
 position = Vector2(138.182, 109.957)
 scale = Vector2(0.290909, 0.28122)
 shape = SubResource("RectangleShape2D_heuxh")
+
+[node name="tutorial_boxes" type="Node2D" parent="."]
+
+[node name="Panel" type="Panel" parent="tutorial_boxes" groups=["tutorial_boxes"]]
+visible = false
+offset_left = 251.0
+offset_top = -182.0
+offset_right = 386.0
+offset_bottom = -106.0
+scale = Vector2(1.72, 1.72)
+theme_override_styles/panel = SubResource("StyleBoxFlat_75uvr")
+
+[node name="Label" type="Label" parent="tutorial_boxes/Panel"]
+layout_mode = 0
+offset_left = 4.06982
+offset_top = 2.90686
+offset_right = 2520.07
+offset_bottom = 1349.91
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.345098, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("14_j8sxf")
+theme_override_font_sizes/font_size = 200
+text = "go to the left counter and interact to start making!
+if you mess up at any point, throw it away in the bin to the left"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel2" type="Panel" parent="tutorial_boxes" groups=["tutorial_boxes"]]
+visible = false
+offset_left = 193.0
+offset_top = -618.0
+offset_right = 312.0
+offset_bottom = -576.0
+scale = Vector2(1.72, 1.72)
+theme_override_styles/panel = SubResource("StyleBoxFlat_75uvr")
+
+[node name="Label" type="Label" parent="tutorial_boxes/Panel2"]
+layout_mode = 0
+offset_left = 9.30233
+offset_top = 6.39535
+offset_right = 2509.3
+offset_bottom = 813.395
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.345098, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("14_j8sxf")
+theme_override_font_sizes/font_size = 200
+text = "go to the oven to bake your dough"
+autowrap_mode = 2
+
+[node name="Panel3" type="Panel" parent="tutorial_boxes" groups=["tutorial_boxes"]]
+visible = false
+offset_left = 736.0
+offset_top = -369.0
+offset_right = 855.0
+offset_bottom = -327.0
+scale = Vector2(1.72, 1.72)
+theme_override_styles/panel = SubResource("StyleBoxFlat_75uvr")
+
+[node name="Label" type="Label" parent="tutorial_boxes/Panel3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 2172.0
+offset_bottom = 813.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.345098, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("14_j8sxf")
+theme_override_font_sizes/font_size = 200
+text = "go to the right counter to add toppings"
+autowrap_mode = 2
+
+[node name="Panel4" type="Panel" parent="tutorial_boxes" groups=["tutorial_boxes"]]
+visible = false
+offset_left = 684.0
+offset_top = -161.0
+offset_right = 815.0
+offset_bottom = -116.0
+scale = Vector2(1.72, 1.72)
+theme_override_styles/panel = SubResource("StyleBoxFlat_75uvr")
+
+[node name="Label" type="Label" parent="tutorial_boxes/Panel4"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 2306.0
+offset_bottom = 813.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.345098, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("14_j8sxf")
+theme_override_font_sizes/font_size = 200
+text = "go back to the customer to  give them their order"
+autowrap_mode = 2
 
 [connection signal="area_entered" from="Area2D" to="objects/player" method="_on_main_room_area_entered"]
 [connection signal="area_entered" from="Area2D2" to="objects/player" method="_on_room_2_entered"]
