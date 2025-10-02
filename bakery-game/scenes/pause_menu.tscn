@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ekuyfmtny4bk"]
+[gd_scene load_steps=9 format=3 uid="uid://ekuyfmtny4bk"]
 
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_gmmap"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_jvevw"]
@@ -42,6 +42,15 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7dle"]
+bg_color = Color(1, 0.67451, 0.372549, 1)
+border_width_left = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
 [node name="pause_menu" type="Node2D"]
 script = ExtResource("1_jvevw")
 
@@ -62,9 +71,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="resume" type="Button" parent="."]
 offset_left = 424.0
-offset_top = 174.0
+offset_top = 231.0
 offset_right = 718.0
-offset_bottom = 266.0
+offset_bottom = 323.0
 theme = SubResource("Theme_6n3pl")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
@@ -83,9 +92,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="options" type="Button" parent="."]
 offset_left = 424.0
-offset_top = 283.0
+offset_top = 340.0
 offset_right = 718.0
-offset_bottom = 375.0
+offset_bottom = 432.0
 theme = SubResource("Theme_6n3pl")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
@@ -102,9 +111,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="quit" type="Button" parent="."]
 offset_left = 423.0
-offset_top = 392.0
+offset_top = 449.0
 offset_right = 717.0
-offset_bottom = 484.0
+offset_bottom = 541.0
 theme = SubResource("Theme_6n3pl")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
@@ -119,5 +128,26 @@ text = "quit
 "
 metadata/_edit_use_anchors_ = true
 
+[node name="Panel3" type="Panel" parent="."]
+offset_left = 312.0
+offset_top = -1.0
+offset_right = 832.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l7dle")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 336.0
+offset_top = 24.0
+offset_right = 9710.0
+offset_bottom = 2685.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("1_gmmap")
+theme_override_font_sizes/font_size = 1900
+text = "Goal: $200"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_pause_quit_pressed"]

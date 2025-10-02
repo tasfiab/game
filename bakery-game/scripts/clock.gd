@@ -11,10 +11,11 @@ var hours: int = 9
 
 var PM : String = "pm"
 
-var money : float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	day.text = str(Global.current_day)
+	$HBoxContainer/money.text = str(Global.day_money)
 	$pause_layer.hide()
 	$CanvasLayer.hide()
 	$clock_container/clock_timer.start()
@@ -45,8 +46,8 @@ func _process(delta: float) -> void:
 		$CanvasLayer/Label.text = ""
 			
 	if Global.money_given:
-		money += round(Global.order_meter/4)
-		$HBoxContainer/money.text = str(money)
+		Global.money += round(Global.order_meter/4)
+		$HBoxContainer/money.text = str(Global.money)
 		Global.money_given = false
 
 
@@ -78,7 +79,6 @@ func _on_timeout() -> void:
 	if hours == 5:
 		$clock_container/clock_timer.stop()
 		Global.day_end = true
-		Global.day_money = money
 		if Global.current_day == 2:
 			Global.game_end = true
 	
@@ -98,7 +98,11 @@ func _on_order_pressed() -> void:
 
 func _on_order_ui_mouse_entered() -> void:
 	can_check_order = true
+	var tween = create_tween()
+	tween.tween_property($order_ui, "scale", Vector2(1.1,1.1),0.1)
 
 
 func _on_order_ui_mouse_exited() -> void:
 	can_check_order = false
+	var tween = create_tween()
+	tween.tween_property($order_ui, "scale", Vector2(1,1),0.1)

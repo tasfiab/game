@@ -2,7 +2,6 @@ extends Node2D
 
 @export var sweet_UI: Node
 @export var bitter_UI: Node
-@export var soft_UI: Node
 
 var sweet: int = 0
 var bitter: int = 0
@@ -44,10 +43,6 @@ func add_taste(ingredient):
 		if taste_dictionary.has('sweetness'):
 			sweet += (taste_dictionary['sweetness'])
 			sweet_UI.value = sweet
-
-		if taste_dictionary.has('softness'):
-			soft += (taste_dictionary['softness'])
-			soft_UI.value = soft
 		
 		if taste_dictionary.has('bitterness'):
 			bitter += (taste_dictionary['bitterness'])

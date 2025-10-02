@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmu3oovukcgcq"]
+[gd_scene load_steps=11 format=3 uid="uid://dmu3oovukcgcq"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_00tgk"]
 [ext_resource type="Texture2D" uid="uid://cvdiggkyisrm7" path="res://assets/main_menu_background.png" id="1_6m6pd"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="2_4co8d"]
+[ext_resource type="AudioStream" uid="uid://cx8lf422ya5tk" path="res://sound/sway.mp3" id="4_ngb5d"]
+[ext_resource type="PackedScene" uid="uid://dghndeojp8cos" path="res://scenes/options_menu.tscn" id="5_neem2"]
 
 [sub_resource type="Theme" id="Theme_okijm"]
 default_font = ExtResource("2_4co8d")
@@ -32,9 +34,29 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[node name="main_menu" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ci1xh"]
+bg_color = Color(0.87451, 0.407843, 0.211765, 1)
+border_width_left = 7
+border_width_right = 7
+border_color = Color(0.270588, 0.0588235, 0.0156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vngnf"]
+bg_color = Color(0.486275, 0.176471, 0.101961, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.0588235, 0.0156863, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="main_menu" type="Node2D" node_paths=PackedStringArray("background_music", "options_menu")]
 process_mode = 3
 script = ExtResource("1_00tgk")
+background_music = NodePath("AudioStreamPlayer2D")
+options_menu = NodePath("options_menu")
 
 [node name="MainMenuBackground" type="Sprite2D" parent="."]
 position = Vector2(575.328, 324.5)
@@ -42,10 +64,10 @@ scale = Vector2(1.00466, 1.00466)
 texture = ExtResource("1_6m6pd")
 
 [node name="play" type="Button" parent="."]
-offset_left = 81.0
-offset_top = 250.0
-offset_right = 375.0
-offset_bottom = 342.0
+offset_left = 79.0
+offset_top = 275.0
+offset_right = 373.0
+offset_bottom = 367.0
 theme = SubResource("Theme_okijm")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
@@ -61,10 +83,10 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tgygi")
 text = "play"
 
 [node name="options" type="Button" parent="."]
-offset_left = 81.0
-offset_top = 359.0
-offset_right = 375.0
-offset_bottom = 451.0
+offset_left = 79.0
+offset_top = 384.0
+offset_right = 373.0
+offset_bottom = 476.0
 theme = SubResource("Theme_okijm")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
@@ -79,10 +101,10 @@ text = "options
 "
 
 [node name="quit" type="Button" parent="."]
-offset_left = 80.0
-offset_top = 468.0
-offset_right = 374.0
-offset_bottom = 560.0
+offset_left = 78.0
+offset_top = 493.0
+offset_right = 372.0
+offset_bottom = 585.0
 theme = SubResource("Theme_okijm")
 theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
@@ -106,5 +128,88 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 160.0
+offset_right = 194.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ci1xh")
+
+[node name="Panel3" type="Panel" parent="."]
+offset_left = 473.0
+offset_right = 507.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ci1xh")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 76.0
+offset_top = 45.0
+offset_right = 599.0
+offset_bottom = 253.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vngnf")
+
+[node name="Label" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 34.0
+offset_top = 29.0
+offset_right = 5262.0
+offset_bottom = 2529.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.4, 0.105882, 0.0705882, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_4co8d")
+theme_override_font_sizes/font_size = 1500
+text = "~ Baked"
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 28.0
+offset_right = 5265.0
+offset_bottom = 2528.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_outline_color = Color(0.270588, 0.0588235, 0.0156863, 1)
+theme_override_constants/outline_size = 800
+theme_override_fonts/font = ExtResource("2_4co8d")
+theme_override_font_sizes/font_size = 1500
+text = "~Baked"
+
+[node name="Label2" type="Label" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 109.0
+offset_top = 89.0
+offset_right = 7745.0
+offset_bottom = 2589.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.4, 0.105882, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("2_4co8d")
+theme_override_font_sizes/font_size = 2000
+text = "Dreams~"
+
+[node name="Label4" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 88.0
+offset_right = 7750.0
+offset_bottom = 2749.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_outline_color = Color(0.270588, 0.0588235, 0.0156863, 1)
+theme_override_constants/outline_size = 800
+theme_override_fonts/font = ExtResource("2_4co8d")
+theme_override_font_sizes/font_size = 2000
+text = "Dreams~"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ngb5d")
+volume_db = -7.0
+bus = &"music"
+
+[node name="options_menu" parent="." instance=ExtResource("5_neem2")]
+visible = false
+
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
