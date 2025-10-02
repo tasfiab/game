@@ -41,25 +41,40 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[node name="mixing-minigame" type="Node2D"]
+[node name="mixing-minigame" type="Node2D" node_paths=PackedStringArray("strawberry", "lemon", "chocolate", "vanilla", "cake", "bread")]
 script = ExtResource("3_bro0v")
+strawberry = NodePath("strawberry")
+lemon = NodePath("lemon")
+chocolate = NodePath("chocolate")
+vanilla = NodePath("vanilla")
+cake = NodePath("cake_essence")
+bread = NodePath("bread_essence")
 
 [node name="MixingCounter" type="Sprite2D" parent="."]
 position = Vector2(570, 320)
 texture = ExtResource("1_uinbw")
 
 [node name="bread_essence" type="TextureRect" parent="."]
-offset_left = 117.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 123.0
 offset_top = 211.0
-offset_right = 276.0
+offset_right = 282.0
 offset_bottom = 418.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 100)
 texture = ExtResource("3_vcrw5")
 
 [node name="cake_essence" type="TextureRect" parent="."]
-offset_left = 288.0
+offset_left = 298.0
 offset_top = 211.0
-offset_right = 448.0
+offset_right = 458.0
 offset_bottom = 418.0
+pivot_offset = Vector2(80, 100)
 texture = ExtResource("2_qm6x5")
 
 [node name="mixing_bowl" type="TextureRect" parent="."]
@@ -71,11 +86,12 @@ offset_bottom = 530.0
 texture = ExtResource("4_nft2q")
 
 [node name="strawberry" type="TextureRect" parent="."]
-offset_left = 319.0
+offset_left = 310.0
 offset_top = 433.0
-offset_right = 433.0
+offset_right = 424.0
 offset_bottom = 547.0
 rotation = 0.145566
+pivot_offset = Vector2(60, 50)
 texture = ExtResource("5_5g1xl")
 
 [node name="lemon" type="TextureRect" parent="."]
@@ -83,20 +99,23 @@ offset_left = 143.0
 offset_top = 422.0
 offset_right = 281.0
 offset_bottom = 560.0
+pivot_offset = Vector2(70, 70)
 texture = ExtResource("6_x6752")
 
 [node name="chocolate" type="TextureRect" parent="."]
-offset_left = 466.0
+offset_left = 476.0
 offset_top = 292.0
-offset_right = 530.0
+offset_right = 540.0
 offset_bottom = 424.0
+pivot_offset = Vector2(32, 62)
 texture = ExtResource("7_43pj2")
 
 [node name="vanilla" type="TextureRect" parent="."]
-offset_left = 538.0
+offset_left = 548.0
 offset_top = 292.0
-offset_right = 602.0
+offset_right = 612.0
 offset_bottom = 424.0
+pivot_offset = Vector2(32, 62)
 texture = ExtResource("8_kegyc")
 
 [node name="dough" parent="." instance=ExtResource("10_c0tek")]
@@ -111,7 +130,7 @@ offset_right = 944.0
 offset_bottom = 464.0
 
 [node name="tastemeter" parent="." instance=ExtResource("12_ipfxc")]
-position = Vector2(527, 93)
+position = Vector2(550, 113)
 scale = Vector2(3.16, 3.16)
 
 [node name="done_button" type="Button" parent="."]
