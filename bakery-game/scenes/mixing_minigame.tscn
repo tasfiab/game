@@ -1,17 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcjsbq03qg6hf"]
+[gd_scene load_steps=17 format=3 uid="uid://bcjsbq03qg6hf"]
 
 [ext_resource type="Texture2D" uid="uid://d1r2yv4tuyc8o" path="res://assets/mixing_counter.png" id="1_uinbw"]
 [ext_resource type="Texture2D" uid="uid://dsaimry5meh6c" path="res://assets/cake_essence.png" id="2_qm6x5"]
 [ext_resource type="Script" path="res://scripts/ingredients.gd" id="3_bro0v"]
 [ext_resource type="Texture2D" uid="uid://8q6oduejvoel" path="res://assets/bread_essence.png" id="3_vcrw5"]
-[ext_resource type="Texture2D" uid="uid://bjpomk5oak7qi" path="res://assets/mixing_bowl.png" id="4_nft2q"]
 [ext_resource type="Texture2D" uid="uid://b76is0edr2npd" path="res://assets/strawberry.png" id="5_5g1xl"]
+[ext_resource type="Texture2D" uid="uid://dp6wi54alvm4h" path="res://assets/mixing_bowl.webp" id="5_sfqvn"]
 [ext_resource type="Texture2D" uid="uid://bvuu4wexq3x0n" path="res://assets/lemon.png" id="6_x6752"]
 [ext_resource type="Texture2D" uid="uid://b16fpix34sg5k" path="res://assets/chocolate.png" id="7_43pj2"]
 [ext_resource type="Texture2D" uid="uid://dnyesyphuootw" path="res://assets/vanilla.png" id="8_kegyc"]
 [ext_resource type="PackedScene" uid="uid://dkbtlsunhxb7e" path="res://scenes/dough.tscn" id="10_c0tek"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="11_dgvn0"]
 [ext_resource type="PackedScene" uid="uid://bfoxjtagov6tq" path="res://scenes/taste_meters.tscn" id="12_ipfxc"]
+[ext_resource type="PackedScene" uid="uid://d06lngx284peh" path="res://scenes/magic_explosion.tscn" id="13_jmmvh"]
 
 [sub_resource type="Theme" id="Theme_knw4o"]
 default_font = ExtResource("11_dgvn0")
@@ -41,7 +42,7 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[node name="mixing-minigame" type="Node2D" node_paths=PackedStringArray("strawberry", "lemon", "chocolate", "vanilla", "cake", "bread")]
+[node name="mixing-minigame" type="Node2D" node_paths=PackedStringArray("strawberry", "lemon", "chocolate", "vanilla", "cake", "bread", "bowl", "magic")]
 script = ExtResource("3_bro0v")
 strawberry = NodePath("strawberry")
 lemon = NodePath("lemon")
@@ -49,6 +50,8 @@ chocolate = NodePath("chocolate")
 vanilla = NodePath("vanilla")
 cake = NodePath("cake_essence")
 bread = NodePath("bread_essence")
+bowl = NodePath("mixing_bowl")
+magic = NodePath("CPUParticles2D")
 
 [node name="MixingCounter" type="Sprite2D" parent="."]
 position = Vector2(570, 320)
@@ -78,12 +81,12 @@ pivot_offset = Vector2(80, 100)
 texture = ExtResource("2_qm6x5")
 
 [node name="mixing_bowl" type="TextureRect" parent="."]
-visible = false
-offset_left = 659.0
-offset_top = 218.0
-offset_right = 971.0
-offset_bottom = 530.0
-texture = ExtResource("4_nft2q")
+offset_left = 595.0
+offset_top = 92.0
+offset_right = 1595.0
+offset_bottom = 1092.0
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("5_sfqvn")
 
 [node name="strawberry" type="TextureRect" parent="."]
 offset_left = 310.0
@@ -123,12 +126,6 @@ visible = false
 position = Vector2(802, 187)
 scale = Vector2(5, 5)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 711.0
-offset_top = 400.0
-offset_right = 944.0
-offset_bottom = 464.0
-
 [node name="tastemeter" parent="." instance=ExtResource("12_ipfxc")]
 position = Vector2(550, 113)
 scale = Vector2(3.16, 3.16)
@@ -151,6 +148,11 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_5p450")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_5p450")
 theme_override_styles/normal = SubResource("StyleBoxFlat_5p450")
 text = "done"
+
+[node name="CPUParticles2D" parent="." instance=ExtResource("13_jmmvh")]
+position = Vector2(814, 355)
+emitting = false
+one_shot = true
 
 [connection signal="ingredient_clicked" from="." to="." method="_on_ingredient_clicked"]
 [connection signal="mouse_entered" from="bread_essence" to="." method="_on_bread_essence_mouse_entered"]

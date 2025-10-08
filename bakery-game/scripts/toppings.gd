@@ -31,8 +31,8 @@ func _process(delta: float) -> void:
 	current_customer = Global.customers[Global.customer_number]
 	order_dictionary = (Global.perfect_orders[current_customer])
 	#Checks topping is draggable
-	if Global.type.size() == 2:
-		$"../../item".texture = (Global.item_sprites[Global.type])
+	if Global.order_item.size() == 2:
+		$"../../item".texture = (Global.item_sprites[Global.order_item])
 	if draggable and not Global.topping_number == 3:
 		if Input.is_action_just_pressed("interact"):
 			offset = get_global_mouse_position() - global_position
@@ -111,7 +111,7 @@ func _on_done_button_pressed() -> void:
 			Global.order_meter += 15
 			print('no topping' + str(Global.order_meter))
 	if Global.customer_number == 0 and Global.tutorial_box_number == 3:
-				Global.help.emit()
+				Global.tutorial.emit()
 
 
 func _on_reset_button_pressed() -> void:

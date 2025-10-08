@@ -1,11 +1,11 @@
 extends Node
 
-signal help
+signal tutorial
 signal next_day
 
 var tutorial_box_number : int = 0
 
-var game_end := false
+#var game_end := false
 
 var customer_number : int = 0
 
@@ -55,10 +55,6 @@ var is_dragging = false
 
 var in_topping_minigame = false
 
-var range = RandomNumberGenerator.new()
-var order_index = range.randi_range(0,7)
-
-
 var order_meter : int = 0
 
 var money_given : bool = false
@@ -73,9 +69,6 @@ var VANILLA_STRAWBERRY_DOUGH : String = 'vanilla strawberry dough'
 var CHOCO_STRAWBERRY_DOUGH : String = 'bitter strawberry bread dough'
 var CHOCO_LEMON_DOUGH : String = 'strange bread dough'
 
-
-var orders = ['strawberry bread', 'lemon bread', 'choco-strawberry bread', 'sour chocolate bread', 
-		'strawberry cake', 'lemon cake', 'choco-strawberry cake', 'lemony chocolate cake']
 
 var customers = ['Mini', 'Cat', 'Witch', 'Old lady', 'random_1', 'random_2', 'random_3', 'random_4', 'random_5', 'random_6', 'Strange Man', 'Witch_2']
 
@@ -93,6 +86,23 @@ var customer_dialogue = {
 	customers[10] : load("res://addons/dialogue_manager/dialogue_scripts/strange_man.dialogue"),
 	customers[11] : load("res://addons/dialogue_manager/dialogue_scripts/witch_2.dialogue"),
 }
+
+
+var customer_sprite = {
+	customers[0] : preload("res://scenes/customer.tscn"),
+	customers[1] : preload("res://scenes/cat.tscn"),
+	customers[2] : preload("res://scenes/witch.tscn"),
+	customers[3] : preload("res://scenes/old_fairy.tscn"),
+	customers[4] : preload("res://scenes/edgy_guy.tscn"),
+	customers[5] : preload("res://scenes/pink_cake_girl.tscn"),
+	customers[6] : preload("res://scenes/lemon_guy.tscn"),
+	customers[7] : preload("res://scenes/villager.tscn"),
+	customers[8] : preload("res://scenes/strange_man.tscn"),
+	customers[9] : preload("res://scenes/water_girl.tscn"),
+	customers[10] : preload("res://scenes/old_man.tscn"),
+	customers[11] : preload("res://scenes/witch_sister.tscn"),
+}
+	
 
 var current_dialogue = {
 	customers[0] : '- cake
@@ -266,15 +276,43 @@ var doughs = {
 	}
 
 var dough_sprites = {
-	'strawberry bread dough': preload("res://assets/strawberry_cake_dough.png"),
-	'lemon bread dough': preload("res://assets/lemony_bread_dough.png"),
-	'choco-strawberry bread dough': preload("res://assets/choco_strawberry_cake_dough.png"),
-	'sour chocolate bread dough':preload("res://assets/lemon_chocolate_bread_dough.png"),
 	
-	'strawberry cake dough': preload("res://assets/strawberry_cake_dough.png"),
-	'lemon cake dough': preload("res://assets/lemony_bread_dough.png"),
-	'choco-strawberry cake dough': preload("res://assets/choco_strawberry_cake_dough.png"),
-	'lemony chocolate cake dough':preload("res://assets/lemon_chocolate_bread_dough.png"),
+	'basic dough': preload("res://assets/dough_plain.webp"),
+	
+	'vanilla bread dough': preload("res://assets/dough_vanilla.webp"),
+	
+	'chocolate bread dough' : preload("res://assets/dough_choco.webp"),
+	
+	'strawberry bread dough' : preload("res://assets/dough_strawberry.webp"),
+	
+	'lemon bread dough' : preload("res://assets/dough_lemon.webp"),
+	
+	'vanilla strawberry dough' : preload("res://assets/dough_strawberry.webp"),
+	
+	'sweet lemon dough' : preload("res://assets/dough_lemon.webp"),
+	
+	'bitter strawberry bread dough': preload("res://assets/dough_strawberry.webp"),
+	
+	'strange bread dough': preload("res://assets/dough_lemon.webp"),
+	
+	
+	'plain cake dough' : preload("res://assets/batter_vanilla.webp"),
+	
+	'vanilla cake dough' : preload("res://assets/batter_vanilla.webp"),
+	
+	'chocolate cake dough' : preload("res://assets/batter_choco.webp"),
+	
+	'strawberry cake dough' : preload("res://assets/batter_strawberry.webp"),
+	
+	'lemon cake dough' : preload("res://assets/batter_lemon.webp"),
+	
+	'strawberry vanilla cake dough' : preload("res://assets/batter_strawberry.webp"),
+
+	'lemon vanilla cake dough' : preload("res://assets/batter_lemon.webp"),
+	
+	'fruity chocolate cake dough': preload("res://assets/batter_strawberry.webp"),
+	
+	'strange cake dough' : preload("res://assets/batter_lemon.webp"),
 }
 
 var item_sprites = {
@@ -343,7 +381,7 @@ var item_sprites = {
 	
 	['chocolate cake dough', 'circle'] : preload("res://assets/choco_cake_circle.webp"),
 	
-	['strawberry cake dough', 'circle'] : preload("res://assets/strawberry_circle.webp"),
+	['strawberry cake dough', 'circle'] : preload("res://assets/strawberry_cake_circle.webp"),
 	
 	['lemon cake dough', 'circle'] : preload("res://assets/lemon_cake_circle.webp"),
 	
@@ -381,14 +419,4 @@ var ingredients = {
 
 
 var chosen_ingredients = [dough_type, flavour, flavour_2]
-var type = []
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+var order_item = []

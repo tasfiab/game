@@ -1,17 +1,69 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccpkavysywi1o"]
+[gd_scene load_steps=11 format=3 uid="uid://ccpkavysywi1o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4w7t"]
-size = Vector2(20, 6)
+[ext_resource type="Texture2D" uid="uid://dfhlhrt4vxg3j" path="res://assets/birthday_girl1.png" id="1_f63po"]
+[ext_resource type="Texture2D" uid="uid://c2binhuy04hki" path="res://assets/birthday_girl2.png" id="2_f5ux0"]
+[ext_resource type="Texture2D" uid="uid://cr17or6ls3thk" path="res://assets/birthday_girl3.png" id="3_hicqu"]
+[ext_resource type="Texture2D" uid="uid://dj01smfg8wvds" path="res://assets/birthday_girl4.png" id="4_lxspj"]
+[ext_resource type="Texture2D" uid="uid://cgjvioq8etpj6" path="res://assets/birthday_girl_back1.png" id="5_rcet8"]
+[ext_resource type="Texture2D" uid="uid://bi3r0qkg3dfvn" path="res://assets/birthday_girl_back2.png" id="6_4gchu"]
+[ext_resource type="Texture2D" uid="uid://dafj1bnji061q" path="res://assets/birthday_girl_back3.png" id="7_4uk1l"]
+[ext_resource type="Texture2D" uid="uid://blibkd8ob0jr8" path="res://assets/birthday_girl_back4.png" id="8_2gcc1"]
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_uyhls"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f63po")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_f5ux0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hicqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lxspj")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_rcet8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4gchu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4uk1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2gcc1")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_o4w7t")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jke16"]
+radius = 8.0
+height = 16.0
+
+[node name="birthday_girl" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_uyhls")
+animation = &"down"
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
 color = Color(0.54, 0.477, 0, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 28)
+shape = SubResource("CapsuleShape2D_jke16")

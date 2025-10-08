@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://cptmrsvdgbq5p"]
+
+[ext_resource type="Texture2D" uid="uid://bddis4q0rp2ir" path="res://assets/old_fairy1.png" id="1_pct0a"]
+[ext_resource type="Texture2D" uid="uid://bj3p2h2mue6j4" path="res://assets/old_fairy2.png" id="2_h62o6"]
+[ext_resource type="Texture2D" uid="uid://3habolvakx7t" path="res://assets/old_fairy3.png" id="3_3v2jp"]
+[ext_resource type="Texture2D" uid="uid://ca8xeoj1w6k3c" path="res://assets/old_fairy4.png" id="4_wbykj"]
+[ext_resource type="Texture2D" uid="uid://c42bgpls1wpdh" path="res://assets/old_fairy_back1.png" id="5_55m4q"]
+[ext_resource type="Texture2D" uid="uid://bc7lygqxedgj3" path="res://assets/old_fairy_back2.png" id="6_fk0ol"]
+[ext_resource type="Texture2D" uid="uid://di7w3ubwypqge" path="res://assets/old_fairy_back3.png" id="7_w5aa1"]
+[ext_resource type="Texture2D" uid="uid://bplbvdidxhvde" path="res://assets/old_fairy_back4.png" id="8_4qw6f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yxbuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pct0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h62o6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3v2jp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wbykj")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_55m4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fk0ol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w5aa1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4qw6f")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uv3oq"]
+radius = 7.0
+height = 14.0
+
+[node name="old_fairy" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_yxbuh")
+animation = &"up"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 27)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_uv3oq")

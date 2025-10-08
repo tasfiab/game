@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @export var animations : AnimatedSprite2D
-@export var customer_animations : AnimationPlayer
 
 @export var order : Sprite2D
 
@@ -18,6 +17,8 @@ extends CharacterBody2D
 @export var cash_register_sound : AudioStreamPlayer2D
 @export var door_sound : AudioStreamPlayer2D
 @export var bin_sound : AudioStreamPlayer2D
+
+@export var customer_sprite : AnimatedSprite2D
 
 var animation_direction : String
 
@@ -41,14 +42,17 @@ signal order_complete
 
 
 func _ready() -> void:
+	_reset()
 	Global.money = Global.day_money
 	player_camera.global_position = main_room.global_position # Changes camera position to main room
 	animation_direction = 'down'
-	$"../customer".hide()
 	var player_position : Vector2 = global_position
 	background_music.play()
 	get_tree().paused = false # Makes game unpaused when 'play' pressed
+	
+	#Tutorial for first customer
 	if Global.current_day == 1:
+		Global.tutorial_box_number = 0
 		Global.can_move = false
 		DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/bread_hamster.dialogue"))
 		await DialogueManager.dialogue_ended
@@ -60,14 +64,25 @@ func _ready() -> void:
 		Global.customer_number = 0
 	# For loop that runs through customers in Global array 'customers'
 		for customer in Global.customers:
-			$"../customer".show()
+			customer_sprite = null
+			
+			door_sound.play()
+			
+			var customer_scene = Global.customer_sprite[customer]
+			var customer_scene_instance = customer_scene.instantiate()
+			customer_sprite = customer_scene_instance
+			add_sibling(customer_scene_instance)
 			print(Global.customer_number)
 			order_received = false
-			# Customer enters, walking up to counter animation plays
-			# Await for customer to reach counter before allowing player to interact with them
-			customer_animations.play("customer")
-			door_sound.play()
-			await customer_animations.animation_finished
+			
+			customer_sprite.global_position = Vector2(570,640)
+			customer_sprite.scale = Vector2(3,3)
+			customer_sprite.visible
+			customer_sprite.play("up")
+			var up_tween = create_tween()
+			up_tween.tween_property(customer_sprite, "global_position", Vector2(570,350),1.5)
+			await up_tween.finished
+			customer_sprite.stop()
 			
 			# Waits for player to interact with customer and get order
 			can_get_order = true
@@ -86,7 +101,7 @@ func _ready() -> void:
 				for tutorial_box in get_tree().get_nodes_in_group('tutorial_boxes'):
 					Global.tutorial_box_number += 1
 					tutorial_box.show()
-					await Global.help
+					await Global.tutorial
 					tutorial_box.hide()
 					
 			await order_complete
@@ -94,13 +109,13 @@ func _ready() -> void:
 			#cash_register_UI.text = "+" + str(Global.money)
 			#await get_tree().create_timer(0.5).timeout
 			#cash_register_UI.text = ""
-			if Global.order_meter > 65 and Global.order_meter <= 85:
+			if Global.order_meter > 65 and Global.order_meter < 85:
 				DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/good_reaction.dialogue"))
 				Global.can_move = false
 				await DialogueManager.dialogue_ended
 				Global.can_move = true
 		
-			elif Global.order_meter > 85:
+			elif Global.order_meter >= 85:
 				DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/great reaction.dialogue"))
 				Global.can_move = false
 				await DialogueManager.dialogue_ended
@@ -115,9 +130,12 @@ func _ready() -> void:
 			Global.money_given = true
 			Global.order_start = false
 			
-			customer_animations.play_backwards("customer")
-			await customer_animations.animation_finished
-			$"../customer".hide()
+			customer_sprite.play("down")
+			var down_tween = create_tween()
+			down_tween.tween_property(customer_sprite, "global_position", Vector2(570,640),1.5)
+			await down_tween.finished
+			customer_sprite.stop()
+			customer_scene_instance.queue_free()
 			door_sound.play()
 			await get_tree().create_timer(2.0).timeout
 			
@@ -126,6 +144,7 @@ func _ready() -> void:
 			can_get_order = false
 			
 			if Global.day_end and not Global.current_day == 3:
+				Global.day_money = Global.money
 				day_end.show()
 				animation_direction = 'down'
 				background_music.stop()
@@ -138,27 +157,27 @@ func _ready() -> void:
 				
 			elif Global.day_end and Global.current_day == 3:
 				Global.can_move = false
-				if Global.money >= 150:
+				if Global.money >= 200:
 					DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/good_ending.dialogue"))
 					await DialogueManager.dialogue_ended
 				else:
+					background_music.stop()
 					DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/bad_ending.dialogue"))
 					await DialogueManager.dialogue_ended
-				get_tree().change_scene_to_file("res://scenes/end_screen.tscn")
+				Global.day_money = 0
 				game_end = true
-				
+
+				get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 			Global.customer_number += 1
 
 func _process(_delta: float) -> void:
-	if Global.day_end and not Global.current_day == 3:
-		Global.day_money = Global.money
 	if not order_received and in_main_counter_area and can_get_order:
 		if Input.is_action_just_pressed("interact"):
 			order_taken.emit()
 			order_received = true
 	if Global.order_done and in_main_counter_area:
 		if Input.is_action_just_pressed("interact"):
-			Global.help.emit()
+			Global.tutorial.emit()
 			order_complete.emit()
 			Global.order_done = false
 
@@ -232,7 +251,7 @@ func _reset():
 	
 	Global.topping_number = 0
 	
-	Global.type = []
+	Global.order_item = []
 	
 	Global.order_meter = 0
 	
@@ -269,7 +288,11 @@ func _on_minigame_exited(area: Area2D) -> void:
 
 
 func _on_main_room_area_entered(_area: Area2D) -> void:
-	player_camera.global_position = main_room.global_position
+	var tween = create_tween()
+	tween.tween_property(player_camera, "global_position", main_room.global_position, 1)
+	#player_camera.global_position = main_room.global_position
 #
 func _on_room_2_entered(_area: Area2D) -> void:
-	player_camera.global_position = kitchen.global_position
+	var tween = create_tween()
+	tween.tween_property(player_camera, "global_position", kitchen.global_position, 1)
+	#player_camera.global_position = kitchen.global_position

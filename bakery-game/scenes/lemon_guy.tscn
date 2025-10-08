@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://clh8c3pyy6p2e"]
+
+[ext_resource type="Texture2D" uid="uid://ckpky1nuvbs3m" path="res://assets/lemon_guy1.png" id="1_pajud"]
+[ext_resource type="Texture2D" uid="uid://3wkxmtf83fu5" path="res://assets/lemon_guy2.png" id="2_vg7x4"]
+[ext_resource type="Texture2D" uid="uid://p64e567vvwdv" path="res://assets/lemon_guy3.png" id="3_p4dv6"]
+[ext_resource type="Texture2D" uid="uid://bsodd7esfqrsh" path="res://assets/lemon_guy4.png" id="4_rckvy"]
+[ext_resource type="Texture2D" uid="uid://bvh1d6i5vrd53" path="res://assets/lemon_guy_back1.png" id="5_8ap8o"]
+[ext_resource type="Texture2D" uid="uid://j5vub26qmfoj" path="res://assets/lemon_guy_back2.png" id="6_p5yr4"]
+[ext_resource type="Texture2D" uid="uid://4x1vt1ecicfr" path="res://assets/lemon_guy_back3.png" id="7_572t6"]
+[ext_resource type="Texture2D" uid="uid://cek1747olpksw" path="res://assets/lemon_guy_back4.png" id="8_jbuel"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nas5i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pajud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vg7x4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p4dv6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rckvy")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_8ap8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_p5yr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_572t6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jbuel")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vtiku"]
+radius = 9.0
+height = 18.0
+
+[node name="lemon_guy" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_nas5i")
+animation = &"down"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 24)
+shape = SubResource("CapsuleShape2D_vtiku")

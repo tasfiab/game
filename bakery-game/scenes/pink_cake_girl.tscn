@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4r7xt0pcs1ul"]
+
+[ext_resource type="Texture2D" uid="uid://dowkgvkoxuxsf" path="res://assets/pink_cake_girl1.png" id="1_u6wdn"]
+[ext_resource type="Texture2D" uid="uid://1wfirtx6v5dv" path="res://assets/pink_cake_girl2.png" id="2_kxpb0"]
+[ext_resource type="Texture2D" uid="uid://cl1pqkhch5hrb" path="res://assets/pink_cake_girl3.png" id="3_mil4q"]
+[ext_resource type="Texture2D" uid="uid://c3vqtbcnbx11i" path="res://assets/pink_cake_girl4.png" id="4_rmi05"]
+[ext_resource type="Texture2D" uid="uid://cynvei31xq07g" path="res://assets/pink_cake_girl_back1.png" id="5_vtn1m"]
+[ext_resource type="Texture2D" uid="uid://631bifuw7nej" path="res://assets/pink_cake_girl_back2.png" id="6_exppi"]
+[ext_resource type="Texture2D" uid="uid://ccnbhdwk2ypge" path="res://assets/pink_cake_girl_back3.png" id="7_hf8fh"]
+[ext_resource type="Texture2D" uid="uid://bl0pkjfp2iwby" path="res://assets/pink_cake_girl_back4.png" id="8_kgf3a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iuur5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u6wdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kxpb0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mil4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rmi05")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vtn1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_exppi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hf8fh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kgf3a")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bswsx"]
+radius = 9.0
+height = 18.0
+
+[node name="pink_cake_girl" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_iuur5")
+animation = &"up"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 28)
+shape = SubResource("CapsuleShape2D_bswsx")

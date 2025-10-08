@@ -1,8 +1,10 @@
 extends CanvasLayer
 
-var mynode = preload("res://scenes/mixing_minigame.tscn")
+var minigame_scene = preload("res://scenes/mixing_minigame.tscn")
 
 var done : bool = false
+
+const SCENE_INDEX :int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +20,7 @@ func _process(delta: float) -> void:
 			
 	if Global.done_button_pressed and not done:
 		hide()
-		get_child(0).queue_free()
-		var instance = mynode.instantiate() 
-		add_child(instance)
+		get_child(SCENE_INDEX).queue_free()
+		var scene_instance = minigame_scene.instantiate() 
+		add_child(scene_instance)
 		done = true

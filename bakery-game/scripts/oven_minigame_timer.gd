@@ -17,7 +17,7 @@ signal minigame_done
 func _ready() -> void:
 	hide()
 	rating_panel.hide()
-	rating_panel.scale = Vector2(0.5,0.5)
+	rating_panel.scale = Vector2(0.1,0.1)
 	#rating_panel.position = Vector2(6,3)
 			
 
@@ -75,13 +75,14 @@ func _on_yellow_area_entered(area: Area2D) -> void:
 
 func _on_minigame_done() -> void:
 	if Global.customer_number == 0 and Global.tutorial_box_number == 2:
-			Global.help.emit()
+			Global.tutorial.emit()
 
 	rating_panel.show()
 	var tween = create_tween()
-	tween.tween_property(rating_panel, "scale", Vector2(1,1),0.05)
+	tween.tween_property(rating_panel, "scale", Vector2(1,1),0.1)
 	
-	await get_tree().create_timer(1).timeout
-	tween.tween_property(rating_panel, "scale", Vector2(0.1,0.1),0.05)
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(0.5).timeout
+	var tween_back = create_tween()
+	tween_back.tween_property(rating_panel, "scale", Vector2(0.1,0.1),0.1)
+	await tween_back.finished
 	rating_panel.hide()

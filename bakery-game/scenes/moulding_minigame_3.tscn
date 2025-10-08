@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://8wyi6cp31ldu"]
+[gd_scene load_steps=16 format=3 uid="uid://8wyi6cp31ldu"]
 
 [ext_resource type="Script" path="res://scripts/moulding_minigame_3.gd" id="1_8k2d7"]
 [ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="3_4qr3p"]
 [ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="4_gv7t1"]
-[ext_resource type="Texture2D" uid="uid://crl6v3njxmtt1" path="res://assets/choco_croissant.webp" id="5_0iu20"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="5_rej1q"]
-[ext_resource type="Texture2D" uid="uid://yuouuemu75mk" path="res://assets/plain_croissant.webp" id="6_e87is"]
+[ext_resource type="Texture2D" uid="uid://xdct1kga0s68" path="res://assets/mould_meter_under.png" id="7_qsm7q"]
+[ext_resource type="Texture2D" uid="uid://cc6rbdy3jugkh" path="res://assets/mould_meter_line.png" id="8_l13ol"]
+[ext_resource type="Texture2D" uid="uid://dfeciiy3y6qsn" path="res://assets/mould_meter_over.png" id="9_nkj4s"]
+[ext_resource type="PackedScene" uid="uid://d06lngx284peh" path="res://scenes/magic_explosion.tscn" id="9_xs7k2"]
+[ext_resource type="Texture2D" uid="uid://dp6wi54alvm4h" path="res://assets/mixing_bowl.webp" id="10_bh2no"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbq7n"]
 bg_color = Color(1, 0.827451, 0.682353, 1)
@@ -44,21 +47,43 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dhr7"]
-bg_color = Color(0.345098, 0.109804, 0.109804, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsqdi"]
+bg_color = Color(1, 0.827451, 0.682353, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivbly"]
-bg_color = Color(0.73, 0.31244, 0.1606, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b600t"]
+bg_color = Color(1, 0.827451, 0.682353, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.411765, 0.156863, 0.109804, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+anti_aliasing = false
 
-[node name="moulding_minigame_3" type="Node2D" node_paths=PackedStringArray("progress", "bread_types_panel", "cake_types_panel")]
+[node name="moulding_minigame_3" type="Node2D" node_paths=PackedStringArray("mould_meter", "bread_types_panel", "cake_types_panel", "rating", "rating_panel", "order_item_sprite", "magic")]
 script = ExtResource("1_8k2d7")
-progress = NodePath("progress_bar")
+mould_meter = NodePath("mould_meter")
 bread_types_panel = NodePath("bread_types")
 cake_types_panel = NodePath("cake_types")
+rating = NodePath("Panel2/Label")
+rating_panel = NodePath("Panel2")
+order_item_sprite = NodePath("mixing_bowl")
+magic = NodePath("CPUParticles2D")
 
 [node name="MouldingCounter" type="Sprite2D" parent="."]
 position = Vector2(570, 320)
-scale = Vector2(1.00167, 1.00167)
 texture = ExtResource("3_4qr3p")
 
 [node name="baked_item" parent="." instance=ExtResource("4_gv7t1")]
@@ -182,52 +207,81 @@ text = "circle
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="progress_bar" type="ProgressBar" parent="."]
-offset_left = 531.0
-offset_top = 275.0
-offset_right = 571.0
-offset_bottom = 338.0
-scale = Vector2(1, 3.16)
-theme_override_styles/background = SubResource("StyleBoxFlat_4dhr7")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ivbly")
-value = 70.0
+[node name="mould_meter" type="TextureProgressBar" parent="."]
+offset_left = 192.0
+offset_top = 248.0
+offset_right = 232.0
+offset_bottom = 344.0
+scale = Vector2(2.56, 2.56)
+value = 76.0
+rounded = true
 fill_mode = 3
-show_percentage = false
+texture_under = ExtResource("7_qsm7q")
+texture_over = ExtResource("8_l13ol")
+texture_progress = ExtResource("9_nkj4s")
 
-[node name="Panel" type="Panel" parent="."]
-offset_left = 528.0
-offset_top = 481.0
-offset_right = 569.0
-offset_bottom = 520.0
-
-[node name="Label" type="Label" parent="Panel"]
+[node name="Panel" type="Panel" parent="mould_meter"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_top = 99.6094
+offset_right = 60.0
+offset_bottom = 159.609
+scale = Vector2(0.4, 0.4)
+theme_override_styles/panel = SubResource("StyleBoxFlat_wsqdi")
+
+[node name="Label" type="Label" parent="mould_meter/Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1161.0
+offset_bottom = 1200.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
 theme_override_fonts/font = ExtResource("5_rej1q")
+theme_override_font_sizes/font_size = 350
 text = "hold 
 space"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect3" type="ColorRect" parent="."]
-offset_left = 531.0
-offset_top = 330.0
-offset_right = 571.0
-offset_bottom = 335.0
-color = Color(0.603922, 0.552941, 0.145098, 1)
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="Panel2" type="Panel" parent="."]
 visible = false
-offset_left = 35.0
-offset_top = -317.0
-offset_right = 1005.0
-offset_bottom = 653.0
-max_value = 73.0
-fill_mode = 3
-texture_under = ExtResource("5_0iu20")
-texture_progress = ExtResource("6_e87is")
+offset_left = 468.0
+offset_top = 176.0
+offset_right = 661.0
+offset_bottom = 238.0
+pivot_offset = Vector2(96.5, 31)
+theme_override_styles/panel = SubResource("StyleBoxFlat_b600t")
 
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 0
+offset_right = 3860.0
+offset_bottom = 1240.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.345098, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("5_rej1q")
+theme_override_font_sizes/font_size = 600
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mixing_bowl" type="TextureRect" parent="."]
+offset_left = 64.0
+offset_top = -175.0
+offset_right = 1064.0
+offset_bottom = 825.0
+scale = Vector2(0.44, 0.44)
+pivot_offset = Vector2(500, 500)
+texture = ExtResource("10_bh2no")
+
+[node name="CPUParticles2D" parent="." instance=ExtResource("9_xs7k2")]
+position = Vector2(564, 373)
+scale = Vector2(2, 2)
+emitting = false
+amount = 100
+one_shot = true
+speed_scale = 3.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+
+[connection signal="minigame_done" from="." to="." method="_on_minigame_done"]
 [connection signal="pressed" from="bread_types/loaf" to="." method="_on_loaf_button_pressed"]
 [connection signal="pressed" from="bread_types/croissant" to="." method="_on_croissant_button_pressed"]
 [connection signal="pressed" from="cake_types/square" to="." method="_on_square_button_pressed"]

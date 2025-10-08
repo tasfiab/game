@@ -89,6 +89,7 @@ texture = ExtResource("6_qmno2")
 visible = false
 position = Vector2(-2.60123, 0)
 texture = ExtResource("7_1wkw1")
+flip_h = true
 
 [node name="stardust" type="Sprite2D" parent="item"]
 visible = false
@@ -115,6 +116,7 @@ texture = ExtResource("10_54ocm")
 visible = false
 position = Vector2(-2.60123, 0)
 texture = ExtResource("11_eskbv")
+flip_h = true
 
 [node name="stardust_circle" type="Sprite2D" parent="item"]
 visible = false
@@ -139,8 +141,9 @@ texture = ExtResource("16_vf308")
 
 [node name="sprinkles_loaf" type="Sprite2D" parent="item"]
 visible = false
-position = Vector2(-2.60123, 0)
+position = Vector2(52.0247, 0)
 texture = ExtResource("17_qpgmx")
+flip_h = true
 
 [node name="stardust_loaf" type="Sprite2D" parent="item"]
 visible = false
@@ -167,6 +170,7 @@ texture = ExtResource("22_llbh7")
 visible = false
 position = Vector2(-2.60123, 0)
 texture = ExtResource("23_brmae")
+flip_h = true
 
 [node name="stardust_croissant" type="Sprite2D" parent="item"]
 visible = false

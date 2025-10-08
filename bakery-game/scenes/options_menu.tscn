@@ -16,7 +16,7 @@ border_width_bottom = 10
 border_color = Color(0.270588, 0.101961, 0.0705882, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5jix"]
-bg_color = Color(1, 0.67451, 0.372549, 1)
+bg_color = Color(1, 0.717647, 0.490196, 1)
 border_width_left = 10
 border_width_right = 10
 border_width_bottom = 10
@@ -25,7 +25,7 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3sva"]
-bg_color = Color(1, 0.67451, 0.372549, 1)
+bg_color = Color(1, 0.717647, 0.490196, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
@@ -220,7 +220,7 @@ scale = Vector2(0.05, 0.05)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
 theme_override_fonts/font = ExtResource("1_7ksab")
 theme_override_font_sizes/font_size = 800
-text = "interact: left click/enter/Q"
+text = "interact: left click/enter"
 horizontal_alignment = 1
 
 [node name="HSlider" parent="." instance=ExtResource("2_66372")]

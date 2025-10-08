@@ -6,7 +6,8 @@ extends Node2D
 @export var vanilla : TextureRect
 @export var cake : TextureRect
 @export var bread : TextureRect
-
+@export var bowl : TextureRect
+@export var magic : CPUParticles2D
 
 var can_click_cake : bool = false
 var can_click_bread : bool = false
@@ -30,25 +31,27 @@ var STRAWBERRY = 'strawberry'
 
 var dough_type_meter_added : bool = false
 
-
 var ingredient_number = 0
+
+const EMPTY_STRING = ""
 
 signal ingredient_clicked
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	magic.emitting = false
 	dough_type_meter_added = false
 	for ingredient in Global.chosen_ingredients:
 		Global.ingredient_chosen = false
-		if ingredient_number == 0:
+		if ingredient_number == dough_type_index:
 			strawberry.hide()
 			lemon.hide()
 			chocolate.hide()
 			vanilla.hide()
-		elif ingredient_number == 1:
+		elif ingredient_number == flavour_index:
 			vanilla.show()
 			chocolate.show()
-		elif ingredient_number == 2:
+		elif ingredient_number == flavour_2_index:
 			strawberry.show()
 			lemon.show()
 			vanilla.hide()
@@ -59,67 +62,59 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.chosen_ingredients[0] == BREAD:
+	if Global.chosen_ingredients[dough_type_index] == BREAD:
 		cake.hide()
-	if Global.chosen_ingredients[0] == CAKE:
+	if Global.chosen_ingredients[dough_type_index] == CAKE:
 		bread.hide()
 	
-	if Global.chosen_ingredients[0] == "":
-		$Label.text = ""
+	if Global.chosen_ingredients[dough_type_index] == "":
 		cake.show()
 		bread.show()
 		
-	if Input.is_action_just_pressed("interact") and Global.chosen_ingredients.has(""):
+	if Input.is_action_just_pressed("interact") and Global.chosen_ingredients.has(EMPTY_STRING):
 		if can_click_cake:
-			_choosing_ingredients(CAKE, ingredient_number)
-			ingredient_clicked.emit()
+			_choosing_ingredients(CAKE)
 			Global.dough_type == CAKE
 			
 		elif can_click_bread:
-			_choosing_ingredients(BREAD, ingredient_number)
-			ingredient_clicked.emit()
+			_choosing_ingredients(BREAD)
 			Global.dough_type == BREAD
 			
 		elif can_click_vanilla:
-			_choosing_ingredients(VANILLA, ingredient_number)
-			ingredient_clicked.emit()
+			_choosing_ingredients(VANILLA)
 			
 		elif can_click_chocolate:
-			_choosing_ingredients(CHOCOLATE, ingredient_number)
-			ingredient_clicked.emit()
+			_choosing_ingredients(CHOCOLATE)
 			
 		elif can_click_strawberry:
-			_choosing_ingredients(STRAWBERRY, ingredient_number)
-			ingredient_clicked.emit()
+			_choosing_ingredients(STRAWBERRY)
 			
 		elif can_click_lemon:
-			_choosing_ingredients(LEMON,ingredient_number)
-			ingredient_clicked.emit()
+			_choosing_ingredients(LEMON)
 			
 			
 # Checks if all chosen_ingredients have been chosen.
 # Looks at dough dictionary and finds what dough is formed from the chosen ingredients.
-	if not Global.chosen_ingredients.has(""):
+	if not Global.chosen_ingredients.has(EMPTY_STRING):
 		var dough_formed = (Global.doughs[Global.chosen_ingredients])
 		Global.dough_formed = true
-		$Label.text = String(Global.doughs[Global.chosen_ingredients])
-			
-		
-			
+		magic.emitting = true
+		bowl.texture = (Global.dough_sprites[dough_formed])
+	else:
+		bowl.texture = preload("res://assets/mixing_bowl.webp")
 				
 
-func _choosing_ingredients(ingredient : String, index : int):
-	Global.chosen_ingredients[index] = ingredient
+func _choosing_ingredients(ingredient : String):
+	Global.chosen_ingredients[ingredient_number] = ingredient
+	ingredient_clicked.emit()
 	
 func _hover_tween(ingredient):
 	var tween = create_tween()
 	tween.tween_property(ingredient, "scale", Vector2(1.1,1.1),0.1)
-	pass
 
 func _not_hover_tween(ingredient):
 	var tween = create_tween()
 	tween.tween_property(ingredient, "scale", Vector2(1,1),0.1)
-	pass
 	
 
 
@@ -191,5 +186,5 @@ func _on_done_button_pressed() -> void:
 			dough_type_meter_added = true
 			
 		ingredient_number = 0
-		Global.type.append(Global.doughs[Global.chosen_ingredients])
+		Global.order_item.append(Global.doughs[Global.chosen_ingredients])
 		Global.done_button_pressed = true
