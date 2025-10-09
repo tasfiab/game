@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://dl5ev5jiuwfb8"]
+
+[ext_resource type="Texture2D" uid="uid://q4eqvvgcqwdo" path="res://assets/bread_hamster1.png" id="1_5mi7f"]
+[ext_resource type="Texture2D" uid="uid://cgs24rejxl57d" path="res://assets/bread_hamster2.png" id="2_uxe88"]
+[ext_resource type="Texture2D" uid="uid://0wuu4sekf0ym" path="res://assets/bread_hamster3.png" id="3_d0rj6"]
+[ext_resource type="Texture2D" uid="uid://c81xjlhy4mohm" path="res://assets/bread_hamster4.png" id="4_yq2ft"]
+[ext_resource type="Texture2D" uid="uid://d0ieexb73jk0e" path="res://assets/bread_hamster5.png" id="5_o16wo"]
+[ext_resource type="Texture2D" uid="uid://thstw3w2d5jy" path="res://assets/bread_hamster_back1.png" id="6_34tqd"]
+[ext_resource type="Texture2D" uid="uid://b0d161hqic033" path="res://assets/bread_hamster_back2.png" id="7_qnhsc"]
+[ext_resource type="Texture2D" uid="uid://be2nnnniqa3fu" path="res://assets/bread_hamster_back3.png" id="8_n633e"]
+[ext_resource type="Texture2D" uid="uid://p4aa4a0whqav" path="res://assets/bread_hamster_back4.png" id="9_ju3b2"]
+[ext_resource type="Texture2D" uid="uid://03bpeqr6dprf" path="res://assets/bread_hamster_back5.png" id="10_aw3kg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tpc0t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5mi7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uxe88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d0rj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yq2ft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o16wo")
+}],
+"loop": true,
+"name": &"down",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_34tqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qnhsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n633e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ju3b2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_aw3kg")
+}],
+"loop": true,
+"name": &"up",
+"speed": 7.0
+}]
+
+[node name="bread_hamster" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_tpc0t")
+animation = &"up"
+frame_progress = 0.849831

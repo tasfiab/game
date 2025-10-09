@@ -92,6 +92,7 @@ position = Vector2(415, 372)
 scale = Vector2(2.64, 2.64)
 
 [node name="bread_types" type="Panel" parent="."]
+visible = false
 offset_left = 787.0
 offset_top = 160.0
 offset_right = 1035.0
@@ -244,9 +245,9 @@ vertical_alignment = 1
 
 [node name="Panel2" type="Panel" parent="."]
 visible = false
-offset_left = 468.0
+offset_left = 128.0
 offset_top = 176.0
-offset_right = 661.0
+offset_right = 321.0
 offset_bottom = 238.0
 pivot_offset = Vector2(96.5, 31)
 theme_override_styles/panel = SubResource("StyleBoxFlat_b600t")
@@ -277,7 +278,7 @@ scale = Vector2(2, 2)
 emitting = false
 amount = 100
 one_shot = true
-speed_scale = 3.0
+speed_scale = 2.0
 scale_amount_min = 3.0
 scale_amount_max = 6.0
 

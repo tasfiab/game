@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cdrdhj3fmns7w"]
+[gd_scene load_steps=38 format=3 uid="uid://cdrdhj3fmns7w"]
 
 [ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="1_3wj8q"]
 [ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="1_e5ubf"]
@@ -61,6 +61,19 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_520au"]
+bg_color = Color(0.454902, 0.172549, 0.137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.345098, 0.109804, 0.109804, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
 
 [node name="toppings_minigame" type="Node2D"]
 
@@ -168,7 +181,7 @@ texture = ExtResource("22_llbh7")
 
 [node name="sprinkles_croissant" type="Sprite2D" parent="item"]
 visible = false
-position = Vector2(-2.60123, 0)
+position = Vector2(40.3191, 0)
 texture = ExtResource("23_brmae")
 flip_h = true
 
@@ -182,7 +195,7 @@ texture = ExtResource("25_spnuv")
 
 [node name="baked_item" parent="." instance=ExtResource("1_3wj8q")]
 position = Vector2(796, 278)
-scale = Vector2(10.3448, 9.28)
+scale = Vector2(8.96252, 8.04)
 collision_mask = 2
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -214,7 +227,7 @@ position = Vector2(332, 277)
 scale = Vector2(0.44188, 0.44188)
 texture = ExtResource("26_n3340")
 
-[node name="choco_chips" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="choco_chips" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite", "item", "toppings_counter") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(-321.354, 124.468)
 scale = Vector2(13.464, 13.464)
 topping_marker = NodePath("../../Marker2D")
@@ -223,13 +236,15 @@ square_sprite = NodePath("../../item/choco_chips")
 circle_sprite = NodePath("../../item/choco_chips_circle")
 loaf_sprite = NodePath("../../item/choco_chips_loaf")
 croissant_sprite = NodePath("../../item/choco_chips_croissant")
+item = NodePath("../../item")
+toppings_counter = NodePath("../../Panel/Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/choco_chips"]
 position = Vector2(-8.34465e-07, 2.26498e-06)
 scale = Vector2(0.0903009, 0.092037)
 texture = ExtResource("28_7jm7s")
 
-[node name="strawberry" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="strawberry" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite", "item", "toppings_counter") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(-108.736, 124.27)
 scale = Vector2(15.6638, 15.6638)
 topping_marker = NodePath("../../Marker2D2")
@@ -238,13 +253,15 @@ square_sprite = NodePath("../../item/strawberry")
 circle_sprite = NodePath("../../item/strawberry_circle")
 loaf_sprite = NodePath("../../item/strawberry_loaf")
 croissant_sprite = NodePath("../../item/strawberry_croissant")
+item = NodePath("../../item")
+toppings_counter = NodePath("../../Panel/Label")
 
 [node name="Sprite2D2" type="Sprite2D" parent="ToppingsContainer/strawberry"]
 position = Vector2(-2.38007, -5.15681)
 scale = Vector2(0.077324, 0.077324)
 texture = ExtResource("25_spnuv")
 
-[node name="sprinkles" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="sprinkles" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite", "item", "toppings_counter") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(105.629, 127.377)
 scale = Vector2(13.7431, 13.7431)
 topping_marker = NodePath("../../Marker2D3")
@@ -253,13 +270,15 @@ square_sprite = NodePath("../../item/sprinkles")
 circle_sprite = NodePath("../../item/sprinkles_circle")
 loaf_sprite = NodePath("../../item/sprinkles_loaf")
 croissant_sprite = NodePath("../../item/sprinkles_croissant")
+item = NodePath("../../item")
+toppings_counter = NodePath("../../Panel/Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/sprinkles"]
 position = Vector2(1.92225e-06, 3.35276e-06)
 scale = Vector2(0.0598715, 0.0610233)
 texture = ExtResource("29_0i12v")
 
-[node name="stardust" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="stardust" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite", "item", "toppings_counter") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(316.888, 124.27)
 scale = Vector2(13.9122, 13.9122)
 topping_marker = NodePath("../../Marker2D4")
@@ -268,13 +287,15 @@ square_sprite = NodePath("../../item/stardust")
 circle_sprite = NodePath("../../item/stardust_circle")
 loaf_sprite = NodePath("../../item/stardust_loaf")
 croissant_sprite = NodePath("../../item/stardust_croissant")
+item = NodePath("../../item")
+toppings_counter = NodePath("../../Panel/Label")
 
 [node name="Sprite2D2" type="Sprite2D" parent="ToppingsContainer/stardust"]
 position = Vector2(6.10352e-05, -0.00012207)
 scale = Vector2(0.0887658, 0.0871223)
 texture = ExtResource("30_almpl")
 
-[node name="vanilla_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="vanilla_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite", "item", "toppings_counter") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(-128.994, 386.983)
 scale = Vector2(16.8773, -14.379)
 topping_marker = NodePath("../../Marker2D5")
@@ -283,13 +304,15 @@ square_sprite = NodePath("../../item/vanilla_icing")
 circle_sprite = NodePath("../../item/vanilla_icing_cricle")
 loaf_sprite = NodePath("../../item/vanilla_icing_loaf")
 croissant_sprite = NodePath("../../item/vanilla_icing_croissant")
+item = NodePath("../../item")
+toppings_counter = NodePath("../../Panel/Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="ToppingsContainer/vanilla_icing"]
 position = Vector2(-2.14542, 1.10169)
-scale = Vector2(0.0475964, -0.0536317)
+scale = Vector2(0.046, -0.054)
 texture = ExtResource("31_r7i8e")
 
-[node name="chocolate_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite") groups=["topping"] instance=ExtResource("2_qwrs7")]
+[node name="chocolate_icing" parent="ToppingsContainer" node_paths=PackedStringArray("topping_marker", "square_sprite", "circle_sprite", "loaf_sprite", "croissant_sprite", "item", "toppings_counter") groups=["topping"] instance=ExtResource("2_qwrs7")]
 position = Vector2(-131.257, 601.973)
 scale = Vector2(-17.2893, -14.3411)
 topping_marker = NodePath("../../Marker2D6")
@@ -298,6 +321,8 @@ square_sprite = NodePath("../../item/choco_icing")
 circle_sprite = NodePath("../../item/choco_icing_cirlce")
 loaf_sprite = NodePath("../../item/choco_icing_loaf")
 croissant_sprite = NodePath("../../item/choco_icing_croissant")
+item = NodePath("../../item")
+toppings_counter = NodePath("../../Panel/Label")
 
 [node name="Sprite2D2" type="Sprite2D" parent="ToppingsContainer/chocolate_icing"]
 position = Vector2(1.83251, 1.26242)
@@ -333,6 +358,25 @@ offset_bottom = 494.0
 theme_override_fonts/font = ExtResource("5_f2hiy")
 theme_override_font_sizes/font_size = 40
 text = "reset"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 139.0
+offset_top = 85.0
+offset_right = 339.0
+offset_bottom = 144.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_520au")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 4000.0
+offset_bottom = 1060.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_fonts/font = ExtResource("5_f2hiy")
+theme_override_font_sizes/font_size = 600
+text = "toppings: 0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="done_button" to="ToppingsContainer/choco_chips" method="_on_done_button_pressed"]
 [connection signal="pressed" from="reset_button" to="ToppingsContainer/choco_chips" method="_on_reset_button_pressed"]

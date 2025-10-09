@@ -29,8 +29,8 @@ var order_dictionary = (Global.perfect_orders[current_customer])
 
 
 const DOUGH_TYPE_INDEX := 0
-const PERFECT_MIN := 72
-const PERFECT_MAX := 78
+const PERFECT_MIN := 74
+const PERFECT_MAX := 76
 const OK_MIN := 67
 const OK_MAX := 83
 
@@ -84,23 +84,22 @@ func _process(delta: float) -> void:
 				
 			if mould_meter.value <= PERFECT_MAX and mould_meter.value >= PERFECT_MIN:
 				Global.order_meter += GREAT_SCORE
-				magic.speed_scale = 3
 				print('mould meter' + str(Global.order_meter))
 				rating.text = 'perfect!'
 									
 			elif mould_meter.value <= OK_MAX and mould_meter.value >= OK_MIN:
 				Global.order_meter += GOOD_SCORE
-				magic.speed_scale = 2
 				print('mould meter' + str(Global.order_meter))
 				rating.text = 'good!'
 				
 			elif mould_meter.value < OK_MIN:
 				print("too little")
-				magic.speed_scale = 1
+				magic.amount = 10
 				print('mould meter' + str(Global.order_meter))
 				rating.text = 'too little!'
 				
 			elif mould_meter.value > OK_MAX:
+				magic.amount = 150
 				magic.speed_scale = 4
 				print("too much!")
 				rating.text = 'too much!'

@@ -7,7 +7,6 @@ extends Node2D
 @export var cake : TextureRect
 @export var bread : TextureRect
 @export var bowl : TextureRect
-@export var magic : CPUParticles2D
 
 var can_click_cake : bool = false
 var can_click_bread : bool = false
@@ -39,7 +38,6 @@ signal ingredient_clicked
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	magic.emitting = false
 	dough_type_meter_added = false
 	for ingredient in Global.chosen_ingredients:
 		Global.ingredient_chosen = false
@@ -98,7 +96,6 @@ func _process(delta: float) -> void:
 	if not Global.chosen_ingredients.has(EMPTY_STRING):
 		var dough_formed = (Global.doughs[Global.chosen_ingredients])
 		Global.dough_formed = true
-		magic.emitting = true
 		bowl.texture = (Global.dough_sprites[dough_formed])
 	else:
 		bowl.texture = preload("res://assets/mixing_bowl.webp")

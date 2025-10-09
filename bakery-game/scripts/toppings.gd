@@ -6,6 +6,9 @@ extends Node2D
 @export var circle_sprite : Sprite2D
 @export var loaf_sprite : Sprite2D
 @export var croissant_sprite : Sprite2D
+@export var item : Sprite2D
+
+@export var toppings_counter : Label
 
 var current_customer = Global.customers[Global.customer_number]
 var order_dictionary = (Global.perfect_orders[current_customer])
@@ -18,9 +21,6 @@ var offset : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#for topping in get_tree().get_nodes_in_group('topping'):
-		#topping.original_position = self.topping_marker.global_position
-		#original_position = global_position
 	pass
 
 
@@ -29,10 +29,10 @@ func _process(delta: float) -> void:
 	if Global.in_topping_minigame:
 		Global.can_move = false
 	current_customer = Global.customers[Global.customer_number]
-	order_dictionary = (Global.perfect_orders[current_customer])
+	order_dictionary = Global.perfect_orders[current_customer]
 	#Checks topping is draggable
 	if Global.order_item.size() == 2:
-		$"../../item".texture = (Global.item_sprites[Global.order_item])
+		item.texture = Global.item_sprites[Global.order_item]
 	if draggable and not Global.topping_number == 3:
 		if Input.is_action_just_pressed("interact"):
 			offset = get_global_mouse_position() - global_position
@@ -43,7 +43,12 @@ func _process(delta: float) -> void:
 			Global.is_dragging = false
 			if in_baked_item:
 				self.hide()
+				if self.type == "vanilla_icing":
+					$"../chocolate_icing".hide()
+				if self.type == "choco_icing":
+					$"../vanilla_icing".hide()
 				Global.topping_number += 1
+				toppings_counter.text = "toppings " + str(Global.topping_number) + "/3"
 				if Global.shape == 'square':
 					self.square_sprite.show()
 				elif Global.shape == 'circle':
@@ -63,7 +68,9 @@ func _process(delta: float) -> void:
 						print('topping ok' + str(Global.order_meter))
 						
 			elif not in_baked_item:
-				global_position = topping_marker.global_position
+				var tween = create_tween()
+				tween.tween_property(self,"global_position",topping_marker.global_position,0.2).set_ease(Tween.EASE_OUT)
+				#global_position = topping_marker.global_position
 	
 				
 				
@@ -78,6 +85,10 @@ func _process(delta: float) -> void:
 			#else:
 				#tween.tween_property(self,"global_position",initialPos,0.2).set_ease(Tween.EASE_OUT)
 		
+
+func tween_in(topping):
+	var tween = create_tween()
+	tween.tween_property(topping,"scale",Vector2(0,0),0.05).set_ease(Tween.EASE_OUT)
 
 
 func _on_toppings_mouse_entered() -> void:
@@ -94,11 +105,10 @@ func _on_toppings_mouse_exited() -> void:
 
 func _on_toppings_body_entered(body: Node2D) -> void:
 	in_baked_item = true
-#	body_ref = body
 
 func _on_toppings_body_exited(body: Node2D) -> void:
 	in_baked_item = false
-#	body_ref = body
+
 
 
 func _on_done_button_pressed() -> void:

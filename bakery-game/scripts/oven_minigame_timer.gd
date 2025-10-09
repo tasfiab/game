@@ -81,7 +81,7 @@ func _on_minigame_done() -> void:
 	var tween = create_tween()
 	tween.tween_property(rating_panel, "scale", Vector2(1,1),0.1)
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1).timeout
 	var tween_back = create_tween()
 	tween_back.tween_property(rating_panel, "scale", Vector2(0.1,0.1),0.1)
 	await tween_back.finished

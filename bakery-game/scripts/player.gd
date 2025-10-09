@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var animations : AnimatedSprite2D
+@export var bread_hamster : AnimatedSprite2D
 
 @export var order : Sprite2D
 
@@ -54,9 +55,18 @@ func _ready() -> void:
 	if Global.current_day == 1:
 		Global.tutorial_box_number = 0
 		Global.can_move = false
+		bread_hamster.show()
+		bread_hamster.play('up')
 		DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/bread_hamster.dialogue"))
 		await DialogueManager.dialogue_ended
+		bread_hamster.play('down')
+		var tween = create_tween()
+		tween.tween_property(bread_hamster ,"global_position", Vector2(570,680), 1.75)
 		Global.can_move = true
+		await tween.finished
+		bread_hamster.hide()
+		door_sound.play()
+		await get_tree().create_timer(1).timeout
 		
 	
 	while not game_end:
@@ -64,12 +74,10 @@ func _ready() -> void:
 		Global.customer_number = 0
 	# For loop that runs through customers in Global array 'customers'
 		for customer in Global.customers:
-			customer_sprite = null
-			
-			door_sound.play()
-			
 			var customer_scene = Global.customer_sprite[customer]
 			var customer_scene_instance = customer_scene.instantiate()
+			door_sound.play()
+		
 			customer_sprite = customer_scene_instance
 			add_sibling(customer_scene_instance)
 			print(Global.customer_number)
@@ -77,7 +85,7 @@ func _ready() -> void:
 			
 			customer_sprite.global_position = Vector2(570,640)
 			customer_sprite.scale = Vector2(3,3)
-			customer_sprite.visible
+			customer_sprite.show()
 			customer_sprite.play("up")
 			var up_tween = create_tween()
 			up_tween.tween_property(customer_sprite, "global_position", Vector2(570,350),1.5)
@@ -132,7 +140,7 @@ func _ready() -> void:
 			
 			customer_sprite.play("down")
 			var down_tween = create_tween()
-			down_tween.tween_property(customer_sprite, "global_position", Vector2(570,640),1.5)
+			down_tween.tween_property(customer_sprite, "global_position", Vector2(570,610),1.5)
 			await down_tween.finished
 			customer_sprite.stop()
 			customer_scene_instance.queue_free()
@@ -157,6 +165,11 @@ func _ready() -> void:
 				
 			elif Global.day_end and Global.current_day == 3:
 				Global.can_move = false
+				bread_hamster.show()
+				bread_hamster.play("up")
+				var tween = create_tween()
+				tween.tween_property(bread_hamster ,"global_position", Vector2(570,290), 1.75)
+				await tween.finished
 				if Global.money >= 200:
 					DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/good_ending.dialogue"))
 					await DialogueManager.dialogue_ended
@@ -165,6 +178,7 @@ func _ready() -> void:
 					DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/bad_ending.dialogue"))
 					await DialogueManager.dialogue_ended
 				Global.day_money = 0
+				Global.current_day = 1
 				game_end = true
 
 				get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
@@ -289,10 +303,7 @@ func _on_minigame_exited(area: Area2D) -> void:
 
 func _on_main_room_area_entered(_area: Area2D) -> void:
 	var tween = create_tween()
-	tween.tween_property(player_camera, "global_position", main_room.global_position, 1)
-	#player_camera.global_position = main_room.global_position
-#
+	tween.tween_property(player_camera, "global_position", main_room.global_position, 0.75)
 func _on_room_2_entered(_area: Area2D) -> void:
 	var tween = create_tween()
-	tween.tween_property(player_camera, "global_position", kitchen.global_position, 1)
-	#player_camera.global_position = kitchen.global_position
+	tween.tween_property(player_camera, "global_position", kitchen.global_position, 0.75)

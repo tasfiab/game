@@ -51,7 +51,7 @@ clock_hours = NodePath("clock_container/hours")
 clock_minutes = NodePath("clock_container/minutes")
 a_m_text = NodePath("clock_container/a_m")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="rope" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 1080.0
 offset_top = 53.0
@@ -59,15 +59,14 @@ offset_right = 1094.0
 offset_bottom = 93.0
 color = Color(0.27451, 0.137255, 0.113725, 1)
 
-[node name="rope??" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="rope"]
 layout_mode = 0
-offset_left = 1082.0
-offset_top = 53.0
-offset_right = 1092.0
-offset_bottom = 102.0
+offset_left = 2.00012
+offset_right = 12.0001
+offset_bottom = 49.0
 color = Color(0.905882, 0.513726, 0.278431, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="rope_2" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 1112.0
 offset_top = 53.0
@@ -75,12 +74,12 @@ offset_right = 1126.0
 offset_bottom = 93.0
 color = Color(0.27451, 0.137255, 0.113725, 1)
 
-[node name="rope??2" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="rope_2"]
 layout_mode = 0
-offset_left = 1114.0
-offset_top = 52.0
-offset_right = 1124.0
-offset_bottom = 101.0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 12.0
+offset_bottom = 48.0
 color = Color(0.905882, 0.513726, 0.278431, 1)
 
 [node name="day" type="Panel" parent="."]
@@ -130,10 +129,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yibcc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1027.73
-offset_top = 593.273
-offset_right = 1113.73
-offset_bottom = 633.273
+offset_left = 1034.55
+offset_top = 608.182
+offset_right = 1120.55
+offset_bottom = 648.182
+alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2

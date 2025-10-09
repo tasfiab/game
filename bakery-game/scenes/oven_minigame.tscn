@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="3_ic1w2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2x0ke"]
-bg_color = Color(0.345098, 0.109804, 0.109804, 1)
+bg_color = Color(0.670588, 0.215686, 0.223529, 1)
 corner_radius_top_left = 1000
 corner_radius_top_right = 1000
 corner_radius_bottom_right = 1000
@@ -33,6 +33,7 @@ height = 60.0
 [node name="oven_minigame" type="Node2D"]
 
 [node name="shadow" type="Panel" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.360784)
 offset_left = -32.0
 offset_top = -6.0
@@ -41,6 +42,7 @@ offset_bottom = 18.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_2x0ke")
 
 [node name="Oven2" type="Sprite2D" parent="."]
+position = Vector2(0, 9)
 texture = ExtResource("1_m4vly")
 offset = Vector2(0, -20)
 
