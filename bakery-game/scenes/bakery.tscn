@@ -6226,7 +6226,7 @@ tile_set = SubResource("TileSet_ip5ti")
 y_sort_enabled = true
 
 [node name="BigBush" type="Sprite2D" parent="objects"]
-position = Vector2(234, 677)
+position = Vector2(225, 677)
 texture = ExtResource("4_5ksgq")
 offset = Vector2(0, -75)
 
@@ -6236,7 +6236,7 @@ texture = ExtResource("4_5ksgq")
 offset = Vector2(0, -75)
 flip_h = true
 
-[node name="player" parent="objects" node_paths=PackedStringArray("bread_hamster", "order", "day_end", "player_camera", "main_room", "kitchen", "cash_register_UI", "background_music", "day_end_music", "cash_register_sound", "door_sound", "bin_sound") instance=ExtResource("1_6ihva")]
+[node name="player" parent="objects" node_paths=PackedStringArray("bread_hamster", "order", "day_end", "player_camera", "main_room", "kitchen", "background_music", "day_end_music", "cash_register_sound", "door_sound", "bin_sound") instance=ExtResource("1_6ihva")]
 y_sort_enabled = true
 position = Vector2(570, 210)
 scale = Vector2(2.81682, 2.81682)
@@ -6246,7 +6246,6 @@ day_end = NodePath("day_end")
 player_camera = NodePath("../../Camera2D")
 main_room = NodePath("../../Marker2D")
 kitchen = NodePath("../../Marker2D2")
-cash_register_UI = NodePath("../../money_added_UI")
 background_music = NodePath("AudioStreamPlayer2D")
 day_end_music = NodePath("AudioStreamPlayer2D5")
 cash_register_sound = NodePath("AudioStreamPlayer2D2")
@@ -6373,12 +6372,12 @@ script = null
 metadata/toppings = true
 
 [node name="bush" type="Sprite2D" parent="objects"]
-position = Vector2(157, 329)
+position = Vector2(157, 333)
 scale = Vector2(4.17647, 4.17647)
 texture = ExtResource("16_u4r5a")
 
 [node name="bush_2" type="Sprite2D" parent="objects"]
-position = Vector2(999, 330)
+position = Vector2(999, 333)
 scale = Vector2(4.17647, 4.17647)
 texture = ExtResource("16_u4r5a")
 flip_h = true
@@ -6438,14 +6437,6 @@ position = Vector2(507, -49)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(62.5, 11)
 shape = SubResource("RectangleShape2D_mxvuc")
-
-[node name="money_added_UI" type="Label" parent="."]
-offset_left = 606.0
-offset_top = 282.0
-offset_right = 664.0
-offset_bottom = 313.0
-theme_override_colors/font_color = Color(1, 0.584314, 0, 1)
-theme_override_fonts/font = ExtResource("14_j8sxf")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(93, -4)

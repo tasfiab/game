@@ -11,7 +11,7 @@ extends Node2D
 @export var toppings_counter : Label
 
 var current_customer = Global.customers[Global.customer_number]
-var order_dictionary = (Global.perfect_orders[current_customer])
+var order_dictionary = Global.customer_dictionaries[current_customer]["perfect_order"]
 
 var topping_added : bool = false
 var draggable: bool = false
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	if Global.in_topping_minigame:
 		Global.can_move = false
 	current_customer = Global.customers[Global.customer_number]
-	order_dictionary = Global.perfect_orders[current_customer]
+	order_dictionary = Global.customer_dictionaries[current_customer]["perfect_order"]
 	#Checks topping is draggable
 	if Global.order_item.size() == 2:
 		item.texture = Global.item_sprites[Global.order_item]

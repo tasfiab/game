@@ -65,7 +65,7 @@ func _process(delta: float) -> void:
 	if Global.chosen_ingredients[dough_type_index] == CAKE:
 		bread.hide()
 	
-	if Global.chosen_ingredients[dough_type_index] == "":
+	if Global.chosen_ingredients[dough_type_index] == EMPTY_STRING:
 		cake.show()
 		bread.show()
 		
@@ -175,9 +175,8 @@ func _on_chocolate_mouse_exited() -> void:
 func _on_done_button_pressed() -> void:
 	if Global.dough_formed:			
 		var current_customer = Global.customers[Global.customer_number]
-		var order_dictionary = (Global.perfect_orders[current_customer])
-			
-		if Global.chosen_ingredients[0] == order_dictionary[Global.dough_type] and not dough_type_meter_added:
+		
+		if Global.chosen_ingredients[dough_type_index] ==  Global.customer_dictionaries[current_customer]["perfect_order"][Global.dough_type] and not dough_type_meter_added:
 			Global.order_meter += 15
 			print('ingredients: ' + str(Global.order_meter))
 			dough_type_meter_added = true

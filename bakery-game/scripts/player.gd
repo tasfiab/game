@@ -11,7 +11,6 @@ extends CharacterBody2D
 @export var main_room : Marker2D
 @export var kitchen : Marker2D
 
-@export var cash_register_UI : Label
 
 @export var background_music : AudioStreamPlayer2D
 @export var day_end_music : AudioStreamPlayer2D
@@ -43,6 +42,8 @@ signal order_complete
 
 
 func _ready() -> void:
+	var customer_scene
+	var customer_scene_instance
 	_reset()
 	Global.money = Global.day_money
 	player_camera.global_position = main_room.global_position # Changes camera position to main room
@@ -51,7 +52,7 @@ func _ready() -> void:
 	background_music.play()
 	get_tree().paused = false # Makes game unpaused when 'play' pressed
 	
-	#Tutorial for first customer
+	# Intro dialogue
 	if Global.current_day == 1:
 		Global.tutorial_box_number = 0
 		Global.can_move = false
@@ -66,7 +67,6 @@ func _ready() -> void:
 		await tween.finished
 		bread_hamster.hide()
 		door_sound.play()
-		await get_tree().create_timer(1).timeout
 		
 	
 	while not game_end:
@@ -74,17 +74,17 @@ func _ready() -> void:
 		Global.customer_number = 0
 	# For loop that runs through customers in Global array 'customers'
 		for customer in Global.customers:
-			var customer_scene = Global.customer_sprite[customer]
-			var customer_scene_instance = customer_scene.instantiate()
-			door_sound.play()
-		
+			await get_tree().create_timer(1.0).timeout
+			customer_scene = Global.customer_dictionaries[customer]['customer_sprite']
+			customer_scene_instance = customer_scene.instantiate()
 			customer_sprite = customer_scene_instance
-			add_sibling(customer_scene_instance)
-			print(Global.customer_number)
+			add_sibling(customer_sprite)
+			customer_sprite.global_position = Vector2(570,640)
+			
 			order_received = false
 			
-			customer_sprite.global_position = Vector2(570,640)
 			customer_sprite.scale = Vector2(3,3)
+			door_sound.play()
 			customer_sprite.show()
 			customer_sprite.play("up")
 			var up_tween = create_tween()
@@ -95,7 +95,7 @@ func _ready() -> void:
 			# Waits for player to interact with customer and get order
 			can_get_order = true
 			await order_taken
-			DialogueManager.show_dialogue_balloon(Global.customer_dialogue[customer])
+			DialogueManager.show_dialogue_balloon(Global.customer_dictionaries[customer]["customer_dialogue"])
 			Global.can_move = false
 			await DialogueManager.dialogue_ended
 			
@@ -114,9 +114,8 @@ func _ready() -> void:
 					
 			await order_complete
 			cash_register_sound.play()
-			#cash_register_UI.text = "+" + str(Global.money)
-			#await get_tree().create_timer(0.5).timeout
-			#cash_register_UI.text = ""
+			Global.money_given = true
+			
 			if Global.order_meter > 65 and Global.order_meter < 85:
 				DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/good_reaction.dialogue"))
 				Global.can_move = false
@@ -134,8 +133,7 @@ func _ready() -> void:
 				Global.can_move = false
 				await DialogueManager.dialogue_ended
 				Global.can_move = true
-			
-			Global.money_given = true
+
 			Global.order_start = false
 			
 			customer_sprite.play("down")
@@ -143,9 +141,9 @@ func _ready() -> void:
 			down_tween.tween_property(customer_sprite, "global_position", Vector2(570,610),1.5)
 			await down_tween.finished
 			customer_sprite.stop()
-			customer_scene_instance.queue_free()
+			customer_sprite.queue_free()
 			door_sound.play()
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(1.0).timeout
 			
 			_reset()
 			
@@ -180,8 +178,8 @@ func _ready() -> void:
 				Global.day_money = 0
 				Global.current_day = 1
 				game_end = true
-
 				get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+				break
 			Global.customer_number += 1
 
 func _process(_delta: float) -> void:

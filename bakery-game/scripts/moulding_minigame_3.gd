@@ -24,7 +24,7 @@ var hold_pressed : bool = false
 
 		
 var current_customer = Global.customers[Global.customer_number]
-var order_dictionary = (Global.perfect_orders[current_customer])
+var order_dictionary = Global.customer_dictionaries[current_customer]["perfect_order"]
 
 
 
@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 		order_item_sprite.texture = Global.dough_sprites[Global.order_item[DOUGH_TYPE_INDEX]]
 		
 	current_customer = Global.customers[Global.customer_number]
-	order_dictionary = (Global.perfect_orders[current_customer])
+	order_dictionary = Global.customer_dictionaries[current_customer]["perfect_order"]
 	if Global.chosen_ingredients[DOUGH_TYPE_INDEX] == 'cake':
 		bread_types_panel.hide()
 		cake_types_panel.show()

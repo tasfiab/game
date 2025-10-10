@@ -70,166 +70,180 @@ var CHOCO_STRAWBERRY_DOUGH : String = 'bitter strawberry bread dough'
 var CHOCO_LEMON_DOUGH : String = 'strange bread dough'
 
 
-var customers = ['Mini', 'Cat', 'Witch', 'Old lady', 'random_1', 'random_2', 'random_3', 'random_4', 'random_5', 'random_6', 'Strange Man', 'Witch_2']
-
-var customer_dialogue = {
-	customers[0] : load("res://addons/dialogue_manager/dialogue_scripts/dialogue.dialogue"),
-	customers[1] : load("res://addons/dialogue_manager/dialogue_scripts/cat.dialogue"),
-	customers[2] : load("res://addons/dialogue_manager/dialogue_scripts/witch_siblings.dialogue"),
-	customers[3] : load("res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue"),
-	customers[4] : load("res://addons/dialogue_manager/dialogue_scripts/random_1.dialogue"),
-	customers[5] : load("res://addons/dialogue_manager/dialogue_scripts/random_2.dialogue"),
-	customers[6] : load("res://addons/dialogue_manager/dialogue_scripts/random_3.dialogue"),
-	customers[7] : load("res://addons/dialogue_manager/dialogue_scripts/random_4.dialogue"),
-	customers[8] : load("res://addons/dialogue_manager/dialogue_scripts/random_5.dialogue"),
-	customers[9] : load("res://addons/dialogue_manager/dialogue_scripts/random_6.dialogue"),
-	customers[10] : load("res://addons/dialogue_manager/dialogue_scripts/strange_man.dialogue"),
-	customers[11] : load("res://addons/dialogue_manager/dialogue_scripts/witch_2.dialogue"),
-}
 
 
-var customer_sprite = {
-	customers[0] : preload("res://scenes/customer.tscn"),
-	customers[1] : preload("res://scenes/cat.tscn"),
-	customers[2] : preload("res://scenes/witch.tscn"),
-	customers[3] : preload("res://scenes/old_fairy.tscn"),
-	customers[4] : preload("res://scenes/edgy_guy.tscn"),
-	customers[5] : preload("res://scenes/pink_cake_girl.tscn"),
-	customers[6] : preload("res://scenes/lemon_guy.tscn"),
-	customers[7] : preload("res://scenes/villager.tscn"),
-	customers[8] : preload("res://scenes/strange_man.tscn"),
-	customers[9] : preload("res://scenes/water_girl.tscn"),
-	customers[10] : preload("res://scenes/old_man.tscn"),
-	customers[11] : preload("res://scenes/witch_sister.tscn"),
-}
-	
+var customers = ['Birthday girl', 'Cat', 'Witch', 'Old lady', 'Edgy guy', 'Pink cake girl',
+ 				'Lemon guy', 'Villager', 'Strange man', 'Water girl', 'Old Man', 'Witch2']
 
-var current_dialogue = {
-	customers[0] : '- cake
-					- cute and sweet',
-	customers[1] : '- bread
-					- simple, no funny business!!',
-	customers[2] : '- cake
-					- PURELY white (vanilla?)
-					- stardust',
-	customers[3] : '- something nostalgic... 
-					- a strawberry touch',
-	customers[4] : '- bitter - like their soul hehe
-					- bread' ,
-	customers[5] : '- cake
-					- pink (strawberrys?)',
-	customers[6] : '- LEMON >:)
-					- cake
-					- vanilla icing',
-	customers[7] : '- lemon
-					- croissant',
-	customers[8] : '- something strange
-					- go wild I guess???',
-	customers[9] : '- vanilla
-					- croissant
-					- strawberry top',
-	customers[10] : '- magical (?) 
-					 - strawberry and chocolate
-					 - cake',
-	customers[11] : '- chocolate
-					 - cake
-					 - circle
-					 - stardust',
-}
-
-
-var perfect_orders = {
+var customer_dictionaries = {
 	customers[0] : {
-		'sweetness' : 6,
-		'bitterness' : 0,
-		dough_type : 'cake',
-		'shape': 'circle',
-		'best topping': 'sprinkles',
-		'ok topping': 'stardust'
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/birthday_girl.dialogue"),
+		'customer_sprite' : preload("res://scenes/customer.tscn"),
+		'customer_order' : '- cake
+							- cute and sweet',
+		'perfect_order' :  {
+			'sweetness' : 6,
+			'bitterness' : 0,
+			dough_type : 'cake',
+			'shape': 'circle',
+			'best topping': 'sprinkles',
+			'ok topping': 'stardust'
+			}
 	},
 	customers[1] : {
-		'sweetness' : 0,
-		'bitterness' : 0,
-		dough_type : 'bread',
-		'shape': 'loaf',
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/cat.dialogue"),
+		'customer_sprite' : preload("res://scenes/cat.tscn"),
+		'customer_order' :  '- bread
+							 - simple, no funny business!!',
+		'perfect_order' :  {
+			'sweetness' : 0,
+			'bitterness' : 0,
+			dough_type : 'bread',
+			'shape': 'loaf',
+			}
 	},
 	customers[2] : {
-		'sweetness' : 4,
-		'bitterness': 0,
-		dough_type: 'cake',
-		'shape': 'square',
-		'best topping': 'stardust',
-		'ok topping': 'vanilla_icing'
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/witch.dialogue"),
+		'customer_sprite' : preload("res://scenes/witch.tscn"),
+		'customer_order' :  '- cake
+							 - PURELY white (vanilla?)
+							 - stardust',
+		'perfect_order' :  {
+			'sweetness' : 4,
+			'bitterness': 0,
+			dough_type: 'cake',
+			'shape': 'square',
+			'best topping': 'stardust',
+			'ok topping': 'vanilla_icing'
+			}
 	},
 	customers[3] : {
-		'sweetness' : 3,
-		'bitterness': 0,
-		dough_type: 'bread',
-		'shape': 'loaf',
-		'best topping': 'strawberry',
-		'ok topping': 'choco_chips'
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue"),
+		'customer_sprite' : preload("res://scenes/old_fairy.tscn"),
+		'customer_order' :  '- something nostalgic... 
+							 - a strawberry touch',
+		'perfect_order' :  {
+			'sweetness' : 3,
+			'bitterness': 0,
+			dough_type: 'bread',
+			'shape': 'loaf',
+			'best topping': 'strawberry',
+			'ok topping': 'choco_chips'
+			}
 	},
-		
 	customers[4] : {
-		'sweetness' : 1,
-		'bitterness' : 2,
-		dough_type: 'bread',
-		'shape' : 'loaf',
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/edgy_guy.dialogue"),
+		'customer_sprite' : preload("res://scenes/edgy_guy.tscn"),
+		'customer_order' : '- bitter and dark, like their soul?
+							- bread',
+		'perfect_order' :  {
+			'sweetness' : 1,
+			'bitterness' : 2,
+			dough_type: 'bread',
+			'shape' : 'loaf'
+			}
 	},
 	customers[5] : {
-		'sweetness' : 5,
-		'bitterness' : 0,
-		dough_type: 'cake',
-		'shape' : 'square',
-		'best topping' : 'strawberry',
-		'ok topping' : 'vanilla_icing'
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/pink_cake_girl.dialogue"),
+		'customer_sprite' : preload("res://scenes/pink_cake_girl.tscn"),
+		'customer_order' : '- cake
+							- pink (strawberrys?)',
+		'perfect_order' :  {
+			'sweetness' : 5,
+			'bitterness' : 0,
+			dough_type: 'cake',
+			'shape' : 'square',
+			'best topping' : 'strawberry',
+			'ok topping' : 'vanilla_icing'
+			}
 	},
-	customers[6]: {
-		'sweetness' : 3,
-		'bitterness' : 3,
-		dough_type: 'cake',
-		'shape' : 'circle',
-		'best topping' : 'vanilla_icing',
-		'ok topping' : 'sprinkles'
+	customers[6] : {
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/lemon_guy.dialogue"),
+		'customer_sprite' : preload("res://scenes/lemon_guy.tscn"),
+		'customer_order' : '- LEMON >:)
+							- cake
+							- vanilla icing',
+		'perfect_order' :  {
+			'sweetness' : 3,
+			'bitterness' : 3,
+			dough_type: 'cake',
+			'shape' : 'circle',
+			'best topping' : 'vanilla_icing',
+			'ok topping' : 'sprinkles'
+			}
 	},
 	customers[7] : {
-		'sweetness' : 1,
-		'bitterness' : 3,
-		dough_type: 'bread',
-		'shape' : 'croissant',
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/villager.dialogue"),
+		'customer_sprite' : preload("res://scenes/villager.tscn"),
+		'customer_order' : '- lemon
+							- croissant',
+		'perfect_order' :  {
+			'sweetness' : 1,
+			'bitterness' : 3,
+			dough_type: 'bread',
+			'shape' : 'croissant'
+			}
 	},
 	customers[8] : {
-		'sweetness' : 3,
-		'bitterness' : 5,
-		dough_type: 'cake',
-		'shape' : 'square',
-		'best topping' : 'strawberry',
-		'ok topping' : 'sprinkles'
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/strange_man.dialogue"),
+		'customer_sprite' : preload("res://scenes/strange_man.tscn"),
+		'customer_order' : '- something strange
+							- what is an unusual flavour combination??',
+		'perfect_order' :  {
+			'sweetness' : 3,
+			'bitterness' : 5,
+			dough_type: 'cake',
+			'shape' : 'square',
+			'best topping' : 'strawberry',
+			'ok topping' : 'sprinkles'
+			}
 	},
 	customers[9] : {
-		'sweetness' : 2,
-		'bitterness' : 0,
-		dough_type : 'bread',
-		'shape' : 'croissant',
-		'best topping' : 'strawberry',
-		'ok topping' : 'choco_icing'
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/water_girl.dialogue"),
+		'customer_sprite' : preload("res://scenes/water_girl.tscn"),
+		'customer_order' : '- vanilla
+							- croissant
+							- strawberry top',
+		'perfect_order' :  {
+			'sweetness' : 2,
+			'bitterness' : 0,
+			dough_type : 'bread',
+			'shape' : 'croissant',
+			'best topping' : 'strawberry',
+			'ok topping' : 'choco_icing'
+			}
 	},
 	customers[10] : {
-		'sweetness' : 5,
-		'bitterness' : 2,
-		dough_type : 'cake',
-		'shape' : 'circle',
-		'best topping' : 'stardust',
-		'ok topping' : 'choco_icing'
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/old_man.dialogue"),
+		'customer_sprite' : preload("res://scenes/old_man.tscn"),
+		'customer_order' : '- magical ~
+					 		- strawberry and chocolate
+					 		- cake',
+		'perfect_order' :  {
+			'sweetness' : 5,
+			'bitterness' : 2,
+			dough_type : 'cake',
+			'shape' : 'circle',
+			'best topping' : 'stardust',
+			'ok topping' : 'choco_icing'
+			}
 	},
 	customers[11] : {
-		'sweetness' : 3,
-		'bitterness': 2,
-		dough_type : 'cake',
-		'shape' : 'circle',
-		'best topping' : 'stardust',
-		'ok topping' : 'choco_chips'
-	}
+		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/witch_2.dialogue"),
+		'customer_sprite' : preload("res://scenes/witch_sister.tscn"),
+		'customer_order' : '- chocolate
+					 		- cake
+					 		- circle
+					 		- stardust',
+		'perfect_order' :  {
+			'sweetness' : 3,
+			'bitterness': 2,
+			dough_type : 'cake',
+			'shape' : 'circle',
+			'best topping' : 'stardust',
+			'ok topping' : 'choco_chips'
+			}
+	},
 }
 
 

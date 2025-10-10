@@ -51,14 +51,14 @@ func add_taste(ingredient):
 		 
 func _grade_taste():
 	var current_customer = Global.customers[Global.customer_number]
-	var order_dictionary = (Global.perfect_orders[current_customer])
+	var order_dictionary = Global.customer_dictionaries[current_customer]["perfect_order"]
 	
 	if order_dictionary.has('sweetness'):
 		if order_dictionary['sweetness'] == sweet:
 			Global.order_meter += 15
 		elif abs(order_dictionary['sweetness'] - sweet) == 1:
 			Global.order_meter += 10
-		elif abs(order_dictionary['bitterness'] - bitter) == 2:
+		elif abs(order_dictionary['sweetness'] - sweet) == 2:
 			Global.order_meter += 5
 		print('taste meter' + str(Global.order_meter))	
 	

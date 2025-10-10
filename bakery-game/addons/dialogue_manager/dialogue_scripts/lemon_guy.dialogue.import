@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://b1i6g3w4uq3lu"
+path="res://.godot/imported/lemon_guy.dialogue-39274e1e5651af225c08de57bfed0f13.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/lemon_guy.dialogue"
+dest_files=["res://.godot/imported/lemon_guy.dialogue-39274e1e5651af225c08de57bfed0f13.tres"]
+
+[params]
+
+defaults=true

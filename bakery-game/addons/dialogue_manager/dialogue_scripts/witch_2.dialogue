@@ -1,16 +1,16 @@
 ~ this_is_a_node_title
-Witch 2: my sister recommended this place ~ 
-Witch 2: or she will - sometimes I get my timelines mixed up so perhaps you haven't met her yet
-Witch 2: a ... lovely establishment you have here
-Witch 2: very... warm and ... overgrown?
+Customer: my sister recommended this place ~ 
+Customer: or she will - sometimes I get my timelines mixed up so perhaps you haven't met her yet
+Customer: a ... lovely establishment you have here
+Customer: very... warm and ... overgrown?
 - umm so what would you like?
-	Witch 2: oh yes, anyways, I absolutely ADORE chocolate
-	Witch 2: so I require the most divine chocolate cake 
-	Witch 2: in a circular shape
-	Witch 2: and topped off with, I think you can guess it!
+	Customer: oh yes, anyways, I absolutely ADORE chocolate
+	Customer: so I require the most divine chocolate cake 
+	Customer: in a circular shape
+	Customer: and topped off with, I think you can guess it!
 	- um no sorry
-		Witch 2: stardust honey!
-		Witch 2: well, get to it!
+		Customer: stardust honey!
+		Customer: well, get to it!
 	- ok!
-		Witch 2: haha, get to it then!
+		Customer: haha, get to it then!
 => END

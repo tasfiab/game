@@ -154,7 +154,7 @@ texture = ExtResource("16_vf308")
 
 [node name="sprinkles_loaf" type="Sprite2D" parent="item"]
 visible = false
-position = Vector2(52.0247, 0)
+position = Vector2(62.4296, 0)
 texture = ExtResource("17_qpgmx")
 flip_h = true
 
@@ -181,7 +181,7 @@ texture = ExtResource("22_llbh7")
 
 [node name="sprinkles_croissant" type="Sprite2D" parent="item"]
 visible = false
-position = Vector2(40.3191, 0)
+position = Vector2(70.2333, 1.21737)
 texture = ExtResource("23_brmae")
 flip_h = true
 

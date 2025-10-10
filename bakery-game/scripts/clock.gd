@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		Global.new_day = false
 	
 	if Global.order_start:
-		order_ui_text.text = Global.current_dialogue[Global.customers[Global.customer_number]]
+		order_ui_text.text = Global.customer_dictionaries[Global.customers[Global.customer_number]]["customer_order"]
 	else: 
 		order_ui_text.text = EMPTY_STRING
 			
@@ -98,8 +98,6 @@ func _on_timeout() -> void:
 	if hours == DAY_END_TIME:
 		clock_timer.stop()
 		Global.day_end = true
-		#if Global.current_day == 2:
-		#Global.game_end = true
 	
 		
 
