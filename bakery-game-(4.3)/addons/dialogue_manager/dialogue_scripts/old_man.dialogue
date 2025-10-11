@@ -1,0 +1,23 @@
+~ this_is_a_node_title
+Customer: oh, ho, ho, a baker witch?
+Customer: what a strange combination!
+Customer: though, of course with an incredible purpose
+Customer: bringing warmth and tasty goods to so many lives!
+Customer: and of course, filling up my belly as well ~ hehe
+Customer: I mean, I hope that is what you intend to do!!
+- so... what would you like?
+	Customer: ahh, so I'd love one of your magical, strawberry cakes please
+	Customer: paired with some chocolate perhaps *wink
+	Customer: I have complete faith this will be the best cake I will eat in my lifetime baker!!
+	Customer: and I've lived quite a long life so that is a big claim ~ hehe
+	
+- ... we don't have all day 
+	Customer: ... well that was quite rude
+	Customer: but I get it! of course you youngsters have no time for us elders
+	Customer: such busy, busy lives, with no whimsy in sight
+	Customer: very well then, I'd like one of your magical, strawberry cakes
+	Customer: paired with some chocolate perhaps *wink
+	Customer: I have complete faith this will be the best cake I will eat in my lifetime baker!!
+	Customer: and I've lived quite a long life so that is a big claim
+	Customer: ...this better be perfect... baker...
+=> END

@@ -1,0 +1,262 @@
+[gd_scene load_steps=11 format=3 uid="uid://dghndeojp8cos"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_0wfd5"]
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_7ksab"]
+[ext_resource type="PackedScene" uid="uid://djpcanwsgf6nc" path="res://scenes/volume_slider.tscn" id="2_66372"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atymd"]
+bg_color = Color(0.36, 0.18252, 0.1512, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fh6es"]
+bg_color = Color(0.796078, 0.356863, 0.184314, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5jix"]
+bg_color = Color(1, 0.717647, 0.490196, 1)
+border_width_left = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3sva"]
+bg_color = Color(1, 0.717647, 0.490196, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="Theme" id="Theme_22uti"]
+default_font = ExtResource("1_7ksab")
+default_font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6515o"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjc2n"]
+bg_color = Color(1, 0.67451, 0.372549, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="options_menu" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_0wfd5")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = -221.0
+offset_top = -139.0
+offset_right = 1358.0
+offset_bottom = 808.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_atymd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 247.0
+offset_right = 896.0
+offset_bottom = 649.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fh6es")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel3" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.372881
+anchor_top = -0.0924499
+anchor_right = -0.372881
+anchor_bottom = -0.0924499
+offset_left = 306.0
+offset_top = -1.0
+offset_right = 826.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c5jix")
+metadata/_edit_use_anchors_ = true
+
+[node name="options_label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -0.375963
+anchor_top = -0.354391
+anchor_right = -0.375963
+anchor_bottom = -0.354391
+offset_left = 334.0
+offset_top = 8.99998
+offset_right = 9708.0
+offset_bottom = 2670.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("1_7ksab")
+theme_override_font_sizes/font_size = 1900
+text = "Options"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="music_label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -0.120185
+anchor_top = 0.0231125
+anchor_right = 4.75809
+anchor_bottom = 0.0231125
+offset_left = 185.0
+offset_top = 155.0
+offset_right = 9559.0
+offset_bottom = 2816.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("1_7ksab")
+theme_override_font_sizes/font_size = 1000
+text = "music"
+horizontal_alignment = 1
+
+[node name="sfx_label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -0.120185
+anchor_top = 0.0231125
+anchor_right = 4.75809
+anchor_bottom = 0.0231125
+offset_left = 185.0
+offset_top = 228.0
+offset_right = 9559.0
+offset_bottom = 2889.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("1_7ksab")
+theme_override_font_sizes/font_size = 1000
+text = "sfx"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 323.0
+offset_top = 159.0
+offset_right = 840.0
+offset_bottom = 587.0
+
+[node name="Panel3" type="Panel" parent="."]
+offset_left = 304.0
+offset_top = 314.0
+offset_right = 840.0
+offset_bottom = 390.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t3sva")
+
+[node name="key_binds_label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -0.120185
+anchor_top = 0.0231125
+anchor_right = 4.75809
+anchor_bottom = 0.0231125
+offset_left = 339.0
+offset_top = 327.0
+offset_right = 9713.0
+offset_bottom = 1407.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("1_7ksab")
+theme_override_font_sizes/font_size = 1000
+text = "controls"
+horizontal_alignment = 1
+
+[node name="Panel4" type="Panel" parent="."]
+visible = false
+offset_left = 315.0
+offset_top = 517.0
+offset_right = 835.0
+offset_bottom = 593.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t3sva")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -0.120185
+anchor_top = 0.0231125
+anchor_right = 4.75809
+anchor_bottom = 0.0231125
+offset_left = 310.0
+offset_top = 398.0
+offset_right = 10776.0
+offset_bottom = 3334.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("1_7ksab")
+theme_override_font_sizes/font_size = 800
+text = "walk: WASD/arrow keys
+"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = -0.120185
+anchor_top = 0.0231125
+anchor_right = 4.75809
+anchor_bottom = 0.0231125
+offset_left = 310.0
+offset_top = 456.0
+offset_right = 10776.0
+offset_bottom = 3392.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("1_7ksab")
+theme_override_font_sizes/font_size = 800
+text = "interact: left click/enter"
+horizontal_alignment = 1
+
+[node name="HSlider" parent="." instance=ExtResource("2_66372")]
+modulate = Color(1, 0.827451, 0.682353, 1)
+offset_left = 505.0
+offset_top = 174.0
+offset_right = 760.0
+offset_bottom = 190.0
+bus_name = "music"
+
+[node name="HSlider2" parent="." instance=ExtResource("2_66372")]
+process_mode = 3
+modulate = Color(1, 0.827451, 0.682353, 1)
+offset_left = 504.0
+offset_top = 249.0
+offset_right = 759.0
+offset_bottom = 265.0
+bus_name = "sfx"
+
+[node name="back" type="Button" parent="."]
+offset_left = 430.0
+offset_top = 533.0
+offset_right = 724.0
+offset_bottom = 625.0
+theme = SubResource("Theme_22uti")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_6515o")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6515o")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6515o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6515o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xjc2n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xjc2n")
+text = "back
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

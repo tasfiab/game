@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://d06lngx284peh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b4qnm"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_vqj6d"]
+_data = [Vector2(0.252809, 1), 0.0, 0.0, 0, 0, Vector2(0.983146, 0.10989), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_33q83"]
+offsets = PackedFloat32Array(0, 0.333333, 0.68)
+colors = PackedColorArray(1, 0.627098, 0.228478, 0.152174, 1, 1, 1, 1, 1, 0.560167, 0.09, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_b4qnm")
+amount = 80
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+radial_accel_max = 5.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_vqj6d")
+color = Color(1, 0.556863, 0.0862745, 1)
+color_ramp = SubResource("Gradient_33q83")
+hue_variation_max = 1.0

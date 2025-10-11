@@ -1,0 +1,17 @@
+~ this_is_a_node_title
+Customer: ...
+Customer: ummm
+Customer: ...
+Customer: hmm uhh mm
+Customer: um I'd l-like a [wait=1] *mumble*
+- huh?
+	Customer: vanilla croissant
+	Customer: ...please
+	- anything else?
+		Customer: strawberry... on top
+		- ok!
+	- ok!
+		Customer: ... ^^ 
+- ok!
+	Customer: ^^ 
+=> END

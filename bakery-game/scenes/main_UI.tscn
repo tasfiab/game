@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_06rtm"]
 [ext_resource type="Texture2D" uid="uid://g1235ohp1bg3" path="res://assets/Screenshot 2025-06-14 175315.png" id="2_3770e"]
-[ext_resource type="Script" path="res://scripts/clock.gd" id="2_bpswa"]
+[ext_resource type="Script" uid="uid://d0r20h5moyyrx" path="res://scripts/clock.gd" id="2_bpswa"]
 [ext_resource type="Texture2D" uid="uid://byeb3fh0nbpcy" path="res://assets/Screenshot 2025-08-16 172140.png" id="4_fua08"]
 [ext_resource type="Texture2D" uid="uid://bjlyisylrwpif" path="res://assets/order_UI.webp" id="5_lyfc8"]
 [ext_resource type="PackedScene" uid="uid://ekuyfmtny4bk" path="res://scenes/pause_menu.tscn" id="6_bvc5a"]
@@ -147,8 +147,7 @@ theme_override_colors/font_outline_color = Color(0.670588, 0.215686, 0.223529, 1
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("1_06rtm")
 theme_override_font_sizes/font_size = 35
-text = "0
-"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -165,8 +164,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
 theme_override_fonts/font = ExtResource("1_06rtm")
 theme_override_font_sizes/font_size = 40
-text = "9
-"
+text = "9"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,0 +1,289 @@
+[gd_scene load_steps=16 format=3 uid="uid://8wyi6cp31ldu"]
+
+[ext_resource type="Script" path="res://scripts/moulding_minigame_3.gd" id="1_8k2d7"]
+[ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="3_4qr3p"]
+[ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="4_gv7t1"]
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="5_rej1q"]
+[ext_resource type="Texture2D" uid="uid://xdct1kga0s68" path="res://assets/mould_meter_under.png" id="7_qsm7q"]
+[ext_resource type="Texture2D" uid="uid://cc6rbdy3jugkh" path="res://assets/mould_meter_line.png" id="8_l13ol"]
+[ext_resource type="Texture2D" uid="uid://dfeciiy3y6qsn" path="res://assets/mould_meter_over.png" id="9_nkj4s"]
+[ext_resource type="PackedScene" uid="uid://d06lngx284peh" path="res://scenes/magic_explosion.tscn" id="9_xs7k2"]
+[ext_resource type="Texture2D" uid="uid://dp6wi54alvm4h" path="res://assets/mixing_bowl.webp" id="10_bh2no"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbq7n"]
+bg_color = Color(1, 0.827451, 0.682353, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="Theme" id="Theme_p4hc5"]
+default_font = ExtResource("5_rej1q")
+default_font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gacj"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlsun"]
+bg_color = Color(1, 0.67451, 0.372549, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsqdi"]
+bg_color = Color(1, 0.827451, 0.682353, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b600t"]
+bg_color = Color(1, 0.827451, 0.682353, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.411765, 0.156863, 0.109804, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+anti_aliasing = false
+
+[node name="moulding_minigame_3" type="Node2D" node_paths=PackedStringArray("mould_meter", "bread_types_panel", "cake_types_panel", "rating", "rating_panel", "order_item_sprite", "magic")]
+script = ExtResource("1_8k2d7")
+mould_meter = NodePath("mould_meter")
+bread_types_panel = NodePath("bread_types")
+cake_types_panel = NodePath("cake_types")
+rating = NodePath("Panel2/Label")
+rating_panel = NodePath("Panel2")
+order_item_sprite = NodePath("mixing_bowl")
+magic = NodePath("CPUParticles2D")
+
+[node name="MouldingCounter" type="Sprite2D" parent="."]
+position = Vector2(570, 320)
+texture = ExtResource("3_4qr3p")
+
+[node name="baked_item" parent="." instance=ExtResource("4_gv7t1")]
+visible = false
+position = Vector2(415, 372)
+scale = Vector2(2.64, 2.64)
+
+[node name="bread_types" type="Panel" parent="."]
+visible = false
+offset_left = 787.0
+offset_top = 160.0
+offset_right = 1035.0
+offset_bottom = 482.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbq7n")
+
+[node name="loaf" type="Button" parent="bread_types"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.395161
+anchor_right = 0.395161
+offset_left = -62.0
+offset_top = 40.0001
+offset_right = 130.0
+offset_bottom = 132.0
+theme = SubResource("Theme_p4hc5")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+text = "loaf
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="croissant" type="Button" parent="bread_types"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.145161
+anchor_top = 0.493634
+anchor_right = 0.145161
+anchor_bottom = 0.493634
+offset_top = 0.0499878
+offset_right = 192.0
+offset_bottom = 92.05
+theme = SubResource("Theme_p4hc5")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+text = "croissant
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="cake_types" type="Panel" parent="."]
+offset_left = 787.0
+offset_top = 160.0
+offset_right = 1035.0
+offset_bottom = 482.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbq7n")
+
+[node name="square" type="Button" parent="cake_types"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.116935
+anchor_top = 0.124
+anchor_right = 0.116935
+anchor_bottom = 0.124224
+offset_top = 0.0719986
+offset_right = 200.0
+offset_bottom = 92.0
+theme = SubResource("Theme_p4hc5")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+text = "square
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="circle" type="Button" parent="cake_types"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.149194
+anchor_top = 0.506211
+anchor_right = 0.149194
+anchor_bottom = 0.509317
+offset_right = 192.0
+offset_bottom = 91.0
+theme = SubResource("Theme_p4hc5")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+text = "circle
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="mould_meter" type="TextureProgressBar" parent="."]
+offset_left = 192.0
+offset_top = 248.0
+offset_right = 232.0
+offset_bottom = 344.0
+scale = Vector2(2.56, 2.56)
+value = 76.0
+rounded = true
+fill_mode = 3
+texture_under = ExtResource("7_qsm7q")
+texture_over = ExtResource("8_l13ol")
+texture_progress = ExtResource("9_nkj4s")
+
+[node name="Panel" type="Panel" parent="mould_meter"]
+layout_mode = 0
+offset_top = 99.6094
+offset_right = 60.0
+offset_bottom = 159.609
+scale = Vector2(0.4, 0.4)
+theme_override_styles/panel = SubResource("StyleBoxFlat_wsqdi")
+
+[node name="Label" type="Label" parent="mould_meter/Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1161.0
+offset_bottom = 1200.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("5_rej1q")
+theme_override_font_sizes/font_size = 350
+text = "hold 
+space"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+offset_left = 128.0
+offset_top = 176.0
+offset_right = 321.0
+offset_bottom = 238.0
+pivot_offset = Vector2(96.5, 31)
+theme_override_styles/panel = SubResource("StyleBoxFlat_b600t")
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 0
+offset_right = 3860.0
+offset_bottom = 1240.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.345098, 0.109804, 0.109804, 1)
+theme_override_fonts/font = ExtResource("5_rej1q")
+theme_override_font_sizes/font_size = 600
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mixing_bowl" type="TextureRect" parent="."]
+offset_left = 64.0
+offset_top = -175.0
+offset_right = 1064.0
+offset_bottom = 825.0
+scale = Vector2(0.44, 0.44)
+pivot_offset = Vector2(500, 500)
+texture = ExtResource("10_bh2no")
+
+[node name="CPUParticles2D" parent="." instance=ExtResource("9_xs7k2")]
+position = Vector2(564, 373)
+scale = Vector2(2, 2)
+emitting = false
+amount = 100
+one_shot = true
+speed_scale = 2.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+
+[connection signal="minigame_done" from="." to="." method="_on_minigame_done"]
+[connection signal="pressed" from="bread_types/loaf" to="." method="_on_loaf_button_pressed"]
+[connection signal="pressed" from="bread_types/croissant" to="." method="_on_croissant_button_pressed"]
+[connection signal="pressed" from="cake_types/square" to="." method="_on_square_button_pressed"]
+[connection signal="pressed" from="cake_types/circle" to="." method="_on_circle_button_pressed"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://vgyvcn1iv5e5"
+path="res://.godot/imported/witch.dialogue-50c0d626eaccb47a40f218a071d02be9.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/witch.dialogue"
+dest_files=["res://.godot/imported/witch.dialogue-50c0d626eaccb47a40f218a071d02be9.tres"]
+
+[params]
+
+defaults=true

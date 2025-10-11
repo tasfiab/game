@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://chtyuld8khjef"]
+
+[ext_resource type="Texture2D" uid="uid://b68lt80ejims5" path="res://assets/random_customer1.png" id="1_a16a2"]
+[ext_resource type="Texture2D" uid="uid://bpgy81fflqcs4" path="res://assets/random_customer2.png" id="2_5bdmi"]
+[ext_resource type="Texture2D" uid="uid://bvmf15bsrnvdo" path="res://assets/random_customer3.png" id="3_7q0lm"]
+[ext_resource type="Texture2D" uid="uid://ckky3yo5f0pqu" path="res://assets/random_customer4.png" id="4_nx51n"]
+[ext_resource type="Texture2D" uid="uid://b3nwseo22pgp8" path="res://assets/random_customer_back1.png" id="5_dfx23"]
+[ext_resource type="Texture2D" uid="uid://dnoxde4b21mv" path="res://assets/random_customer_back2.png" id="6_6j137"]
+[ext_resource type="Texture2D" uid="uid://d0yiaaneu4h16" path="res://assets/random_customer_back3.png" id="7_r6wqh"]
+[ext_resource type="Texture2D" uid="uid://6at72yi7ak60" path="res://assets/random_customer_back4.png" id="8_2uber"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2yafa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a16a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5bdmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7q0lm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nx51n")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dfx23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6j137")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r6wqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2uber")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oc45u"]
+radius = 9.0
+height = 18.0
+
+[node name="villager" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_2yafa")
+animation = &"down"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 28)
+shape = SubResource("CapsuleShape2D_oc45u")

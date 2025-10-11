@@ -1,0 +1,14 @@
+~ this_is_a_node_title
+Witch 2: my sister recommended this place ~
+Witch 2: a ... lovely establishment you have here
+Witch 2: very... warm and ... overgrown?
+- umm so what would you like?
+	Witch 2: oh yes, anyways, I would like a lemon vanilla croissant
+	Witch 2: with chocolate chips perhaps
+	Witch 2: and topped off with, I think you can guess it!
+	- um no sorry
+		Witch 2: stardust honey!
+		Witch 2: well, get to it!
+	- ok!
+		Witch 2: haha, get to it then!
+=> END

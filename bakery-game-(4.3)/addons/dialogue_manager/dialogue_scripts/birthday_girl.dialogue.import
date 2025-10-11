@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://cycul7xjjgq8y"
+path="res://.godot/imported/birthday_girl.dialogue-36d08d37222b7ee99ab883cf4fa0ee4c.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/birthday_girl.dialogue"
+dest_files=["res://.godot/imported/birthday_girl.dialogue-36d08d37222b7ee99ab883cf4fa0ee4c.tres"]
+
+[params]
+
+defaults=true

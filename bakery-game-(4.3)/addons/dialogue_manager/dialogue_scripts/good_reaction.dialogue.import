@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://cvlii0lgbyw03"
+path="res://.godot/imported/good_reaction.dialogue-63fcdefdabf60e9873f74d53db5c55b2.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/good_reaction.dialogue"
+dest_files=["res://.godot/imported/good_reaction.dialogue-63fcdefdabf60e9873f74d53db5c55b2.tres"]
+
+[params]
+
+defaults=true

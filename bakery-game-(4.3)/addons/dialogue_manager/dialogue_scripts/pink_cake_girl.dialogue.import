@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://bo0t5pimua317"
+path="res://.godot/imported/pink_cake_girl.dialogue-0ce708586de26c786b8575d74bac5e75.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/pink_cake_girl.dialogue"
+dest_files=["res://.godot/imported/pink_cake_girl.dialogue-0ce708586de26c786b8575d74bac5e75.tres"]
+
+[params]
+
+defaults=true

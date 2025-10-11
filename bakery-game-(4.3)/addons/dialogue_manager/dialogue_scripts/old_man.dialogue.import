@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://dj1aswq6hgxc7"
+path="res://.godot/imported/old_man.dialogue-6ef2d91ea6d23ae46ffc83ec6da3fe68.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/old_man.dialogue"
+dest_files=["res://.godot/imported/old_man.dialogue-6ef2d91ea6d23ae46ffc83ec6da3fe68.tres"]
+
+[params]
+
+defaults=true

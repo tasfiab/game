@@ -1,0 +1,201 @@
+[gd_scene load_steps=28 format=3 uid="uid://cqkg4npx07h4r"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_j2u2g"]
+[ext_resource type="Texture2D" uid="uid://bv4x081fo1se7" path="res://assets/mc.png" id="2_3v23h"]
+[ext_resource type="Texture2D" uid="uid://bxcx0th660dvw" path="res://assets/mc_back2.png" id="3_4bvbu"]
+[ext_resource type="Texture2D" uid="uid://bjeing6kye8rr" path="res://assets/mc_back1.png" id="3_6xcnh"]
+[ext_resource type="Texture2D" uid="uid://c8ei6cc1uuihr" path="res://assets/mc1.png" id="4_kn4yn"]
+[ext_resource type="Texture2D" uid="uid://b7eo1pd3jvlsv" path="res://assets/mc_back3.png" id="4_ymj7y"]
+[ext_resource type="Texture2D" uid="uid://dudl37v3mym8g" path="res://assets/mc_back4.png" id="5_l2gqo"]
+[ext_resource type="Texture2D" uid="uid://gj3burnrvbxk" path="res://assets/mc_back5.png" id="6_qqav6"]
+[ext_resource type="Texture2D" uid="uid://bjj4h63pve2g3" path="res://assets/mc_turn_arounds2.png" id="8_giows"]
+[ext_resource type="Texture2D" uid="uid://kwddypffji6h" path="res://assets/mc_turn_arounds3.png" id="9_8dxm5"]
+[ext_resource type="Texture2D" uid="uid://dxctbwon1cmlc" path="res://assets/mc_turn_arounds1.png" id="10_5b1hp"]
+[ext_resource type="Texture2D" uid="uid://nbg67njo2k8b" path="res://assets/mc2.png" id="10_w08ri"]
+[ext_resource type="Texture2D" uid="uid://bm2e03pe0or72" path="res://assets/mc3.png" id="11_13lnr"]
+[ext_resource type="Texture2D" uid="uid://bnbd5gldelbsp" path="res://assets/mc4.png" id="12_gkn5q"]
+[ext_resource type="Texture2D" uid="uid://ktccmgcwlexe" path="res://assets/mc5.png" id="13_84x7d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gu4j0"]
+radius = 6.3217
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wl4e"]
+atlas = ExtResource("3_6xcnh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38gvy"]
+atlas = ExtResource("8_giows")
+region = Rect2(0, 0, 64, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dccpt"]
+atlas = ExtResource("10_5b1hp")
+region = Rect2(0, 0, 64, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itsyj"]
+atlas = ExtResource("9_8dxm5")
+region = Rect2(0, 0, 64, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl32o"]
+atlas = ExtResource("10_5b1hp")
+region = Rect2(0, 0, 64, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmjq0"]
+atlas = ExtResource("3_4bvbu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmux0"]
+atlas = ExtResource("4_ymj7y")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_videm"]
+atlas = ExtResource("5_l2gqo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g76vo"]
+atlas = ExtResource("6_qqav6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0efv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kn4yn")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_5b1hp")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_5b1hp")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wl4e")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_w08ri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_13lnr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gkn5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_84x7d")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38gvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dccpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itsyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl32o")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38gvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dccpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itsyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl32o")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmjq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmux0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_videm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g76vo")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5wwnh"]
+radius = 5.0
+height = 22.0
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animations")]
+script = ExtResource("1_j2u2g")
+animations = NodePath("AnimatedSprite2D")
+
+[node name="player_area" type="Area2D" parent="."]
+position = Vector2(0, 50)
+scale = Vector2(0.6688, 0.44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_area"]
+position = Vector2(0.657895, -36)
+scale = Vector2(5.20399, -5.56245)
+shape = SubResource("CircleShape2D_gu4j0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(3.36, 3.36)
+texture = ExtResource("2_3v23h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -36.0
+offset_top = -43.0
+offset_right = 36.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.19209e-07, 5.99999)
+sprite_frames = SubResource("SpriteFrames_s0efv")
+animation = &"idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 30)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_5wwnh")
+
+[connection signal="area_entered" from="player_area" to="." method="_on_minigame_entered"]
+[connection signal="area_exited" from="player_area" to="." method="_on_minigame_exited"]

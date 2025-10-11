@@ -1,0 +1,278 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpjb2kjctka7x"]
+
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_06rtm"]
+[ext_resource type="Texture2D" uid="uid://g1235ohp1bg3" path="res://assets/Screenshot 2025-06-14 175315.png" id="2_3770e"]
+[ext_resource type="Script" path="res://scripts/clock.gd" id="2_bpswa"]
+[ext_resource type="Texture2D" uid="uid://byeb3fh0nbpcy" path="res://assets/Screenshot 2025-08-16 172140.png" id="4_fua08"]
+[ext_resource type="Texture2D" uid="uid://bjlyisylrwpif" path="res://assets/order_UI.webp" id="5_lyfc8"]
+[ext_resource type="PackedScene" uid="uid://ekuyfmtny4bk" path="res://scenes/pause_menu.tscn" id="6_bvc5a"]
+[ext_resource type="PackedScene" uid="uid://dghndeojp8cos" path="res://scenes/options_menu.tscn" id="7_ofqra"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkfis"]
+bg_color = Color(0.360784, 0.184314, 0.152941, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.27451, 0.137255, 0.113725, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yibcc"]
+bg_color = Color(0.360784, 0.184314, 0.152941, 1)
+border_width_left = 10
+border_width_bottom = 10
+border_color = Color(0.27451, 0.137255, 0.113725, 1)
+corner_radius_bottom_left = 25
+anti_aliasing = false
+
+[node name="main_UI" type="Control" node_paths=PackedStringArray("day", "money", "money_text", "pause_layer", "order_check_layer", "order_ui", "order_ui_text", "clock_timer", "clock_hours", "clock_minutes", "a_m_text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+script = ExtResource("2_bpswa")
+day = NodePath("day/day-number")
+money = NodePath("HBoxContainer")
+money_text = NodePath("HBoxContainer/money")
+pause_layer = NodePath("pause_layer")
+order_check_layer = NodePath("CanvasLayer")
+order_ui = NodePath("order_ui")
+order_ui_text = NodePath("CanvasLayer/Label")
+clock_timer = NodePath("clock_container/clock_timer")
+clock_hours = NodePath("clock_container/hours")
+clock_minutes = NodePath("clock_container/minutes")
+a_m_text = NodePath("clock_container/a_m")
+
+[node name="rope" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 53.0
+offset_right = 1094.0
+offset_bottom = 93.0
+color = Color(0.27451, 0.137255, 0.113725, 1)
+
+[node name="ColorRect" type="ColorRect" parent="rope"]
+layout_mode = 0
+offset_left = 2.00012
+offset_right = 12.0001
+offset_bottom = 49.0
+color = Color(0.905882, 0.513726, 0.278431, 1)
+
+[node name="rope_2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1112.0
+offset_top = 53.0
+offset_right = 1126.0
+offset_bottom = 93.0
+color = Color(0.27451, 0.137255, 0.113725, 1)
+
+[node name="ColorRect" type="ColorRect" parent="rope_2"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 12.0
+offset_bottom = 48.0
+color = Color(0.905882, 0.513726, 0.278431, 1)
+
+[node name="day" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1067.0
+offset_top = 81.0
+offset_right = 1140.0
+offset_bottom = 155.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nkfis")
+
+[node name="day-text" type="Label" parent="day"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 68.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_fonts/font = ExtResource("1_06rtm")
+theme_override_font_sizes/font_size = 25
+text = "day
+
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="day-number" type="Label" parent="day"]
+layout_mode = 0
+offset_left = 5.72723
+offset_top = 19.0
+offset_right = 67.7272
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_fonts/font = ExtResource("1_06rtm")
+theme_override_font_sizes/font_size = 25
+text = "1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="clock_panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 961.0
+offset_right = 1152.0
+offset_bottom = 74.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_yibcc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1034.55
+offset_top = 608.182
+offset_right = 1120.55
+offset_bottom = 648.182
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_3770e")
+expand_mode = 3
+
+[node name="money" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.72549, 0.466667, 1)
+theme_override_colors/font_outline_color = Color(0.670588, 0.215686, 0.223529, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_06rtm")
+theme_override_font_sizes/font_size = 35
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="clock_container" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 972.0
+offset_top = -1.0
+offset_right = 1148.0
+offset_bottom = 68.0
+alignment = 1
+
+[node name="hours" type="Label" parent="clock_container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_fonts/font = ExtResource("1_06rtm")
+theme_override_font_sizes/font_size = 40
+text = "9
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="clock_container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_fonts/font = ExtResource("1_06rtm")
+theme_override_font_sizes/font_size = 40
+text = ":"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="minutes" type="Label" parent="clock_container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_fonts/font = ExtResource("1_06rtm")
+theme_override_font_sizes/font_size = 40
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="a_m" type="Label" parent="clock_container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.717647, 0.490196, 1)
+theme_override_fonts/font = ExtResource("1_06rtm")
+theme_override_font_sizes/font_size = 40
+text = "am"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="clock_timer" type="Timer" parent="clock_container"]
+wait_time = 5.0
+
+[node name="pause_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 13.0
+offset_right = 333.0
+offset_bottom = 309.0
+scale = Vector2(0.143907, 0.143907)
+texture_normal = ExtResource("4_fua08")
+ignore_texture_size = true
+
+[node name="order_ui" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 881.0
+offset_top = -18.0
+offset_right = 946.0
+offset_bottom = 47.0
+pivot_offset = Vector2(65, 0)
+texture = ExtResource("5_lyfc8")
+expand_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer"]
+offset_left = -3.0
+offset_right = 1150.0
+offset_bottom = 650.0
+color = Color(0.67, 0.2144, 0.221993, 0.215686)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 435.0
+offset_right = 947.0
+offset_bottom = 512.0
+texture = ExtResource("5_lyfc8")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = 472.0
+offset_top = 64.0
+offset_right = 512.0
+offset_bottom = 104.0
+scale = Vector2(11, 9.08)
+color = Color(1, 0.827451, 0.682353, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 472.0
+offset_top = 20.0
+offset_right = 9252.0
+offset_bottom = 8200.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(0.862745, 0.427451, 0.266667, 1)
+theme_override_fonts/font = ExtResource("1_06rtm")
+theme_override_font_sizes/font_size = 1000
+autowrap_mode = 3
+
+[node name="pause_layer" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+
+[node name="pause_menu" parent="pause_layer" node_paths=PackedStringArray("pause_layer", "options_menu") instance=ExtResource("6_bvc5a")]
+process_mode = 3
+position = Vector2(1, 0)
+pause_layer = NodePath("..")
+options_menu = NodePath("../../options_layer/options_menu")
+
+[node name="options_layer" type="CanvasLayer" parent="."]
+
+[node name="options_menu" parent="options_layer" instance=ExtResource("7_ofqra")]
+visible = false
+position = Vector2(1, 0)
+
+[connection signal="timeout" from="clock_container/clock_timer" to="." method="_on_timeout"]
+[connection signal="pressed" from="pause_button" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="pause_button" to="pause_button" method="_on_pause_button_pressed"]
+[connection signal="mouse_entered" from="order_ui" to="." method="_on_order_ui_mouse_entered"]
+[connection signal="mouse_exited" from="order_ui" to="." method="_on_order_ui_mouse_exited"]
+[connection signal="hidden" from="options_layer/options_menu" to="pause_layer/pause_menu" method="_on_options_menu_hidden"]

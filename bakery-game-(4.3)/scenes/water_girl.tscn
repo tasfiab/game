@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://0d2rcqjsb0vl"]
+
+[ext_resource type="Texture2D" uid="uid://dm1xo77qcyfrv" path="res://assets/water_girl1.png" id="1_b0aki"]
+[ext_resource type="Texture2D" uid="uid://djw6hjjqq448q" path="res://assets/water_girl2.png" id="2_28lak"]
+[ext_resource type="Texture2D" uid="uid://tdcsgjpjh3ds" path="res://assets/water_girl3.png" id="3_o8imk"]
+[ext_resource type="Texture2D" uid="uid://cjjnk0x1lh2ys" path="res://assets/water_girl4.png" id="4_3tl3b"]
+[ext_resource type="Texture2D" uid="uid://btrgal08aboeg" path="res://assets/water_girl_back1.png" id="5_g4fg2"]
+[ext_resource type="Texture2D" uid="uid://mdxal0l7c4yo" path="res://assets/water_girl_back2.png" id="6_fahph"]
+[ext_resource type="Texture2D" uid="uid://b45h1vasfgf3e" path="res://assets/water_girl_back3.png" id="7_2ioln"]
+[ext_resource type="Texture2D" uid="uid://c7h6l8ud583as" path="res://assets/water_girl_back4.png" id="8_4v3ah"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ry2s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_b0aki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_28lak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o8imk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3tl3b")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_g4fg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fahph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2ioln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4v3ah")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4iek"]
+radius = 9.0
+height = 18.0
+
+[node name="water_girl" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_2ry2s")
+animation = &"up"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 26)
+shape = SubResource("CapsuleShape2D_h4iek")

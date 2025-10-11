@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh8l8orx6nlh2"]
+
+[ext_resource type="Texture2D" uid="uid://d1r2yv4tuyc8o" path="res://assets/mixing_counter.png" id="1_14lnt"]
+[ext_resource type="Script" path="res://scripts/moulding_minigame_2.gd" id="1_wwq3i"]
+[ext_resource type="Texture2D" uid="uid://ct628r1cvn3qd" path="res://assets/recipe_book.png" id="2_2rhkv"]
+
+[node name="moulding_minigame_2" type="Node2D"]
+script = ExtResource("1_wwq3i")
+
+[node name="MixingCounter" type="Sprite2D" parent="."]
+position = Vector2(570, 320)
+texture = ExtResource("1_14lnt")
+
+[node name="RecipeBook" type="Sprite2D" parent="."]
+position = Vector2(569.8, 321.5)
+scale = Vector2(4.00667, 4.00667)
+texture = ExtResource("2_2rhkv")
+
+[node name="loaf" type="Button" parent="."]
+offset_left = 191.0
+offset_top = 140.0
+offset_right = 327.0
+offset_bottom = 279.0
+text = "loaf :)"
+
+[node name="croissant" type="Button" parent="."]
+offset_left = 191.0
+offset_top = 349.0
+offset_right = 327.0
+offset_bottom = 488.0
+text = "croissant"
+
+[node name="baguette" type="Button" parent="."]
+offset_left = 614.0
+offset_top = 140.0
+offset_right = 750.0
+offset_bottom = 279.0
+text = "baguette"
+
+[node name="??" type="Button" parent="."]
+offset_left = 615.0
+offset_top = 349.0
+offset_right = 751.0
+offset_bottom = 488.0
+text = "ASdngbhvH"
+
+[connection signal="pressed" from="loaf" to="." method="_on_loaf_pressed"]
+[connection signal="pressed" from="croissant" to="." method="_on_croissant_pressed"]
+[connection signal="pressed" from="baguette" to="." method="_on_baguette_pressed"]

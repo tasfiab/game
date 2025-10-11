@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://bo0t5pimua317"
+path="res://.godot/imported/random_2.dialogue-5e460b99c4d27f08a0fce180003cfe0b.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/random_2.dialogue"
+dest_files=["res://.godot/imported/random_2.dialogue-5e460b99c4d27f08a0fce180003cfe0b.tres"]
+
+[params]
+
+defaults=true

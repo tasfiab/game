@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://cjv5t34wg3tgu"]
+
+[ext_resource type="Texture2D" uid="uid://r0omxl2a1d0b" path="res://assets/timer.png" id="1_80vfc"]
+[ext_resource type="Script" path="res://scripts/oven_minigame_timer.gd" id="1_mgwfo"]
+[ext_resource type="Texture2D" uid="uid://b4a5vrtdnkkrl" path="res://assets/oven_timer_hand.png" id="2_fi1ww"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmp82"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6pf1"]
+radius = 4.66071
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ghv7"]
+radius = 2.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_p8ajk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_egnu4"]
+resource_name = "oven_timer_hand"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2grbu"]
+_data = {
+"RESET": SubResource("Animation_p8ajk"),
+"oven_timer_hand": SubResource("Animation_egnu4")
+}
+
+[node name="oven_minigame_timer" type="Control" node_paths=PackedStringArray("animations")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mgwfo")
+animations = NodePath("OvenTimerHand/oven_timer_animation")
+
+[node name="oven_timer" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_80vfc")
+
+[node name="green_area" type="Area2D" parent="oven_timer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="oven_timer/green_area"]
+position = Vector2(16, 27)
+shape = SubResource("CircleShape2D_bmp82")
+
+[node name="yellow_area" type="Area2D" parent="oven_timer"]
+position = Vector2(23, 19)
+rotation = -0.437078
+scale = Vector2(0.704079, 1.12665)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="oven_timer/yellow_area"]
+position = Vector2(2.57355, 0.751424)
+scale = Vector2(-1.32934, -0.847376)
+shape = SubResource("CircleShape2D_l6pf1")
+
+[node name="OvenTimerHand" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("2_fi1ww")
+
+[node name="oven_timer_hand_area" type="Area2D" parent="OvenTimerHand"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OvenTimerHand/oven_timer_hand_area"]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_3ghv7")
+
+[node name="oven_timer_animation" type="AnimationPlayer" parent="OvenTimerHand"]
+libraries = {
+"": SubResource("AnimationLibrary_2grbu")
+}
+
+[connection signal="minigame_done" from="." to="." method="_on_minigame_done"]
+[connection signal="area_entered" from="oven_timer/green_area" to="." method="_on_green_area_entered"]
+[connection signal="area_exited" from="oven_timer/green_area" to="." method="_on_green_area_exited"]
+[connection signal="area_entered" from="oven_timer/yellow_area" to="." method="_on_yellow_area_entered"]
+[connection signal="animation_finished" from="OvenTimerHand/oven_timer_animation" to="." method="_on_oven_timer_animation_finished"]
+[connection signal="animation_started" from="OvenTimerHand/oven_timer_animation" to="." method="_on_oven_timer_animation_started"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://7pq77jy58tgm"]
+
+[ext_resource type="Texture2D" uid="uid://tanb0ss120on" path="res://assets/strange_man1.png" id="1_07861"]
+[ext_resource type="Texture2D" uid="uid://bw506fg1e2aod" path="res://assets/strange_man2.png" id="2_qq0n5"]
+[ext_resource type="Texture2D" uid="uid://4wii03oosius" path="res://assets/strange_man3.png" id="3_jb17j"]
+[ext_resource type="Texture2D" uid="uid://dj5heuw182201" path="res://assets/strange_man4.png" id="4_6y3go"]
+[ext_resource type="Texture2D" uid="uid://ch275itk2lr2l" path="res://assets/strange_man_back1.png" id="5_iqrip"]
+[ext_resource type="Texture2D" uid="uid://davct4syotyyl" path="res://assets/strange_man_back2.png" id="6_gh466"]
+[ext_resource type="Texture2D" uid="uid://qxy1icr4qjy5" path="res://assets/strange_man_back3.png" id="7_oumao"]
+[ext_resource type="Texture2D" uid="uid://bfl8gx7iogxn7" path="res://assets/strange_man_back4.png" id="8_7ce4h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1spgk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_07861")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qq0n5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jb17j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6y3go")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_iqrip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gh466")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_oumao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7ce4h")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r1ed7"]
+height = 20.0
+
+[node name="strange_man" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_1spgk")
+animation = &"down"
+frame = 2
+frame_progress = 0.888561
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 26)
+shape = SubResource("CapsuleShape2D_r1ed7")

@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs5421vcd7vqe"]
+
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_aau5l"]
+[ext_resource type="Script" path="res://scripts/day_end_screen.gd" id="1_efo02"]
+
+[sub_resource type="Theme" id="Theme_scix5"]
+default_font = ExtResource("1_aau5l")
+default_font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyj4n"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7a02w"]
+bg_color = Color(1, 0.67451, 0.372549, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="Node2D" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_efo02")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1156.0
+offset_bottom = 654.0
+color = Color(0.324339, 0.173942, 0.255277, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_top = -77.0
+offset_right = 1154.0
+offset_bottom = 572.0
+theme_override_colors/font_color = Color(1, 0.827451, 0.682353, 1)
+theme_override_fonts/font = ExtResource("1_aau5l")
+theme_override_font_sizes/font_size = 75
+text = "Day end"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="next_day" type="Button" parent="."]
+offset_left = 424.0
+offset_top = 323.0
+offset_right = 718.0
+offset_bottom = 415.0
+theme = SubResource("Theme_scix5")
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_nyj4n")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_nyj4n")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_nyj4n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nyj4n")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7a02w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7a02w")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7a02w")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7a02w")
+text = "next day"
+
+[connection signal="pressed" from="next_day" to="." method="_on_next_day_pressed"]

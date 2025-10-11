@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://dt7cjgeaavddw"
+path="res://.godot/imported/bread_hamster.dialogue-f510244ebb466939d6c25cf525867fc4.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/bread_hamster.dialogue"
+dest_files=["res://.godot/imported/bread_hamster.dialogue-f510244ebb466939d6c25cf525867fc4.tres"]
+
+[params]
+
+defaults=true

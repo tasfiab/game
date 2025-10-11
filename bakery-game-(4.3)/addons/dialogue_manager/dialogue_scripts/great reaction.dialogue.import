@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://py4rhoitjbin"
+path="res://.godot/imported/great reaction.dialogue-05a0e33586dcf9f6ad826b718fe5e543.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/dialogue_scripts/great reaction.dialogue"
+dest_files=["res://.godot/imported/great reaction.dialogue-05a0e33586dcf9f6ad826b718fe5e543.tres"]
+
+[params]
+
+defaults=true

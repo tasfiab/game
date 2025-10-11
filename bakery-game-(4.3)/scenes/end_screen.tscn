@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://byjdiwyk401rt"]
+
+[ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_ujkbr"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -116.0
+offset_top = -73.0
+offset_right = 1259.0
+offset_bottom = 736.0
+color = Color(0.454902, 0.172549, 0.137255, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 29.0
+offset_top = 236.0
+offset_right = 1120.0
+offset_bottom = 370.0
+theme_override_colors/font_color = Color(1, 0.827451, 0.682353, 1)
+theme_override_fonts/font = ExtResource("1_ujkbr")
+theme_override_font_sizes/font_size = 100
+text = "Thank You for Playing!! :)"

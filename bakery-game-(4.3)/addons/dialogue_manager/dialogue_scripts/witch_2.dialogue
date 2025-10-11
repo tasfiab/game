@@ -1,0 +1,16 @@
+~ this_is_a_node_title
+Customer: my sister recommended this place ~ 
+Customer: or she will - sometimes I get my timelines mixed up so perhaps you haven't met her yet
+Customer: a ... lovely establishment you have here
+Customer: very... warm and ... overgrown?
+- umm so what would you like?
+	Customer: oh yes, anyways, I absolutely ADORE chocolate
+	Customer: so I require the most divine chocolate cake 
+	Customer: in a circular shape
+	Customer: and topped off with, I think you can guess it!
+	- um no sorry
+		Customer: stardust honey!
+		Customer: well, get to it!
+	- ok!
+		Customer: haha, get to it then!
+=> END
