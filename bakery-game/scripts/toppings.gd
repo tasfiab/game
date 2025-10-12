@@ -1,19 +1,42 @@
 extends Node2D
+@onready var choco_icing = $"../chocolate_icing"
+@onready var vanilla_icing = $"../vanilla_icing"
 
 @export var topping_marker : Marker2D
 @export var type : String
+
 @export var square_sprite : Sprite2D
 @export var circle_sprite : Sprite2D
 @export var loaf_sprite : Sprite2D
 @export var croissant_sprite : Sprite2D
+
 @export var item : Sprite2D
 
 @export var toppings_counter : Label
 
-var current_customer = Global.customers[Global.customer_number]
-var order_dictionary = Global.customer_dictionaries[current_customer]["perfect_order"]
+const MAX_TOPPINGS := 3
 
-var topping_added : bool = false
+const INTERACT_BIND := "interact"
+
+const BEST_TOPPING_KEY := "best topping"
+const OK_TOPPING_KEY := "ok topping"
+const PERFECT_DRDER_KEY := "perfect_order"
+
+const VANILLA_ICING := "vanilla_icing"
+const CHOCO_ICING := "choco_icing"
+
+const LOAF := 'loaf'
+const CROISSANT := 'croissant'
+const CIRCLE := 'circle'
+const SQUARE := 'square'
+
+const GOOD_ORDER_POINTS := 10
+const OK_ORDER_POINTS := 5
+
+var current_customer : String
+var order_dictionary : Dictionary
+
+var is_dragging : bool = false
 var draggable: bool = false
 var in_baked_item : bool = false
 
@@ -26,83 +49,88 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# Stops player movement when minigame start.
 	if Global.in_topping_minigame:
-		Global.can_move = false
+		Global.can_move = false 
+		
+	# Makes customer and order dictionary accurate to current customer.
 	current_customer = Global.customers[Global.customer_number]
-	order_dictionary = Global.customer_dictionaries[current_customer]["perfect_order"]
-	#Checks topping is draggable
-	if Global.order_item.size() == 2:
+	order_dictionary = Global.customer_dictionaries[current_customer][PERFECT_DRDER_KEY]
+	
+	# Makes item texture the same as what player has made to this point.
+	if Global.order_item.has(Global.shape):
 		item.texture = Global.item_sprites[Global.order_item]
-	if draggable and not Global.topping_number == 3:
-		if Input.is_action_just_pressed("interact"):
+
+	# Allows player to click on and drag toppings to item.
+	if draggable and not Global.topping_number == MAX_TOPPINGS:
+		if Input.is_action_just_pressed(INTERACT_BIND):
 			offset = get_global_mouse_position() - global_position
-			Global.is_dragging = true
-		if Input.is_action_pressed("interact"):
+			is_dragging = true
+		
+		# Makes topping follow mouse when dragged.
+		if Input.is_action_pressed(INTERACT_BIND):
 			global_position = get_global_mouse_position()
-		elif Input.is_action_just_released("interact"):
-			Global.is_dragging = false
+			
+		# When mouse click is released, topping is released.
+		elif Input.is_action_just_released(INTERACT_BIND):
+			is_dragging = false
+			
+			# When topping is in item, adds topping.
 			if in_baked_item:
 				self.hide()
-				if self.type == "vanilla_icing":
-					$"../chocolate_icing".hide()
-				if self.type == "choco_icing":
-					$"../vanilla_icing".hide()
 				Global.topping_number += 1
 				toppings_counter.text = "toppings " + str(Global.topping_number) + "/3"
-				if Global.shape == 'square':
+				
+				# Hides chocolate icing if vanilla icing used.
+				if self.type == VANILLA_ICING:
+					choco_icing.hide()
+				
+				# Hides vanilla icing if chocolate icing is used.
+				elif self.type == CHOCO_ICING:
+					vanilla_icing.hide()
+				
+				# Shows topping sprite for square cakes.
+				if Global.shape == SQUARE:
 					self.square_sprite.show()
-				elif Global.shape == 'circle':
+				
+				# Shows topping sprite for circle cakes.
+				elif Global.shape == CIRCLE:
 					self.circle_sprite.show()
-				elif Global.shape == 'loaf':
+				
+				# Shows topping sprite for loafs.
+				elif Global.shape == LOAF:
 					self.loaf_sprite.show()
-				elif Global.shape == 'croissant':
+				
+				# Shows topping sprite for croissants.
+				elif Global.shape == CROISSANT:
 					self.croissant_sprite.show()
+				
+				# Checks if topping matches 'ok topping' or 'best topping' in order dictionary
+				if order_dictionary.has(BEST_TOPPING_KEY):
+					if self.type == order_dictionary[BEST_TOPPING_KEY]:
+						Global.order_meter += GOOD_ORDER_POINTS
 					
-				if order_dictionary.has('best topping'):
-					if self.type == order_dictionary['best topping']:
-						Global.order_meter += 10
-						print('topping good' + str(Global.order_meter))
-					
-					elif self.type ==  order_dictionary['ok topping']:
-						Global.order_meter += 5
-						print('topping ok' + str(Global.order_meter))
-						
-			elif not in_baked_item:
+					elif self.type ==  order_dictionary[OK_TOPPING_KEY]:
+						Global.order_meter += OK_ORDER_POINTS
+			
+			# Makes topping return to origingal position if not in the item area.
+			else:
 				var tween = create_tween()
-				tween.tween_property(self,"global_position",topping_marker.global_position,0.2).set_ease(Tween.EASE_OUT)
-				#global_position = topping_marker.global_position
-	
-				
-				
-				#position = global_position
-				#var toppings = topping_scene.instantiate()
-				#toppings.global_position = original_position
-		
-				
-			#var tween = get_tree().create_tween()
-			#if in_baked_item:
-				#tween.tween_property(self,"position",body_ref.position,0.2).set_ease(Tween.EASE_OUT)
-			#else:
-				#tween.tween_property(self,"global_position",initialPos,0.2).set_ease(Tween.EASE_OUT)
-		
-
-func tween_in(topping):
-	var tween = create_tween()
-	tween.tween_property(topping,"scale",Vector2(0,0),0.05).set_ease(Tween.EASE_OUT)
+				const TWEEN_TIME = 0.2
+				tween.tween_property(self,"global_position",topping_marker.global_position,TWEEN_TIME).set_ease(Tween.EASE_OUT)
 
 
+# Makes topping draggable when hovered over.
 func _on_toppings_mouse_entered() -> void:
-	if not Global.is_dragging and not topping_added:
+	if not is_dragging:
 		draggable = true
-		#scale = Vector2(1.05,1.05)
 
-
+# Makes topping not draggable when no longer hovered over.
 func _on_toppings_mouse_exited() -> void:
-	if not Global.is_dragging and not topping_added:
+	if not is_dragging:
 		draggable = false
-		#scale = Vector2(1,1)
 
-
+# Checks if topping is in baked item, or not.
 func _on_toppings_body_entered(body: Node2D) -> void:
 	in_baked_item = true
 
@@ -110,30 +138,22 @@ func _on_toppings_body_exited(body: Node2D) -> void:
 	in_baked_item = false
 
 
-
-func _on_done_button_pressed() -> void:
-	Global.baked_item_finished = true
+# When done button pressed, closes out of minigame
+func _on_done_button_down() -> void:
+	print(Global.order_meter)
+	const CURRENT_TUTORIAL_NUMBER := 3
+	const FIRST_CUSTOMER_INDEX := 0
+	const NO_TOPPINGS := 0
+	
+	Global.baked_item_finished = true # Turned true, minigame layer can now close.
 	Global.can_move = true
-	print("can move!!")
 	Global.order_done = true
-	if not order_dictionary.has('best topping'):
-		if Global.topping_number == 0:
-			Global.order_meter += 15
-			print('no topping' + str(Global.order_meter))
-	if Global.customer_number == 0 and Global.tutorial_box_number == 3:
+	
+	# Checks if the customer prefers no toppings, and if no toppings were added, adding points accordingly
+	if not order_dictionary.has(BEST_TOPPING_KEY):
+		if Global.topping_number == NO_TOPPINGS:
+			Global.order_meter += GOOD_ORDER_POINTS + OK_ORDER_POINTS
+			
+	# Changes tutorial box to the next box if this is the first customer.
+	if Global.customer_number == FIRST_CUSTOMER_INDEX and Global.tutorial_box_number == CURRENT_TUTORIAL_NUMBER:
 				Global.tutorial.emit()
-
-
-func _on_reset_button_pressed() -> void:
-	topping_added = false
-	for topping in get_tree().get_nodes_in_group('topping'):
-		topping.show()
-		if Global.shape == 'square':
-			topping.square_sprite.hide()
-		elif Global.shape == 'circle':
-			topping.circle_sprite.hide()
-		elif Global.shape == 'loaf':
-			topping.loaf_sprite.hide()
-		elif Global.shape == 'croissant':
-			topping.croissant_sprite.hide()
-		topping.global_position = topping.topping_marker.global_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://0ighbmgxmvjl"]
+[gd_scene load_steps=8 format=3 uid="uid://0ighbmgxmvjl"]
 
 [ext_resource type="Texture2D" uid="uid://biwvttl3j1pkj" path="res://assets/oven_2.png" id="1_m4vly"]
 [ext_resource type="PackedScene" uid="uid://cjv5t34wg3tgu" path="res://scenes/oven_minigame_timer.tscn" id="1_u046a"]
@@ -29,10 +29,6 @@ anti_aliasing = false
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4r3xq"]
 radius = 6.0
 height = 60.0
-
-[sub_resource type="Curve" id="Curve_0o6hg"]
-_data = [Vector2(0.011236, 1), 0.0, 0.0, 0, 0, Vector2(0.994382, 0), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [node name="oven_minigame" type="Node2D"]
 
@@ -96,10 +92,3 @@ position = Vector2(1, 4)
 position = Vector2(-1, 0)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_4r3xq")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-visible = false
-emission_shape = 1
-emission_sphere_radius = 1.0
-gravity = Vector2(0, -980)
-scale_amount_curve = SubResource("Curve_0o6hg")

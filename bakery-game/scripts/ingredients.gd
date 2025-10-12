@@ -15,22 +15,22 @@ var can_click_lemon : bool = false
 var can_click_vanilla : bool = false
 var can_click_chocolate : bool = false
 
-var ingredient_chosen : bool = false
+var dough_type_meter_added := false
 
-var dough_type_index = 0
-var flavour_index = 1
-var flavour_2_index = 2
+var ingredient_number := 0
 
-var CAKE = 'cake'
-var BREAD = 'bread'
-var VANILLA = 'vanilla'
-var CHOCOLATE = 'chocolate'
-var LEMON = 'lemon'
-var STRAWBERRY = 'strawberry'
+const DOUGH_TYPE_INDEX := 0
+const FLAVOUR_INDEX := 1
+const FLAVOUR_2_INDEX = 2
 
-var dough_type_meter_added : bool = false
+const CAKE := 'cake'
+const BREAD := 'bread'
+const VANILLA := 'vanilla'
+const CHOCOLATE := 'chocolate'
+const LEMON := 'lemon'
+const STRAWBERRY := 'strawberry'
 
-var ingredient_number = 0
+const BOWL_ORIGINAL_TEXTURE := preload("res://assets/mixing_bowl.webp")
 
 const EMPTY_STRING = ""
 
@@ -39,17 +39,18 @@ signal ingredient_clicked
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dough_type_meter_added = false
+	# Hides ingredients according to which ingredient tyoe is currently being chosen.
 	for ingredient in Global.chosen_ingredients:
 		Global.ingredient_chosen = false
-		if ingredient_number == dough_type_index:
+		if ingredient_number == DOUGH_TYPE_INDEX:
 			strawberry.hide()
 			lemon.hide()
 			chocolate.hide()
 			vanilla.hide()
-		elif ingredient_number == flavour_index:
+		elif ingredient_number == FLAVOUR_INDEX:
 			vanilla.show()
 			chocolate.show()
-		elif ingredient_number == flavour_2_index:
+		elif ingredient_number == FLAVOUR_2_INDEX:
 			strawberry.show()
 			lemon.show()
 			vanilla.hide()
@@ -60,23 +61,23 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.chosen_ingredients[dough_type_index] == BREAD:
+	# Depending on which dough type player chooses, will hide the other one.
+	if Global.chosen_ingredients[DOUGH_TYPE_INDEX] == BREAD:
 		cake.hide()
-	if Global.chosen_ingredients[dough_type_index] == CAKE:
+	elif Global.chosen_ingredients[DOUGH_TYPE_INDEX] == CAKE:
 		bread.hide()
 	
-	if Global.chosen_ingredients[dough_type_index] == EMPTY_STRING:
+	else:
 		cake.show()
 		bread.show()
-		
+	
+	# When player interacts with ingredients, stores them in chosen ingredients list.
 	if Input.is_action_just_pressed("interact") and Global.chosen_ingredients.has(EMPTY_STRING):
 		if can_click_cake:
 			_choosing_ingredients(CAKE)
-			Global.dough_type == CAKE
 			
 		elif can_click_bread:
 			_choosing_ingredients(BREAD)
-			Global.dough_type == BREAD
 			
 		elif can_click_vanilla:
 			_choosing_ingredients(VANILLA)
@@ -94,17 +95,18 @@ func _process(delta: float) -> void:
 # Checks if all chosen_ingredients have been chosen.
 # Looks at dough dictionary and finds what dough is formed from the chosen ingredients.
 	if not Global.chosen_ingredients.has(EMPTY_STRING):
-		var dough_formed = (Global.doughs[Global.chosen_ingredients])
+		var dough_formed = Global.doughs[Global.chosen_ingredients]
 		Global.dough_formed = true
 		bowl.texture = (Global.dough_sprites[dough_formed])
 	else:
-		bowl.texture = preload("res://assets/mixing_bowl.webp")
-				
+		bowl.texture = BOWL_ORIGINAL_TEXTURE
 
+# Function for adding ingredient chosen to ingredients array.
 func _choosing_ingredients(ingredient : String):
 	Global.chosen_ingredients[ingredient_number] = ingredient
 	ingredient_clicked.emit()
-	
+
+# Tweens that change scale of ingredient when hovering and not hovering.
 func _hover_tween(ingredient):
 	var tween = create_tween()
 	tween.tween_property(ingredient, "scale", Vector2(1.1,1.1),0.1)
@@ -115,7 +117,7 @@ func _not_hover_tween(ingredient):
 	
 
 
-
+# Functions for when player is hovering and not hovering over specific ingredients.
 func _on_cake_essence_mouse_entered() -> void:
 	can_click_cake = true
 	_hover_tween(cake)
@@ -171,16 +173,17 @@ func _on_chocolate_mouse_exited() -> void:
 	can_click_chocolate = false
 	_not_hover_tween(chocolate)
 
-
+# When player presses done.
 func _on_done_button_pressed() -> void:
-	if Global.dough_formed:			
+	if Global.dough_formed:
 		var current_customer = Global.customers[Global.customer_number]
+		var order_dictionary = Global.customer_dictionaries[current_customer]["perfect_order"]
 		
-		if Global.chosen_ingredients[dough_type_index] ==  Global.customer_dictionaries[current_customer]["perfect_order"][Global.dough_type] and not dough_type_meter_added:
+		# Checks if dough is what customer wanted, and adds order meter score accordingly
+		if Global.chosen_ingredients[DOUGH_TYPE_INDEX] == order_dictionary[Global.dough_type] and not dough_type_meter_added:
 			Global.order_meter += 15
-			print('ingredients: ' + str(Global.order_meter))
 			dough_type_meter_added = true
-			
+
 		ingredient_number = 0
 		Global.order_item.append(Global.doughs[Global.chosen_ingredients])
 		Global.done_button_pressed = true

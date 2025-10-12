@@ -5,12 +5,7 @@ var main_scene = preload("res://scenes/bakery.tscn")
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
+# When player presses button to start next day
 func _on_next_day_pressed() -> void:
 	get_tree().paused = false
 	Global.next_day.emit()

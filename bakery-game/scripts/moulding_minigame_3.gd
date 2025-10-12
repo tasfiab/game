@@ -12,23 +12,13 @@ extends Node2D
 
 @export var magic : CPUParticles2D
 
-var loaf_chosen : bool = false
-var croissant_chosen : bool = false
-var baguette_chosen : bool = false
-
-var square_chosen : bool = false
-var circle_chosen : bool = false
-
 var type_chosen : bool = false
-var hold_pressed : bool = false
 
-		
 var current_customer = Global.customers[Global.customer_number]
 var order_dictionary = Global.customer_dictionaries[current_customer]["perfect_order"]
 
-
-
 const DOUGH_TYPE_INDEX := 0
+
 const PERFECT_MIN := 74
 const PERFECT_MAX := 76
 const OK_MIN := 67
@@ -84,29 +74,26 @@ func _process(delta: float) -> void:
 				
 			if mould_meter.value <= PERFECT_MAX and mould_meter.value >= PERFECT_MIN:
 				Global.order_meter += GREAT_SCORE
-				print('mould meter' + str(Global.order_meter))
 				rating.text = 'perfect!'
 									
 			elif mould_meter.value <= OK_MAX and mould_meter.value >= OK_MIN:
 				Global.order_meter += GOOD_SCORE
-				print('mould meter' + str(Global.order_meter))
 				rating.text = 'good!'
 				
 			elif mould_meter.value < OK_MIN:
-				print("too little")
-				magic.amount = 10
-				print('mould meter' + str(Global.order_meter))
+				const LOW_MAGIC_AMOUNT = 10
+				magic.amount = LOW_MAGIC_AMOUNT
 				rating.text = 'too little!'
 				
 			elif mould_meter.value > OK_MAX:
-				magic.amount = 150
-				magic.speed_scale = 4
-				print("too much!")
+				const HIGH_MAGIC_AMOUNT = 150
+				const HIGH_MAGIC_SPEED = 4
+				magic.amount = HIGH_MAGIC_AMOUNT
+				magic.speed_scale = HIGH_MAGIC_SPEED
 				rating.text = 'too much!'
 			
 			if order_dictionary['shape'] == Global.shape:
 				Global.order_meter += 10
-				print('shape' + str(Global.order_meter))
 
 func _on_loaf_button_pressed() -> void:
 	_choosing_shape(LOAF)
@@ -115,10 +102,6 @@ func _on_loaf_button_pressed() -> void:
 func _on_croissant_button_pressed() -> void:
 	_choosing_shape(CROISSANT)
 
-
-func _on_hold_button_pressed() -> void:
-	hold_pressed = true
-	
 
 func _on_square_button_pressed() -> void:
 	_choosing_shape(SQUARE)
@@ -129,7 +112,6 @@ func _on_circle_button_pressed() -> void:
 
 func _choosing_shape(shape : String):
 	if not type_chosen:
-		print(shape)
 		Global.shape = shape
 		Global.order_item.append(Global.shape)
 		type_chosen = true

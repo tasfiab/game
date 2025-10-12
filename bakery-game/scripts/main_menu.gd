@@ -7,13 +7,14 @@ extends Node2D
 func _ready() -> void:
 	background_music.play()
 
+# When play button is pressed, changes file to main bakery scene.
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/bakery.tscn")
 
-
+# Quits game when quit is pressed.
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
-
+# Shows option menu when options button pressed.
 func _on_options_pressed() -> void:
 	options_menu.show()

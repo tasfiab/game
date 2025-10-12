@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://8wyi6cp31ldu"]
 
-[ext_resource type="Script" path="res://scripts/moulding_minigame_3.gd" id="1_8k2d7"]
+[ext_resource type="Script" uid="uid://bmyukg17pei3r" path="res://scripts/moulding_minigame_3.gd" id="1_8k2d7"]
 [ext_resource type="Texture2D" uid="uid://cjf6jeonci733" path="res://assets/toppings_counter.png" id="3_4qr3p"]
 [ext_resource type="PackedScene" uid="uid://dtj25e532bnlk" path="res://scenes/baked_item.tscn" id="4_gv7t1"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="5_rej1q"]
@@ -23,18 +23,6 @@ corner_radius_bottom_left = 25
 default_font = ExtResource("5_rej1q")
 default_font_size = 40
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gacj"]
-bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(1, 0.67451, 0.372549, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlsun"]
 bg_color = Color(1, 0.67451, 0.372549, 1)
 border_width_left = 10
@@ -42,6 +30,18 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gacj"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -109,17 +109,17 @@ offset_top = 40.0001
 offset_right = 130.0
 offset_bottom = 132.0
 theme = SubResource("Theme_p4hc5")
-theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
 text = "loaf
 "
 metadata/_edit_use_anchors_ = true
@@ -135,17 +135,17 @@ offset_top = 0.0499878
 offset_right = 192.0
 offset_bottom = 92.05
 theme = SubResource("Theme_p4hc5")
-theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
 text = "croissant
 "
 metadata/_edit_use_anchors_ = true
@@ -168,17 +168,17 @@ offset_top = 0.0719986
 offset_right = 200.0
 offset_bottom = 92.0
 theme = SubResource("Theme_p4hc5")
-theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
 text = "square
 "
 metadata/_edit_use_anchors_ = true
@@ -193,17 +193,17 @@ anchor_bottom = 0.509317
 offset_right = 192.0
 offset_bottom = 91.0
 theme = SubResource("Theme_p4hc5")
-theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jlsun")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_2gacj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2gacj")
 text = "circle
 "
 metadata/_edit_use_anchors_ = true

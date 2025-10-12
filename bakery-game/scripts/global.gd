@@ -31,6 +31,7 @@ var flavour_2 : String
 var shape : String
 
 var ingredient_chosen : bool = false
+
 var dough_taste_added : bool 
 var flavour_taste_added : bool
 var flavour_2_taste_added : bool
@@ -51,8 +52,6 @@ var baked_item_finished : bool = false
 
 var order_done : bool = false
 
-var is_dragging = false
-
 var in_topping_minigame = false
 
 var order_meter : int = 0
@@ -71,10 +70,11 @@ var CHOCO_LEMON_DOUGH : String = 'strange bread dough'
 
 
 
-
+# Array for all customers
 var customers = ['Birthday girl', 'Cat', 'Witch', 'Old lady', 'Edgy guy', 'Pink cake girl',
  				'Lemon guy', 'Villager', 'Strange man', 'Water girl', 'Old Man', 'Witch2']
 
+# Dictionary storing all information to do with customers
 var customer_dictionaries = {
 	customers[0] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/birthday_girl.dialogue"),

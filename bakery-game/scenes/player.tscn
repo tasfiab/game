@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://cqkg4npx07h4r"]
+[gd_scene load_steps=27 format=3 uid="uid://cqkg4npx07h4r"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_j2u2g"]
-[ext_resource type="Texture2D" uid="uid://bv4x081fo1se7" path="res://assets/mc.png" id="2_3v23h"]
+[ext_resource type="Script" uid="uid://c0b5f3eywp15b" path="res://scripts/player.gd" id="1_j2u2g"]
 [ext_resource type="Texture2D" uid="uid://bxcx0th660dvw" path="res://assets/mc_back2.png" id="3_4bvbu"]
 [ext_resource type="Texture2D" uid="uid://bjeing6kye8rr" path="res://assets/mc_back1.png" id="3_6xcnh"]
 [ext_resource type="Texture2D" uid="uid://c8ei6cc1uuihr" path="res://assets/mc1.png" id="4_kn4yn"]
@@ -174,11 +173,6 @@ scale = Vector2(0.6688, 0.44)
 position = Vector2(0.657895, -36)
 scale = Vector2(5.20399, -5.56245)
 shape = SubResource("CircleShape2D_gu4j0")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(3.36, 3.36)
-texture = ExtResource("2_3v23h")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

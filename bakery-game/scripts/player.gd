@@ -1,4 +1,7 @@
 extends CharacterBody2D
+# Order signals
+signal order_taken
+signal order_complete
 
 @export var animations : AnimatedSprite2D
 @export var bread_hamster : AnimatedSprite2D
@@ -29,32 +32,31 @@ var can_throw_away : bool = false
 
 var in_main_counter_area : bool = false
 
-var order_received = false
-var order_completed = false
+var order_received := false
+var order_completed := false
 
 var game_end := false
 
 const SPEED = 300.0
 
-# Order signals
-signal order_taken
-signal order_complete
-
 
 func _ready() -> void:
-	var customer_scene
+	var customer_scene 
 	var customer_scene_instance
+	const FIRST_DAY := 1
+	const FIRST_CUSTOMER_NUMBER := 0
+	const FINAL_DAY := 3
 	_reset()
 	Global.money = Global.day_money
+	Global.tutorial_box_number = 0
 	player_camera.global_position = main_room.global_position # Changes camera position to main room
 	animation_direction = 'down'
-	var player_position : Vector2 = global_position
+	var player_original_position : Vector2 = global_position
 	background_music.play()
 	get_tree().paused = false # Makes game unpaused when 'play' pressed
 	
 	# Intro dialogue
-	if Global.current_day == 1:
-		Global.tutorial_box_number = 0
+	if Global.current_day == FIRST_DAY:
 		Global.can_move = false
 		bread_hamster.show()
 		bread_hamster.play('up')
@@ -72,18 +74,20 @@ func _ready() -> void:
 	while not game_end:
 		Global.customers.shuffle()
 		Global.customer_number = 0
-	# For loop that runs through customers in Global array 'customers'
+	# For loop that runs through customers in Global array 'customers'.
 		for customer in Global.customers:
+			order_received = false
 			await get_tree().create_timer(1.0).timeout
+			
+			# Gives customer the correct sprite, scale and starting position.
 			customer_scene = Global.customer_dictionaries[customer]['customer_sprite']
 			customer_scene_instance = customer_scene.instantiate()
 			customer_sprite = customer_scene_instance
 			add_sibling(customer_sprite)
 			customer_sprite.global_position = Vector2(570,640)
-			
-			order_received = false
-			
 			customer_sprite.scale = Vector2(3,3)
+			
+			# Customer enters bakery and walks up to counter.
 			door_sound.play()
 			customer_sprite.show()
 			customer_sprite.play("up")
@@ -91,31 +95,30 @@ func _ready() -> void:
 			up_tween.tween_property(customer_sprite, "global_position", Vector2(570,350),1.5)
 			await up_tween.finished
 			customer_sprite.stop()
-			
-			# Waits for player to interact with customer and get order
 			can_get_order = true
+			
+			# Waits for player to interact, once done customer gives their order.
 			await order_taken
 			DialogueManager.show_dialogue_balloon(Global.customer_dictionaries[customer]["customer_dialogue"])
 			Global.can_move = false
 			await DialogueManager.dialogue_ended
-			
-			# Can now go and make customer's order
-			# Await for order to be made and brought back to counter
 			Global.order_start = true
 			Global.can_move = true
 			
-			#Tutorial
-			if Global.customer_number == 0 and Global.current_day == 1:
+			# Tutorial for first customer.
+			if Global.customer_number == FIRST_CUSTOMER_NUMBER and Global.current_day == FIRST_DAY:
 				for tutorial_box in get_tree().get_nodes_in_group('tutorial_boxes'):
 					Global.tutorial_box_number += 1
 					tutorial_box.show()
 					await Global.tutorial
 					tutorial_box.hide()
-					
+			
+			# Waits for order to be complete, once completed customer gives money.
 			await order_complete
 			cash_register_sound.play()
 			Global.money_given = true
 			
+			# Grades item made depending on order meter score.
 			if Global.order_meter > 65 and Global.order_meter < 85:
 				DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/good_reaction.dialogue"))
 				Global.can_move = false
@@ -136,6 +139,7 @@ func _ready() -> void:
 
 			Global.order_start = false
 			
+			# Customer leaves bakery and resets order completely.
 			customer_sprite.play("down")
 			var down_tween = create_tween()
 			down_tween.tween_property(customer_sprite, "global_position", Vector2(570,610),1.5)
@@ -144,42 +148,55 @@ func _ready() -> void:
 			customer_sprite.queue_free()
 			door_sound.play()
 			await get_tree().create_timer(1.0).timeout
-			
 			_reset()
-			
 			can_get_order = false
 			
-			if Global.day_end and not Global.current_day == 3:
-				Global.day_money = Global.money
+			# When day ends, and not final day, game stops and day end screen shown.
+			if Global.day_end and not Global.current_day == FINAL_DAY:
+				Global.day_money = Global.money # Saves money made in day in case player leaves game.
 				day_end.show()
-				animation_direction = 'down'
 				background_music.stop()
 				day_end_music.play()
 				get_tree().paused = true
-				global_position = player_position
+				
+				# Resets player to orignal state for next day.
+				animation_direction = 'down'
+				global_position = player_original_position
 				await Global.next_day
 				day_end_music.stop()
 				background_music.play()
+			
+			# Endings for final day.
+			elif Global.day_end and Global.current_day == FINAL_DAY:
+				const GOOD_MONEY = 200
+				const ORIGINAL_MONEY = 0
 				
-			elif Global.day_end and Global.current_day == 3:
+				# Hamster comes to counter.
 				Global.can_move = false
 				bread_hamster.show()
 				bread_hamster.play("up")
 				var tween = create_tween()
 				tween.tween_property(bread_hamster ,"global_position", Vector2(570,290), 1.75)
 				await tween.finished
-				if Global.money >= 200:
+				
+				# Good ending.
+				if Global.money >= GOOD_MONEY:
 					DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/good_ending.dialogue"))
 					await DialogueManager.dialogue_ended
+				
+				# Bad ending.
 				else:
 					background_music.stop()
 					DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/bad_ending.dialogue"))
 					await DialogueManager.dialogue_ended
-				Global.day_money = 0
-				Global.current_day = 1
+				
+				# Resets game to orignal state.
+				Global.day_money = ORIGINAL_MONEY
+				Global.current_day = FIRST_DAY
 				game_end = true
 				get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 				break
+				
 			Global.customer_number += 1
 
 func _process(_delta: float) -> void:

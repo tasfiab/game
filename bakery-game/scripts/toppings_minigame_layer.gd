@@ -1,24 +1,29 @@
 extends CanvasLayer
 
-var topping_scene = preload("res://scenes/toppings_minigame.tscn")
+const TOPPING_SCENE_INDEX := 0
+const TOPPING_SCENE := preload("res://scenes/toppings_minigame.tscn")
+const INTERACT_BIND := "interact"
+
 var done : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Hides minigame when game is first playing
 	hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Global.toppings_minigame_start and Global.is_baked:
-		if Input.is_action_just_pressed("interact"):
+		if Input.is_action_just_pressed(INTERACT_BIND):
 			Global.in_topping_minigame = true
 			show()
 			done = false
-
+			
+			# When item is finished being made, closes out of toppings minigame
 			if Global.baked_item_finished and not done:
 				hide()
-				get_child(0).queue_free()
-				var instance = topping_scene.instantiate()
+				get_child(TOPPING_SCENE_INDEX).queue_free() 
+				var instance = TOPPING_SCENE.instantiate()
 				add_child(instance)
 				Global.in_topping_minigame = false
 				Global.can_move = true
