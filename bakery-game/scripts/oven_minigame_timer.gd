@@ -5,6 +5,9 @@ extends Control
 
 @export var animations : AnimationPlayer
 
+const RATING_INITIAL_SCALE :=  Vector2(0.1,0.1)
+const TWEEN_TIME := 0.1
+
 var in_green: bool = false
 var in_yellow: bool = false
 
@@ -15,16 +18,14 @@ var rating_done = false
 signal minigame_done
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	hide()
-	rating_panel.hide()
-	rating_panel.scale = Vector2(0.1,0.1)
-	#rating_panel.position = Vector2(6,3)
-			
+	hide() # Hides timer on ready.
+	rating_panel.hide() # Hides rating panel on ready.
+	rating_panel.scale = RATING_INITIAL_SCALE # Gives rating panel right scale.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.baked_item_formed and not Global.is_baked:
+	if Global.moulding_done and not Global.baking_done:
 		if animations.is_playing():
 			if Input.is_action_just_pressed("interact"):
 				minigame_done.emit()
@@ -33,18 +34,18 @@ func _process(delta: float) -> void:
 				if in_green:
 					rating.text = "perfect!"
 					in_green = false
-					Global.is_baked = true
+					Global.baking_done = true
 					Global.order_meter += 15
 					print('mm perfect' + str(Global.order_meter))
 				
 				elif in_yellow:
 					rating.text = "close!"
 					in_yellow = false
-					Global.is_baked = true
+					Global.baking_done = true
 					Global.order_meter += 10
 				else:
 					rating.text = 'umm...'
-					Global.is_baked = true
+					Global.baking_done = true
 						
 		elif Global.oven_minigame_start:
 			if Input.is_action_just_pressed("interact"):
@@ -53,12 +54,11 @@ func _process(delta: float) -> void:
 #func _on_oven_timer_animation_started(anim_name: StringName) -> void:
 	#can_click = true
 
-#func _on_oven_timer_animation_finished(anim_name: StringName) -> void:
-	#hide()
-	#Global.is_baked = true
-	#rating.show()
-	##await get_tree().create_timer(1).timeout
-	##rating.hide()
+func _on_oven_timer_animation_finished(anim_name: StringName) -> void:
+	hide()
+	rating.text = 'umm...'
+	Global.baking_done = true
+	minigame_done.emit()
 
 
 func _on_green_area_entered(area: Area2D) -> void:
@@ -74,15 +74,17 @@ func _on_yellow_area_entered(area: Area2D) -> void:
 
 
 func _on_minigame_done() -> void:
-	if Global.customer_number == 0 and Global.tutorial_box_number == 2:
+	const CURRENT_TUTORIAL_NUMBER = 2
+	if Global.customer_number == 0 and Global.tutorial_box_number == CURRENT_TUTORIAL_NUMBER:
 			Global.tutorial.emit()
 
 	rating_panel.show()
 	var tween = create_tween()
-	tween.tween_property(rating_panel, "scale", Vector2(1,1),0.1)
+	const TWEEN_SCALE := Vector2(1,1)
+	tween.tween_property(rating_panel, "scale", TWEEN_SCALE,TWEEN_TIME)
 	
 	await get_tree().create_timer(1).timeout
 	var tween_back = create_tween()
-	tween_back.tween_property(rating_panel, "scale", Vector2(0.1,0.1),0.1)
+	tween_back.tween_property(rating_panel, "scale", RATING_INITIAL_SCALE,TWEEN_TIME)
 	await tween_back.finished
 	rating_panel.hide()

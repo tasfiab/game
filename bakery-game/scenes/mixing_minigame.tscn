@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d1r2yv4tuyc8o" path="res://assets/mixing_counter.png" id="1_uinbw"]
 [ext_resource type="Texture2D" uid="uid://dsaimry5meh6c" path="res://assets/cake_essence.png" id="2_qm6x5"]
-[ext_resource type="Script" path="res://scripts/ingredients.gd" id="3_bro0v"]
+[ext_resource type="Script" uid="uid://b3bsb5k4wa00x" path="res://scripts/making_minigame.gd" id="3_bro0v"]
 [ext_resource type="Texture2D" uid="uid://8q6oduejvoel" path="res://assets/bread_essence.png" id="3_vcrw5"]
 [ext_resource type="Texture2D" uid="uid://b76is0edr2npd" path="res://assets/strawberry.png" id="5_5g1xl"]
 [ext_resource type="Texture2D" uid="uid://dp6wi54alvm4h" path="res://assets/mixing_bowl.webp" id="5_sfqvn"]
@@ -17,18 +17,6 @@
 default_font = ExtResource("11_dgvn0")
 default_font_size = 40
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxsge"]
-bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(1, 0.67451, 0.372549, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5p450"]
 bg_color = Color(1, 0.67451, 0.372549, 1)
 border_width_left = 10
@@ -36,6 +24,18 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxsge"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -124,7 +124,7 @@ visible = false
 position = Vector2(802, 187)
 scale = Vector2(5, 5)
 
-[node name="tastemeter" parent="." instance=ExtResource("12_ipfxc")]
+[node name="taste_meter" parent="." instance=ExtResource("12_ipfxc")]
 position = Vector2(550, 113)
 scale = Vector2(3.16, 3.16)
 
@@ -134,17 +134,17 @@ offset_top = 479.0
 offset_right = 1011.0
 offset_bottom = 564.0
 theme = SubResource("Theme_knw4o")
-theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_pxsge")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_pxsge")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_pxsge")
-theme_override_styles/hover = SubResource("StyleBoxFlat_pxsge")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_5p450")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_5p450")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_5p450")
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_5p450")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_5p450")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5p450")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_5p450")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pxsge")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_pxsge")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_pxsge")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pxsge")
 text = "done"
 
 [connection signal="ingredient_clicked" from="." to="." method="_on_ingredient_clicked"]

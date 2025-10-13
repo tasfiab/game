@@ -13,14 +13,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.toppings_minigame_start and Global.is_baked:
+	if Global.toppings_minigame_start and Global.baking_done:
 		if Input.is_action_just_pressed(INTERACT_BIND):
 			Global.in_topping_minigame = true
 			show()
 			done = false
 			
 			# When item is finished being made, closes out of toppings minigame
-			if Global.baked_item_finished and not done:
+			if Global.toppings_done and not done:
 				hide()
 				get_child(TOPPING_SCENE_INDEX).queue_free() 
 				var instance = TOPPING_SCENE.instantiate()

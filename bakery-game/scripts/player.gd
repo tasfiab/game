@@ -37,8 +37,13 @@ var order_completed := false
 
 var game_end := false
 
-const SPEED = 300.0
+const SPEED := 300.0
 
+const CAMERA_TWEEN_TIME := 0.75
+const DOWN_ANIMATION := "down"
+const UP_ANIMATION := "up"
+const LEFT_ANIMATION := "left"
+const RIGHT_ANIMATION := "right"
 
 func _ready() -> void:
 	var customer_scene 
@@ -55,7 +60,7 @@ func _ready() -> void:
 	background_music.play()
 	get_tree().paused = false # Makes game unpaused when 'play' pressed
 	
-	# Intro dialogue
+	# Intro dialogue.
 	if Global.current_day == FIRST_DAY:
 		Global.can_move = false
 		bread_hamster.show()
@@ -80,7 +85,8 @@ func _ready() -> void:
 			await get_tree().create_timer(1.0).timeout
 			
 			# Gives customer the correct sprite, scale and starting position.
-			customer_scene = Global.customer_dictionaries[customer]['customer_sprite']
+			const CUSTOMER_SPRITE_KEY = "customer_sprite"
+			customer_scene = Global.customer_dictionaries[customer][CUSTOMER_SPRITE_KEY]
 			customer_scene_instance = customer_scene.instantiate()
 			customer_sprite = customer_scene_instance
 			add_sibling(customer_sprite)
@@ -90,7 +96,7 @@ func _ready() -> void:
 			# Customer enters bakery and walks up to counter.
 			door_sound.play()
 			customer_sprite.show()
-			customer_sprite.play("up")
+			customer_sprite.play(UP_ANIMATION)
 			var up_tween = create_tween()
 			up_tween.tween_property(customer_sprite, "global_position", Vector2(570,350),1.5)
 			await up_tween.finished
@@ -140,7 +146,7 @@ func _ready() -> void:
 			Global.order_start = false
 			
 			# Customer leaves bakery and resets order completely.
-			customer_sprite.play("down")
+			customer_sprite.play(DOWN_ANIMATION)
 			var down_tween = create_tween()
 			down_tween.tween_property(customer_sprite, "global_position", Vector2(570,610),1.5)
 			await down_tween.finished
@@ -151,7 +157,7 @@ func _ready() -> void:
 			_reset()
 			can_get_order = false
 			
-			# When day ends, and not final day, game stops and day end screen shown.
+			# When day ends, and it's not the final day, game stops and day end screen shown.
 			if Global.day_end and not Global.current_day == FINAL_DAY:
 				Global.day_money = Global.money # Saves money made in day in case player leaves game.
 				day_end.show()
@@ -160,7 +166,7 @@ func _ready() -> void:
 				get_tree().paused = true
 				
 				# Resets player to orignal state for next day.
-				animation_direction = 'down'
+				animation_direction = DOWN_ANIMATION
 				global_position = player_original_position
 				await Global.next_day
 				day_end_music.stop()
@@ -174,7 +180,7 @@ func _ready() -> void:
 				# Hamster comes to counter.
 				Global.can_move = false
 				bread_hamster.show()
-				bread_hamster.play("up")
+				bread_hamster.play(UP_ANIMATION)
 				var tween = create_tween()
 				tween.tween_property(bread_hamster ,"global_position", Vector2(570,290), 1.75)
 				await tween.finished
@@ -187,14 +193,16 @@ func _ready() -> void:
 				# Bad ending.
 				else:
 					background_music.stop()
-					DialogueManager.show_dialogue_balloon(load("res://addons/dialogue_manager/dialogue_scripts/bad_ending.dialogue"))
+					var Bad_Ending = load("res://addons/dialogue_manager/dialogue_scripts/bad_ending.dialogue")
+					DialogueManager.show_dialogue_balloon(Bad_Ending)
 					await DialogueManager.dialogue_ended
 				
-				# Resets game to orignal state.
+				# Resets game to orignal state and changes scene to main menu.
 				Global.day_money = ORIGINAL_MONEY
 				Global.current_day = FIRST_DAY
 				game_end = true
-				get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+				const MAIN_MENU := "res://scenes/main_menu.tscn"
+				get_tree().change_scene_to_file(MAIN_MENU)
 				break
 				
 			Global.customer_number += 1
@@ -209,12 +217,15 @@ func _process(_delta: float) -> void:
 			Global.tutorial.emit()
 			order_complete.emit()
 			Global.order_done = false
-
+			
+	# When player interacts with rubbish bin.
 	if can_throw_away:
 		if Input.is_action_just_pressed("interact"):
 			bin_sound.play()
 			_reset()
 			print("thrown away")
+			
+	# Hides day end screen during daytime.
 	if not Global.day_end:
 		day_end.hide()
 	
@@ -225,37 +236,40 @@ func _physics_process(delta: float) -> void:
 			velocity += get_gravity() * delta
 
 		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
-		var v_direction := Input.get_axis("up", "down")
-		var h_direction := Input.get_axis("left", "right")
+		var v_direction := Input.get_axis(UP_ANIMATION, DOWN_ANIMATION)
+		var h_direction := Input.get_axis(LEFT_ANIMATION, RIGHT_ANIMATION)
 		
 		var direction: Vector2 = Vector2(h_direction, v_direction).normalized()
-		
 		
 		velocity = direction * SPEED
 
 		move_and_slide()
 		_handle_animations()
-	
+
+# Function to handle player animations.
 func _handle_animations():
+	# Handles idle animations.
 	if velocity.length() == 0:
 		animations.play('idle_' + animation_direction)
+	
+	# Handles walking animations.
 	else:
 		if velocity.x < 0:
-			animation_direction = 'left'
+			animation_direction = LEFT_ANIMATION
 			animations.flip_h = true
 		elif velocity.x > 0:
-			animation_direction = 'right'
+			animation_direction = RIGHT_ANIMATION
 			animations.flip_h = false
 		elif velocity.y < 0:
-			animation_direction = 'up'
+			animation_direction = UP_ANIMATION
 			animations.flip_h = false
 		elif velocity.y > 0:
-			animation_direction = 'down'
+			animation_direction = DOWN_ANIMATION
 			animations.flip_h = false
 		
 		animations.play('walk_' + animation_direction)
-	
+
+# Function to reset all values back to original state.
 func _reset():
 	Global.ingredient_chosen = false
 	Global.dough_taste_added = false 
@@ -267,10 +281,10 @@ func _reset():
 	Global.flavour_2_chosen = false
 	
 	Global.dough_formed = false
-	Global.done_button_pressed = false
-	Global.baked_item_formed = false
-	Global.is_baked = false
-	Global.baked_item_finished = false
+	Global.making_done = false
+	Global.moulding_done = false
+	Global.baking_done = false
+	Global.toppings_done = false
 	
 	Global.chosen_ingredients[0] = ""
 	Global.chosen_ingredients[1] = ""
@@ -284,12 +298,14 @@ func _reset():
 	
 	Global.order_meter = 0
 	
-# Function when player enters area where they can interact with minigame.
+# Function for when player enters area where they can interact.
 func _on_minigame_entered(area: Area2D) -> void:
 	if area.has_meta("oven"):
 		Global.oven_minigame_start = true
+	
 	if area.has_meta("making_area"):
 		Global.making_minigame_start = true
+	
 	if area.has_meta("toppings"):
 		Global.toppings_minigame_start = true
 		
@@ -300,12 +316,14 @@ func _on_minigame_entered(area: Area2D) -> void:
 		can_throw_away = true
 		
 
-
+# Function for when player exits area where they can interact.
 func _on_minigame_exited(area: Area2D) -> void:
 		if area.has_meta("oven"):
 			Global.oven_minigame_start = false
+		
 		if area.has_meta("making_area"):
 			Global.making_minigame_start = false
+		
 		if area.has_meta("toppings"):
 			Global.toppings_minigame_start = false
 		
@@ -315,10 +333,12 @@ func _on_minigame_exited(area: Area2D) -> void:
 		if area.has_meta("bin"):
 			can_throw_away = false
 
-
+# Moves camera to main room camera position when main room entered.
 func _on_main_room_area_entered(_area: Area2D) -> void:
 	var tween = create_tween()
-	tween.tween_property(player_camera, "global_position", main_room.global_position, 0.75)
+	tween.tween_property(player_camera, "global_position", main_room.global_position, CAMERA_TWEEN_TIME)
+
+# Moves camera to kitchen camera position when kitchen entered.
 func _on_room_2_entered(_area: Area2D) -> void:
 	var tween = create_tween()
-	tween.tween_property(player_camera, "global_position", kitchen.global_position, 0.75)
+	tween.tween_property(player_camera, "global_position", kitchen.global_position, CAMERA_TWEEN_TIME)

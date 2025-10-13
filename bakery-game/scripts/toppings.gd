@@ -36,7 +36,6 @@ const OK_ORDER_POINTS := 5
 var current_customer : String
 var order_dictionary : Dictionary
 
-var is_dragging : bool = false
 var draggable: bool = false
 var in_baked_item : bool = false
 
@@ -65,7 +64,7 @@ func _process(delta: float) -> void:
 	if draggable and not Global.topping_number == MAX_TOPPINGS:
 		if Input.is_action_just_pressed(INTERACT_BIND):
 			offset = get_global_mouse_position() - global_position
-			is_dragging = true
+			Global.is_dragging = true
 		
 		# Makes topping follow mouse when dragged.
 		if Input.is_action_pressed(INTERACT_BIND):
@@ -73,7 +72,7 @@ func _process(delta: float) -> void:
 			
 		# When mouse click is released, topping is released.
 		elif Input.is_action_just_released(INTERACT_BIND):
-			is_dragging = false
+			Global.is_dragging = false
 			
 			# When topping is in item, adds topping.
 			if in_baked_item:
@@ -122,12 +121,12 @@ func _process(delta: float) -> void:
 
 # Makes topping draggable when hovered over.
 func _on_toppings_mouse_entered() -> void:
-	if not is_dragging:
+	if not Global.is_dragging:
 		draggable = true
 
 # Makes topping not draggable when no longer hovered over.
 func _on_toppings_mouse_exited() -> void:
-	if not is_dragging:
+	if not Global.is_dragging:
 		draggable = false
 
 # Checks if topping is in baked item, or not.
@@ -142,10 +141,9 @@ func _on_toppings_body_exited(body: Node2D) -> void:
 func _on_done_button_down() -> void:
 	print(Global.order_meter)
 	const CURRENT_TUTORIAL_NUMBER := 3
-	const FIRST_CUSTOMER_INDEX := 0
 	const NO_TOPPINGS := 0
 	
-	Global.baked_item_finished = true # Turned true, minigame layer can now close.
+	Global.toppings_done = true # Turned true, minigame layer can now close.
 	Global.can_move = true
 	Global.order_done = true
 	
@@ -155,5 +153,5 @@ func _on_done_button_down() -> void:
 			Global.order_meter += GOOD_ORDER_POINTS + OK_ORDER_POINTS
 			
 	# Changes tutorial box to the next box if this is the first customer.
-	if Global.customer_number == FIRST_CUSTOMER_INDEX and Global.tutorial_box_number == CURRENT_TUTORIAL_NUMBER:
+	if Global.customer_number == 0 and Global.tutorial_box_number == CURRENT_TUTORIAL_NUMBER:
 				Global.tutorial.emit()

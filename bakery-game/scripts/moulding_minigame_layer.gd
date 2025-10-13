@@ -10,10 +10,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.done_button_pressed and not Global.baked_item_formed:
+	# Shows and starts minigame for player when player has pressed done for making minigame.
+	if Global.making_done and not Global.moulding_done:
 		show()
 		done = false
-	if Global.baked_item_formed and not done:
+	
+	# Deletes instance of minigame scene and creates new instance to reset scene to original state when player is done moulding.
+	if Global.moulding_done and not done:
 		hide()
 		Global.can_move = true
 		get_child(0).queue_free()

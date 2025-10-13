@@ -5,8 +5,6 @@ signal next_day
 
 var tutorial_box_number : int = 0
 
-#var game_end := false
-
 var customer_number : int = 0
 
 var current_day : int = 1
@@ -42,33 +40,23 @@ var flavour_chosen : bool = false
 var flavour_2_chosen : bool = false
 
 var topping_number : int = 0
+var is_dragging : bool = false
 var max_toppings : bool = false
 
 var dough_formed : bool = false
-var done_button_pressed: bool = false
-var baked_item_formed: bool = false
-var is_baked : bool = false
-var baked_item_finished : bool = false
 
-var order_done : bool = false
-
-var in_topping_minigame = false
-
-var order_meter : int = 0
+var making_done: bool = false
+var moulding_done: bool = false
+var baking_done : bool = false
+var toppings_done : bool = false
 
 var money_given : bool = false
 
-# Dough strings
-var BASIC_DOUGH : String = 'basic dough'
-var VANILLA_BREAD_DOUGH : String = 'vanilla bread dough'
-var CHOCOLATE_BREAD_DOUGH : String = 'chocolate bread dough'
-var STRAWBERRY_BREAD_DOUGH : String = 'strawberry bread dough'
-var LEMON_BREAD_DOUGH : String = 'lemon bread dough'
-var VANILLA_STRAWBERRY_DOUGH : String = 'vanilla strawberry dough'
-var CHOCO_STRAWBERRY_DOUGH : String = 'bitter strawberry bread dough'
-var CHOCO_LEMON_DOUGH : String = 'strange bread dough'
+var order_done : bool = false
 
+var in_topping_minigame := false
 
+var order_meter : int = 0
 
 # Array for all customers
 var customers = ['Birthday girl', 'Cat', 'Witch', 'Old lady', 'Edgy guy', 'Pink cake girl',

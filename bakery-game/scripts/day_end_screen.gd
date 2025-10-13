@@ -5,10 +5,10 @@ var main_scene = preload("res://scenes/bakery.tscn")
 func _ready() -> void:
 	pass # Replace with function body.
 
-# When player presses button to start next day
+# When player presses button to start next day.
 func _on_next_day_pressed() -> void:
-	get_tree().paused = false
-	Global.next_day.emit()
+	get_tree().paused = false 
+	Global.next_day.emit() 
 	Global.new_day = true
 	Global.day_end = false
 	Global.current_day += 1

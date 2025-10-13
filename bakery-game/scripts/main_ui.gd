@@ -6,10 +6,12 @@ extends Control
 
 @export var pause_layer : CanvasLayer
 
+# Order UI variables.
 @export var order_check_layer : CanvasLayer
 @export var order_ui : TextureRect
 @export var order_ui_text : Label
 
+# Time variables.
 @export var clock_timer : Timer
 @export var clock_hours : Label
 @export var clock_minutes : Label
@@ -19,8 +21,12 @@ const PM : String = "pm"
 const HOUR_END : int = 60
 const DAY_START_TIME : int = 9
 const DAY_END_TIME : int = 5
+const NOON :=  12
+const ONE_PM := 13
 
 const EMPTY_STRING : String = ""
+
+const TWEEN_TIME := 0.1
 
 var can_check_order : bool = false
 
@@ -32,16 +38,16 @@ var hours: int = 9
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	day.text = str(Global.current_day)
-	money_text.text = str(Global.day_money)
+	# Makes current day/money accurate to current day/money, even if player quits to main menu.
+	day.text = str(Global.current_day) 
+	money_text.text = str(Global.day_money) 
+	
 	pause_layer.hide()
 	order_check_layer.hide()
-	clock_timer.start()
+	clock_timer.start() # Starts timer for clock.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	day.text = str(Global.current_day)
-	
 	# Shows the order UI when it is clicked on.
 	if can_check_order and Input.is_action_just_pressed("interact"):
 			if order_hidden:
@@ -60,30 +66,32 @@ func _process(delta: float) -> void:
 		hours = DAY_START_TIME
 		clock_hours.text = str(hours)
 		clock_timer.start()
+		day.text = str(Global.current_day)
 		Global.new_day = false
 	
 	# Makes order UI text match customer order in customer dictionary.
 	if Global.order_start:
-		order_ui_text.text = Global.customer_dictionaries[Global.customers[Global.customer_number]]["customer_order"]
+		const ORDER_UI_KEY := "customer_order"
+		order_ui_text.text = Global.customer_dictionaries[Global.customers[Global.customer_number]][ORDER_UI_KEY]
 	
-	# Makes order UI empty if no customer is currently available
+	# Makes order UI empty if no customer is currently available.
 	else: 
 		order_ui_text.text = EMPTY_STRING
 	
-	# Adds money when money is given
+	# Adds money when money is given by customer.
 	if Global.money_given:
-		Global.money += round(Global.order_meter/4)
+		Global.money += round(Global.order_meter/3.3)
 		money_text.text = str(Global.money)
 		Global.money_given = false
 
 
-# Func to pause game
+# Func to pause game.
 func pause():
 	get_tree().paused = true
-	pause_layer.show()
+	pause_layer.show() # Shows pause menu.
 
 
-# Every time clock timer runs out, in game clock goes up by 15 mins
+# Every time clock timer runs out, in game clock goes up by 15 mins.
 func _on_timeout() -> void:
 	minutes += 15
 	clock_minutes.text = str(minutes)
@@ -97,11 +105,11 @@ func _on_timeout() -> void:
 		clock_hours.text = str(hours)
 	
 	# Changes AM text to PM when it is 12:00
-	if hours == 12:
+	if hours == NOON:
 		a_m_text.text = PM
 	
 	# Changes time to 1:00 rather than 13:00 when at 13 hours
-	if hours == 13:
+	if hours == ONE_PM:
 		hours = 1
 		clock_hours.text = str(hours)
 		
@@ -119,11 +127,17 @@ func _on_pause_button_pressed() -> void:
 # When order UI is hovered over, allows order to be checked
 func _on_order_ui_mouse_entered() -> void:
 	can_check_order = true
-	var tween = create_tween()
-	tween.tween_property(order_ui, "scale", Vector2(1.1,1.1),0.1)
+	const TWEEN_SCALE := Vector2(1.1,1.1)
+	_order_tween(TWEEN_SCALE)
 
 # When order UI is no longer being hovered over, stops allowing order to be checked
 func _on_order_ui_mouse_exited() -> void:
 	can_check_order = false
-	var tween = create_tween()
-	tween.tween_property(order_ui, "scale", Vector2(1,1),0.1)
+	const ORIGINAL_SCALE := Vector2(1,1)
+	_order_tween(ORIGINAL_SCALE)
+
+	
+# Func for tweening order UI.
+func _order_tween(scale_value):
+	var tween := create_tween()
+	tween.tween_property(order_ui, "scale", scale_value, TWEEN_TIME)

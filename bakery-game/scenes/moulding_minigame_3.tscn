@@ -214,7 +214,6 @@ offset_top = 248.0
 offset_right = 232.0
 offset_bottom = 344.0
 scale = Vector2(2.56, 2.56)
-value = 76.0
 rounded = true
 fill_mode = 3
 texture_under = ExtResource("7_qsm7q")
