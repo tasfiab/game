@@ -41,6 +41,7 @@ var in_baked_item : bool = false
 
 var offset : Vector2
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -78,7 +79,10 @@ func _process(delta: float) -> void:
 			if in_baked_item:
 				self.hide()
 				Global.topping_number += 1
-				toppings_counter.text = "toppings " + str(Global.topping_number) + "/3"
+				const TOPPINGS_TEXT := "toppings "
+				const TOPPINGS_COUNT_TEXT := "/3"
+				
+				toppings_counter.text =  TOPPINGS_TEXT + str(Global.topping_number) + TOPPINGS_COUNT_TEXT
 				
 				# Hides chocolate icing if vanilla icing used.
 				if self.type == VANILLA_ICING:
@@ -124,14 +128,17 @@ func _on_toppings_mouse_entered() -> void:
 	if not Global.is_dragging:
 		draggable = true
 
+
 # Makes topping not draggable when no longer hovered over.
 func _on_toppings_mouse_exited() -> void:
 	if not Global.is_dragging:
 		draggable = false
 
+
 # Checks if topping is in baked item, or not.
 func _on_toppings_body_entered(body: Node2D) -> void:
 	in_baked_item = true
+
 
 func _on_toppings_body_exited(body: Node2D) -> void:
 	in_baked_item = false
@@ -140,11 +147,10 @@ func _on_toppings_body_exited(body: Node2D) -> void:
 # When done button pressed, closes out of minigame
 func _on_done_button_down() -> void:
 	print(Global.order_meter)
-	const CURRENT_TUTORIAL_NUMBER := 3
-	const NO_TOPPINGS := 0
+	const CURRENT_TUTORIAL_NUMBER : int = 3
+	const NO_TOPPINGS : int = 0
 	
 	Global.toppings_done = true # Turned true, minigame layer can now close.
-	Global.can_move = true
 	Global.order_done = true
 	
 	# Checks if the customer prefers no toppings, and if no toppings were added, adding points accordingly

@@ -16,6 +16,8 @@ var can_click = false
 var rating_done = false
 
 signal minigame_done
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide() # Hides timer on ready.
@@ -50,9 +52,8 @@ func _process(delta: float) -> void:
 		elif Global.oven_minigame_start:
 			if Input.is_action_just_pressed("interact"):
 				show()
-				animations.play("oven_timer_hand")			
-#func _on_oven_timer_animation_started(anim_name: StringName) -> void:
-	#can_click = true
+				animations.play("oven_timer_hand")
+
 
 func _on_oven_timer_animation_finished(anim_name: StringName) -> void:
 	hide()

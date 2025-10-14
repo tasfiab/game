@@ -8,6 +8,7 @@ var done : bool = false
 func _ready() -> void:
 	hide()
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Shows and starts minigame for player when player has pressed done for making minigame.

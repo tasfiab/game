@@ -60,7 +60,7 @@ var order_meter : int = 0
 
 # Array for all customers
 var customers = ['Birthday girl', 'Cat', 'Witch', 'Old lady', 'Edgy guy', 'Pink cake girl',
- 				'Lemon guy', 'Villager', 'Strange man', 'Water girl', 'Old Man', 'Witch2']
+ 				'Lemon guy', 'Villager', 'Strange man', 'Water girl', 'Old Man', 'Witch 2']
 
 # Dictionary storing all information to do with customers
 var customer_dictionaries = {
@@ -72,11 +72,11 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 6,
 			'bitterness' : 0,
-			dough_type : 'cake',
+			"dough type" : 'cake',
 			'shape': 'circle',
 			'best topping': 'sprinkles',
-			'ok topping': 'stardust'
-			}
+			'ok topping': 'stardust',
+			},
 	},
 	customers[1] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/cat.dialogue"),
@@ -86,9 +86,9 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 0,
 			'bitterness' : 0,
-			dough_type : 'bread',
+			"dough type" : 'bread',
 			'shape': 'loaf',
-			}
+			},
 	},
 	customers[2] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/witch.dialogue"),
@@ -99,11 +99,11 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 4,
 			'bitterness': 0,
-			dough_type: 'cake',
+			"dough type": 'cake',
 			'shape': 'square',
 			'best topping': 'stardust',
-			'ok topping': 'vanilla_icing'
-			}
+			'ok topping': 'vanilla_icing',
+			},
 	},
 	customers[3] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/old_lady.dialogue"),
@@ -113,11 +113,11 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 3,
 			'bitterness': 0,
-			dough_type: 'bread',
+			"dough type": 'bread',
 			'shape': 'loaf',
 			'best topping': 'strawberry',
-			'ok topping': 'choco_chips'
-			}
+			'ok topping': 'choco_chips',
+			},
 	},
 	customers[4] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/edgy_guy.dialogue"),
@@ -127,9 +127,9 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 1,
 			'bitterness' : 2,
-			dough_type: 'bread',
-			'shape' : 'loaf'
-			}
+			"dough type": 'bread',
+			'shape' : 'loaf',
+			},
 	},
 	customers[5] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/pink_cake_girl.dialogue"),
@@ -139,11 +139,11 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 5,
 			'bitterness' : 0,
-			dough_type: 'cake',
+			"dough type": 'cake',
 			'shape' : 'square',
 			'best topping' : 'strawberry',
-			'ok topping' : 'vanilla_icing'
-			}
+			'ok topping' : 'vanilla_icing',
+			},
 	},
 	customers[6] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/lemon_guy.dialogue"),
@@ -154,11 +154,11 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 3,
 			'bitterness' : 3,
-			dough_type: 'cake',
+			"dough type": 'cake',
 			'shape' : 'circle',
 			'best topping' : 'vanilla_icing',
-			'ok topping' : 'sprinkles'
-			}
+			'ok topping' : 'sprinkles',
+			},
 	},
 	customers[7] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/villager.dialogue"),
@@ -168,9 +168,9 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 1,
 			'bitterness' : 3,
-			dough_type: 'bread',
-			'shape' : 'croissant'
-			}
+			"dough type": 'bread',
+			'shape' : 'croissant',
+			},
 	},
 	customers[8] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/strange_man.dialogue"),
@@ -180,11 +180,11 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 3,
 			'bitterness' : 5,
-			dough_type: 'cake',
+			"dough type": 'cake',
 			'shape' : 'square',
 			'best topping' : 'strawberry',
-			'ok topping' : 'sprinkles'
-			}
+			'ok topping' : 'sprinkles',
+			},
 	},
 	customers[9] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/water_girl.dialogue"),
@@ -195,11 +195,11 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 2,
 			'bitterness' : 0,
-			dough_type : 'bread',
+			"dough type" : 'bread',
 			'shape' : 'croissant',
 			'best topping' : 'strawberry',
-			'ok topping' : 'choco_icing'
-			}
+			'ok topping' : 'choco_icing',
+			},
 	},
 	customers[10] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/old_man.dialogue"),
@@ -210,11 +210,11 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 5,
 			'bitterness' : 2,
-			dough_type : 'cake',
+			"dough type" : 'cake',
 			'shape' : 'circle',
 			'best topping' : 'stardust',
-			'ok topping' : 'choco_icing'
-			}
+			'ok topping' : 'choco_icing',
+			},
 	},
 	customers[11] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/witch_2.dialogue"),
@@ -226,11 +226,11 @@ var customer_dictionaries = {
 		'perfect_order' :  {
 			'sweetness' : 3,
 			'bitterness': 2,
-			dough_type : 'cake',
+			"dough type" : 'cake',
 			'shape' : 'circle',
 			'best topping' : 'stardust',
-			'ok topping' : 'choco_chips'
-			}
+			'ok topping' : 'choco_chips',
+			},
 	},
 }
 
@@ -404,19 +404,19 @@ var ingredients = {
 		'sweetness' : 1,
 	},
 	'vanilla' : {
-		'sweetness' : 2
+		'sweetness' : 2,
 	},
 	'chocolate' : {
 		'sweetness' : 1,
-		'bitterness' : 2
+		'bitterness' : 2,
 	},
 	'strawberry' : {
-		'sweetness' : 3
+		'sweetness' : 3,
 	},
 	'lemon' : {
 		'sweetness' : 1,
-		'bitterness' : 3
-	}
+		'bitterness' : 3,
+	},
 }
 
 

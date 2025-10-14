@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bfoxjtagov6tq"]
 
-[ext_resource type="Script" path="res://scripts/taste_meters.gd" id="1_p538g"]
+[ext_resource type="Script" uid="uid://bjp2jvbkdvh16" path="res://scripts/taste_meters.gd" id="1_p538g"]
 [ext_resource type="Texture2D" uid="uid://c7ui0nngx5nb8" path="res://assets/taste_meter_under.png" id="1_u3tlm"]
 [ext_resource type="Texture2D" uid="uid://cqjgtemf0l05b" path="res://assets/taste_meter_over.png" id="2_n3lpo"]
 [ext_resource type="Texture2D" uid="uid://sy7kldlml4e6" path="res://assets/taste_meter_progress.png" id="3_3k74v"]

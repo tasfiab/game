@@ -6,10 +6,12 @@ const INTERACT_BIND := "interact"
 
 var done : bool = false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Hides minigame when game is first playing
 	hide()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

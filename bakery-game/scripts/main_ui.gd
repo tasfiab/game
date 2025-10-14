@@ -1,7 +1,6 @@
 extends Control
 
 @export var day : Label 
-@export var money: HBoxContainer
 @export var money_text : Label
 
 @export var pause_layer : CanvasLayer
@@ -45,6 +44,7 @@ func _ready() -> void:
 	pause_layer.hide()
 	order_check_layer.hide()
 	clock_timer.start() # Starts timer for clock.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -117,12 +117,12 @@ func _on_timeout() -> void:
 	if hours == DAY_END_TIME:
 		clock_timer.stop()
 		Global.day_end = true
-	
-		
+
 
 # Pauses game when pause button is pressed
 func _on_pause_button_pressed() -> void:
 	pause()
+
 
 # When order UI is hovered over, allows order to be checked
 func _on_order_ui_mouse_entered() -> void:
@@ -130,13 +130,14 @@ func _on_order_ui_mouse_entered() -> void:
 	const TWEEN_SCALE := Vector2(1.1,1.1)
 	_order_tween(TWEEN_SCALE)
 
+
 # When order UI is no longer being hovered over, stops allowing order to be checked
 func _on_order_ui_mouse_exited() -> void:
 	can_check_order = false
 	const ORIGINAL_SCALE := Vector2(1,1)
 	_order_tween(ORIGINAL_SCALE)
 
-	
+
 # Func for tweening order UI.
 func _order_tween(scale_value):
 	var tween := create_tween()

@@ -45,6 +45,7 @@ const UP_ANIMATION := "up"
 const LEFT_ANIMATION := "left"
 const RIGHT_ANIMATION := "right"
 
+
 func _ready() -> void:
 	var customer_scene 
 	var customer_scene_instance
@@ -207,6 +208,7 @@ func _ready() -> void:
 				
 			Global.customer_number += 1
 
+
 func _process(_delta: float) -> void:
 	if not order_received and in_main_counter_area and can_get_order:
 		if Input.is_action_just_pressed("interact"):
@@ -228,7 +230,8 @@ func _process(_delta: float) -> void:
 	# Hides day end screen during daytime.
 	if not Global.day_end:
 		day_end.hide()
-	
+
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if Global.can_move:
@@ -245,6 +248,7 @@ func _physics_process(delta: float) -> void:
 
 		move_and_slide()
 		_handle_animations()
+
 
 # Function to handle player animations.
 func _handle_animations():
@@ -268,6 +272,7 @@ func _handle_animations():
 			animations.flip_h = false
 		
 		animations.play('walk_' + animation_direction)
+
 
 # Function to reset all values back to original state.
 func _reset():
@@ -297,7 +302,8 @@ func _reset():
 	Global.order_item = []
 	
 	Global.order_meter = 0
-	
+
+
 # Function for when player enters area where they can interact.
 func _on_minigame_entered(area: Area2D) -> void:
 	if area.has_meta("oven"):
@@ -314,7 +320,7 @@ func _on_minigame_entered(area: Area2D) -> void:
 		
 	if area.has_meta("bin"):
 		can_throw_away = true
-		
+
 
 # Function for when player exits area where they can interact.
 func _on_minigame_exited(area: Area2D) -> void:
@@ -333,10 +339,12 @@ func _on_minigame_exited(area: Area2D) -> void:
 		if area.has_meta("bin"):
 			can_throw_away = false
 
+
 # Moves camera to main room camera position when main room entered.
 func _on_main_room_area_entered(_area: Area2D) -> void:
 	var tween = create_tween()
 	tween.tween_property(player_camera, "global_position", main_room.global_position, CAMERA_TWEEN_TIME)
+
 
 # Moves camera to kitchen camera position when kitchen entered.
 func _on_room_2_entered(_area: Area2D) -> void:

@@ -54,11 +54,10 @@ func _ready() -> void:
 	
 	const ITEM_ORIGINAL_SCALE = Vector2(0.44,0.44)
 	order_item_sprite.scale = ITEM_ORIGINAL_SCALE
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: 
-
 	# Makes sure nothing changes in moulding minigame until dough type has been added to order item array.
 	if Global.order_item.is_empty():
 		pass
@@ -138,14 +137,18 @@ func _process(delta: float) -> void:
 func _on_loaf_button_pressed() -> void:
 	_choosing_shape(LOAF)
 
+
 func _on_croissant_button_pressed() -> void:
 	_choosing_shape(CROISSANT)
 
+
 func _on_square_button_pressed() -> void:
 	_choosing_shape(SQUARE)
-	
+
+
 func _on_circle_button_pressed() -> void:
 	_choosing_shape(CIRCLE)
+
 
 # Function for player choosing shape.
 func _choosing_shape(shape : String):
@@ -153,6 +156,7 @@ func _choosing_shape(shape : String):
 		Global.shape = shape
 		Global.order_item.append(Global.shape)
 		shape_chosen = true
+
 
 # Function for when minigame is complete.
 func _on_minigame_done() -> void:
@@ -174,7 +178,7 @@ func _on_minigame_done() -> void:
 
 	await get_tree().create_timer(1.0).timeout # Panel is shown for a second.
 	
-	# Rating panel hides from player.
+	# Rating panel hidden from player.
 	var rating_tween_back = create_tween()
 	const RATING_TWEEN_SCALE_DOWN := Vector2(0.1,0.1)
 	rating_tween_back.tween_property(rating_panel, "scale", RATING_TWEEN_SCALE_DOWN,TWEEN_TIME)

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bbwdqe3tpwfg2" path="res://scripts/toppings.gd" id="1_75714"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvako"]
-size = Vector2(128, 127)
+[sub_resource type="CircleShape2D" id="CircleShape2D_rsqwb"]
+radius = 64.0
 
 [node name="toppings" type="Node2D"]
 script = ExtResource("1_75714")
@@ -16,7 +16,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(24, 2.5)
-shape = SubResource("RectangleShape2D_dvako")
+shape = SubResource("CircleShape2D_rsqwb")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_toppings_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_toppings_body_exited"]

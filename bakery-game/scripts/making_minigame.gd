@@ -37,6 +37,7 @@ const TWEEN_TIME := 0.1
 
 signal ingredient_clicked
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dough_type_meter_added = false
@@ -59,7 +60,8 @@ func _ready() -> void:
 		
 		await ingredient_clicked
 		ingredient_number += 1
-	
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Depending on which dough type player chooses, will hide the other one.
@@ -102,10 +104,12 @@ func _process(delta: float) -> void:
 	else:
 		bowl.texture = BOWL_ORIGINAL_TEXTURE
 
+
 # Function for adding ingredient chosen to ingredients array.
 func _choosing_ingredients(ingredient : String):
 	Global.chosen_ingredients[ingredient_number] = ingredient
 	ingredient_clicked.emit()
+
 
 # Tweens that change scale of ingredient when hovering and not hovering.
 func _hover_tween(ingredient):
@@ -113,17 +117,18 @@ func _hover_tween(ingredient):
 	const TWEEN_SCALE := Vector2(1.1,1.1)
 	tween.tween_property(ingredient, "scale", TWEEN_SCALE,TWEEN_TIME)
 
+
 func _not_hover_tween(ingredient):
 	var tween = create_tween()
 	const ORIGINAL_SCALE := Vector2(1,1)
 	tween.tween_property(ingredient, "scale", ORIGINAL_SCALE,TWEEN_TIME)
-	
 
 
 # Functions for when player is hovering and not hovering over specific ingredients.
 func _on_cake_essence_mouse_entered() -> void:
 	can_click_cake = true
 	_hover_tween(cake)
+
 
 func _on_cake_essence_mouse_exited() -> void:
 	can_click_cake = false
@@ -143,6 +148,7 @@ func _on_strawberry_mouse_entered() -> void:
 	can_click_strawberry = true
 	_hover_tween(strawberry)
 
+
 func _on_strawberry_mouse_exited() -> void:
 	can_click_strawberry = false
 	_not_hover_tween(strawberry)
@@ -151,6 +157,7 @@ func _on_strawberry_mouse_exited() -> void:
 func _on_lemon_mouse_entered() -> void:
 	can_click_lemon = true
 	_hover_tween(lemon)
+
 
 func _on_lemon_mouse_exited() -> void:
 	can_click_lemon = false
@@ -161,6 +168,7 @@ func _on_vanilla_mouse_entered() -> void:
 	can_click_vanilla = true
 	_hover_tween(vanilla)
 
+
 func _on_vanilla_mouse_exited() -> void:
 	can_click_vanilla = false 
 	_not_hover_tween(vanilla)
@@ -169,20 +177,23 @@ func _on_vanilla_mouse_exited() -> void:
 func _on_chocolate_mouse_entered() -> void:
 	can_click_chocolate = true
 	_hover_tween(chocolate)
-	
+
+
 func _on_chocolate_mouse_exited() -> void:
 	can_click_chocolate = false
 	_not_hover_tween(chocolate)
+
 
 # When player presses done.
 func _on_done_button_pressed() -> void:
 	if Global.dough_formed:
 		const PERFECT_ORDER_KEY = "perfect_order"
+		const DOUGH_TYPE_KEY := "dough type"
 		var current_customer = Global.customers[Global.customer_number]
 		var order_dictionary = Global.customer_dictionaries[current_customer][PERFECT_ORDER_KEY]
 		
 		# Checks if dough is what customer wanted, and adds order meter score accordingly
-		if Global.chosen_ingredients[DOUGH_TYPE_INDEX] == order_dictionary[Global.dough_type] and not dough_type_meter_added:
+		if Global.chosen_ingredients[DOUGH_TYPE_INDEX] == order_dictionary[DOUGH_TYPE_KEY] and not dough_type_meter_added:
 			const GOOD_ORDER_SCORE := 15
 			Global.order_meter += GOOD_ORDER_SCORE
 			dough_type_meter_added = true
