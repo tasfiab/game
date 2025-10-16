@@ -1,5 +1,7 @@
 extends Node2D
 
+signal ingredient_clicked
+
 @export var strawberry : TextureRect
 @export var lemon : TextureRect
 @export var chocolate : TextureRect
@@ -17,11 +19,13 @@ var can_click_chocolate : bool = false
 
 var dough_type_meter_added := false
 
-var ingredient_number := 0
+var ingredient_number : int = 0
 
-const DOUGH_TYPE_INDEX := 0
-const FLAVOUR_INDEX := 1
-const FLAVOUR_2_INDEX = 2
+const DOUGH_TYPE_INDEX : int = 0
+const FLAVOUR_INDEX : int = 1
+const FLAVOUR_2_INDEX : int = 2
+
+const INTERACT_BIND := "interact"
 
 const CAKE := 'cake'
 const BREAD := 'bread'
@@ -33,17 +37,15 @@ const STRAWBERRY := 'strawberry'
 const BOWL_ORIGINAL_TEXTURE := preload("res://assets/mixing_bowl.webp")
 
 const EMPTY_STRING := ""
-const TWEEN_TIME := 0.1
-
-signal ingredient_clicked
+const TWEEN_TIME : float = 0.1
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	dough_type_meter_added = false
+	
 	# Hides ingredients according to which ingredient tyoe is currently being chosen.
 	for ingredient in Global.chosen_ingredients:
-		Global.ingredient_chosen = false
 		if ingredient_number == DOUGH_TYPE_INDEX:
 			strawberry.hide()
 			lemon.hide()
@@ -70,12 +72,13 @@ func _process(delta: float) -> void:
 	elif Global.chosen_ingredients[DOUGH_TYPE_INDEX] == CAKE:
 		bread.hide()
 	
+	# While no dough type is chosen, both dough types are shown.
 	else:
 		cake.show()
 		bread.show()
 	
 	# When player interacts with ingredients, stores them in chosen ingredients list.
-	if Input.is_action_just_pressed("interact") and Global.chosen_ingredients.has(EMPTY_STRING):
+	if Input.is_action_just_pressed(INTERACT_BIND) and Global.chosen_ingredients.has(EMPTY_STRING):
 		if can_click_cake:
 			_choosing_ingredients(CAKE)
 			
@@ -98,9 +101,10 @@ func _process(delta: float) -> void:
 # Checks if all chosen_ingredients have been chosen.
 # Looks at dough dictionary and finds what dough is formed from the chosen ingredients.
 	if not Global.chosen_ingredients.has(EMPTY_STRING):
-		var dough_formed = Global.doughs[Global.chosen_ingredients]
-		Global.dough_formed = true
-		bowl.texture = (Global.dough_sprites[dough_formed])
+		var dough = Global.doughs[Global.chosen_ingredients]
+		bowl.texture = (Global.dough_sprites[dough]) # Sets bowl texture to dough texture.
+	
+	# Keeps bowl texture original, empty texture unless all ingredients are chosen.
 	else:
 		bowl.texture = BOWL_ORIGINAL_TEXTURE
 
@@ -111,93 +115,114 @@ func _choosing_ingredients(ingredient : String):
 	ingredient_clicked.emit()
 
 
-# Tweens that change scale of ingredient when hovering and not hovering.
+# Function for tween that changes scale of ingredient when hovering over it.
 func _hover_tween(ingredient):
-	var tween = create_tween()
+	var ingredient_tween = create_tween()
 	const TWEEN_SCALE := Vector2(1.1,1.1)
-	tween.tween_property(ingredient, "scale", TWEEN_SCALE,TWEEN_TIME)
+	ingredient_tween.tween_property(ingredient, "scale", TWEEN_SCALE,TWEEN_TIME)
 
-
+# Function for tween that changes scale of ingredient when not hovering over it.
 func _not_hover_tween(ingredient):
-	var tween = create_tween()
+	var ingredient_tween = create_tween()
 	const ORIGINAL_SCALE := Vector2(1,1)
-	tween.tween_property(ingredient, "scale", ORIGINAL_SCALE,TWEEN_TIME)
+	ingredient_tween.tween_property(ingredient, "scale", ORIGINAL_SCALE,TWEEN_TIME)
 
 
-# Functions for when player is hovering and not hovering over specific ingredients.
+# Allows player to select ingredient 'cake' when hovering over it.
 func _on_cake_essence_mouse_entered() -> void:
 	can_click_cake = true
 	_hover_tween(cake)
 
 
+# Stops allowing player to select ingredient 'cake' when no longer hovering over it.
 func _on_cake_essence_mouse_exited() -> void:
 	can_click_cake = false
 	_not_hover_tween(cake)
 
 
+# Allows player to select ingredient 'bread' when hovering over it.
 func _on_bread_essence_mouse_entered() -> void:
 	can_click_bread = true
 	_hover_tween(bread)
 
+
+# Stops allowing player to select ingredient 'bread' when no longer hovering over it.
 func _on_bread_essence_mouse_exited() -> void:
 	can_click_bread = false
 	_not_hover_tween(bread)
 
 
+# Allows player to select ingredient 'strawberry' when hovering over it.
 func _on_strawberry_mouse_entered() -> void:
 	can_click_strawberry = true
 	_hover_tween(strawberry)
 
 
+# Stops allowing player to select ingredient 'strawberry' when no longer hovering over it.
 func _on_strawberry_mouse_exited() -> void:
 	can_click_strawberry = false
 	_not_hover_tween(strawberry)
 
 
+# Allows player to select ingredient 'lemon' when hovering over it.
 func _on_lemon_mouse_entered() -> void:
 	can_click_lemon = true
 	_hover_tween(lemon)
 
 
+# Stops allowing player to select ingredient 'lemon' when no longer hovering over it.
 func _on_lemon_mouse_exited() -> void:
 	can_click_lemon = false
 	_not_hover_tween(lemon)
 
 
+# Allows player to select ingredient 'vanilla' when hovering over it.
 func _on_vanilla_mouse_entered() -> void:
 	can_click_vanilla = true
 	_hover_tween(vanilla)
 
 
+# Stops allowing player to select ingredient 'vanilla' when no longer hovering over it.
 func _on_vanilla_mouse_exited() -> void:
 	can_click_vanilla = false 
 	_not_hover_tween(vanilla)
 
 
+# Allows player to select ingredient 'chocolate' when hovering over it.
 func _on_chocolate_mouse_entered() -> void:
 	can_click_chocolate = true
 	_hover_tween(chocolate)
 
 
+# Stops allowing player to select ingredient 'chocolate' when no longer hovering over it.
 func _on_chocolate_mouse_exited() -> void:
 	can_click_chocolate = false
 	_not_hover_tween(chocolate)
 
 
-# When player presses done.
+# Function for when player presses done button.
 func _on_done_button_pressed() -> void:
-	if Global.dough_formed:
-		const PERFECT_ORDER_KEY = "perfect_order"
+	# If all ingredients have been chosen, adds order points if earned and closes minigame.
+	if not Global.chosen_ingredients.has(""):
+		const PERFECT_ORDER_KEY := "perfect_order"
 		const DOUGH_TYPE_KEY := "dough type"
+		
+		# Sets current customer and order dictionary to current customer's order dictionary.
 		var current_customer = Global.customers[Global.customer_number]
 		var order_dictionary = Global.customer_dictionaries[current_customer][PERFECT_ORDER_KEY]
 		
-		# Checks if dough is what customer wanted, and adds order meter score accordingly
-		if Global.chosen_ingredients[DOUGH_TYPE_INDEX] == order_dictionary[DOUGH_TYPE_KEY] and not dough_type_meter_added:
-			const GOOD_ORDER_SCORE := 15
+		# Checks if dough is what customer wanted, and adds order meter score accordingly.
+		if (
+			Global.chosen_ingredients[DOUGH_TYPE_INDEX] == order_dictionary[DOUGH_TYPE_KEY]
+			and not dough_type_meter_added
+		):
+			const GOOD_ORDER_SCORE : int = 15
 			Global.order_meter += GOOD_ORDER_SCORE
+			print("dough right" + str(Global.order_meter))
 			dough_type_meter_added = true
-
-		ingredient_number = 0
+			
+		ingredient_number = 0 # Resets item number.
+		
+		# Adds dough to item list, so later correct item sprite can be found in item sprites dict.
 		Global.order_item.append(Global.doughs[Global.chosen_ingredients])
 		Global.making_done = true # Allows minigame to change.

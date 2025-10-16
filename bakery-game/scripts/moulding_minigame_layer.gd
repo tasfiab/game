@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-var moulding_scene = preload("res://scenes/moulding_minigame_3.tscn")
 var done : bool = false
 
 
@@ -11,16 +10,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# Shows and starts minigame for player when player has pressed done for making minigame.
+	# Allows game to start when player presses done in making minigame.
 	if Global.making_done and not Global.moulding_done:
-		show()
+		show() # Shows minigame.
 		done = false
 	
-	# Deletes instance of minigame scene and creates new instance to reset scene to original state when player is done moulding.
+	# When dough is finished being moulded, closes out of moulding minigame and resets minigame.
 	if Global.moulding_done and not done:
 		hide()
-		Global.can_move = true
-		get_child(0).queue_free()
-		var instance = moulding_scene.instantiate()
+		Global.can_move = true # Allows movement after minigame.
+		get_child(0).queue_free() # Deletes current minigame node.
+		
+		# Adds instance of minigame node to reset minigame to original state.
+		const MOULDING_SCENE := preload("res://scenes/moulding_minigame_3.tscn")
+		var instance := MOULDING_SCENE.instantiate()
 		add_child(instance)
-		done = true
+		done = true # Stops code from continuing to process.

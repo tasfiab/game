@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpjb2kjctka7x"]
+[gd_scene load_steps=11 format=3 uid="uid://cpjb2kjctka7x"]
 
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_06rtm"]
-[ext_resource type="Texture2D" uid="uid://g1235ohp1bg3" path="res://assets/Screenshot 2025-06-14 175315.png" id="2_3770e"]
+[ext_resource type="Texture2D" uid="uid://g1235ohp1bg3" path="res://assets/money_sprite.png" id="2_3770e"]
 [ext_resource type="Script" uid="uid://d0r20h5moyyrx" path="res://scripts/main_ui.gd" id="2_bpswa"]
-[ext_resource type="Texture2D" uid="uid://byeb3fh0nbpcy" path="res://assets/Screenshot 2025-08-16 172140.png" id="4_fua08"]
+[ext_resource type="Texture2D" uid="uid://byeb3fh0nbpcy" path="res://assets/pause_button.png" id="4_fua08"]
+[ext_resource type="Texture2D" uid="uid://oq57t7qoenaj" path="res://assets/pause_button_hover.png" id="5_kkne6"]
 [ext_resource type="Texture2D" uid="uid://bjlyisylrwpif" path="res://assets/order_UI.webp" id="5_lyfc8"]
 [ext_resource type="PackedScene" uid="uid://ekuyfmtny4bk" path="res://scenes/pause_menu.tscn" id="6_bvc5a"]
 [ext_resource type="PackedScene" uid="uid://dghndeojp8cos" path="res://scenes/options_menu.tscn" id="7_ofqra"]
@@ -204,6 +205,7 @@ offset_right = 333.0
 offset_bottom = 309.0
 scale = Vector2(0.143907, 0.143907)
 texture_normal = ExtResource("4_fua08")
+texture_hover = ExtResource("5_kkne6")
 ignore_texture_size = true
 
 [node name="order_ui" type="TextureRect" parent="."]

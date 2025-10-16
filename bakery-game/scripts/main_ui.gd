@@ -16,21 +16,24 @@ extends Control
 @export var clock_minutes : Label
 @export var a_m_text : Label
 
+const INTERACT_BIND := "interact"
+
 const PM : String = "pm"
 const HOUR_END : int = 60
 const DAY_START_TIME : int = 9
 const DAY_END_TIME : int = 5
-const NOON :=  12
-const ONE_PM := 13
+const NOON : int =  12
+const ONE_PM : int = 13
 
 const EMPTY_STRING : String = ""
 
-const TWEEN_TIME := 0.1
+const TWEEN_TIME : float = 0.1
 
 var can_check_order : bool = false
 
 var order_hidden : bool = true
 
+# Variables for time.
 var minutes: int = 0
 var hours: int = 9
 
@@ -41,31 +44,33 @@ func _ready() -> void:
 	day.text = str(Global.current_day) 
 	money_text.text = str(Global.day_money) 
 	
+	# Hides menu layers.
 	pause_layer.hide()
 	order_check_layer.hide()
+	
 	clock_timer.start() # Starts timer for clock.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Shows the order UI when it is clicked on.
-	if can_check_order and Input.is_action_just_pressed("interact"):
+	if can_check_order and Input.is_action_just_pressed(INTERACT_BIND):
 			if order_hidden:
 				order_check_layer.show()
 				Global.can_move = false
 				order_hidden = false
 	
 	# Closes order UI when player clicks out of it.
-	elif not order_hidden and Input.is_action_just_pressed("interact"):
+	elif not order_hidden and Input.is_action_just_pressed(INTERACT_BIND):
 			order_check_layer.hide()
 			Global.can_move = true
 			order_hidden = true
 	
-	# Starts a new day by changing time back to 9:00am.
+	# Starts a new day by changing time back to 9:00am and day to new current day.
 	if Global.new_day:
 		hours = DAY_START_TIME
 		clock_hours.text = str(hours)
-		clock_timer.start()
+		clock_timer.start() # Starts timer for clock.
 		day.text = str(Global.current_day)
 		Global.new_day = false
 	
@@ -78,50 +83,51 @@ func _process(delta: float) -> void:
 	else: 
 		order_ui_text.text = EMPTY_STRING
 	
-	# Adds money when money is given by customer.
-	if Global.money_given:
+	# Adds money when order is given to customer.
+	if Global.give_money:
 		Global.money += round(Global.order_meter/3.3)
 		money_text.text = str(Global.money)
-		Global.money_given = false
+		Global.give_money = false
 
 
-# Func to pause game.
-func pause():
-	get_tree().paused = true
-	pause_layer.show() # Shows pause menu.
+# Pauses game when pause button is pressed
+func _on_pause_button_pressed() -> void:
+	_pause()
 
 
-# Every time clock timer runs out, in game clock goes up by 15 mins.
+# Function to pause game when required.
+func _pause():
+	if Global.can_pause:
+		get_tree().paused = true
+		pause_layer.show() # Shows pause menu.
+
+
+# Makes in game clock go up by 15 mins every time clock timer runs out.
 func _on_timeout() -> void:
 	minutes += 15
 	clock_minutes.text = str(minutes)
 	clock_timer.start()
 	
-	# Changes minutes to 0 and adds 1 hour when 60 minutes pass
+	# Changes minutes to 0 and adds 1 hour when 60 minutes pass.
 	if minutes == HOUR_END:
 		minutes = 0
 		hours += 1
 		clock_minutes.text = str(minutes) + str(minutes)
 		clock_hours.text = str(hours)
 	
-	# Changes AM text to PM when it is 12:00
+	# Changes AM text to PM when it is 12:00.
 	if hours == NOON:
 		a_m_text.text = PM
 	
-	# Changes time to 1:00 rather than 13:00 when at 13 hours
+	# Changes time to 1:00 rather than 13:00 when at 13 hours.
 	if hours == ONE_PM:
 		hours = 1
 		clock_hours.text = str(hours)
 		
-	# Stops clock when end of day
+	# Stops clock when its the end of the day.
 	if hours == DAY_END_TIME:
 		clock_timer.stop()
 		Global.day_end = true
-
-
-# Pauses game when pause button is pressed
-func _on_pause_button_pressed() -> void:
-	pause()
 
 
 # When order UI is hovered over, allows order to be checked
@@ -138,7 +144,7 @@ func _on_order_ui_mouse_exited() -> void:
 	_order_tween(ORIGINAL_SCALE)
 
 
-# Func for tweening order UI.
+# Function for tweening order UI.
 func _order_tween(scale_value):
 	var tween := create_tween()
 	tween.tween_property(order_ui, "scale", scale_value, TWEEN_TIME)

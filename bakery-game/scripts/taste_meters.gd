@@ -27,70 +27,81 @@ var has_graded_taste : bool = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Adds taste to taste meter when dough type is chosen.
-	if Global.chosen_ingredients[DOUGH_TYPE_INDEX] != EMPTY_STRING and not Global.dough_taste_added:
-		add_taste(Global.chosen_ingredients[DOUGH_TYPE_INDEX])
+	if (
+		not Global.chosen_ingredients[DOUGH_TYPE_INDEX] == EMPTY_STRING
+		and not Global.dough_taste_added
+	):
+		_add_taste(Global.chosen_ingredients[DOUGH_TYPE_INDEX])
 		Global.dough_taste_added = true
 	
 	# Adds taste to taste meter when flavour is chosen.
-	if Global.chosen_ingredients[FLAVOUR_INDEX] != EMPTY_STRING and not Global.flavour_taste_added:
-		add_taste(Global.chosen_ingredients[FLAVOUR_INDEX])
+	if (
+		not Global.chosen_ingredients[FLAVOUR_INDEX] == EMPTY_STRING
+		and not Global.flavour_taste_added
+	):
+		_add_taste(Global.chosen_ingredients[FLAVOUR_INDEX])
 		Global.flavour_taste_added = true
 	
 	# Adds taste to taste meter when flavour 2 is chosen.
-	if Global.chosen_ingredients[FLAVOUR_2_INDEX] != EMPTY_STRING and not Global.flavour_2_taste_added:
-		add_taste(Global.chosen_ingredients[FLAVOUR_2_INDEX])
+	if (
+		not Global.chosen_ingredients[FLAVOUR_2_INDEX] == EMPTY_STRING
+		and not Global.flavour_2_taste_added
+	):
+		_add_taste(Global.chosen_ingredients[FLAVOUR_2_INDEX])
 		Global.flavour_2_taste_added = true
 	
-	# Once all ingredients chosen, grades taste.
-	if not Global.chosen_ingredients.has(EMPTY_STRING) and not has_graded_taste and not Global.making_done:
-		grade_taste(SWEETNESS_KEY, sweetness)
-		grade_taste(BITTERNESS_KEY, bitterness)
+	# Once all ingredients chosen, taste is graded.
+	if (
+		not Global.chosen_ingredients.has(EMPTY_STRING) and not has_graded_taste 
+		and not Global.making_done
+	):
+		_grade_taste(SWEETNESS_KEY, sweetness)
+		_grade_taste(BITTERNESS_KEY, bitterness)
 		
-		# Resets taste meters values.
+		# Resets taste meters values as taste has already been graded.
 		sweetness = TASTE_RESET
 		bitterness =  TASTE_RESET
 		has_graded_taste = true
 
 
 # Function for adding taste to taste meter.
-func add_taste(ingredient):
+func _add_taste(ingredient):
 	var taste_dictionary = (Global.ingredients[ingredient])
 	
+	# Checks that ingredient has a sweetness, and adds sweetness accordingly.
 	if taste_dictionary.has(SWEETNESS_KEY):
 		sweetness += (taste_dictionary[SWEETNESS_KEY])
 		sweet_UI.value = sweetness
 	
+	# Checks that ingredient has a bitterness, and adds bitterness accordingly.
 	if taste_dictionary.has(BITTERNESS_KEY):
 		bitterness += (taste_dictionary[BITTERNESS_KEY])
 		bitter_UI.value = bitterness
 
-#func add_taste(ingredient : String, key : String, value: int, UI : TextureProgressBar ):
-	#var taste_dictionary = Global.ingredients[ingredient]
-	#if taste_dictionary.has(key):
-		#value += taste_dictionary[key]
-		#UI.value = value
 
-
-# Function for grading taste in comparison to perfect order dictionary.
-func grade_taste(taste_key : String, taste_value : int):
+# Function for grading taste in comparison to order dictionary and adding ponts accordingly.
+func _grade_taste(taste_key : String, taste_value : int):
 		const PERFECT_ORDER_KEY = "perfect_order"
 		const OK_TASTE : int = 2
+		
+		# Sets current customer and order dictionary to current customer's order dictionary.
 		var current_customer = Global.customers[Global.customer_number]
 		var order_dictionary = Global.customer_dictionaries[current_customer][PERFECT_ORDER_KEY]
 		
-		# When taste matches order dictionary taste perfectly.
+		# Adds max amount of order points when taste matches order dictionary taste perfectly.
 		if order_dictionary[taste_key] == taste_value:
 			const PERFECT_ORDER_POINTS : int = 15
 			Global.order_meter += PERFECT_ORDER_POINTS
+			print(str(Global.order_meter))
 		
-		# When taste is one away from matching order taste.
+		# Adds a good amount of order points when taste is one away from matching order taste.
 		elif abs(order_dictionary[taste_key] - taste_value) == 1:
 			const GOOD_ORDER_POINTS : int = 10
 			Global.order_meter += GOOD_ORDER_POINTS
+			print(str(Global.order_meter))
 		
-		# When taste is two away from matching order taste.
+		# Adds an ok amount of order points when taste is two away from matching order taste.
 		elif abs(order_dictionary[taste_key] - taste_value) == OK_TASTE:
 			const OK_ORDER_POINTS : int = 5
 			Global.order_meter += OK_ORDER_POINTS
-		
-		print(Global.order_meter)
+			print(str(Global.order_meter))

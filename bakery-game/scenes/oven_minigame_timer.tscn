@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cjv5t34wg3tgu"]
 
 [ext_resource type="Texture2D" uid="uid://r0omxl2a1d0b" path="res://assets/timer.png" id="1_80vfc"]
-[ext_resource type="Script" uid="uid://ckrro71vlihhc" path="res://scripts/oven_minigame_timer.gd" id="1_mgwfo"]
+[ext_resource type="Script" uid="uid://ckrro71vlihhc" path="res://scripts/oven_minigame.gd" id="1_mgwfo"]
 [ext_resource type="Texture2D" uid="uid://b4a5vrtdnkkrl" path="res://assets/oven_timer_hand.png" id="2_fi1ww"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmp82"]

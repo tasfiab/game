@@ -9,6 +9,11 @@ func _ready() -> void:
 	pause_layer.hide()
 
 
+func _process(delta: float) -> void:
+	if not Global.can_pause:
+		pause_layer.hide()
+
+
 # Unpauses game when resume pressed.
 func _on_resume_pressed() -> void:
 	get_tree().paused = false

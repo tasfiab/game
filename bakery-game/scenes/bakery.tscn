@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://cjtlcuurdn1cn"]
+[gd_scene load_steps=38 format=4 uid="uid://cjtlcuurdn1cn"]
 
 [ext_resource type="PackedScene" uid="uid://cqkg4npx07h4r" path="res://scenes/player.tscn" id="1_6ihva"]
 [ext_resource type="Texture2D" uid="uid://obrss4ocnl6v" path="res://assets/bakery-ground.png" id="1_fbhfb"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://d024j3spm172w" path="res://assets/big_bush.png" id="4_5ksgq"]
 [ext_resource type="PackedScene" uid="uid://bcjsbq03qg6hf" path="res://scenes/mixing_minigame.tscn" id="5_6iv2m"]
 [ext_resource type="Script" uid="uid://bw172gt2w2s0j" path="res://scripts/making_minigame_layer.gd" id="5_8sudi"]
-[ext_resource type="PackedScene" uid="uid://dkbtlsunhxb7e" path="res://scenes/dough.tscn" id="7_3ce2t"]
 [ext_resource type="Script" uid="uid://cpigwxhcyk1py" path="res://scripts/moulding_minigame_layer.gd" id="7_a50nq"]
 [ext_resource type="PackedScene" uid="uid://0ighbmgxmvjl" path="res://scenes/oven_minigame.tscn" id="7_mlmmp"]
 [ext_resource type="PackedScene" uid="uid://8wyi6cp31ldu" path="res://scenes/moulding_minigame_3.tscn" id="8_ccsg4"]
@@ -8720,7 +8719,7 @@ size = Vector2(32, 121.118)
 size = Vector2(38.2329, 15.269)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxvuc"]
-size = Vector2(147, 11)
+size = Vector2(147, 1.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heuxh"]
 size = Vector2(856, 38)
@@ -8776,12 +8775,11 @@ texture = ExtResource("4_5ksgq")
 offset = Vector2(0, -75)
 flip_h = true
 
-[node name="player" parent="objects" node_paths=PackedStringArray("bread_hamster", "order", "day_end", "player_camera", "main_room", "kitchen", "background_music", "day_end_music", "cash_register_sound", "door_sound", "bin_sound") instance=ExtResource("1_6ihva")]
+[node name="player" parent="objects" node_paths=PackedStringArray("bread_hamster", "day_end", "player_camera", "main_room", "kitchen", "background_music", "day_end_music", "cash_register_sound", "door_sound", "bin_sound") instance=ExtResource("1_6ihva")]
 y_sort_enabled = true
 position = Vector2(570, 210)
 scale = Vector2(2.81682, 2.81682)
 bread_hamster = NodePath("../../bread_hamster")
-order = NodePath("order")
 day_end = NodePath("day_end")
 player_camera = NodePath("../../Camera2D")
 main_room = NodePath("../../Marker2D")
@@ -8810,9 +8808,6 @@ visible = false
 script = ExtResource("10_4ka4t")
 
 [node name="toppings_minigame" parent="objects/player/toppings_layer" instance=ExtResource("9_ol8kj")]
-
-[node name="order" parent="objects/player" instance=ExtResource("7_3ce2t")]
-position = Vector2(0, -77)
 
 [node name="day_end" type="CanvasLayer" parent="objects/player"]
 visible = false
@@ -8855,12 +8850,12 @@ scale = Vector2(3.4375, 3.01563)
 
 [node name="Sprite2D" type="Sprite2D" parent="objects/bin"]
 y_sort_enabled = true
-position = Vector2(0, -71.6269)
-scale = Vector2(1.11588, 1.1857)
+position = Vector2(0, -71.62689)
+scale = Vector2(1.11588, 1.1856999)
 texture = ExtResource("22_03bnb")
 
 [node name="Area2D" type="Area2D" parent="objects/bin"]
-position = Vector2(-4.94545, -76.9326)
+position = Vector2(-4.94545, -76.932594)
 rotation = -1.56292
 scale = Vector2(1.09309, 0.933809)
 metadata/bin = true
@@ -8975,7 +8970,7 @@ shape = SubResource("RectangleShape2D_mxvuc")
 position = Vector2(507, -49)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(62.5, 11)
+position = Vector2(62.5, 6.25)
 shape = SubResource("RectangleShape2D_mxvuc")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]

@@ -1,68 +1,73 @@
 extends Node
 
-signal tutorial
-signal next_day
+signal tutorial_given # Signal that tutorial has been given.
+signal next_day # Signal that it is the next day.
 
 var tutorial_box_number : int = 0
 
 var customer_number : int = 0
 
+# Variables relating to the in-game day.
 var current_day : int = 1
 var day_end : bool = false
 var new_day : bool = false
 
-var day_money : int
+# Variables relating to players money.
 var money : int = 0
+var day_money : int = 0
 
+var can_move : bool = true # Allows/disables movement.
+var can_pause : bool = false # Allows/disables pausing.
 
-var can_move : bool = true
-
+# Variable that turns true when order begins.
 var order_start : bool = false
 
-var making_minigame_start : bool = false
-var oven_minigame_start : bool = false 
-var toppings_minigame_start : bool = false
+# Variables that turn true when minigame can be started.
+var can_start_making : bool = false
+var can_start_oven : bool = false 
+var can_start_toppings : bool = false
 
+# Variables for ingredients.
 var dough_type : String
 var flavour : String
 var flavour_2 : String
 var shape : String
 
-var ingredient_chosen : bool = false
-
+# Variables checking if specific tastes have been added.
 var dough_taste_added : bool 
 var flavour_taste_added : bool
 var flavour_2_taste_added : bool
 
-
+# Variables checking if specific ingredients have been added.
 var dough_chosen : bool = false
 var flavour_chosen : bool = false
 var flavour_2_chosen : bool = false
 
-var topping_number : int = 0
-var is_dragging : bool = false
-var max_toppings : bool = false
-
-var dough_formed : bool = false
-
+# Variables to check if minigame is complete.
 var making_done: bool = false
 var moulding_done: bool = false
 var baking_done : bool = false
 var toppings_done : bool = false
 
-var money_given : bool = false
+# Variables in topping minigame that need to be global.
+var topping_number : int = 0
+var is_dragging : bool = false
+var max_toppings : bool = false
 
+# Variable for when customer gives money.
+var give_money : bool = false
+
+# Variable that turns true when order is finished being made.
 var order_done : bool = false
 
-var in_topping_minigame := false
-
+# Variable storing order meter that keeps track of order points to accurately grade players item.
 var order_meter : int = 0
 
-# Array for all customers
+# List of all customers
 var customers = ['Birthday girl', 'Cat', 'Witch', 'Old lady', 'Edgy guy', 'Pink cake girl',
  				'Lemon guy', 'Villager', 'Strange man', 'Water girl', 'Old Man', 'Witch 2']
 
-# Dictionary storing all information to do with customers
+# Dictionary storing all information to do with customers.
 var customer_dictionaries = {
 	customers[0] : {
 		'customer_dialogue' : load("res://addons/dialogue_manager/dialogue_scripts/birthday_girl.dialogue"),
@@ -235,7 +240,7 @@ var customer_dictionaries = {
 }
 
 
-# Dictionary for ingredient combinations and their results
+# Dictionary for ingredient combinations and their results.
 var doughs = {
 	['bread','bread','bread'] : 'basic dough',
 	
@@ -277,6 +282,7 @@ var doughs = {
 
 	}
 
+# Dictionary for dough sprites.
 var dough_sprites = {
 	
 	'basic dough': preload("res://assets/dough_plain.webp"),
@@ -317,6 +323,7 @@ var dough_sprites = {
 	'strange cake dough' : preload("res://assets/batter_lemon.webp"),
 }
 
+# Dictionary for sprites of dough and shape combination.
 var item_sprites = {
 	
 	['basic dough', 'loaf']: preload("res://assets/plain_loaf.webp"),
@@ -397,6 +404,7 @@ var item_sprites = {
 	
 }
 
+# Dictionary storing ingredients and their tastes.
 var ingredients = {
 	'bread' : {
 	},
@@ -419,6 +427,8 @@ var ingredients = {
 	},
 }
 
-
+# List of chosen ingredients in making minigame.
 var chosen_ingredients = [dough_type, flavour, flavour_2]
+
+# List to store dough and shape to make order item.
 var order_item = []

@@ -1,10 +1,7 @@
 extends CanvasLayer
 
-var minigame_scene = preload("res://scenes/mixing_minigame.tscn")
-
+const INTERACT_BIND := "interact"
 var done : bool = false
-
-const SCENE_INDEX :int = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,17 +11,20 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# Shows and starts minigame to player when player has interacted with making minigame counter.
-	if Global.making_minigame_start and Global.order_start and not Global.making_done:
-		if Input.is_action_just_pressed("interact"):
+	# Allows game to start when player interacts with making counter after getting order.
+	if Global.can_start_making and Global.order_start and not Global.making_done:
+		if Input.is_action_just_pressed(INTERACT_BIND):
 			Global.can_move = false
-			show()
+			show() # Shows minigame.
 			done = false
 	
-	# Deletes instance of minigame scene and creates new instance to reset scene to original state when player is done making.
+	# When dough is finished being made, closes out of making minigame and resets minigame.
 	if Global.making_done and not done:
 		hide()
-		get_child(SCENE_INDEX).queue_free()
-		var scene_instance = minigame_scene.instantiate() 
+		get_child(0).queue_free() # Deletes current minigame node.
+		
+		# Adds instance of minigame node to reset minigame to original state.
+		const MINIGAME_SCENE := preload("res://scenes/mixing_minigame.tscn")
+		var scene_instance := MINIGAME_SCENE.instantiate() 
 		add_child(scene_instance)
-		done = true
+		done = true # Stops code from continuing to process.

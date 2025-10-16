@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dghndeojp8cos"]
 
-[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_0wfd5"]
+[ext_resource type="Script" uid="uid://bq3cf0cuyxom1" path="res://scripts/options_menu.gd" id="1_0wfd5"]
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_7ksab"]
 [ext_resource type="PackedScene" uid="uid://djpcanwsgf6nc" path="res://scenes/volume_slider.tscn" id="2_66372"]
 
@@ -40,18 +40,6 @@ corner_radius_bottom_left = 25
 default_font = ExtResource("1_7ksab")
 default_font_size = 40
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6515o"]
-bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(1, 0.67451, 0.372549, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjc2n"]
 bg_color = Color(1, 0.67451, 0.372549, 1)
 border_width_left = 10
@@ -59,6 +47,18 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6515o"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -220,7 +220,7 @@ scale = Vector2(0.05, 0.05)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
 theme_override_fonts/font = ExtResource("1_7ksab")
 theme_override_font_sizes/font_size = 800
-text = "interact: left click/enter"
+text = "interact: left click"
 horizontal_alignment = 1
 
 [node name="HSlider" parent="." instance=ExtResource("2_66372")]
@@ -246,15 +246,15 @@ offset_top = 533.0
 offset_right = 724.0
 offset_bottom = 625.0
 theme = SubResource("Theme_22uti")
-theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
-theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_6515o")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6515o")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6515o")
-theme_override_styles/hover = SubResource("StyleBoxFlat_6515o")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xjc2n")
+theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_xjc2n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xjc2n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6515o")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_6515o")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_6515o")
+theme_override_styles/focus = SubResource("StyleBoxFlat_6515o")
 text = "back
 "
 metadata/_edit_use_anchors_ = true

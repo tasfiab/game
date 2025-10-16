@@ -79,13 +79,11 @@ rating_panel = NodePath("../Panel")
 metadata/_edit_use_anchors_ = true
 
 [node name="oven-area" parent="." instance=ExtResource("2_07byb")]
-visible = false
 position = Vector2(1, 8)
 scale = Vector2(3.04, -0.919999)
 metadata/oven = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 position = Vector2(1, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

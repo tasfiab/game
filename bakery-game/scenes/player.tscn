@@ -170,7 +170,7 @@ position = Vector2(0, 50)
 scale = Vector2(0.6688, 0.44)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_area"]
-position = Vector2(0.657895, -36)
+position = Vector2(0, -45.454544)
 scale = Vector2(5.20399, -5.56245)
 shape = SubResource("CircleShape2D_gu4j0")
 
