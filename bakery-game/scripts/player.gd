@@ -3,6 +3,21 @@ extends CharacterBody2D
 signal order_taken
 signal order_complete
 
+const SPEED := 300.0
+
+const DOWN_ANIMATION := "down"
+const UP_ANIMATION := "up"
+const LEFT_ANIMATION := "left"
+const RIGHT_ANIMATION := "right"
+
+const OVEN_META := "oven"
+const MAKING_AREA_META := "making_area"
+const TOPPINGS_META := "toppings"
+const MAIN_COUNTER_META := "main_counter"
+const BIN_META := "bin"
+
+const CAMERA_TWEEN_TIME : float = 0.75
+
 @export var animations : AnimatedSprite2D
 @export var bread_hamster : AnimatedSprite2D
 
@@ -13,7 +28,6 @@ signal order_complete
 @export var player_camera : Camera2D
 @export var main_room : Marker2D
 @export var kitchen : Marker2D
-
 
 @export var background_music : AudioStreamPlayer2D
 @export var day_end_music : AudioStreamPlayer2D
@@ -26,7 +40,7 @@ signal order_complete
 var animation_direction : String
 
 # Variables storing dialogue used in game.
-# Won't put these variables lower in script as they are too long.
+# Won't put these variables closer to when they are used in script as they are too long.
 var intro_dialogue := load("res://addons/dialogue_manager/dialogue_scripts/bread_hamster.dialogue")
 var great_reaction := load("res://addons/dialogue_manager/dialogue_scripts/great reaction.dialogue")
 var good_reaction := load("res://addons/dialogue_manager/dialogue_scripts/good_reaction.dialogue")
@@ -43,21 +57,6 @@ var order_received := false
 var order_completed := false
 
 var game_end := false
-
-const SPEED := 300.0
-
-const CAMERA_TWEEN_TIME : float = 0.75
-const DOWN_ANIMATION := "down"
-const UP_ANIMATION := "up"
-const LEFT_ANIMATION := "left"
-const RIGHT_ANIMATION := "right"
-
-const OVEN_META := "oven"
-const MAKING_AREA_META := "making_area"
-const TOPPINGS_META := "toppings"
-const MAIN_COUNTER_META := "main_counter"
-const BIN_META := "bin"
-	
 
 
 func _ready() -> void:
@@ -101,7 +100,7 @@ func _ready() -> void:
 		bread_hamster.play(DOWN_ANIMATION)
 		var tween : Tween = create_tween()
 		tween.tween_property(bread_hamster ,"global_position", 
-								HAMSTER_EXIT_POSITION, HAMSTER_SPEED)
+				HAMSTER_EXIT_POSITION, HAMSTER_SPEED)
 		Global.can_move = true # Allows movement as hamster leaves.
 		await tween.finished
 		
@@ -122,7 +121,8 @@ func _ready() -> void:
 			
 			# Gives customer the correct sprite.
 			const CUSTOMER_SPRITE_KEY = "customer_sprite"
-			var customer_scene : PackedScene = Global.customer_dictionaries[customer][CUSTOMER_SPRITE_KEY]
+			var customer_scene : PackedScene = (Global.customer_dictionaries[customer]
+					[CUSTOMER_SPRITE_KEY])
 			var customer_scene_instance := customer_scene.instantiate()
 			customer_sprite = customer_scene_instance
 			add_sibling(customer_sprite)
@@ -140,7 +140,7 @@ func _ready() -> void:
 			customer_sprite.play(UP_ANIMATION)
 			var up_tween : Tween = create_tween()
 			up_tween.tween_property(customer_sprite, "global_position", 
-										CUSTOMER_POSITION_2, CUSTOMER_SPEED)
+					CUSTOMER_POSITION_2, CUSTOMER_SPEED)
 			await up_tween.finished
 			
 			customer_sprite.stop()
@@ -153,8 +153,8 @@ func _ready() -> void:
 			
 			# Customer gives player their order after they interact with them.
 			const DIALOGUE_KEY := "customer_dialogue"
-			DialogueManager.show_dialogue_balloon(
-				Global.customer_dictionaries[customer][DIALOGUE_KEY])
+			DialogueManager.show_dialogue_balloon(Global.customer_dictionaries[customer]
+					[DIALOGUE_KEY])
 			Global.can_move = false # Stops movement during dialogue.
 			await DialogueManager.dialogue_ended
 			
@@ -208,7 +208,7 @@ func _ready() -> void:
 			customer_sprite.play(DOWN_ANIMATION)
 			var down_tween : Tween = create_tween()
 			down_tween.tween_property(customer_sprite, "global_position", 
-										CUSTOMER_SPAWN_POSITION, CUSTOMER_SPEED)
+					CUSTOMER_SPAWN_POSITION, CUSTOMER_SPEED)
 			await down_tween.finished
 			
 			customer_sprite.stop()
@@ -256,7 +256,7 @@ func _ready() -> void:
 				
 				var tween : Tween = create_tween()
 				tween.tween_property(bread_hamster ,"global_position", 
-										hamster_original_position, HAMSTER_SPEED)
+						hamster_original_position, HAMSTER_SPEED)
 				await tween.finished
 				
 				# Constant for amount of money required for good ending.
@@ -391,7 +391,7 @@ func _reset():
 
 
 # Function that allows player to interact with objects when they are in the objects area.
-func _on_minigame_entered(area: Area2D) -> void:
+func _on_interactable_area_entered(area: Area2D) -> void:
 	if area.has_meta(OVEN_META):
 		Global.can_start_oven = true
 	
@@ -409,7 +409,7 @@ func _on_minigame_entered(area: Area2D) -> void:
 
 
 # Function that stops allowing player to interact with object when player exits area.
-func _on_minigame_exited(area: Area2D) -> void:
+func _on_interactable_area_exited(area: Area2D) -> void:
 		if area.has_meta(OVEN_META):
 			Global.can_start_oven = false
 		
@@ -430,11 +430,11 @@ func _on_minigame_exited(area: Area2D) -> void:
 func _on_main_room_area_entered(_area: Area2D) -> void:
 	var tween : Tween = create_tween()
 	tween.tween_property(player_camera, "global_position", 
-							main_room.global_position, CAMERA_TWEEN_TIME)
+			main_room.global_position, CAMERA_TWEEN_TIME)
 
 
 # Moves camera to kitchen camera position when kitchen entered.
 func _on_room_2_entered(_area: Area2D) -> void:
 	var tween : Tween = create_tween()
 	tween.tween_property(player_camera, "global_position", 
-							kitchen.global_position, CAMERA_TWEEN_TIME)
+			kitchen.global_position, CAMERA_TWEEN_TIME)

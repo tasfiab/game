@@ -1,6 +1,10 @@
 extends Node2D
-@onready var choco_icing = $"../chocolate_icing"
-@onready var vanilla_icing = $"../vanilla_icing"
+
+const BEST_TOPPING_KEY := "best topping"
+const OK_TOPPING_KEY := "ok topping"
+
+const GOOD_ORDER_POINTS : int = 10
+const OK_ORDER_POINTS : int = 5
 
 @export var topping_marker : Marker2D
 @export var type : String
@@ -14,51 +18,39 @@ extends Node2D
 
 @export var toppings_counter : Label
 
-const MAX_TOPPINGS : int = 3
-
-const INTERACT_BIND := "interact"
-
-const BEST_TOPPING_KEY := "best topping"
-const OK_TOPPING_KEY := "ok topping"
-const PERFECT_DRDER_KEY := "perfect_order"
-
-const VANILLA_ICING := "vanilla_icing"
-const CHOCO_ICING := "choco_icing"
-
-const LOAF := 'loaf'
-const CROISSANT := 'croissant'
-const CIRCLE := 'circle'
-const SQUARE := 'square'
-
-const GOOD_ORDER_POINTS : int = 10
-const OK_ORDER_POINTS : int = 5
-
 var current_customer : String
 var order_dictionary : Dictionary
 
 var draggable: bool = false
 var in_baked_item : bool = false
 
-var offset : Vector2
+@onready var choco_icing = $"../chocolate_icing"
+@onready var vanilla_icing = $"../vanilla_icing"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Sets current customer and order dictionary to be accurate to current customer.
+	const PERFECT_ORDER_KEY := "perfect_order"
 	current_customer = Global.customers[Global.customer_number]
-	order_dictionary = Global.customer_dictionaries[current_customer][PERFECT_DRDER_KEY]
+	order_dictionary = Global.customer_dictionaries[current_customer][PERFECT_ORDER_KEY]
 	
 	# Makes item texture the same as what player has made to this point.
 	if Global.order_item.has(Global.shape):
 		item.texture = Global.item_sprites[Global.order_item]
 
 	# Allows player to click on and drag toppings to item.
+	const MAX_TOPPINGS : int = 3
 	if draggable and not Global.topping_number == MAX_TOPPINGS:
+		const INTERACT_BIND := "interact"
+		
+		# Makes topping follow mouse when pressed.
 		if Input.is_action_just_pressed(INTERACT_BIND):
+			var offset : Vector2
 			offset = get_global_mouse_position() - global_position 
 			Global.is_dragging = true
 		
-		# Makes topping follow mouse when dragged.
+		# Makes topping follow mouse while dragged.
 		if Input.is_action_pressed(INTERACT_BIND):
 			global_position = get_global_mouse_position()
 			
@@ -76,6 +68,13 @@ func _process(delta: float) -> void:
 				toppings_counter.text =  TOPPINGS + str(Global.topping_number) + TOPPINGS_COUNT_TEXT
 				
 				# Hides chocolate icing if vanilla icing added.
+				const VANILLA_ICING := "vanilla_icing"
+				const CHOCO_ICING := "choco_icing"
+				const SQUARE := "square"
+				const CIRCLE := "circle"
+				const LOAF := "loaf"
+				const CROISSANT := "croissant"
+				
 				if self.type == VANILLA_ICING:
 					choco_icing.hide()
 				
@@ -112,7 +111,7 @@ func _process(delta: float) -> void:
 				var tween = create_tween()
 				const TWEEN_TIME = 0.2
 				tween.tween_property(self, "global_position", topping_marker.global_position, 
-										TWEEN_TIME).set_ease(Tween.EASE_OUT)
+						TWEEN_TIME).set_ease(Tween.EASE_OUT)
 
 
 # Makes topping draggable when hovered over.

@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-const INTERACT_BIND := "interact"
 var done : bool = false
 
 
@@ -13,6 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Allows game to start when player interacts with making counter after getting order.
 	if Global.can_start_making and Global.order_start and not Global.making_done:
+		const INTERACT_BIND := "interact"
 		if Input.is_action_just_pressed(INTERACT_BIND):
 			Global.can_move = false
 			show() # Shows minigame.

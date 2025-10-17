@@ -8764,12 +8764,12 @@ tile_set = SubResource("TileSet_ip5ti")
 [node name="objects" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="BigBush" type="Sprite2D" parent="objects"]
+[node name="big_bush" type="Sprite2D" parent="objects"]
 position = Vector2(225, 677)
 texture = ExtResource("4_5ksgq")
 offset = Vector2(0, -75)
 
-[node name="BigBush2" type="Sprite2D" parent="objects"]
+[node name="big_bush_2" type="Sprite2D" parent="objects"]
 position = Vector2(911, 678)
 texture = ExtResource("4_5ksgq")
 offset = Vector2(0, -75)
@@ -8794,7 +8794,7 @@ bin_sound = NodePath("AudioStreamPlayer2D4")
 visible = false
 script = ExtResource("5_8sudi")
 
-[node name="mixing-minigame" parent="objects/player/making_layer" instance=ExtResource("5_6iv2m")]
+[node name="mixing_minigame" parent="objects/player/making_layer" instance=ExtResource("5_6iv2m")]
 position = Vector2(-7, 9)
 
 [node name="moulding_layer" type="CanvasLayer" parent="objects/player"]

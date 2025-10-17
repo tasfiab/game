@@ -77,12 +77,12 @@ script = ExtResource("1_8k2d7")
 mould_meter = NodePath("mould_meter")
 bread_types_panel = NodePath("bread_types")
 cake_types_panel = NodePath("cake_types")
-rating = NodePath("Panel2/Label")
-rating_panel = NodePath("Panel2")
+rating = NodePath("rating_panel/Label")
+rating_panel = NodePath("rating_panel")
 order_item_sprite = NodePath("mixing_bowl")
-magic = NodePath("CPUParticles2D")
+magic = NodePath("magic_particles")
 
-[node name="MouldingCounter" type="Sprite2D" parent="."]
+[node name="moulding_counter" type="Sprite2D" parent="."]
 position = Vector2(570, 320)
 texture = ExtResource("3_4qr3p")
 
@@ -242,7 +242,7 @@ space"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="rating_panel" type="Panel" parent="."]
 visible = false
 offset_left = 128.0
 offset_top = 176.0
@@ -251,7 +251,7 @@ offset_bottom = 238.0
 pivot_offset = Vector2(96.5, 31)
 theme_override_styles/panel = SubResource("StyleBoxFlat_b600t")
 
-[node name="Label" type="Label" parent="Panel2"]
+[node name="Label" type="Label" parent="rating_panel"]
 layout_mode = 0
 offset_right = 3860.0
 offset_bottom = 1240.0
@@ -271,7 +271,7 @@ scale = Vector2(0.44, 0.44)
 pivot_offset = Vector2(500, 500)
 texture = ExtResource("10_bh2no")
 
-[node name="CPUParticles2D" parent="." instance=ExtResource("9_xs7k2")]
+[node name="magic_particles" parent="." instance=ExtResource("9_xs7k2")]
 position = Vector2(564, 373)
 scale = Vector2(2, 2)
 emitting = false

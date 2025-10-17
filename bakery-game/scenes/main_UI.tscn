@@ -41,7 +41,7 @@ grow_vertical = 2
 scale = Vector2(1.1, 1.1)
 script = ExtResource("2_bpswa")
 day = NodePath("day/day-number")
-money_text = NodePath("HBoxContainer/money")
+money_text = NodePath("money_container/money")
 pause_layer = NodePath("pause_layer")
 order_check_layer = NodePath("CanvasLayer")
 order_ui = NodePath("order_ui")
@@ -126,7 +126,7 @@ offset_right = 1152.0
 offset_bottom = 74.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yibcc")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="money_container" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 1034.55
 offset_top = 608.182
@@ -134,12 +134,12 @@ offset_right = 1120.55
 offset_bottom = 648.182
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="money_container"]
 layout_mode = 2
 texture = ExtResource("2_3770e")
 expand_mode = 3
 
-[node name="money" type="Label" parent="HBoxContainer"]
+[node name="money" type="Label" parent="money_container"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.72549, 0.466667, 1)
 theme_override_colors/font_outline_color = Color(0.670588, 0.215686, 0.223529, 1)

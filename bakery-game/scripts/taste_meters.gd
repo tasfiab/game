@@ -1,9 +1,5 @@
 extends Node2D
 
-# Taste meters.
-@export var sweet_UI: TextureProgressBar
-@export var bitter_UI: TextureProgressBar
-
 const EMPTY_STRING := ""
 
 # Chosen ingredients indexes.
@@ -16,6 +12,10 @@ const SWEETNESS_KEY := "sweetness"
 const BITTERNESS_KEY := "bitterness"
 
 const TASTE_RESET : int = 0
+
+# Taste meters.
+@export var sweet_UI: TextureProgressBar
+@export var bitter_UI: TextureProgressBar
 
 # Taste values.
 var sweetness: int = 0

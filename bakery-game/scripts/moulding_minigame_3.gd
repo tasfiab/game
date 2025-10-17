@@ -1,5 +1,7 @@
 extends Node2D
 
+signal minigame_done
+
 @export var mould_meter : TextureProgressBar
 
 # Variables for items panels containing shape buttons.
@@ -20,26 +22,6 @@ var can_mould : bool = true
 var current_customer : String
 var order_dictionary : Dictionary
 
-const SPACE_BIND := "space"
-
-const CAKE := "cake"
-const BREAD := "bread"
-const DOUGH_TYPE_INDEX := 0
-
-const SHAPE_KEY := "shape"
-const LOAF := 'loaf'
-const CROISSANT := 'croissant'
-const CIRCLE := 'circle'
-const SQUARE := 'square'
-
-const GREAT_SCORE : int = 15
-const GOOD_SCORE : int = 10
-
-const TWEEN_TIME : float = 0.1
-
-
-signal minigame_done
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,6 +36,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: 
+	const DOUGH_TYPE_INDEX := 0
+	
 	# Makes sure item sprite doesn't change until dough type has been added to order item array.
 	if Global.order_item.is_empty():
 		pass
@@ -70,6 +54,8 @@ func _process(delta: float) -> void:
 	order_dictionary = Global.customer_dictionaries[current_customer][PERFECT_ORDER_KEY]
 	
 	# Shows cake shape types if the dough type is cake.
+	const CAKE := "cake"
+	const BREAD := "bread"
 	if Global.chosen_ingredients[DOUGH_TYPE_INDEX] == CAKE:
 		bread_types_panel.hide()
 		cake_types_panel.show()
@@ -84,6 +70,8 @@ func _process(delta: float) -> void:
 		bread_types_panel.hide()
 		cake_types_panel.hide()
 		mould_meter.show()
+		
+		const SPACE_BIND := "space"
 		
 		# Increases mould meter as space is held.
 		if Input.is_action_pressed(SPACE_BIND) and can_mould:
@@ -108,12 +96,14 @@ func _process(delta: float) -> void:
 			
 			# If player is in boundaries of perfect mould, adds order points accordingly.
 			if mould_meter.value <= PERFECT_MAX and mould_meter.value >= PERFECT_MIN:
+				const GREAT_SCORE : int = 15
 				Global.order_meter += GREAT_SCORE
 				const PERFECT_TEXT := "perfect!"
 				rating.text = PERFECT_TEXT
 			
 			# If player is in boundaries of ok mould but not perfect mould, adds points accordingly.
 			elif mould_meter.value <= OK_MAX and mould_meter.value >= OK_MIN:
+				const GOOD_SCORE : int = 10
 				Global.order_meter += GOOD_SCORE
 				const GOOD_TEXT := "good!"
 				rating.text = GOOD_TEXT
@@ -129,14 +119,13 @@ func _process(delta: float) -> void:
 			# If player is above boundary of ok_mould, no order points added.
 			elif mould_meter.value > OK_MAX:
 				const HIGH_MAGIC_AMOUNT : int = 150
-				const HIGH_MAGIC_SPEED : int = 4
 				magic.amount = HIGH_MAGIC_AMOUNT # Makes too many magic particles.
-				magic.speed_scale = HIGH_MAGIC_SPEED # Makes magic particles quick.
 				
 				const TOO_MUCH_TEXT := "too much!"
 				rating.text = TOO_MUCH_TEXT
 			
 			# Checks if shape matches customer's order dictionary and adds points accordingly.
+			const SHAPE_KEY := "shape"
 			if order_dictionary[SHAPE_KEY] == Global.shape:
 				const ORDER_POINTS : int = 10
 				Global.order_meter += ORDER_POINTS
@@ -146,21 +135,25 @@ func _process(delta: float) -> void:
 
 # When loaf button is pressed, chooses shape 'loaf'
 func _on_loaf_button_pressed() -> void:
+	const LOAF := "loaf"
 	_choosing_shape(LOAF)
 
 
 # When croissant button is pressed, chooses shape 'croissant'
 func _on_croissant_button_pressed() -> void:
+	const CROISSANT := "croissant"
 	_choosing_shape(CROISSANT)
 
 
 # When square button is pressed, chooses shape 'square'
 func _on_square_button_pressed() -> void:
+	const SQUARE := "square"
 	_choosing_shape(SQUARE)
 
 
 # When circle button is pressed, chooses shape 'circle'
 func _on_circle_button_pressed() -> void:
+	const CIRCLE := "circle"
 	_choosing_shape(CIRCLE)
 
 
@@ -174,6 +167,8 @@ func _choosing_shape(shape : String):
 
 # Function for when minigame is complete.
 func _on_minigame_done() -> void:
+	const TWEEN_TIME : float = 0.1
+	
 	magic.emitting = true # Emits magic particles from item.
 	
 	# Changes item sprite according to dough and shape.

@@ -2,6 +2,20 @@ extends Node2D
 
 signal ingredient_clicked
 
+const DOUGH_TYPE_INDEX : int = 0
+const FLAVOUR_INDEX : int = 1
+const FLAVOUR_2_INDEX : int = 2
+
+const CAKE := "cake"
+const BREAD := "bread"
+const VANILLA := "vanilla"
+const CHOCOLATE := "chocolate"
+const LEMON := "lemon"
+const STRAWBERRY := "strawberry"
+
+const EMPTY_STRING := ""
+const TWEEN_TIME : float = 0.1
+
 @export var strawberry : TextureRect
 @export var lemon : TextureRect
 @export var chocolate : TextureRect
@@ -20,24 +34,6 @@ var can_click_chocolate : bool = false
 var dough_type_meter_added := false
 
 var ingredient_number : int = 0
-
-const DOUGH_TYPE_INDEX : int = 0
-const FLAVOUR_INDEX : int = 1
-const FLAVOUR_2_INDEX : int = 2
-
-const INTERACT_BIND := "interact"
-
-const CAKE := 'cake'
-const BREAD := 'bread'
-const VANILLA := 'vanilla'
-const CHOCOLATE := 'chocolate'
-const LEMON := 'lemon'
-const STRAWBERRY := 'strawberry'
-
-const BOWL_ORIGINAL_TEXTURE := preload("res://assets/mixing_bowl.webp")
-
-const EMPTY_STRING := ""
-const TWEEN_TIME : float = 0.1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -78,6 +74,7 @@ func _process(delta: float) -> void:
 		bread.show()
 	
 	# When player interacts with ingredients, stores them in chosen ingredients list.
+	const INTERACT_BIND := "interact"
 	if Input.is_action_just_pressed(INTERACT_BIND) and Global.chosen_ingredients.has(EMPTY_STRING):
 		if can_click_cake:
 			_choosing_ingredients(CAKE)
@@ -106,6 +103,7 @@ func _process(delta: float) -> void:
 	
 	# Keeps bowl texture original, empty texture unless all ingredients are chosen.
 	else:
+		const BOWL_ORIGINAL_TEXTURE := preload("res://assets/mixing_bowl.webp")
 		bowl.texture = BOWL_ORIGINAL_TEXTURE
 
 

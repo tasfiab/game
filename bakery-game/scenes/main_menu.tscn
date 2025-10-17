@@ -58,7 +58,7 @@ script = ExtResource("1_00tgk")
 background_music = NodePath("AudioStreamPlayer2D")
 options_menu = NodePath("options_menu")
 
-[node name="MainMenuBackground" type="Sprite2D" parent="."]
+[node name="main_menu_background" type="Sprite2D" parent="."]
 position = Vector2(575.328, 324.5)
 scale = Vector2(1.00466, 1.00466)
 texture = ExtResource("1_6m6pd")
@@ -117,16 +117,6 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_cq5sc")
 theme_override_styles/focus = SubResource("StyleBoxFlat_cq5sc")
 text = "quit
 "
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
-offset_left = 106.0
-offset_top = 229.0
-offset_right = 423.0
-offset_bottom = 565.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 30
 
 [node name="Panel2" type="Panel" parent="."]
 offset_left = 160.0

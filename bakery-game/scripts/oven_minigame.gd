@@ -1,12 +1,13 @@
 extends Control
 
+signal minigame_done
+
+const RATING_INITIAL_SCALE :=  Vector2(0.1,0.1)
+
 @export var rating : Label
 @export var rating_panel : Panel
 
 @export var animations : AnimationPlayer
-
-const RATING_INITIAL_SCALE :=  Vector2(0.1,0.1)
-const TWEEN_TIME := 0.1
 
 # Variables that turn true when oven hand is in green area
 var in_green: bool = false
@@ -15,8 +16,6 @@ var in_yellow: bool = false
 var can_click = false
 
 var rating_done = false
-
-signal minigame_done
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,12 +27,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	const INTERACT_BIND := "interact"
+	
 	# When moulding minigame is done, allows player to interact with oven for oven minigame.
 	if Global.moulding_done and not Global.baking_done:
 		
 		# When player interacts as timer is running, gives player score based on where the hand is.
 		if animations.is_playing():
-			if Input.is_action_just_pressed("interact"):
+			if Input.is_action_just_pressed(INTERACT_BIND):
 				minigame_done.emit()
 				animations.stop()
 				hide() # Hides timer.
@@ -70,7 +71,7 @@ func _process(delta: float) -> void:
 		
 		# If minigame hasn't been started yet, starts minigame after player interacts with oven.
 		elif Global.can_start_oven:
-			if Input.is_action_just_pressed("interact"):
+			if Input.is_action_just_pressed(INTERACT_BIND):
 				show() # Shows timer.
 				
 				const TIMER_ANIMATION := "oven_timer_hand"
@@ -79,6 +80,7 @@ func _process(delta: float) -> void:
 
 # Function gives bad rating if timer animation ends without player interacting.
 func _on_oven_timer_animation_finished(anim_name: StringName) -> void:
+	in_yellow = false
 	hide()
 	const UMM_TEXT := "umm..."
 	rating.text = UMM_TEXT
@@ -115,6 +117,7 @@ func _on_minigame_done() -> void:
 	
 	var tween := create_tween()
 	const TWEEN_SCALE := Vector2(1,1)
+	const TWEEN_TIME : float = 0.1
 	tween.tween_property(rating_panel, "scale", TWEEN_SCALE,TWEEN_TIME)
 	
 	const RATING_SHOW_TIME : float = 1.0
