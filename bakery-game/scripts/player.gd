@@ -1,15 +1,18 @@
 extends CharacterBody2D
+
 # Order signals
 signal order_taken
 signal order_complete
 
 const SPEED := 300.0
 
+# Constant strings for animation directions.
 const DOWN_ANIMATION := "down"
 const UP_ANIMATION := "up"
 const LEFT_ANIMATION := "left"
 const RIGHT_ANIMATION := "right"
 
+# Constant strings for area metadatas.
 const OVEN_META := "oven"
 const MAKING_AREA_META := "making_area"
 const TOPPINGS_META := "toppings"

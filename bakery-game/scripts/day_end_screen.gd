@@ -10,4 +10,3 @@ func _on_next_day_pressed() -> void:
 	Global.new_day = true
 	Global.day_end = false
 	Global.current_day += 1
-	

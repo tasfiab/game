@@ -8,7 +8,7 @@ signal minigame_done
 @export var bread_types_panel : Panel
 @export var cake_types_panel : Panel
 
-# Variables for rating popup
+# Variables for rating popup.
 @export var rating : Label
 @export var rating_panel : Panel
 
@@ -94,33 +94,27 @@ func _process(delta: float) -> void:
 			const OK_MIN : int = 67
 			const OK_MAX : int = 85
 			
-			# If player is in boundaries of perfect mould, adds order points accordingly.
+			# If meter is in boundaries of perfect mould, adds order points accordingly.
 			if mould_meter.value <= PERFECT_MAX and mould_meter.value >= PERFECT_MIN:
 				const GREAT_SCORE : int = 15
 				Global.order_meter += GREAT_SCORE
 				const PERFECT_TEXT := "perfect!"
 				rating.text = PERFECT_TEXT
 			
-			# If player is in boundaries of ok mould but not perfect mould, adds points accordingly.
+			# If meter is in boundaries of ok mould but not perfect mould, adds points accordingly.
 			elif mould_meter.value <= OK_MAX and mould_meter.value >= OK_MIN:
 				const GOOD_SCORE : int = 10
 				Global.order_meter += GOOD_SCORE
 				const GOOD_TEXT := "good!"
 				rating.text = GOOD_TEXT
 			
-			# If player is below boundaries of ok mould, no order points added.
+			# If meter is below boundaries of ok mould, no order points added.
 			elif mould_meter.value < OK_MIN:
-				const LOW_MAGIC_AMOUNT : int = 10
-				magic.amount = LOW_MAGIC_AMOUNT # Makes little magic particles.
-				
 				const TOO_LITTLE_TEXT := "too little!"
 				rating.text = TOO_LITTLE_TEXT
 			
-			# If player is above boundary of ok_mould, no order points added.
+			# If meter is above boundary of ok_mould, no order points added.
 			elif mould_meter.value > OK_MAX:
-				const HIGH_MAGIC_AMOUNT : int = 150
-				magic.amount = HIGH_MAGIC_AMOUNT # Makes too many magic particles.
-				
 				const TOO_MUCH_TEXT := "too much!"
 				rating.text = TOO_MUCH_TEXT
 			

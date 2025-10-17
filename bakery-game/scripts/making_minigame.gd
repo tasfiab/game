@@ -2,10 +2,12 @@ extends Node2D
 
 signal ingredient_clicked
 
+# Constants for chosen ingredients indexes.
 const DOUGH_TYPE_INDEX : int = 0
 const FLAVOUR_INDEX : int = 1
 const FLAVOUR_2_INDEX : int = 2
 
+# Constants for ingredient strings.
 const CAKE := "cake"
 const BREAD := "bread"
 const VANILLA := "vanilla"

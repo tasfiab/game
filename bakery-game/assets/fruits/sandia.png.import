@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beooycg1yfitb"
-path="res://.godot/imported/Naranja.png-af48738bc2535b13f20eaa21fac4443c.ctex"
+uid="uid://cw0nl4eiu0233"
+path="res://.godot/imported/sandia.png-9d22cabe81ddeb3be33c03b4b8a12a0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Icons/Naranja.png"
-dest_files=["res://.godot/imported/Naranja.png-af48738bc2535b13f20eaa21fac4443c.ctex"]
+source_file="res://assets/fruits/sandia.png"
+dest_files=["res://.godot/imported/sandia.png-9d22cabe81ddeb3be33c03b4b8a12a0d.ctex"]
 
 [params]
 

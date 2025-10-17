@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jlpddokrsqpm"
-path="res://.godot/imported/Pinneaple.png-1c629240fd445a11eab736ae3c5c7b17.ctex"
+uid="uid://beooycg1yfitb"
+path="res://.godot/imported/Naranja.png-752a527c301901431e988585e2e83862.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Icons/Pinneaple.png"
-dest_files=["res://.godot/imported/Pinneaple.png-1c629240fd445a11eab736ae3c5c7b17.ctex"]
+source_file="res://assets/fruits/Naranja.png"
+dest_files=["res://.godot/imported/Naranja.png-752a527c301901431e988585e2e83862.ctex"]
 
 [params]
 

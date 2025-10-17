@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hf00jbrwnj37"
-path="res://.godot/imported/limon.png-17e93d1b4739d2a0e3307c8f7fe14e5c.ctex"
+uid="uid://bik6u1tgoav5m"
+path="res://.godot/imported/Pera.png-d69e4a0dad1c0fd278398797b35ab0ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Icons/limon.png"
-dest_files=["res://.godot/imported/limon.png-17e93d1b4739d2a0e3307c8f7fe14e5c.ctex"]
+source_file="res://assets/fruits/Pera.png"
+dest_files=["res://.godot/imported/Pera.png-d69e4a0dad1c0fd278398797b35ab0ee.ctex"]
 
 [params]
 

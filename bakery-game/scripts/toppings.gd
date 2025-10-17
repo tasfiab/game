@@ -21,7 +21,7 @@ const OK_ORDER_POINTS : int = 5
 var current_customer : String
 var order_dictionary : Dictionary
 
-var draggable: bool = false
+var draggable : bool = false
 var in_baked_item : bool = false
 
 @onready var choco_icing = $"../chocolate_icing"

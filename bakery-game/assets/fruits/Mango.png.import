@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m0c6c4px7eco"
-path="res://.godot/imported/melocoton.png-888f0c3a10df174deabd1f9c47d7fd22.ctex"
+uid="uid://t2lwkm8iu40s"
+path="res://.godot/imported/Mango.png-eac849b25de95c09821e46e700d4695e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Icons/melocoton.png"
-dest_files=["res://.godot/imported/melocoton.png-888f0c3a10df174deabd1f9c47d7fd22.ctex"]
+source_file="res://assets/fruits/Mango.png"
+dest_files=["res://.godot/imported/Mango.png-eac849b25de95c09821e46e700d4695e.ctex"]
 
 [params]
 

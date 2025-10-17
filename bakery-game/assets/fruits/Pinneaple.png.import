@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccamx04etspvm"
-path="res://.godot/imported/platano.png-756b3a7b8e3234c78f71b23a9ad740ee.ctex"
+uid="uid://jlpddokrsqpm"
+path="res://.godot/imported/Pinneaple.png-753e4a479ce98199199709ee66aa7e08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Icons/platano.png"
-dest_files=["res://.godot/imported/platano.png-756b3a7b8e3234c78f71b23a9ad740ee.ctex"]
+source_file="res://assets/fruits/Pinneaple.png"
+dest_files=["res://.godot/imported/Pinneaple.png-753e4a479ce98199199709ee66aa7e08.ctex"]
 
 [params]
 

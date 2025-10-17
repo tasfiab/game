@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t2lwkm8iu40s"
-path="res://.godot/imported/Mango.png-6352bd6315bfd11f6993798cced1d603.ctex"
+uid="uid://dcxfgbeox6xmk"
+path="res://.godot/imported/Cereza.png-7c8f380132d79c2cab5b8b7c4e0fa00b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Icons/Mango.png"
-dest_files=["res://.godot/imported/Mango.png-6352bd6315bfd11f6993798cced1d603.ctex"]
+source_file="res://assets/fruits/Cereza.png"
+dest_files=["res://.godot/imported/Cereza.png-7c8f380132d79c2cab5b8b7c4e0fa00b.ctex"]
 
 [params]
 

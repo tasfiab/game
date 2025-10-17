@@ -50,7 +50,7 @@ texture_under = ExtResource("1_u3tlm")
 texture_over = ExtResource("2_n3lpo")
 texture_progress = ExtResource("3_3k74v")
 
-[node name="Label" type="Label" parent="."]
+[node name="bitter_label" type="Label" parent="."]
 offset_left = 16.0
 offset_top = 2.0
 offset_right = 95.0
@@ -61,7 +61,7 @@ theme_override_fonts/font = ExtResource("5_yib88")
 theme_override_font_sizes/font_size = 300
 text = "bitter"
 
-[node name="Label2" type="Label" parent="."]
+[node name="sweet_label" type="Label" parent="."]
 offset_left = 16.0
 offset_top = 23.0
 offset_right = 95.0
@@ -71,10 +71,3 @@ theme_override_colors/font_color = Color(0.980392, 0.627451, 0.321569, 1)
 theme_override_fonts/font = ExtResource("5_yib88")
 theme_override_font_sizes/font_size = 300
 text = "sweet"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-visible = false
-offset_left = 16.0
-offset_top = 2.0
-offset_right = 95.0
-offset_bottom = 79.0

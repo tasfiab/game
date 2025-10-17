@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ekuyfmtny4bk"]
 
 [ext_resource type="FontFile" uid="uid://cjp853o8vg27q" path="res://assets/Jua-Regular.ttf" id="1_gmmap"]
-[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_jvevw"]
+[ext_resource type="Script" uid="uid://dpocr46icohmq" path="res://scripts/pause_menu.gd" id="1_jvevw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfyvh"]
 bg_color = Color(0.36, 0.18252, 0.1512, 0.196078)
@@ -18,18 +18,6 @@ border_color = Color(0.270588, 0.101961, 0.0705882, 1)
 default_font = ExtResource("1_gmmap")
 default_font_size = 40
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f07kr"]
-bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(1, 0.67451, 0.372549, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjxqw"]
 bg_color = Color(1, 0.67451, 0.372549, 1)
 border_width_left = 10
@@ -37,6 +25,18 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0.270588, 0.101961, 0.0705882, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f07kr"]
+bg_color = Color(0.270588, 0.101961, 0.0705882, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.67451, 0.372549, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -54,7 +54,7 @@ corner_radius_bottom_left = 25
 [node name="pause_menu" type="Node2D"]
 script = ExtResource("1_jvevw")
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="background" type="Panel" parent="."]
 offset_left = -221.0
 offset_top = -139.0
 offset_right = 1358.0
@@ -62,7 +62,7 @@ offset_bottom = 808.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mfyvh")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="pause_menu_panel" type="Panel" parent="."]
 offset_left = 247.0
 offset_right = 896.0
 offset_bottom = 649.0
@@ -75,17 +75,17 @@ offset_top = 231.0
 offset_right = 718.0
 offset_bottom = 323.0
 theme = SubResource("Theme_6n3pl")
-theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jjxqw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jjxqw")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jjxqw")
+theme_override_colors/font_pressed_color = Color(1, 0.67451, 0.372549, 1)
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjxqw")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_jjxqw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jjxqw")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_jjxqw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f07kr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_f07kr")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_f07kr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_f07kr")
 text = "resume
 "
 metadata/_edit_use_anchors_ = true
@@ -96,15 +96,15 @@ offset_top = 340.0
 offset_right = 718.0
 offset_bottom = 432.0
 theme = SubResource("Theme_6n3pl")
-theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
-theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jjxqw")
+theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjxqw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jjxqw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f07kr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_f07kr")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_f07kr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_f07kr")
 text = "options
 "
 metadata/_edit_use_anchors_ = true
@@ -115,20 +115,20 @@ offset_top = 449.0
 offset_right = 717.0
 offset_bottom = 541.0
 theme = SubResource("Theme_6n3pl")
-theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
-theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_f07kr")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jjxqw")
+theme_override_colors/font_pressed_color = Color(0.270588, 0.101961, 0.0705882, 1)
+theme_override_colors/font_hover_color = Color(1, 0.67451, 0.372549, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_jjxqw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jjxqw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f07kr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_f07kr")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_f07kr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_f07kr")
 text = "quit
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel3" type="Panel" parent="."]
+[node name="goal_panel" type="Panel" parent="."]
 offset_left = 312.0
 offset_top = -1.0
 offset_right = 832.0
@@ -136,11 +136,12 @@ offset_bottom = 200.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_l7dle")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="."]
-offset_left = 336.0
-offset_top = 24.0
-offset_right = 9710.0
-offset_bottom = 2685.0
+[node name="Label" type="Label" parent="goal_panel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 25.0
+offset_right = 9398.0
+offset_bottom = 2686.0
 scale = Vector2(0.05, 0.05)
 theme_override_colors/font_color = Color(0.270588, 0.101961, 0.0705882, 1)
 theme_override_fonts/font = ExtResource("1_gmmap")

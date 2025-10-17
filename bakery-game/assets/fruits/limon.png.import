@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca3q3kw16agj1"
-path="res://.godot/imported/mora.png-4cbcc957aa18edd8846d7ce484e71374.ctex"
+uid="uid://hf00jbrwnj37"
+path="res://.godot/imported/limon.png-dffd1b426a997a1a8dbddb3d988f5211.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Icons/mora.png"
-dest_files=["res://.godot/imported/mora.png-4cbcc957aa18edd8846d7ce484e71374.ctex"]
+source_file="res://assets/fruits/limon.png"
+dest_files=["res://.godot/imported/limon.png-dffd1b426a997a1a8dbddb3d988f5211.ctex"]
 
 [params]
 

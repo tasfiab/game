@@ -54,16 +54,8 @@ height = 16.0
 sprite_frames = SubResource("SpriteFrames_uyhls")
 animation = &"down"
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-color = Color(0.54, 0.477, 0, 1)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1, 28)
+position = Vector2(1, 28)
 shape = SubResource("CapsuleShape2D_jke16")

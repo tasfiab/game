@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw0nl4eiu0233"
-path="res://.godot/imported/sandia.png-4d1b4723bd51c611f9ba21964c3bd8d5.ctex"
+uid="uid://m0c6c4px7eco"
+path="res://.godot/imported/melocoton.png-43536aefc0e5552a2b3435ccb4e3437d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Icons/sandia.png"
-dest_files=["res://.godot/imported/sandia.png-4d1b4723bd51c611f9ba21964c3bd8d5.ctex"]
+source_file="res://assets/fruits/melocoton.png"
+dest_files=["res://.godot/imported/melocoton.png-43536aefc0e5552a2b3435ccb4e3437d.ctex"]
 
 [params]
 

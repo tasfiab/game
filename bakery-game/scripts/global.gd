@@ -19,7 +19,6 @@ var day_money : int = 0
 var can_move : bool = true # Allows/disables movement.
 var can_pause : bool = false # Allows/disables pausing.
 
-# Variable that turns true when order begins.
 var order_start : bool = false
 
 # Variables that turn true when minigame can be started.
@@ -49,7 +48,7 @@ var moulding_done: bool = false
 var baking_done : bool = false
 var toppings_done : bool = false
 
-# Variables in topping minigame that need to be global.
+# Variables in topping minigame that need to be global for minigame to function.
 var topping_number : int = 0
 var is_dragging : bool = false
 var max_toppings : bool = false
@@ -57,10 +56,8 @@ var max_toppings : bool = false
 # Variable for when customer gives money.
 var give_money : bool = false
 
-# Variable that turns true when order is finished being made.
 var order_done : bool = false
 
-# Variable storing order meter that keeps track of order points to accurately grade players item.
 var order_meter : int = 0
 
 # List of all customers.
@@ -71,7 +68,7 @@ var customers = ["Birthday girl", "Cat", "Witch", "Old lady", "Edgy guy", "Pink 
 var customer_dictionaries = {
 	customers[0] : {
 		"customer_dialogue" : load("res://addons/dialogue_manager/dialogue_scripts/birthday_girl.dialogue"),
-		"customer_sprite" : preload("res://scenes/customer.tscn"),
+		"customer_sprite" : preload("res://scenes/birthday_girl.tscn"),
 		"customer_order" : "- cake
 							- cute and sweet",
 		"perfect_order" :  {

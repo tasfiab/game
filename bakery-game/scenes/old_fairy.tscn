@@ -47,8 +47,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uv3oq"]
-radius = 7.0
-height = 14.0
+radius = 9.0
+height = 18.0
 
 [node name="old_fairy" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_yxbuh")
