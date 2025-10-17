@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bfafhin4m018n" path="res://assets/bakery-front.png" id="2_jrcqy"]
 [ext_resource type="PackedScene" uid="uid://c0wv76xvy6lgo" path="res://scenes/counter.tscn" id="2_rnurw"]
 [ext_resource type="Texture2D" uid="uid://44vi38gn6s5p" path="res://assets/counter.png" id="3_wfaog"]
-[ext_resource type="PackedScene" uid="uid://cpjb2kjctka7x" path="res://scenes/main_UI.tscn" id="4_0bs33"]
+[ext_resource type="PackedScene" uid="uid://cpjb2kjctka7x" path="res://scenes/main_ui.tscn" id="4_0bs33"]
 [ext_resource type="Texture2D" uid="uid://d024j3spm172w" path="res://assets/big_bush.png" id="4_5ksgq"]
 [ext_resource type="PackedScene" uid="uid://bcjsbq03qg6hf" path="res://scenes/mixing_minigame.tscn" id="5_6iv2m"]
 [ext_resource type="Script" uid="uid://bw172gt2w2s0j" path="res://scripts/making_minigame_layer.gd" id="5_8sudi"]

@@ -29,7 +29,7 @@ border_color = Color(0.27451, 0.137255, 0.113725, 1)
 corner_radius_bottom_left = 25
 anti_aliasing = false
 
-[node name="main_UI" type="Control" node_paths=PackedStringArray("day", "money_text", "pause_layer", "order_check_layer", "order_ui", "order_ui_text", "clock_timer", "clock_hours", "clock_minutes", "a_m_text")]
+[node name="main_ui" type="Control" node_paths=PackedStringArray("day", "money_text", "pause_layer", "order_check_layer", "order_ui", "order_ui_text", "clock_timer", "clock_hours", "clock_minutes", "a_m_text")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
