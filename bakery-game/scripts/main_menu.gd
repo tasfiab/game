@@ -11,7 +11,8 @@ func _ready() -> void:
 
 # When play button is pressed, changes file to main bakery scene.
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/bakery.tscn")
+	const MAIN_GAME := "res://scenes/bakery.tscn"
+	get_tree().change_scene_to_file(MAIN_GAME)
 
 
 # Quits game to desktop when quit is pressed.

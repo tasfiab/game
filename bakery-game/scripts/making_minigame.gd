@@ -218,7 +218,7 @@ func _on_done_button_pressed() -> void:
 		):
 			const GOOD_ORDER_SCORE : int = 15
 			Global.order_meter += GOOD_ORDER_SCORE
-			print("dough right" + str(Global.order_meter))
+			print(str(Global.order_meter))
 			dough_type_meter_added = true
 			
 		ingredient_number = 0 # Resets item number.

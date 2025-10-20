@@ -22,7 +22,8 @@ func _on_resume_pressed() -> void:
 
 # Changes scene to main menu when quit pressed.
 func _on_pause_quit_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	const MAIN_MENU = "res://scenes/main_menu.tscn"
+	get_tree().change_scene_to_file(MAIN_MENU)
 
 
 # Shows options menu when options button pressed.

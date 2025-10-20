@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 				const TOPPINGS_COUNT_TEXT := "/3"
 				toppings_counter.text =  TOPPINGS + str(Global.topping_number) + TOPPINGS_COUNT_TEXT
 				
-				# Hides chocolate icing if vanilla icing added.
+				# Ingredient strings.
 				const VANILLA_ICING := "vanilla_icing"
 				const CHOCO_ICING := "choco_icing"
 				const SQUARE := "square"
@@ -75,6 +75,7 @@ func _process(delta: float) -> void:
 				const LOAF := "loaf"
 				const CROISSANT := "croissant"
 				
+				# Hides chocolate icing if vanilla icing added.
 				if self.type == VANILLA_ICING:
 					choco_icing.hide()
 				
@@ -90,7 +91,7 @@ func _process(delta: float) -> void:
 				elif Global.shape == CIRCLE:
 					self.circle_sprite.show()
 				
-				# Shows topping sprite for loafs.
+				# Topping added, shows topping sprite for loaf, if item is a loaf.
 				elif Global.shape == LOAF:
 					self.loaf_sprite.show()
 				
@@ -157,4 +158,4 @@ func _on_done_button_down() -> void:
 	
 	# Emits signal to change tutorial box to the next box, as toppings have been added.
 	if Global.customer_number == 0 and Global.tutorial_box_number == CURRENT_TUTORIAL_NUMBER:
-				Global.tutorial_given.emit()
+		Global.tutorial_given.emit()
